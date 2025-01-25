@@ -8,6 +8,7 @@ In the terminal in visual code
   1. composer install
   - Use Composer to install the PHP dependencies:
   
+  
   2. npm install
   - Install the required JavaScript packages:
   
@@ -17,12 +18,13 @@ In the terminal in visual code
   4. Create a new database using phpmyadmin or however you like.
   
   5. Edit the .env file to configure your database and other settings:
-  DB_CONNECTION=mysql
+  <p>DB_CONNECTION=mysql
   DB_HOST=127.0.0.1
   DB_PORT=3306
   DB_DATABASE=your_database_name
   DB_USERNAME=your_database_user
   DB_PASSWORD=your_database_password
+  </p>
   
   
   6. php artisan key:generate
