@@ -18,12 +18,12 @@ In the terminal in visual code
   4. Create a new database using phpmyadmin or however you like.
   
   5. Edit the .env file to configure your database and other settings:
-  DB_CONNECTION=mysql
-  DB_HOST=127.0.0.1
-  DB_PORT=3306
-  DB_DATABASE=your_database_name
-  DB_USERNAME=your_database_user
-  DB_PASSWORD=your_database_password
+  <p>DB_CONNECTION=mysql</p>
+  <p>DB_HOST=127.0.0.1</p>
+  <p>DB_PORT=3306</p>
+  <p>DB_DATABASE=your_database_name</p>
+  <p>DB_USERNAME=your_database_user</p>
+  <p>DB_PASSWORD=your_database_password</p>
  
   
   
@@ -44,10 +44,10 @@ In the terminal in visual code
 <h2>Troubleshooting</h2>
 
   If you encounter permission issues, check directory permissions for storage and bootstrap/cache:
-  chmod -R 775 storage bootstrap/cache
+  <p>chmod -R 775 storage bootstrap/cache</p>
 
   Clear caches if something doesn't seem to work:
-  php artisan config:cache
-  php artisan route:cache
-  php artisan view:clear
+  <p>php artisan config:cache</p>
+  <p>php artisan route:cache</p>
+  <p>php artisan view:clear</p>
 
