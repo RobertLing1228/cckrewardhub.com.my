@@ -39,8 +39,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'description' => 'required|string',
-            'category' => 'required|string|max:100',
-            'image' => 'required|string|max:255',
+            'category' => 'nullable|integer',
+            'image' => 'nullable|string',
         ]);
 
         $product = Product::create($validated);
@@ -76,8 +76,8 @@ class ProductController extends Controller
             'name' => 'sometimes|required|string|max:255',
             'price' => 'sometimes|required|numeric',
             'description' => 'sometimes|required|string',
-            'category' => 'sometimes|required|string|max:100',
-            'image' => 'sometimes|required|string|max:255',
+            'category' => 'sometimes|nullable|integer',
+            'image' => 'sometimes|nullable|string',
         ]);
 
         $product->update($validated);
