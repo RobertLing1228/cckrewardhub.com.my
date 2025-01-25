@@ -6,36 +6,36 @@ Make sure you have Composer and Node.js installed.
 In the terminal in visual code
 <p>
   1. composer install
-- Use Composer to install the PHP dependencies:
-
-2. npm install
-- Install the required JavaScript packages:
-
-3. cp .env.example .env
-- Copy the .env.example file to .env:
-
-4. Create a new database using phpmyadmin or however you like.
-
-5. Edit the .env file to configure your database and other settings:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=your_database_name
-DB_USERNAME=your_database_user
-DB_PASSWORD=your_database_password
-
-
-6. php artisan key:generate
-- Run the following command to generate the application key:
-
-7. php artisan migrate
-- Run this to set up tables into your local database through the migration files made in the database folder
-
-8. npm run dev
-- Build the React frontend assets using the following command
-
-9. php artisan serve
-- Run the Laravel development server
+  - Use Composer to install the PHP dependencies:
+  
+  2. npm install
+  - Install the required JavaScript packages:
+  
+  3. cp .env.example .env
+  - Copy the .env.example file to .env:
+  
+  4. Create a new database using phpmyadmin or however you like.
+  
+  5. Edit the .env file to configure your database and other settings:
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=your_database_name
+  DB_USERNAME=your_database_user
+  DB_PASSWORD=your_database_password
+  
+  
+  6. php artisan key:generate
+  - Run the following command to generate the application key:
+  
+  7. php artisan migrate
+  - Run this to set up tables into your local database through the migration files made in the database folder
+  
+  8. npm run dev
+  - Build the React frontend assets using the following command
+  
+  9. php artisan serve
+  - Run the Laravel development server
 
 </p>
 
