@@ -4,7 +4,7 @@ Make sure you have Composer and Node.js installed.
 
 <h2>Setup</h2>
 In the terminal in visual code
-<p>
+
   1. composer install
   - Use Composer to install the PHP dependencies:
   
@@ -18,13 +18,13 @@ In the terminal in visual code
   4. Create a new database using phpmyadmin or however you like.
   
   5. Edit the .env file to configure your database and other settings:
-  <p>DB_CONNECTION=mysql\n
-  DB_HOST=127.0.0.1\n
-  DB_PORT=3306\n
-  DB_DATABASE=your_database_name\n
-  DB_USERNAME=your_database_user\n
-  DB_PASSWORD=your_database_password\n
-  </p>
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=your_database_name
+  DB_USERNAME=your_database_user
+  DB_PASSWORD=your_database_password
+ 
   
   
   6. php artisan key:generate
@@ -39,15 +39,15 @@ In the terminal in visual code
   9. php artisan serve
   - Run the Laravel development server
 
-</p>
+
 
 <h2>Troubleshooting</h2>
-<p>
+
   If you encounter permission issues, check directory permissions for storage and bootstrap/cache:
   chmod -R 775 storage bootstrap/cache
 
   Clear caches if something doesn't seem to work:
-  php artisan config:cache\n
-  php artisan route:cache\n
-  php artisan view:clear\n
-</p>
+  php artisan config:cache
+  php artisan route:cache
+  php artisan view:clear
+
