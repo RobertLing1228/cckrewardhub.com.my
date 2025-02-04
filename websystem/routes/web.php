@@ -7,6 +7,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,17 @@ use App\Http\Controllers\PromotionController;
 /*
 Base Pages
 */
-Route::get('/', [ProductController::class, 'home'])->name('home');
+Route::get('/', [ProductController::class, 'index'])->name('index');
+
+Route::get('/admin', function () {
+    return Inertia::render('Admin/Dashboard');
+});
+
+Route::get('/admin/products', [ProductController::class, 'admin']);
+Route::get('/admin/recipes', [RecipeController::class, 'admin']);
+Route::get('/admin/promotions', [PromotionController::class, 'admin']);
+Route::get('/admin/users', [UserController::class, 'admin']);
+Route::get('/admin/games', [GameController::class, 'admin']);
 
 Route::get('/base', function () {
     return Inertia::render('Welcome', [

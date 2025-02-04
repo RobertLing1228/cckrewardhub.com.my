@@ -17,6 +17,14 @@ class RecipeController extends Controller
         ]);
     }
 
+    public function admin()
+    {
+        $recipe = Recipe::all();  // You can paginate if needed, for large datasets
+        return Inertia::render('Admin/Recipes', [
+            'recipes' => $recipe,
+        ]);
+    }
+
     // Display a single recipe
     public function show($id)
     {

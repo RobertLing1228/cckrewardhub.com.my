@@ -13,10 +13,18 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        $promotion = Promotion::all();
+        $promotion = Promotion::paginate(6);
 
         // Return the view for promotion index, passing promotion data
         return Inertia::render('Promotions/Index', ['promotion' => $promotion,]);
+    }
+
+    public function admin()
+    {
+        $promotion = Promotion::all();
+
+        // Return the view for promotion index, passing promotion data
+        return Inertia::render('Admin/Promotions', ['promotions' => $promotion,]);
     }
 
     /**
@@ -25,7 +33,7 @@ class PromotionController extends Controller
     public function create()
     {
         // Return the view for creating a promotion
-        return inertia('Promotions/Create');
+        return Inertia::render('Promotions/Create');
     }
 
     /**
@@ -54,7 +62,7 @@ class PromotionController extends Controller
     public function show(Promotion $promotion)
     {
         // Return the view for showing a single promotion
-        return inertia('Promotions/Show', ['promotion' => $promotion]);
+        return Inertia::render('Promotions/Show', ['promotion' => $promotion]);
     }
 
     /**
@@ -63,7 +71,7 @@ class PromotionController extends Controller
     public function edit(Promotion $promotion)
     {
         // Return the view for editing a promotion
-        return inertia('Promotions/Edit', ['promotion' => $promotion]);
+        return Inertia::render('Promotions/Edit', ['promotion' => $promotion]);
     }
 
     /**
