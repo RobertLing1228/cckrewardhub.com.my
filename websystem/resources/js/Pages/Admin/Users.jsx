@@ -44,7 +44,6 @@ export default function Users ({ admins, members }) {
                 </tbody>
                 </DataTable>
             </div>
-            </div>
 
             <h2 className="text-xl font-semibold mb-4">Admins</h2>
             <div className="overflow-x-auto">
@@ -72,7 +71,11 @@ export default function Users ({ admins, members }) {
                     ))}
                 </tbody>
                 </DataTable>
+            </div>        
+
             </div>
+
+            
         
         
         

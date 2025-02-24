@@ -1,22 +1,74 @@
 import { Head, Link, usePage } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
+import WheelSpinWidget from "@/Components/WheelSpin";
 
 export default function Home() {
-    const { flash, product } = usePage().props; // Get 'product' from props
+    const { product, recipe, promotion } = usePage().props; // Get 'product' from props
 
     return (
         <MainLayout>
             <Head title="Home" />
 
-            <h1 className="title">Products</h1>
-            {flash?.message && (
-                <div className="absolute top-24 right-6 bg-rose-500 p-2 rounded-md shadow-lg text-sm text-white">
-                    {flash.message}
-                </div>
-            )}
+            <h1 className="title">Welcome!</h1>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="my-8 max-w-2xl mx-auto">
+                <WheelSpinWidget />
+            </div>
+
+            <div>
+                Games
+            </div>
+
+            <div className="carousel">
+                <h2 className="text-2xl font-bold mb-4">Promotions</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {promotion.map((promotion) => (
+                        <Link   
+                            href={`/promotions/${promotion.promotionID}`}
+                            className="text-link mt-2 block"
+                        >
+                            <div key={promotion.promotionID} className="p-4 border rounded-md shadow-sm">
+                                <img
+                                    src={`/storage/${promotion.image}`} // Assuming 'image' contains a valid image URL
+                                    alt={promotion.name}
+                                    className="w-full h-32 object-cover rounded-md"
+                                />
+                                <h3 className="font-bold text-lg mt-2">{promotion.title}</h3>
+                            </div>
+                        </Link>
+                ))};
+                </div>
+            </div>
+            
+            <div>
+                <h2 className="text-2xl font-bold mb-4">Recipes</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {recipe.map((recipe) => (
+                        <Link
+                            href={`/recipes/${recipe.recipeID}`}
+                            className="text-link mt-2 block"
+                        >
+                            <div key={recipe.recipeID} className="p-4 border rounded-md shadow-sm">
+                                <img
+                                    src={`/storage/${recipe.image}`} // Assuming 'image' contains a valid image URL
+                                    alt={recipe.title}
+                                    className="w-full h-32 object-cover rounded-md"
+                                />
+                                <h3 className="font-bold text-lg mt-2">{recipe.title}</h3>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+
+            <h2 className="text-2xl font-bold mb-4">Products</h2>        
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
                 {product.map((product) => (
+                    <Link
+                        href={`/product/${product.id}`}
+                        className="text-link mt-2 block"
+                    >
                     <div key={product.id} className="p-4 border rounded-md shadow-sm">
                         <img
                             src={product.image} // Assuming 'image' contains a valid image URL
@@ -26,13 +78,8 @@ export default function Home() {
                         <h3 className="font-bold text-lg mt-2">{product.name}</h3>
                         <p className="text-sm text-gray-600">{product.description}</p>
                         <p className="font-bold text-blue-500 mt-2">${product.price}</p>
-                        <Link
-                            href={`/product/${product.id}`}
-                            className="text-link mt-2 block"
-                        >
-                            View Details
-                        </Link>
                     </div>
+                    </Link>
                 ))}
             </div>
         </MainLayout>

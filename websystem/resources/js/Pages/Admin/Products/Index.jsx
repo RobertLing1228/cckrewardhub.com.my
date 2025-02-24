@@ -1,5 +1,6 @@
 import React from "react";
-import { Head } from "@inertiajs/react";
+import { Head, Link, router, useForm } from "@inertiajs/react";
+import Swal from "sweetalert2";
 import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "datatables.net-react";// Core DataTables library
 import DT from 'datatables.net-dt';
@@ -7,6 +8,32 @@ import DT from 'datatables.net-dt';
 DataTable.use(DT);
 
 export default function Products ({ products }) {
+    const { delete: destroy } = useForm();
+    
+        function updsubmit(e, product){
+            e.preventDefault();
+    
+            router.visit(route('products.edit', product));
+        }
+    
+        function delsubmit(e, product) {
+            e.preventDefault();
+        
+            Swal.fire({
+                title: 'Delete "' + product.name + '" ?',
+                text: "This will remove the product from the list.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Confirm",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    destroy(route("products.delete", product));
+                    Swal.fire("Deleted!", "The product has been removed.", "success");
+                }
+            });
+        }
 
     return (
         <AdminLayout
@@ -18,6 +45,7 @@ export default function Products ({ products }) {
         >   
             <Head title="Products List" />
             <div className="p-4 bg-white shadow-md rounded-lg">
+            <Link href="/admin/products/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create Product </Link>
             <div className="overflow-x-auto">
                 <DataTable id="productsTable" className="min-w-full border border-gray-300">
                 <thead className="bg-gray-100 text-gray-700">
@@ -49,10 +77,10 @@ export default function Products ({ products }) {
                         />
                         </td>
                         <td className="px-4 py-2 border">
-                        <button className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
+                        <button onClick={(e) => updsubmit(e, product)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
                             Edit
                         </button>
-                        <button className="bg-red-500 text-white px-3 py-1 rounded">
+                        <button onClick={(e) => delsubmit(e, product)} className="bg-red-500 text-white px-3 py-1 rounded">
                             Delete
                         </button>
                         </td>

@@ -12,7 +12,7 @@ export default function RecipeIndex ({ recipe }){
                 {recipe.map((recipe) => (
                     <div key={recipe.recipeID} className="border rounded-lg shadow-lg p-4">
                         <img 
-                            src={recipe.image} 
+                            src={`/storage/${recipe.image}`} 
                             alt={recipe.title} 
                             className="w-full h-48 object-cover rounded-t-lg"
                         />
@@ -20,8 +20,8 @@ export default function RecipeIndex ({ recipe }){
                         <p className="text-sm text-gray-500">{recipe.category}</p>
                         <p className="mt-2">{recipe.description.slice(0, 100)}...</p>
                         <Link 
-                            href={`/recipe/${recipe.recipeID}`} 
-                            className="inline-block mt-4 text-blue-500 hover:text-blue-700"
+                            href={`/recipes/${recipe.recipeID}`} 
+                            className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
                         >
                             View Recipe
                         </Link>

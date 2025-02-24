@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Categories;
+use App\Models\Recipe;
+use App\Models\Promotion;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -11,16 +14,52 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function home()
     {
         $product = Product::orderBy('name', 'asc')->take(6)->get();
-        return Inertia::render('Home', ['product' => $product]);
+        $recipe = Recipe::orderBy('title', 'asc')->take(6)->get();
+        $promotion = Promotion::orderBy('title', 'asc')->take(6)->get();
+        return Inertia::render('Home', ['product' => $product, 'recipe' => $recipe, 'promotion' => $promotion]);
+    }
+
+    public function index(Request $request)
+    {
+
+        $categories = Categories::all();
+
+        $query = Product::query()
+        ->join('categories', 'products.category', '=', 'categories.categoryID')
+        ->select('products.*', 'categories.categoryName as category_name')
+        ->orderBy('products.name', 'asc');
+
+        // Search by name
+        if ($request->filled('search')) {
+            $query->where('products.name', 'like', '%' . $request->search . '%');
+        }
+
+        // Filter by category
+        if ($request->filled('category') && $request->category !== "") {
+            $query->where('products.category', (int)$request->category); // Cast to integer
+        }
+
+        $products = $query->paginate(10);
+
+        $filters = [
+            'search' => $request->filled('search') ? $request->search : null,
+            'category' => $request->filled('category') ? $request->category : null,
+        ];
+
+        return Inertia::render('User/Products/Index', [
+            'products' => $products,
+            'filters' => $filters,
+            'categories' => $categories,
+        ]);
     }
 
     public function admin()
     {
         $product = Product::all();
-        return Inertia::render('Admin/Products', ['products' => $product]);
+        return Inertia::render('Admin/Products/Index', ['products' => $product]);
     }
 
     /**
@@ -28,7 +67,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categories::all();
+        return Inertia::render('Admin/Products/Create', ['categories' => $categories]);
     }
 
     /**
@@ -41,59 +81,87 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'description' => 'required|string',
             'category' => 'nullable|integer',
-            'image' => 'nullable|string',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $product = Product::create($validated);
+        $imagePath = $request->file('image')->store('images', 'public');
 
-        return response()->json($product, 201);
+        $product = Product::create([
+            'name' => $validated['name'],
+            'price' => $validated['price'],
+            'description' => $validated['description'],
+            'category' => $validated['category'],
+            'image' => $imagePath
+        ]);
+
+        return redirect('/admin/products')->with('success', 'Product created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+    public function show($id)
+{
+        // Fetch the product with its category name
+        $product = Product::query()
+            ->join('categories', 'products.category', '=', 'categories.categoryID')
+            ->select('products.*', 'categories.categoryName as category_name')
+            ->where('products.productID', $id)
+            ->firstOrFail();
+
+        return Inertia::render('User/Products/Show', [
+            'product' => $product,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Categories::all();
+        return inertia('Admin/Products/Edit', ['product' => $product, 'categories' => $categories]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        $product = Product::findOrFail($id);
 
-        $validated = $request->validate([
+        $fields = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'price' => 'sometimes|required|numeric',
             'description' => 'sometimes|required|string',
             'category' => 'sometimes|nullable|integer',
-            'image' => 'sometimes|nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $product->update($validated);
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($product->image && file_exists(public_path("storage/{$product->image}"))) {
+                unlink(public_path("storage/{$product->image}"));
+            }
+    
+            // Store new image
+            $fields['image'] = $request->file('image')->store('images', 'public');
+        } else {
+            // Keep old image if no new file uploaded
+            $fields['image'] = $product->image;
+        }
 
-        return response()->json($product);
+        $product->update($fields);
+
+        return redirect('admin/products')->with('success', 'Product updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Product $product)
     {
-        $product = Product::findOrFail($id);
         $product->delete();
 
-        return response()->json(['message' => 'Product deleted successfully']);
+        return redirect('/admin/products')->with('success', 'Game deleted successfully!');
     }
 }

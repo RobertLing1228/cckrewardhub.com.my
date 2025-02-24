@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promotion;
+use App\Models\Product;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,10 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        $promotion = Promotion::paginate(6);
+        $promotion = Promotion::all();
 
         // Return the view for promotion index, passing promotion data
-        return Inertia::render('Promotions/Index', ['promotion' => $promotion,]);
+        return Inertia::render('User/Promotions/Index', ['promotion' => $promotion,]);
     }
 
     public function admin()
@@ -24,7 +25,7 @@ class PromotionController extends Controller
         $promotion = Promotion::all();
 
         // Return the view for promotion index, passing promotion data
-        return Inertia::render('Admin/Promotions', ['promotions' => $promotion,]);
+        return Inertia::render('Admin/Promotions/Index', ['promotions' => $promotion,]);
     }
 
     /**
@@ -33,7 +34,7 @@ class PromotionController extends Controller
     public function create()
     {
         // Return the view for creating a promotion
-        return Inertia::render('Promotions/Create');
+        return Inertia::render('Admin/Promotions/Create');
     }
 
     /**
@@ -50,10 +51,17 @@ class PromotionController extends Controller
             'code' => 'required|string|max:32',
         ]);
 
-        Promotion::create($request->all());
+        Promotion::create([
+            'productID' => $request->productID,
+            'title' => $request->title,
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'code' => $request->code
+        ]);
 
         // Redirect to the promotion index route using Ziggy
-        return redirect()->route('promotions.index')->with('success', 'Promotion created successfully.');
+        return redirect('admin/promotions')->with('success', 'Promotion created successfully.');
     }
 
     /**
@@ -61,8 +69,13 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        // Return the view for showing a single promotion
-        return Inertia::render('Promotions/Show', ['promotion' => $promotion]);
+        // Fetch the associated product for the promotion
+        $product = Product::find($promotion->productID);
+
+        return Inertia::render('User/Promotions/Show', [
+            'promotion' => $promotion,
+            'product' => $product, // Pass the product to the view
+        ]);
     }
 
     /**
@@ -71,7 +84,7 @@ class PromotionController extends Controller
     public function edit(Promotion $promotion)
     {
         // Return the view for editing a promotion
-        return Inertia::render('Promotions/Edit', ['promotion' => $promotion]);
+        return Inertia::render('Admin/Promotions/Edit', ['promotion' => $promotion]);
     }
 
     /**
@@ -79,7 +92,7 @@ class PromotionController extends Controller
      */
     public function update(Request $request, Promotion $promotion)
     {
-        $request->validate([
+        $fields = $request->validate([
             'productID' => 'required|integer|exists:products,id',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -88,21 +101,21 @@ class PromotionController extends Controller
             'code' => 'required|string|max:32',
         ]);
 
-        $promotion->update($request->all());
+        $promotion->update($fields);
 
         // Redirect to the promotion index route using Ziggy
-        return redirect()->route('promotions.index')->with('success', 'Promotion updated successfully.');
+        return redirect('admin/promotions')->with('success', 'Promotion updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Promotion $promotion)
+    public function delete(Promotion $promotion)
     {
         $promotion->delete();
 
         // Redirect to the promotion index route using Ziggy
-        return redirect()->route('promotions.index')->with('success', 'Promotion deleted successfully.');
+        return redirect('admin/promotions')->with('success', 'Promotion deleted successfully.');
     }
 }
 

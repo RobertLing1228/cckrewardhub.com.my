@@ -24,17 +24,62 @@ use App\Http\Controllers\GameController;
 /*
 Base Pages
 */
-Route::get('/', [ProductController::class, 'index'])->name('index');
+Route::get('/', [ProductController::class, 'home'])->name('home');
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/games', [GameController::class, 'index']);
+Route::get('/recipes', [RecipeController::class, 'index']);
+Route::get('/promotions', [PromotionController::class, 'index']);
 
 Route::get('/admin', function () {
     return Inertia::render('Admin/Dashboard');
 });
 
 Route::get('/admin/products', [ProductController::class, 'admin']);
+Route::get('/admin/products/add', [ProductController::class, 'create']);
+Route::post('/admin/products/add', [ProductController::class, 'store'])->name('products.store');
+Route::delete('admin/products/{product}', [ProductController::class, 'delete'])->name('products.delete');
+Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::post('admin/products/{product}', [ProductController::class, 'update'])->name('products.update');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+
+
+
 Route::get('/admin/recipes', [RecipeController::class, 'admin']);
+Route::get('/admin/recipes/add', [RecipeController::class, 'create']);
+Route::post('/admin/recipes/add', [RecipeController::class, 'store'])->name('recipes.store');
+Route::delete('admin/recipes/{recipe}', [RecipeController::class, 'delete'])->name('recipes.delete');
+Route::get('/admin/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
+Route::post('admin/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipes.update');
+Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+
+
+
 Route::get('/admin/promotions', [PromotionController::class, 'admin']);
+Route::get('/admin/promotions/add', [PromotionController::class, 'create']);
+Route::post('/admin/promotions/add', [PromotionController::class, 'store'])->name('promotions.store');
+Route::delete('admin/promotions/{promotion}', [PromotionController::class, 'delete'])->name('promotions.delete');
+Route::get('/admin/promotions/{promotion}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
+Route::post('admin/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
+Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->name('promotions.show');
+
+
+
 Route::get('/admin/users', [UserController::class, 'admin']);
+
+
+
 Route::get('/admin/games', [GameController::class, 'admin']);
+Route::delete('admin/games/{game}', [GameController::class, 'delete'])->name('games.delete');
+Route::get('/admin/games/add', [GameController::class, 'create']);
+Route::post('/admin/games/add', [GameController::class, 'store'])->name('games.store');
+Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit'); 
+Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
+Route::get('/play', function(){
+    return Inertia::render('User/Games/Play');
+});
+
+
 
 Route::get('/base', function () {
     return Inertia::render('Welcome', [
@@ -45,29 +90,10 @@ Route::get('/base', function () {
     ]);
 });
 
-/*
-Recipies
-*/
 
-Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
-Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipes.show');
-Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
-Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
-Route::get('/recipes/{id}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
-Route::put('/recipes/{id}', [RecipeController::class, 'update'])->name('recipes.update');
-Route::delete('/recipes/{id}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
 
-/*
-Promotions
-*/
 
-Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions.index');
-Route::get('/promotions/{id}', [PromotionController::class, 'show'])->name('promotion.show');
-Route::get('/promotions/create', [PromotionController::class, 'create'])->name('promotions.create');
-Route::post('promotions', [PromotionController::class, 'store'])->name('promotions.store');
-Route::get('/promotions/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
-Route::put('/promotions/{id}', [PromotionController::class, 'update'])->name('promotions.update');
-Route::delete('/promotions/{id}', [PromotionController::class, 'destroy'])->name('promotions.destroy');
+
 
 
 

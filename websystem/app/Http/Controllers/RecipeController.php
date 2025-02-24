@@ -12,7 +12,7 @@ class RecipeController extends Controller
     public function index()
     {
         $recipe = Recipe::all();  // You can paginate if needed, for large datasets
-        return Inertia::render('Recipes/Index', [
+        return Inertia::render('User/Recipes/Index', [
             'recipe' => $recipe,
         ]);
     }
@@ -20,7 +20,7 @@ class RecipeController extends Controller
     public function admin()
     {
         $recipe = Recipe::all();  // You can paginate if needed, for large datasets
-        return Inertia::render('Admin/Recipes', [
+        return Inertia::render('Admin/Recipes/Index', [
             'recipes' => $recipe,
         ]);
     }
@@ -29,7 +29,7 @@ class RecipeController extends Controller
     public function show($id)
     {
         $recipe = Recipe::findOrFail($id);
-        return Inertia::render('Recipes/Show', [
+        return Inertia::render('User/Recipes/Show', [
             'recipe' => $recipe,
         ]);
     }
@@ -37,7 +37,7 @@ class RecipeController extends Controller
     // Show the form to create a new recipe
     public function create()
     {
-        return Inertia::render('Recipes/Create');
+        return Inertia::render('Admin/Recipes/Create');
     }
 
     // Store the new recipe
@@ -48,46 +48,65 @@ class RecipeController extends Controller
             'category' => 'required|string|max:100',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|string',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        Recipe::create($validated);
+        $imagePath = $request->file('image')->store('images', 'public');
 
-        return redirect()->route('recipes.index')->with('success', 'Recipe created successfully!');
+        Recipe::create([
+            'productID' => $validated['productID'],
+            'category' => $validated['category'],
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'image' => $imagePath
+
+        ]);
+
+        return redirect('admin/recipes')->with('success', 'Recipe created successfully!');
     }
 
     // Show the form to edit a recipe
-    public function edit($id)
+    public function edit(Recipe $recipe)
     {
-        $recipe = Recipe::findOrFail($id);
-        return Inertia::render('Recipes/Edit', [
+        return inertia('Admin/Recipes/Edit', [
             'recipe' => $recipe,
         ]);
     }
 
     // Update the recipe
-    public function update(Request $request, $id)
+    public function update(Request $request, Recipe $recipe)
     {
         $validated = $request->validate([
             'productID' => 'required|integer',
             'category' => 'required|string|max:100',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $recipe = Recipe::findOrFail($id);
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($recipe->image && file_exists(public_path("storage/{$recipe->image}"))) {
+                unlink(public_path("storage/{$recipe->image}"));
+            }
+    
+            // Store new image
+            $fields['image'] = $request->file('image')->store('images', 'public');
+        } else {
+            // Keep old image if no new file uploaded
+            $fields['image'] = $recipe->image;
+        }
+        
         $recipe->update($validated);
 
-        return redirect()->route('recipes.index')->with('success', 'Recipe updated successfully!');
+        return redirect('admin/recipes')->with('success', 'Recipe updated successfully!');
     }
 
     // Delete the recipe
-    public function destroy($id)
+    public function destroy(Recipe $recipe)
     {
-        $recipe = Recipe::findOrFail($id);
         $recipe->delete();
 
-        return redirect()->route('recipes.index')->with('success', 'Recipe deleted successfully!');
+        return redirect('admin/recipes')->with('success', 'Recipe deleted successfully!');
     }
 }

@@ -44,7 +44,7 @@ export default function AdminLayout ({ children, title = "Dashboard", breadcrumb
         return (
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
                 <Link href="#" className="brand-link">
-                    <span className="brand-text font-weight-light">ReactJS</span>
+                    <span className="brand-text font-weight-light">Admin Panel</span>
                 </Link>
                 <div className="sidebar">
                     <nav className="mt-2">

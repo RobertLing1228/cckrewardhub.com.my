@@ -11,6 +11,6 @@ class UserController extends Controller
     public function admin(){
         $admin = Admin::all();
         $member = ExistingMember::all();
-        return inertia('Admin/Users', ['admins' => $admin, 'members' => $member]);
+        return inertia('Admin/Users/Index', ['admins' => $admin, 'members' => $member]);
     }
 }
