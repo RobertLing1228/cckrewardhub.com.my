@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
+import MultipleImages from '@/Components/MultipleImages';
 
 export default function Show({ recipe }) {
     return (
@@ -17,11 +18,7 @@ export default function Show({ recipe }) {
                     </Link>
 
                     {/* Recipe Image */}
-                    <img
-                        src={`/storage/${recipe.image}`}
-                        alt={recipe.title}
-                        className="w-full h-64 object-cover rounded-lg mb-6"
-                    />
+                    <MultipleImages images={recipe.image} name={recipe.title} />
 
                     {/* Recipe Name */}
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">{recipe.title}</h1>

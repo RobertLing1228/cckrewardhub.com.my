@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
+import MultipleImages from '@/Components/MultipleImages';
 
 export default function RecipeIndex ({ recipe }){
     return (
@@ -11,11 +12,7 @@ export default function RecipeIndex ({ recipe }){
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {recipe.map((recipe) => (
                     <div key={recipe.recipeID} className="border rounded-lg shadow-lg p-4">
-                        <img 
-                            src={`/storage/${recipe.image}`} 
-                            alt={recipe.title} 
-                            className="w-full h-48 object-cover rounded-t-lg"
-                        />
+                        <MultipleImages images={recipe.image} name={recipe.title} />
                         <h2 className="text-xl font-semibold mt-4">{recipe.title}</h2>
                         <p className="text-sm text-gray-500">{recipe.category}</p>
                         <p className="mt-2">{recipe.description.slice(0, 100)}...</p>

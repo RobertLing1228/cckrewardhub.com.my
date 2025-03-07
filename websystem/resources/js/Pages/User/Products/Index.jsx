@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
+import MultipleImages from '@/Components/MultipleImages';
 
 export default function ProductIndex({ products, filters, categories }) {
     const { data, setData, get } = useForm({
@@ -94,11 +95,7 @@ export default function ProductIndex({ products, filters, categories }) {
                             key={product.productID}
                             className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200"
                         >
-                            <img
-                                src={`/storage/${product.image}`}
-                                alt={product.name}
-                                className="w-full h-32 sm:h-48 object-cover"
-                            />
+                            <MultipleImages images={product.image} name={product.name} />
                             <div className="p-4">
                                 <h2 className="text-xl font-semibold text-gray-800 truncate">{product.name}</h2>
                                 <p className="text-lg font-bold text-gray-900 mt-2">RM{product.price}</p>

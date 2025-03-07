@@ -16,7 +16,7 @@ export default function MainLayout({ children }) {
         />
       </Head>
       <header>
-        <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white flex justify-around py-3">
+        <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white flex justify-around py-3 z-50 shadow-lg">
           <Link 
             className={`nav-link flex flex-col items-center ${isActive("/") ? "text-blue-400" : ""}`}
             href="/"
@@ -54,7 +54,8 @@ export default function MainLayout({ children }) {
           </Link>
         </nav>
       </header>
-      <main className="pb-20">{children}</main> {/* Adds padding to prevent overlap */}
+      <main className="pb-24">{children}</main> {/* More padding to prevent content overlap */}
     </>
   );
 }
+

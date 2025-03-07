@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
+import CheckMember from '@/Components/CheckMember';
 
 
 export default function GameIndex ({ games }) {
@@ -35,6 +36,9 @@ export default function GameIndex ({ games }) {
                     ))}
                 </div>
             </div>
+                <div>
+                    <CheckMember></CheckMember>
+                </div>
         </MainLayout>
     );
 }

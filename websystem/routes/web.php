@@ -25,8 +25,18 @@ use App\Http\Controllers\GameController;
 Base Pages
 */
 Route::get('/', [ProductController::class, 'home'])->name('home');
-Route::get('/products', [ProductController::class, 'index']);
+Route::get('/test', function(){
+    return Inertia::render('Test');
+});
+
+
 Route::get('/games', [GameController::class, 'index']);
+Route::get('/play', function(){
+    return Inertia::render('User/Games/Play');
+});
+Route::post('/check-member', [UserController::class, 'checkMember']);
+
+Route::get('/products', [ProductController::class, 'index']);
 Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/promotions', [PromotionController::class, 'index']);
 
@@ -75,9 +85,7 @@ Route::get('/admin/games/add', [GameController::class, 'create']);
 Route::post('/admin/games/add', [GameController::class, 'store'])->name('games.store');
 Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit'); 
 Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
-Route::get('/play', function(){
-    return Inertia::render('User/Games/Play');
-});
+
 
 
 

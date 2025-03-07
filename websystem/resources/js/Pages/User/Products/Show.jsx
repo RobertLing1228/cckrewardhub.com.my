@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
+import MultipleImages from '@/Components/MultipleImages';
 
 export default function Show({ product }) {
     return (
@@ -17,11 +18,7 @@ export default function Show({ product }) {
                     </Link>
 
                     {/* Product Image */}
-                    <img
-                        src={`/storage/${product.image}`}
-                        alt={product.name}
-                        className="w-full h-64 object-cover rounded-lg mb-6"
-                    />
+                    <MultipleImages images={product.image} name={product.name} />
 
                     {/* Product Name */}
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">{product.name}</h1>
