@@ -2,6 +2,10 @@ After setting up the repository on your local files, open the **folder** in Visu
 
 Make sure you have Composer and Node.js installed.
 
+Composer Download Link: https://getcomposer.org/download/
+
+Node.js Download link: https://nodejs.org/en/download/current
+
 <h2>Setup</h2>
 In the terminal in visual code
 
