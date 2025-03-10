@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import MultipleImages from '@/Components/MultipleImages';
+import { QRCodeSVG } from 'qrcode.react';
 
 export default function Show({ product }) {
     return (
@@ -35,6 +36,13 @@ export default function Show({ product }) {
                             Category: <span className="text-gray-800">{product.category_name}</span>
                         </p>
                     </div>
+
+                    <div>
+                        <p className="text-sm font-medium text-gray-600">
+                            QR Code: <span className="text-gray-800"><QRCodeSVG value={`${window.location.origin}/products/${product.productID}`} /></span>
+                        </p>
+                    </div>
+                    
 
                     {/* Product Quantity 
                     <div className="mb-6">

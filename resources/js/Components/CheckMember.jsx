@@ -2,17 +2,30 @@ import React, { useState } from "react";
 import { useForm, usePage } from "@inertiajs/react";
 
 export default function CheckMember() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, reset } = useForm({
         memberID: "",
         phoneNumber: "",
+        currentDate: new Date().toISOString().slice(0, 10),
     });
 
-    const [isOpen, setIsOpen] = useState(false); // State to track popup visibility
+    const { flash } = usePage().props;
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const isMemberIDValid = /^\d{10}$/.test(data.memberID);
+        const isPhoneNumberValid = /^\d{10}$/.test(data.phoneNumber);
+
+        if (!isMemberIDValid || !isPhoneNumberValid) {
+            alert("Both Member ID and Phone Number must contain exactly 10 digits.");
+            return;
+        }
+
         post("/check-member", {
             onSuccess: () => {
+                console.log("Success!");
                 reset();
                 setIsOpen(false); // Close the form after successful submission
             },
@@ -21,6 +34,8 @@ export default function CheckMember() {
 
     return (
         <div className="p-4">
+            {flash.success && <div className="alert alert-success">{flash.success}</div>}
+            {flash.error && <div className="alert alert-danger">{flash.error}</div>}
             {/* Claim Prize Button */}
             <button 
                 onClick={() => setIsOpen(true)} 
@@ -28,6 +43,10 @@ export default function CheckMember() {
             >
                 Claim Prize
             </button>
+
+            <div>
+                <p>Current Date: {data.currentDate}</p>
+            </div>
 
             {/* Popup Modal */}
             {isOpen && (

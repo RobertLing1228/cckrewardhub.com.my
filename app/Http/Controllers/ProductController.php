@@ -101,7 +101,7 @@ class ProductController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-{
+    {
         // Fetch the product with its category name
         $product = Product::query()
             ->join('categories', 'products.category', '=', 'categories.categoryID')

@@ -1,6 +1,7 @@
 import { Head, Link, usePage } from "@inertiajs/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faGamepad, faTag, faUtensils, faBox } from "@fortawesome/free-solid-svg-icons";
+import CameraScan from "@/Components/CameraScan";
 
 export default function MainLayout({ children }) {
   const { url } = usePage(); // Get the current URL
@@ -15,8 +16,9 @@ export default function MainLayout({ children }) {
           content="This is the default description"
         />
       </Head>
+      <CameraScan />
       <header>
-        <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white flex justify-around py-3 z-50 shadow-lg">
+        <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white flex justify-around py-3 z-50 shadow-lg h-auto max-h-[calc(100vh/3)]">
           <Link 
             className={`nav-link flex flex-col items-center ${isActive("/") ? "text-blue-400" : ""}`}
             href="/"
@@ -54,7 +56,7 @@ export default function MainLayout({ children }) {
           </Link>
         </nav>
       </header>
-      <main className="pb-24">{children}</main> {/* More padding to prevent content overlap */}
+      <main className="pb-16">{children}</main> {/* More padding to prevent content overlap */}
     </>
   );
 }

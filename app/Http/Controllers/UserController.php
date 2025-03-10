@@ -17,9 +17,10 @@ class UserController extends Controller
 
     public function checkMember(Request $request)
     {
+
         $request->validate([
-            'memberID' => 'required|string',
-            'phoneNumber' => 'required|string',
+            'memberID' => 'required|string|size:10|regex:/^\d+$/',
+            'phoneNumber' => 'required|string|size:10|regex:/^\d+$/',
         ]);
 
         $memberID = $request->memberID;
@@ -28,7 +29,7 @@ class UserController extends Controller
         // Check if the member exists in 'exist_member' table
         $memberExists = DB::table('exist_member')
             ->where('memberID', $memberID)
-            ->where('phoneNum', $phoneNumber)
+            ->where('phoneNumber', $phoneNumber)
             ->exists();
 
         if ($memberExists) {

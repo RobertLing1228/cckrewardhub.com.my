@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MainLayout from "@/Layouts/MainLayout";
 import { Html5Qrcode } from "html5-qrcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,48 +7,55 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 export default function Test() {
     const [scanResult, setScanResult] = useState(null);
     const [isScanning, setIsScanning] = useState(false);
-    const [html5Qrcode, setHtml5Qrcode] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const qrScannerRef = useRef(null);
 
     useEffect(() => {
-        // Initialize the Html5Qrcode instance only when the popup is open
-        if (isPopupOpen && !html5Qrcode) {
-            const qrCode = new Html5Qrcode("reader");
-            setHtml5Qrcode(qrCode);
-        }
-    }, [isPopupOpen]);
+        return () => {
+            // Cleanup on unmount
+            if (qrScannerRef.current) {
+                qrScannerRef.current.stop().catch(() => {});
+            }
+        };
+    }, []);
 
     const startScanning = () => {
-        if (html5Qrcode) {
-            html5Qrcode.start(
+        if (!qrScannerRef.current) {
+            qrScannerRef.current = new Html5Qrcode("reader");
+        }
+
+        qrScannerRef.current
+            .start(
                 { facingMode: "environment" }, // Use the rear camera
                 {
-                    qrbox: { width: 250, height: 250 },
-                    fps: 5,
+                    qrbox: { width: 250, height: 250 }, // Adjust the QR code scanning box
+                    fps: 5, // Frames per second
                 },
                 (decodedText) => {
-                    // Success callback
                     setScanResult(decodedText);
                     stopScanning();
-                    setIsPopupOpen(false); // Close the popup after successful scan
+                    setIsPopupOpen(false);
+                    setErrorMessage(""); // Clear any previous error messages
                 },
                 (errorMessage) => {
-                    // Error callback
                     console.warn(errorMessage);
+                    setErrorMessage("Unable to scan the QR code. Please try again.");
                 }
             )
             .then(() => {
                 setIsScanning(true);
+                setErrorMessage(""); // Clear any previous error messages
             })
             .catch((err) => {
                 console.error("Unable to start scanning.", err);
+                setErrorMessage("Failed to start the camera. Please ensure camera access is allowed.");
             });
-        }
     };
 
     const stopScanning = () => {
-        if (html5Qrcode && html5Qrcode.isScanning) {
-            html5Qrcode
+        if (qrScannerRef.current) {
+            qrScannerRef.current
                 .stop()
                 .then(() => {
                     setIsScanning(false);
@@ -61,6 +68,7 @@ export default function Test() {
 
     const openPopup = () => {
         setIsPopupOpen(true);
+        setTimeout(startScanning, 500); // Delay to ensure UI is rendered
     };
 
     const closePopup = () => {
@@ -68,12 +76,21 @@ export default function Test() {
         stopScanning();
     };
 
-    // Start scanning when the popup is opened
-    useEffect(() => {
-        if (isPopupOpen && html5Qrcode) {
-            startScanning();
+    const isValidUrl = (text) => {
+        try {
+            new URL(text);
+            return true;
+        } catch {
+            return false;
         }
-    }, [isPopupOpen, html5Qrcode]);
+    };
+
+    const formatUrl = (text) => {
+        if (!text.startsWith("http://") && !text.startsWith("https://")) {
+            return `https://${text}`;
+        }
+        return text;
+    };
 
     return (
         <MainLayout>
@@ -81,7 +98,6 @@ export default function Test() {
                 <h1>Test</h1>
                 <p>QR Scanner</p>
 
-                {/* Camera Icon Button */}
                 <button
                     onClick={openPopup}
                     style={{
@@ -90,11 +106,11 @@ export default function Test() {
                         cursor: "pointer",
                         fontSize: "24px",
                     }}
+                    aria-label="Open QR Scanner"
                 >
                     <FontAwesomeIcon icon={faCamera} />
                 </button>
 
-                {/* Popup for QR Scanner */}
                 {isPopupOpen && (
                     <div
                         style={{
@@ -122,6 +138,9 @@ export default function Test() {
                         >
                             <h2>Scan QR Code</h2>
                             <div id="reader" style={{ width: "100%" }}></div>
+                            {errorMessage && (
+                                <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
+                            )}
                             <button
                                 onClick={closePopup}
                                 style={{
@@ -134,6 +153,7 @@ export default function Test() {
                                     border: "none",
                                     borderRadius: "5px",
                                 }}
+                                aria-label="Close QR Scanner"
                             >
                                 Close
                             </button>
@@ -141,10 +161,16 @@ export default function Test() {
                     </div>
                 )}
 
-                {/* Display Scan Result */}
                 {scanResult && (
                     <div>
-                        Success: <a href={`http://${scanResult}`}>{scanResult}</a>
+                        Success:{" "}
+                        {isValidUrl(scanResult) ? (
+                            <a href={formatUrl(scanResult)} target="_blank" rel="noopener noreferrer">
+                                {scanResult}
+                            </a>
+                        ) : (
+                            <span>{scanResult}</span>
+                        )}
                     </div>
                 )}
             </div>

@@ -12,10 +12,6 @@ export default function Home() {
 
             <h1 className="title">Welcome!</h1>
 
-            <div className="my-8 max-w-2xl mx-auto">
-                <WheelSpinWidget />
-            </div>
-
             <div>
                 Games
             </div>

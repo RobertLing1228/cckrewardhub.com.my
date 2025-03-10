@@ -19,7 +19,7 @@ export default function MultipleImages({ images, name }) {
     }
 
     return (
-        <div className="relative w-full max-w-[300px] mx-auto select-none">  
+        <div className="relative w-full max-w-xs sm:max-w-sm mx-auto select-none overflow-hidden">  
             {/* Wrapper ensures Swiper stays in place */}
             <Swiper
                 modules={[Navigation, Pagination]}
