@@ -36,12 +36,14 @@ In the terminal in visual code
   
   7. php artisan migrate
   - Run this to set up tables into your local database through the migration files made in the database folder
-  
+
+
+  (These two commands are run on two separate terminals)
   8. npm run dev
-  - Build the React frontend assets using the following command
+  - Build the React frontend assets using the following command in one terminal.
   
   9. php artisan serve
-  - Run the Laravel development server
+  - Run the Laravel development server in another terminal
 
 
 
