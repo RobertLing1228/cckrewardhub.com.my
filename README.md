@@ -39,6 +39,7 @@ In the terminal in visual code
 
 
   (These two commands are run on two separate terminals)
+  
   8. npm run dev
   - Build the React frontend assets using the following command in one terminal.
   
