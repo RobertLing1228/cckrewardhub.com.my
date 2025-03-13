@@ -1,136 +1,158 @@
-import { Link, usePage } from "@inertiajs/react";
-import React from "react";
+import { Link } from "@inertiajs/react";
+import React, { useState, useEffect } from "react";
 
 import "../../../public/dist/css/adminlte.min.css";
 import "../../../public/plugins/fontawesome-free/css/all.min.css";
 
+export default function AdminLayout({ children, title = "Dashboard", breadcrumbs = [] }) {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+    useEffect(() => {
+        // Set sidebar state based on initial screen width
+        setIsSidebarOpen(window.innerWidth > 992);
 
+        // Update sidebar state on window resize
+        const handleResize = () => setIsSidebarOpen(window.innerWidth > 992);
+        window.addEventListener("resize", handleResize);
 
-export default function AdminLayout ({ children, title = "Dashboard", breadcrumbs = [] }) {
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     return (
-        <div className="wrapper">
+        <div className={`wrapper min-vh-100 ${isSidebarOpen ? "sidebar-open" : ""}`}>
             {/* Navbar */}
-            <NavBar  />
+            <NavBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
             {/* Sidebar */}
-            <Sidebar />
+            <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
             {/* Content */}
-            <Content  title={title} breadcrumbs={breadcrumbs} children={children}  />
+            <Content title={title} breadcrumbs={breadcrumbs}>{children}</Content>
 
             {/* Footer */}
-            <Footer     />
+            <Footer />
         </div>
     );
-};
+}
 
-    function NavBar({}) {
-      return (
+function NavBar({ isSidebarOpen, setIsSidebarOpen }) {
+    return (
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="nav-link" data-widget="pushmenu" href="#" role="button">
-                            <i className="fas fa-bars"></i>
-                        </Link>
-                    </li>
-                </ul>
-                <ul className="navbar-nav ml-auto"></ul>
-            </nav>
-            );
-    }
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <button
+                        className="nav-link border-0 bg-transparent"
+                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                        style={{ display: window.innerWidth > 992 && isSidebarOpen ? "none" : "block" }}
+                    >
+                        <i className={`fas ${isSidebarOpen ? "fa-times" : "fa-bars"}`}></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    );
+}
 
-    function Sidebar({}) {
-        return (
-            <aside className="main-sidebar sidebar-dark-primary elevation-4">
-                <Link href="#" className="brand-link">
+function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+    return (
+        <aside className={`main-sidebar sidebar-dark-primary elevation-4 ${isSidebarOpen ? "show-sidebar" : "hide-sidebar"}`}>
+            <div className="d-flex align-items-center justify-content-between p-3">
+                <Link href="#" className="brand-link m-0 text-white">
                     <span className="brand-text font-weight-light">Admin Panel</span>
                 </Link>
-                <div className="sidebar">
-                    <nav className="mt-2">
-                        <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                            <li className="nav-item">
-                                <Link href="/admin" className="nav-link">
-                                    <i className="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Dashboard</p>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/admin/users" className="nav-link">
-                                    <i className="nav-icon fas fa-users"></i>
-                                    <p>Users</p>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/admin/products" className="nav-link">
-                                    <i className="nav-icon fas fa-box-open"></i>
-                                    <p>Products</p>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/admin/promotions" className="nav-link">
-                                    <i className="nav-icon fas fa-tags"></i>
-                                    <p>Promotions</p>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/admin/recipes" className="nav-link">
-                                    <i className="nav-icon fas fa-utensils"></i>
-                                    <p>Recipes</p>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link href="/admin/games" className="nav-link">
-                                    <i className="nav-icon fas fa-gamepad"></i>
-                                    <p>Games</p>
-                                </Link>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
-        );
-    }
-  
+                <button
+                    className="btn btn-sm text-white border-0 bg-transparent"
+                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                    title="Close Sidebar"
+                >
+                    <i className="fas fa-arrow-left"></i>
+                </button>
+            </div>
 
+            <div className="sidebar">
+                <nav className="mt-2">
+                    <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <li className="nav-item">
+                            <Link href="/admin" className="nav-link">
+                                <i className="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Dashboard</p>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/admin/users" className="nav-link">
+                                <i className="nav-icon fas fa-users"></i>
+                                <p>Users</p>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/admin/products" className="nav-link">
+                                <i className="nav-icon fas fa-box-open"></i>
+                                <p>Products</p>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/admin/promotions" className="nav-link">
+                                <i className="nav-icon fas fa-tags"></i>
+                                <p>Promotions</p>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/admin/recipes" className="nav-link">
+                                <i className="nav-icon fas fa-utensils"></i>
+                                <p>Recipes</p>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/admin/games" className="nav-link">
+                                <i className="nav-icon fas fa-gamepad"></i>
+                                <p>Games</p>
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+    );
+}
 
-    function Content({title, breadcrumbs, children}) {
-      return (
-        
-            <div className="content-wrapper">
-                <section className="content-header">
-                    <div className="container-fluid">
-                        <div className="row mb-2">
-                            <div className="col-sm-6">
-                                <h1>{title}</h1>
-                            </div>
-                            <div className="col-sm-6">
-                                <ol className="breadcrumb float-sm-right">
-                                    {breadcrumbs.map((breadcrumb, index) => (
-                                        <li key={index} className={`breadcrumb-item ${index === breadcrumbs.length - 1 ? "active" : ""}`}>
-                                            {breadcrumb.url ? <Link href={breadcrumb.url}>{breadcrumb.label}</Link> : breadcrumb.label}
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
+function Content({ title, breadcrumbs, children }) {
+    return (
+        <div className="content-wrapper">
+            <section className="content-header">
+                <div className="container-fluid">
+                    <div className="row mb-2">
+                        <div className="col-sm-6">
+                            <h1>{title}</h1>
+                        </div>
+                        <div className="col-sm-6">
+                            <ol className="breadcrumb float-sm-right">
+                                {breadcrumbs.map((breadcrumb, index) => (
+                                    <li key={index} className={`breadcrumb-item ${index === breadcrumbs.length - 1 ? "active" : ""}`}>
+                                        {breadcrumb.url ? <Link href={breadcrumb.url}>{breadcrumb.label}</Link> : breadcrumb.label}
+                                    </li>
+                                ))}
+                            </ol>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section className="content">
-                      <div className="container-fluid">{children}</div>
-                </section>
-            </div>);
-    }
+            <section className="content">
+                <div className="container-fluid">{children}</div>
+            </section>
+        </div>
+    );
+}
 
-    function Footer({}) {
-        return (<footer className="main-footer">
-                  <div className="float-right d-none d-sm-block">
-                      <b>Version</b> 3.2.0
-                  </div>
-                  <strong>
-                      Copyright &copy; 2014-2021 <Link href="https://adminlte.io">AdminLTE.io</Link>.
-                  </strong> All rights reserved.
-              </footer>);
-      }
-      
+function Footer() {
+    return (
+        <footer className="main-footer">
+            <div className="float-right d-none d-sm-block">
+                <b>Version</b> 3.2.0
+            </div>
+            <strong>
+                Copyright &copy; 2014-2021 <Link href="https://adminlte.io">AdminLTE.io</Link>.
+            </strong> All rights reserved.
+        </footer>
+    );
+}

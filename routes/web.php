@@ -42,7 +42,7 @@ Route::get('/promotions', [PromotionController::class, 'index']);
 
 Route::get('/admin', function () {
     return Inertia::render('Admin/Dashboard');
-});
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/products', [ProductController::class, 'admin']);
 Route::get('/admin/products/add', [ProductController::class, 'create']);

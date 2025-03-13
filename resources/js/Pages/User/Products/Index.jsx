@@ -21,7 +21,7 @@ export default function ProductIndex({ products, filters, categories }) {
         get('/products', {
             data: {},
             preserveState: false,
-            replace: true, // Ensure the page reloads without filters
+            replace: true, 
             onSuccess: (page) => console.log('Received filters from backend:', page.props.filters)
         });
     };
@@ -33,7 +33,7 @@ export default function ProductIndex({ products, filters, categories }) {
                 <h1 className="text-2xl font-bold text-gray-800 mb-4 px-4">Products</h1>
 
                 {/* Search/Filter Form */}
-                <form onSubmit={handleSubmit} className="mb-4 bg-white p-4 rounded-lg shadow-md">
+                <form onSubmit={handleSubmit} className="mb-4 bg-white p-4 rounded-lg shadow-md w-full max-w-md mx-auto">
                     <div className="space-y-4">
                         <div>
                             <label htmlFor="search" className="block text-sm font-medium text-gray-700">
@@ -45,7 +45,7 @@ export default function ProductIndex({ products, filters, categories }) {
                                 name="search"
                                 value={data.search || ''}
                                 onChange={(e) => setData('search', e.target.value)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                className="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                 placeholder="Enter product name"
                             />
                         </div>
@@ -117,7 +117,7 @@ export default function ProductIndex({ products, filters, categories }) {
                 </div>
 
                 {/* Pagination Controls */}
-                <div className="mt-8 flex justify-center space-x-2 px-4">
+                <div className="mt-8 flex justify-center space-x-2 px-4 overflow-auto">
                     {products.links.map((link, index) => (
                         <Link
                             key={index}

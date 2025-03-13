@@ -9,6 +9,17 @@
     body {
         font-family: "Poppins", sans-serif;
     }
+
+    .hide-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    /* Show sidebar when open */
+    .show-sidebar {
+        transform: translateX(0);
+        transition: transform 0.3s ease-in-out;
+    }
 }
 
 @layer components {

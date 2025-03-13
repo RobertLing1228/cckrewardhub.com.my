@@ -4,7 +4,7 @@ import WheelSpinWidget from "@/Components/WheelSpin";
 import MultipleImages from "@/Components/MultipleImages";
 
 export default function Home() {
-    const { product, recipe, promotion } = usePage().props; // Get 'product' from props
+    const { product, recipe, promotion } = usePage().props; // Access the props. (Alternatively put them in the parameters of the Home function)
 
     return (
         <MainLayout>
@@ -79,7 +79,7 @@ export default function Home() {
                     <div key={product.id} className="p-4 border rounded-md shadow-sm">
                         <MultipleImages images={product.image} name={product.name} />
                         <h3 className="font-bold text-lg mt-2">{product.name}</h3>
-                        <p className="font-bold text-blue-500 mt-2">${product.price}</p>
+                        <p className="font-bold text-blue-500 mt-2">RM{product.price}</p>
                     </div>
                     </Link>
                     </div>

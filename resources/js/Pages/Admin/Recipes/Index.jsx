@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "datatables.net-react";// Core DataTables library
 import DT from 'datatables.net-dt';
+import MultipleImages from "@/Components/MultipleImages";
 
 DataTable.use(DT);
 
@@ -69,12 +70,8 @@ export default function Recipes ({ recipes }) {
                         <td className="px-4 py-2 border truncate max-w-[150px]">
                         {recipe.description}
                         </td>
-                        <td className="px-4 py-2 border">
-                        <img
-                            src={recipe.image}
-                            alt={recipe.title}
-                            className="w-12 h-12 object-cover rounded"
-                        />
+                        <td className="px-4 py-2 border max-w-[150px]">
+                        <MultipleImages images={recipe.image} name={recipe.title} />
                         </td>
                         <td className="px-4 py-2 border">
                         <button onClick={(e) => updsubmit(e, recipe)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
