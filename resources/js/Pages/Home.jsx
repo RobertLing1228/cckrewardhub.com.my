@@ -4,16 +4,29 @@ import WheelSpinWidget from "@/Components/WheelSpin";
 import MultipleImages from "@/Components/MultipleImages";
 
 export default function Home() {
-    const { product, recipe, promotion } = usePage().props; // Access the props. (Alternatively put them in the parameters of the Home function)
+    const { product, recipe, promotion, user } = usePage().props; // Access the props. (Alternatively put them in the parameters of the Home function)
 
     return (
-        <MainLayout>
+        <MainLayout >
             <Head title="Home" />
 
-            <h1 className="title">Welcome!</h1>
+            <h1 className="title">Welcome! user{user.memberID} </h1>
 
             <div>
                 Games
+            </div>
+
+            <div className="banner">
+                <Link
+                    href="/games"
+                >
+                    <img 
+                        src="storage/images/game-banner.png"
+                        alt="Game Banner"
+                        className="w-full h-auto"
+                    />
+                </Link>
+                
             </div>
 
             <div className="carousel">
@@ -22,14 +35,14 @@ export default function Home() {
                     {promotion.map((promotion) => (
                         <div
                             key={promotion.promotionID}
-                            className="p-4 border rounded-md shadow-sm"
+                            className="p-4 border rounded-md }"
                         >
 
                         <Link   
                             href={`/promotions/${promotion.promotionID}`}
                             className="text-link mt-2 block"
                         >
-                            <div key={promotion.promotionID} className="p-4 border rounded-md shadow-sm">
+                            <div key={promotion.promotionID} className="p-4 border rounded-md shadow-md bg-[#f2f2f2]">
                                 
                                 <h3 className="font-bold text-lg mt-2">{promotion.title}</h3>
                                 <p className="text-sm text-gray-600">{promotion.description}</p>
@@ -46,14 +59,14 @@ export default function Home() {
                     {recipe.map((recipe) => (
                         <div
                             key={recipe.recipeID}
-                            className="p-4 border rounded-md shadow-sm"
+                            className="p-4 border rounded-md shadow-md "
                         >
 
                         <Link
                             href={`/recipes/${recipe.recipeID}`}
                             className="text-link mt-2 block"
                         >
-                            <div key={recipe.recipeID} className="p-4 border rounded-md shadow-sm">
+                            <div key={recipe.recipeID} className="p-4 border rounded-md shadow-sm bg-[#f2f2f2]">
                                 <MultipleImages images={recipe.image} name={recipe.title} />
                                 <h3 className="font-bold text-lg mt-2">{recipe.title}</h3>
                             </div>
@@ -64,12 +77,14 @@ export default function Home() {
             </div>
 
             <h2 className="text-2xl font-bold mb-4">Products</h2>        
+
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
                 {product.map((product) => (
                     <div
                         key={product.productID}
-                        className="p-4 border rounded-md shadow-sm"
+                        className="p-4 border rounded-md shadow-md"
                     >
 
                     <Link

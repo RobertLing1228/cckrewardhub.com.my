@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
+import MultipleImages from '@/Components/MultipleImages';
 
 export default function Show({ promotion, product }) {
     return (
@@ -19,11 +20,7 @@ export default function Show({ promotion, product }) {
                     {/* Product Image (Clickable) */}
                     {product && (
                         <Link href={`/products/${product.productID}`}>
-                            <img
-                                src={`/storage/${product.image}`}
-                                alt={product.name}
-                                className="w-full h-64 object-cover rounded-lg mb-6 cursor-pointer hover:opacity-90 transition-opacity"
-                            />
+                            <MultipleImages images={product.image} name={product.name} />
                         </Link>
                     )}
 

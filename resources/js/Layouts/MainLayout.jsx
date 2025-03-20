@@ -2,8 +2,9 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faGamepad, faTag, faUtensils, faBox } from "@fortawesome/free-solid-svg-icons";
 import CameraScan from "@/Components/CameraScan";
+import Topbar from "@/Components/TopBar";
 
-export default function MainLayout({ children }) {
+export default function MainLayout({ children, }) {
   const { url } = usePage(); // Get the current URL
 
   const isActive = (path) => url === path; // Exact match for home
@@ -16,6 +17,8 @@ export default function MainLayout({ children }) {
           content="This is the default description"
         />
       </Head>
+
+      <Topbar />
       <CameraScan />
       <header>
         <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white flex justify-around py-3 z-50 shadow-lg h-auto max-h-[calc(100vh/3)]">
@@ -56,7 +59,7 @@ export default function MainLayout({ children }) {
           </Link>
         </nav>
       </header>
-      <main className="pb-16">{children}</main> {/* More padding to prevent content overlap */}
+      <main className="w-full max-w-screen-xl mx-auto pt-16 pb-16 bg-[#dcdcdc]">{children}</main> {/* More padding to prevent content overlap */}
     </>
   );
 }

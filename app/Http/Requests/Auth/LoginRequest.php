@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Auth\Events\Lockout;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -27,8 +28,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'memberID' => ['required', 'string', 'exists:exist_member,memberID'],
+            'phoneNumber' => ['required', 'string', 'exists:exist_member,phoneNumber'],
         ];
     }
 
@@ -39,17 +40,29 @@ class LoginRequest extends FormRequest
      */
     public function authenticate(): void
     {
-        $this->ensureIsNotRateLimited();
+        $member = DB::table('exist_member')
+            ->where('memberID', $this->memberID)
+            ->where('phoneNumber', $this->phoneNumber)
+            ->first();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-
+        if (!$member) {
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'memberID' => trans('auth.failed'),
             ]);
         }
 
-        RateLimiter::clear($this->throttleKey());
+        // Check if user already exists in `users` table
+        $user = \App\Models\User::where('memberID', $member->memberID)->first();
+
+        if (!$user) {
+            // Add member to `users` table
+            $user = \App\Models\User::create([
+                'memberID' => $member->memberID,
+                'phoneNumber' => $member->phoneNumber,
+            ]);
+        }
+
+        Auth::login($user);
     }
 
     /**

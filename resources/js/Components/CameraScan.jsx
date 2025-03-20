@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { Html5Qrcode } from "html5-qrcode";
+import Modal from "./Modal"; // Import your custom modal
 
 export default function CameraScan() {
     const [scanResult, setScanResult] = useState(null);
@@ -17,45 +18,39 @@ export default function CameraScan() {
     }, []);
 
     const startScanning = () => {
-        if (isScanning || qrScannerRef.current) return; // Prevent multiple scanners
+        if (isScanning || qrScannerRef.current) return;
     
         qrScannerRef.current = new Html5Qrcode("reader");
     
-        qrScannerRef.current
-            .start(
-                { facingMode: "environment" },
-                { qrbox: { width: 250, height: 250 }, fps: 5 },
-                (decodedText) => {
-                    setScanResult(decodedText);
-                    closePopup();
-                },
-                (error) => {
-                    console.warn("QR Scan Error:", error);
-                    setErrorMessage("Unable to scan the QR code. Please try again.");
-                }
-            )
-            .then(() => {
-                setIsScanning(true);
-                setErrorMessage("");
-            })
-            .catch((err) => {
-                console.error("Unable to start scanning.", err);
-                setErrorMessage("Failed to start the camera. Please ensure camera access is allowed.");
-            });
+        qrScannerRef.current.start(
+            { facingMode: "environment" },
+            { qrbox: { width: 250, height: 250 }, fps: 5 },
+            (decodedText) => {
+                window.location.href = decodedText;
+                setScanResult(decodedText);
+                closePopup();
+            },
+            (error) => {
+                console.warn("QR Scan Error:", error);
+                setErrorMessage("Unable to scan the QR code. Please try again.");
+            }
+        ).then(() => {
+            setIsScanning(true);
+            setErrorMessage("");
+        }).catch((err) => {
+            console.error("Unable to start scanning.", err);
+            setErrorMessage("Failed to start the camera. Please ensure camera access is allowed.");
+        });
     };
-    
 
     const stopScanning = () => {
         if (qrScannerRef.current && isScanning) {
-            qrScannerRef.current
-                .stop()
-                .then(() => {
-                    setIsScanning(false);
-                    qrScannerRef.current = null;
-                })  
-                .catch((err) => {
-                    console.error("Failed to stop scanning.", err);
-                });
+            qrScannerRef.current.stop().then(() => {
+                setIsScanning(false);
+                qrScannerRef.current = null;
+            }).catch((err) => {
+                console.error("Failed to stop scanning.", err);
+            });
         }
     };
 
@@ -71,6 +66,7 @@ export default function CameraScan() {
 
     return (
         <div className="relative">
+            {/* Floating Camera Button */}
             <button
                 className="bg-red-500 text-white p-4 rounded-full shadow-lg border-4 border-white flex justify-center items-center w-16 h-16 fixed bottom-20 right-5 z-50"
                 onClick={openPopup}
@@ -78,22 +74,20 @@ export default function CameraScan() {
                 <FontAwesomeIcon icon={faCamera} className="h-8 w-8" />
             </button>
 
-            {isPopupOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50 overflow-hidden">
-                    <div className="bg-white p-6 rounded-lg w-full max-w-md text-center">
-                        <h2 className="text-lg font-semibold mb-4">Scan QR Code</h2>
-                        <div id="reader" className="w-full h-64"></div>
-                        {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
-                        <button
-                            onClick={closePopup}
-                            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-                            aria-label="Close QR Scanner"
-                        >
-                            Close
-                        </button>
-                    </div>
+            {/* Use the Modal component */}
+            <Modal show={isPopupOpen} onClose={closePopup} maxWidth="md">
+                <div className="p-6 text-center">
+                    <h2 className="text-lg font-semibold mb-4">Scan QR Code</h2>
+                    <div id="reader" className="w-full h-64"></div>
+                    {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
+                    <button
+                        onClick={closePopup}
+                        className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                    >
+                        Close
+                    </button>
                 </div>
-            )}
+            </Modal>
 
             {scanResult && (
                 <div className="mt-4 text-center">

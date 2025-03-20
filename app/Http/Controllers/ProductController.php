@@ -16,10 +16,11 @@ class ProductController extends Controller
      */
     public function home()
     {
+        
         $product = Product::orderBy('name', 'asc')->take(6)->get();
         $recipe = Recipe::orderBy('title', 'asc')->take(6)->get();
         $promotion = Promotion::orderBy('title', 'asc')->take(6)->get();
-        return Inertia::render('Home', ['product' => $product, 'recipe' => $recipe, 'promotion' => $promotion]);
+        return Inertia::render('Home', ['product' => $product, 'recipe' => $recipe, 'promotion' => $promotion, 'user' => auth()->check() ? auth()->user() : null]);
     }
 
     public function index(Request $request)

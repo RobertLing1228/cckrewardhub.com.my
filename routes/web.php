@@ -1,14 +1,17 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +27,12 @@ use App\Http\Controllers\GameController;
 /*
 Base Pages
 */
-Route::get('/', [ProductController::class, 'home'])->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [ProductController::class, 'home'])->name('home');  
+
+});
+
 Route::get('/test', function(){
     return Inertia::render('Test');
 });
@@ -39,10 +47,14 @@ Route::post('/check-member', [UserController::class, 'checkMember']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/promotions', [PromotionController::class, 'index']);
+Route::get('/vouchers', [VoucherController::class, 'index']);
 
-Route::get('/admin', function () {
-    return Inertia::render('Admin/Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin', function(){
+        return Inertia::render('Admin/Dashboard', ['admin' => Auth::guard('admin')->user()]);
+    })->name('admin.dashboard');
+});
 
 Route::get('/admin/products', [ProductController::class, 'admin']);
 Route::get('/admin/products/add', [ProductController::class, 'create']);
@@ -87,8 +99,6 @@ Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('g
 Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
 
 
-
-
 Route::get('/base', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -105,9 +115,6 @@ Route::get('/base', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

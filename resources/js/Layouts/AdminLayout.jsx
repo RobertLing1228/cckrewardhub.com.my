@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 
 import "../../../public/dist/css/adminlte.min.css";
@@ -54,6 +54,11 @@ function NavBar({ isSidebarOpen, setIsSidebarOpen }) {
 }
 
 function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+    const { post } = useForm();
+    const handleLogout = () => {
+        post("/admin/logout");
+    };
+
     return (
         <aside className={`main-sidebar sidebar-dark-primary elevation-4 ${isSidebarOpen ? "show-sidebar" : "hide-sidebar"}`}>
             <div className="d-flex align-items-center justify-content-between p-3">
@@ -111,6 +116,12 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                     </ul>
                 </nav>
             </div>
+
+            <div className="sidebar-footer p-3">
+                <button onClick={handleLogout} className="btn btn-danger btn-block">
+                    <i className="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
         </aside>
     );
 }
@@ -138,7 +149,7 @@ function Content({ title, breadcrumbs, children }) {
             </section>
 
             <section className="content">
-                <div className="container-fluid">{children}</div>
+                <div className="container-fluid bg-[#dcdcdc]">{children}</div>
             </section>
         </div>
     );
