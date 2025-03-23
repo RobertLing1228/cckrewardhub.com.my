@@ -113,6 +113,18 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                                 <p>Games</p>
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link href="/admin/vouchers" className="nav-link">
+                                <i className="nav-icon fas fa-ticket-alt"></i>
+                                <p>Vouchers</p>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href="/admin/games" className="nav-link">
+                                <i className="nav-icon fas fa-gamepad"></i>
+                                <p>Claims</p>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -149,7 +161,7 @@ function Content({ title, breadcrumbs, children }) {
             </section>
 
             <section className="content">
-                <div className="container-fluid bg-[#dcdcdc]">{children}</div>
+                <div className="container-fluid">{children}</div>
             </section>
         </div>
     );

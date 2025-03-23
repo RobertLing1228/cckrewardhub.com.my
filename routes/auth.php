@@ -36,6 +36,7 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -59,19 +60,5 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
 });
-
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware('guest:admin')->group(function () {
-        Route::get('login', [AdminAuthController::class, 'create'])->name('login');
-        Route::post('login', [AdminAuthController::class, 'store']);
-    });
-
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('/admin', function(){
-            return Inertia::render('Admin/Dashboard', ['admin' => Auth::guard('admin')->user()]);
-        })->name('dashboard');
-        Route::post('logout', [AdminAuthController::class, 'destroy'])->name('logout');
-    });
-});
-

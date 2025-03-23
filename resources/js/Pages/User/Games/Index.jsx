@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
-import CheckMember from '@/Components/CheckMember';
 import MySpinWheel from '@/Components/SpinWheel';
+import PrizeView from '@/Components/PrizeView';
 
 
 export default function GameIndex({ games }) {
+    const [showPrizeModal, setShowPrizeModal] = useState(false);
+    const [prize, setPrize] = useState("Free Sausage Packet 100g");
+
     return (
         <MainLayout>
             <Head title="Games" />
@@ -43,9 +46,19 @@ export default function GameIndex({ games }) {
             </div>
 
             <MySpinWheel/>
-            <div>
-                <CheckMember />
-            </div>
+            <button
+                onClick={() => setShowPrizeModal(true)}
+                className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+            >
+                Open Prize Claim Modal
+            </button>
+
+            {showPrizeModal && (
+                <PrizeView
+                    prize={prize}
+                    onClose={() => setShowPrizeModal(false)}
+                />
+            )}
         </MainLayout>
     );
 }

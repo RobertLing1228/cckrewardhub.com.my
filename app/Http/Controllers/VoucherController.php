@@ -9,7 +9,7 @@ class VoucherController extends Controller
 {
     public function admin(){
         $vouchers = Vouchers::all();
-        return inertia('Admin/Games/Index', ['vouchers' => $vouchers]);
+        return inertia('Admin/Vouchers/Index', ['vouchers' => $vouchers]);
     }
 
     public function index(){
@@ -17,5 +17,9 @@ class VoucherController extends Controller
         return inertia('User/Vouchers/Index', ['vouchers' => $vouchers]);
     }
 
+    public function create()
+    {
+        return inertia('Admin/Vouchers/Add');
+    }
 
 }

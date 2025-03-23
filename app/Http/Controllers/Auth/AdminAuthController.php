@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Http\Requests\Auth\AdminLoginRequest;
 
 
 class AdminAuthController extends Controller
@@ -18,19 +19,13 @@ class AdminAuthController extends Controller
         ]); // Create a login page for admins
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(AdminLoginRequest $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'name' => 'required|string',
-            'password' => 'required|string',
-        ]);
+        $request->authenticate();
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('admin.dashboard');
-        }
+        $request->session()->regenerate();
 
-        return back()->withErrors(['error' => 'Invalid credentials']);
+        return redirect()->intended(route('admindashboard', absolute: false));
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -40,6 +35,6 @@ class AdminAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login');
+        return redirect()->route('adminlogin');
     }
 }

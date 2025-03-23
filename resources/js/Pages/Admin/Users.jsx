@@ -7,6 +7,8 @@ import DT from 'datatables.net-dt';
 DataTable.use(DT);
 
 export default function Users ({ admins, members }) {
+
+
     return (
         <AdminLayout
             title="Users List"
@@ -61,8 +63,11 @@ export default function Users ({ admins, members }) {
                     <tr key={admin.adminID} className="hover:bg-gray-50">
                         <td className="px-4 py-2 border">{admin.adminID}</td>
                         <td className="px-4 py-2 border">{admin.name}</td>
-                        <td className="px-4 py-2 border">{admin.pass}</td>
+                        <td className="px-4 py-2 border">*********</td>
                         <td className="px-4 py-2 border">
+                        <button className="bg-blue-500 text-white px-3 py-1 rounded mr-2" >
+                            Reset Password
+                        </button>
                         <button className="bg-red-500 text-white px-3 py-1 rounded">
                             Delete
                         </button>

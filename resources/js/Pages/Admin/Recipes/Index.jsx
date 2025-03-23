@@ -48,7 +48,7 @@ export default function Recipes ({ recipes }) {
             <div className="p-4 bg-white shadow-md rounded-lg">
             <Link href="/admin/recipes/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create Recipe </Link>
             <div className="overflow-x-auto">
-                <DataTable id="productsTable" className="min-w-full border border-gray-300">
+                <DataTable id="recipesTable" className="min-w-full border border-gray-300">
                 <thead className="bg-gray-100 text-gray-700">
                     <tr>
                     <th className="px-4 py-2 border">ID</th>

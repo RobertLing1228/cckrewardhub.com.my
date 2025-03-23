@@ -49,12 +49,14 @@ Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/promotions', [PromotionController::class, 'index']);
 Route::get('/vouchers', [VoucherController::class, 'index']);
 
+Route::post('/vouchers/claim', [VoucherController::class, 'claim'])->name('vouchers.claim');
 
-Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/admin', function(){
-        return Inertia::render('Admin/Dashboard', ['admin' => Auth::guard('admin')->user()]);
-    })->name('admin.dashboard');
-});
+
+
+Route::get('/admin', function(){
+    return Inertia::render('Admin/Dashboard');
+})->name('dashboard');
+
 
 Route::get('/admin/products', [ProductController::class, 'admin']);
 Route::get('/admin/products/add', [ProductController::class, 'create']);
@@ -97,6 +99,13 @@ Route::get('/admin/games/add', [GameController::class, 'create']);
 Route::post('/admin/games/add', [GameController::class, 'store'])->name('games.store');
 Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit'); 
 Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
+
+Route::get('admin/vouchers', [VoucherController::class, 'admin']);
+Route::delete('admin/vouchers/{voucher}', [VoucherController::class, 'delete'])->name('vouchers.delete');
+Route::get('/admin/vouchers/add', [VoucherController::class, 'create']);
+Route::post('/admin/vouchers/add', [VoucherController::class, 'store'])->name('vouchers.store');
+Route::get('/admin/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
+Route::post('/admin/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
 
 
 Route::get('/base', function () {

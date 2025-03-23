@@ -1,6 +1,6 @@
 import { Head, Link, usePage } from "@inertiajs/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faGamepad, faTag, faUtensils, faBox } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faGamepad, faUtensils, faBox, faTicket } from "@fortawesome/free-solid-svg-icons";
 import CameraScan from "@/Components/CameraScan";
 import Topbar from "@/Components/TopBar";
 
@@ -37,13 +37,6 @@ export default function MainLayout({ children, }) {
             <span>Games</span>
           </Link>
           <Link 
-            className={`nav-link flex flex-col items-center ${isActive("/promotions") ? "text-blue-400" : ""}`}
-            href="/promotions"
-          >
-            <FontAwesomeIcon icon={faTag} className="h-6 w-6" />
-            <span>Promotions</span>
-          </Link>
-          <Link 
             className={`nav-link flex flex-col items-center ${isActive("/recipes") ? "text-blue-400" : ""}`}
             href="/recipes"
           >
@@ -56,6 +49,13 @@ export default function MainLayout({ children, }) {
           >
             <FontAwesomeIcon icon={faBox} className="h-6 w-6" />
             <span>Products</span>
+          </Link>
+          <Link 
+            className={`nav-link flex flex-col items-center ${isActive("/products") ? "text-blue-400" : ""}`}
+            href="/vouchers"
+          >
+            <FontAwesomeIcon icon={faTicket} className="h-6 w-6" />
+            <span>Vouchers</span>
           </Link>
         </nav>
       </header>

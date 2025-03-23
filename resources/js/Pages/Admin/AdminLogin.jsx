@@ -9,7 +9,7 @@ const AdminLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    post(route("admin.login"));
+    post(route("adminlogin"));
   };
 
   return (
