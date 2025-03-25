@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->string('memberID', 32)->primary();
+        Schema::create('users', function (Blueprint $table) {
+            $table->id('userID'); // Bigint, unsigned, and auto-incremented
+            $table->string('memberID', 32);
             $table->integer('phoneNumber')->nullable();
-        });
+            $table->string('two_factor_code')->nullable();
+            $table->dateTime('two_factor_expires_at')->nullable();
+            
+        }); 
     }
 
     /**

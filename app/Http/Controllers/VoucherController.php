@@ -22,4 +22,8 @@ class VoucherController extends Controller
         return inertia('Admin/Vouchers/Add');
     }
 
+    public function claim(){
+        return inertia('User/Vouchers/Claim');
+    }
+
 }

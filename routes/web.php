@@ -11,7 +11,8 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Middleware\AdminAuthMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,10 +53,16 @@ Route::get('/vouchers', [VoucherController::class, 'index']);
 Route::post('/vouchers/claim', [VoucherController::class, 'claim'])->name('vouchers.claim');
 
 
+Route::middleware([AdminAuthMiddleWare::class])->group(function () {
+    Route::get('/admin', function(){
+        return Inertia::render('Admin/Dashboard');
+    })->name('admindashboard');
+});
 
-Route::get('/admin', function(){
-    return Inertia::render('Admin/Dashboard');
-})->name('dashboard');
+
+Route::get('/adminlogin', [AdminAuthController::class, 'create']);
+Route::post('/adminlogin', [AdminAuthController::class, 'store'])->name('admin.login');
+Route::post('/admin/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
 
 
 Route::get('/admin/products', [ProductController::class, 'admin']);

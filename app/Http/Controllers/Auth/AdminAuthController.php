@@ -25,7 +25,7 @@ class AdminAuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admindashboard', absolute: false));
+        return redirect()->route('admindashboard');
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -35,6 +35,6 @@ class AdminAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('adminlogin');
+        return redirect()->route('admin.login');
     }
 }
