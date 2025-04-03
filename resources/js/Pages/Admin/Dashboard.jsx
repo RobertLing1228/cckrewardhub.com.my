@@ -1,6 +1,7 @@
 import React from "react";
 import { Head, Link, usePage } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
+import DashboardChart from "@/Components/ChartData";
 
 export default function Dashboard () {
     return (
@@ -12,7 +13,13 @@ export default function Dashboard () {
             ]}
         >   
             <Head title="Admin Dashboard" />
-            <h2>Welcome to the Dashboard</h2>
+            <h2>Data Analytics</h2>
+
+            <div className="p-6">
+                <DashboardChart />
+            </div>
+
+            
         </AdminLayout>
     );
 };

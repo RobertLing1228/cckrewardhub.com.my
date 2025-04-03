@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
-import MainLayout from '@/Layouts/MainLayout';
+import MainLayout from '@/Layouts/MainLayout';  
 import MySpinWheel from '@/Components/SpinWheel';
 import PrizeView from '@/Components/PrizeView';
+import MissionList from '@/Components/MissionList';
 
 
 export default function GameIndex({ games }) {
     const [showPrizeModal, setShowPrizeModal] = useState(false);
-    const [prize, setPrize] = useState("Free Sausage Packet 100g");
+    const [prize, setPrize] = useState({
+        code: "VOUCHER123",
+        name: "Free Sausage Packet 100g",
+        date_issued: "2025-04-01",
+        end_date: "2025-04-30",
+        status: "active",
+        discount_type: "percentage",
+        discount_value: 100,
+        usage_limit: 1
+      });
 
     return (
         <MainLayout>
@@ -43,6 +53,10 @@ export default function GameIndex({ games }) {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            <div>
+                <MissionList missions={["Mission 1", "Mission 2", "Mission 3"]} />
             </div>
 
             <MySpinWheel/>

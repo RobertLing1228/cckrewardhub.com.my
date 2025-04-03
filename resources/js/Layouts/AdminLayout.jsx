@@ -1,4 +1,4 @@
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 
 import "../../../public/dist/css/adminlte.min.css";
@@ -6,6 +6,10 @@ import "../../../public/plugins/fontawesome-free/css/all.min.css";
 
 export default function AdminLayout({ children, title = "Dashboard", breadcrumbs = [] }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    
+    const {auth} = usePage().props;
+    console.log(auth);
+    
 
     useEffect(() => {
         // Set sidebar state based on initial screen width
@@ -24,7 +28,7 @@ export default function AdminLayout({ children, title = "Dashboard", breadcrumbs
             <NavBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
             {/* Sidebar */}
-            <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+            <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} auth={auth} />
 
             {/* Content */}
             <Content title={title} breadcrumbs={breadcrumbs}>{children}</Content>
@@ -53,7 +57,7 @@ function NavBar({ isSidebarOpen, setIsSidebarOpen }) {
     );
 }
 
-function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
     const { post } = useForm();
     const handleLogout = () => {
         post("/admin/logout");
@@ -75,6 +79,18 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
             </div>
 
             <div className="sidebar">
+
+                <div className="user-panel mt-2 pb-2 mb-2 d-flex">
+                    <div className="image">
+                        <img src="/storage/images/oldman.jpg" className="img-circle elevation-2" alt="User Image" />
+                    </div>
+                    <div className="info">
+                        <Link href="/admin/profile" className="d-block">
+                            <h2 className="text-lg">{auth?.admin?.name || "Admin"}</h2>
+                        </Link>
+                </div>
+            </div>
+
                 <nav className="mt-2">
                     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                         <li className="nav-item">
@@ -120,8 +136,8 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/admin/games" className="nav-link">
-                                <i className="nav-icon fas fa-gamepad"></i>
+                            <Link href="/admin/claims" className="nav-link">
+                                <i className="nav-icon fas fa-clipboard"></i>
                                 <p>Claims</p>
                             </Link>
                         </li>

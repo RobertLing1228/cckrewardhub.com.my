@@ -33,6 +33,7 @@ export default function MultipleImages({ images, name }) {
                     <SwiperSlide key={index} className="flex justify-center">
                         <img 
                             src={`/storage/${img}`} 
+                            loading='lazy'
                             alt={`Product image ${name}`} 
                             className="w-full h-40 object-cover rounded-md"
                         />

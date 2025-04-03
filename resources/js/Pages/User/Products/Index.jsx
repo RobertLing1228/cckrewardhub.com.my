@@ -95,6 +95,7 @@ export default function ProductIndex({ products, filters, categories }) {
                             key={product.productID}
                             className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200"
                         >
+                            <Link href={`/products/${product.productID}`}>
                             <MultipleImages images={product.image} name={product.name} />
                             <div className="p-4">
                                 <h2 className="text-xl font-semibold text-gray-800 truncate">{product.name}</h2>
@@ -105,13 +106,14 @@ export default function ProductIndex({ products, filters, categories }) {
                                         Category: <span className="text-gray-800">{product.category_name}</span>
                                     </p>
                                 </div>
-                                <Link
-                                    href={`/products/${product.productID}`}
-                                    className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-                                >
-                                    View Details
-                                </Link>
+                                
+                                    <div className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                                        View Details
+                                    </div>
+                                    
+                                
                             </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

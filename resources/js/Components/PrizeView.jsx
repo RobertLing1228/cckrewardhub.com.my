@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm, usePage } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import Modal from "./Modal";
 
 export default function PrizeView({ prize, onClose }) {
@@ -9,7 +9,8 @@ export default function PrizeView({ prize, onClose }) {
     const handleClaim = () => {
         post("/vouchers/claim", {
             data: { prize },
-            onSuccess: () => setClaimed(true),
+            onSuccess: () => {console.log(success), setClaimed(true)},
+            onError: () => {console.log(error)},
         });
     };
 

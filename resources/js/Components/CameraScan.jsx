@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import { Html5Qrcode } from "html5-qrcode";
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import Modal from "./Modal"; // Import your custom modal
 
-export default function CameraScan() {
-    const [scanResult, setScanResult] = useState(null);
+export default function CameraScan({onScan}) {
     const [isScanning, setIsScanning] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -20,14 +19,14 @@ export default function CameraScan() {
     const startScanning = () => {
         if (isScanning || qrScannerRef.current) return;
     
-        qrScannerRef.current = new Html5Qrcode("reader");
+        qrScannerRef.current = new Html5Qrcode("reader", {formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE]});
     
         qrScannerRef.current.start(
             { facingMode: "environment" },
             { qrbox: { width: 250, height: 250 }, fps: 5 },
             (decodedText) => {
-                window.location.href = decodedText;
-                setScanResult(decodedText);
+                console.log("QR Code Scanned:", decodedText);
+                onScan(decodedText);
                 closePopup();
             },
             (error) => {
@@ -88,12 +87,6 @@ export default function CameraScan() {
                     </button>
                 </div>
             </Modal>
-
-            {scanResult && (
-                <div className="mt-4 text-center">
-                    Success: <a href={scanResult} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">{scanResult}</a>
-                </div>
-            )}
         </div>
     );
 }

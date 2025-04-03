@@ -8,6 +8,11 @@ export default function MainLayout({ children, }) {
   const { url } = usePage(); // Get the current URL
 
   const isActive = (path) => url === path; // Exact match for home
+
+  const handleScan = (result) => {
+    console.log(result);
+  };
+
   return (
     <>
       <Head>
@@ -19,7 +24,7 @@ export default function MainLayout({ children, }) {
       </Head>
 
       <Topbar />
-      <CameraScan />
+      <CameraScan onScan={handleScan}/>
       <header>
         <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white flex justify-around py-3 z-50 shadow-lg h-auto max-h-[calc(100vh/3)]">
           <Link 
@@ -51,7 +56,7 @@ export default function MainLayout({ children, }) {
             <span>Products</span>
           </Link>
           <Link 
-            className={`nav-link flex flex-col items-center ${isActive("/products") ? "text-blue-400" : ""}`}
+            className={`nav-link flex flex-col items-center ${isActive("/vouchers") ? "text-blue-400" : ""}`}
             href="/vouchers"
           >
             <FontAwesomeIcon icon={faTicket} className="h-6 w-6" />

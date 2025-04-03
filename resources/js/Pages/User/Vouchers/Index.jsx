@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 
 
 export default function VoucherIndex ({ vouchers }) {
     const [activeTab, setActiveTab] = useState("vouchers");
 
+    const currentDate = new Date();
+    const activeVouchers = vouchers.filter(voucher => new Date(voucher.end_date) >= currentDate);
+    const expiredVouchers = vouchers.filter(voucher => new Date(voucher.end_date) < currentDate);
 
     return (
         <MainLayout>
@@ -28,7 +31,12 @@ export default function VoucherIndex ({ vouchers }) {
                 <div className='mt-4'>
                     {activeTab === 'vouchers' && (
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4'>
-                            {vouchers.map((voucher) => (
+                            {activeVouchers.map((voucher) => {
+                            
+                            const expiryDate = new Date(voucher.end_date);
+                            const isExpired = currentDate > expiryDate;
+                            
+                            return (
                                 <div key={voucher.id} className="bg-white rounded-2xl shadow-md p-4 border border-gray-200">
                                 <div className="flex justify-between items-center">
                                   <p className="text-gray-500 text-sm">Coupons</p>
@@ -42,18 +50,32 @@ export default function VoucherIndex ({ vouchers }) {
                           
                                 <p className="text-gray-400 text-xs mt-4">Expires {voucher.end_date}</p>
                           
-                                <button className="w-full mt-4 py-2 text-red-500 font-semibold border border-red-500 rounded-lg hover:bg-red-500 hover:text-white transition">
-                                  Use
-                                </button>
+                                <Link 
+                                    href={`/vouchers/${voucher.id}`} 
+                                    className="w-full mt-4 py-2 text-red-500 font-semibold border border-red-500 rounded-lg hover:bg-red-500 hover:text-white transition text-center block"
+                                >
+                                    Redeem
+                                </Link>
                               </div>
-                            ))}
+                            );
+                            })}
 
                         </div>
                     )}
 
                     {activeTab === 'history' && (
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                            <h3>History here</h3>
+                            {expiredVouchers.length === 0 ? (
+                                <p className="text-gray-500">No expired vouchers yet.</p>
+                            ) : (
+                                expiredVouchers.map((voucher) => (
+                                    <div key={voucher.id} className="bg-gray-100 rounded-2xl shadow-md p-4 border border-gray-200">
+                                        <h2 className="text-xl font-bold mt-2">{voucher.name}</h2>
+                                        <p className="text-gray-500 text-sm">Expired on {voucher.end_date}</p>
+                                        <span className="text-red-500 font-semibold">Expired</span>
+                                    </div>
+                                ))
+                            )}
                         </div>
                     )}
                     
