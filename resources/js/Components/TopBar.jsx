@@ -28,21 +28,26 @@ const Topbar = () => {
       <h1 className="text-lg sm:text-base font-bold">CCK</h1>
 
       <div className="flex items-center gap-4">
-        <form onSubmit={handleSearch} className="flex items-center">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="p-2 text-black rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-48 sm:w-32 text-sm"
-          />
-          <button
-            type="submit"
-            className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded text-sm sm:px-3 sm:py-1"
-          >
-            🔍
-          </button>
-        </form>
+
+        <div className="flex items-center border border-gray-300 rounded-md bg-white">
+          <form onSubmit={handleSearch} className="flex w-full">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="p-2 text-black bg-white w-48 sm:w-32 text-sm focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="px-3 py-2 text-gray-600 text-sm hover:bg-gray-100"
+            >
+              🔍
+            </button>
+          </form>
+        </div>
+
+
         
         <button
           onClick={handleLogout}

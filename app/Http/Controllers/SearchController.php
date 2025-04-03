@@ -26,14 +26,15 @@ class SearchController extends Controller
 
         // 搜索产品
         $products = Product::where('name', 'LIKE', "%{$query}%")
-                           ->orWhere('description', 'LIKE', "%{$query}%")
-                           ->get()
-                           ->map(fn($product) => [
-                               'id' => $product->id,
-                               'name' => $product->name,
-                               'type' => 'products',
-                               'description' => $product->description
-                           ]);
+                   ->orWhere('description', 'LIKE', "%{$query}%")
+                   ->get()
+                   ->map(fn($product) => [
+                       'id' => $product->productID, // Ensure correct ID field
+                       'name' => $product->name,
+                       'type' => 'products',
+                       'description' => $product->description
+                   ]);
+
 
         // 合并食谱和产品的搜索结果
         $results = $recipes->merge($products);
