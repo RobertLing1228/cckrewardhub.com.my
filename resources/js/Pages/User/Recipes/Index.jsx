@@ -1,16 +1,45 @@
-import React from 'react';
+//import React from 'react';
+import React, { useState } from 'react'; //  Import useState
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import MultipleImages from '@/Components/MultipleImages';
 
 export default function RecipeIndex ({ recipe }){
+
+    const [selectedCategory, setSelectedCategory] = useState('all');
+
+    // Extract unique categories from the recipe list
+    const categories = ['all', ...new Set(recipe.map(r => r.category))];
+
+    // Filter recipes based on the selected category
+    const filteredRecipes = selectedCategory === 'all' 
+        ? recipe 
+        : recipe.filter(r => r.category === selectedCategory);
+
+
     return (
         <MainLayout>
             <Head title="Recipes" />
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-6">All Recipe</h1>
+            
+            {/* Category Dropdown */}
+            <div className="mb-6">
+                    <label className="block text-lg font-semibold mb-2">Filter by Category:</label>
+                    <select 
+                        value={selectedCategory} 
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        className="border rounded px-4 py-2 w-full md:w-1/3"
+                    >
+                        {categories.map((cat, index) => (
+                            <option key={index} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
+                        ))}
+                    </select>
+            </div>
+
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {recipe.map((recipe) => (
+                {filteredRecipes.map((recipe) => (
                     <div key={recipe.recipeID} className="border rounded-lg shadow-lg p-4">
                         <MultipleImages images={recipe.image} name={recipe.title} />
                         <h2 className="text-xl font-semibold mt-4">{recipe.title}</h2>

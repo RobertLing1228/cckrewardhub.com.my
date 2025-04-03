@@ -139,3 +139,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+/* for RL only */
+use App\Http\Controllers\SearchController;
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+
