@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 
-export default function Search({ results = [], query = '' }) {
+export default function Search({ results = [], query = '', prev }) {
     const [searchQuery, setSearchQuery] = useState(query);
     const [filter, setFilter] = useState('all'); // 默认显示所有
     const [filteredResults, setFilteredResults] = useState(results); // 存放筛选后的数据
@@ -27,8 +27,8 @@ export default function Search({ results = [], query = '' }) {
             <div className="container mx-auto px-4 py-8">
                 
                 {/* 返回按钮 */}
-                <Link href="/recipes" className="text-blue-500 hover:text-blue-700">
-                    &larr; Back to Recipes
+                <Link href={prev} className="text-blue-500 hover:text-blue-700">
+                    &larr; Back
                 </Link>
 
                 {/* 搜索框 */}

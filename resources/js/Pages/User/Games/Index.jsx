@@ -69,7 +69,6 @@ export default function GameIndex({ games }) {
 
             {showPrizeModal && (
                 <PrizeView
-                    prize={prize}
                     onClose={() => setShowPrizeModal(false)}
                 />
             )}

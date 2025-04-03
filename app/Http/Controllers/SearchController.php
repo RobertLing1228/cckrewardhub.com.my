@@ -12,6 +12,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
+        $prevPage = $request->input('prev', '/');
 
         // 搜索食谱
         $recipes = Recipe::where('title', 'LIKE', "%{$query}%")
@@ -41,7 +42,8 @@ class SearchController extends Controller
 
         return Inertia::render('Search', [
             'results' => $results,
-            'query' => $query
+            'query' => $query,
+            'prev' => $prevPage
         ]);
     }
 }

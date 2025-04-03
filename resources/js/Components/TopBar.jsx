@@ -16,7 +16,8 @@ const Topbar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/search?query=${encodeURIComponent(searchQuery)}`;
+      const prevPage = encodeURIComponent(window.location.href);
+      window.location.href = `/search?query=${encodeURIComponent(searchQuery)}&prev=${prevPage}`;
     }
   };
   

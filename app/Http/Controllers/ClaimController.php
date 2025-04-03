@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ClaimController extends Controller
 {
+    
     public function index(){
         $claims = Claim::all();
         return inertia('Admin/Claim/Index', ['claims' => $claims]);
@@ -18,6 +19,8 @@ class ClaimController extends Controller
 
     public function claim(Request $request)
 {
+    return back()->with('success', 'Claim submitted successfully!');
+
     $user = Auth::user();
     $gameID = $request->gameID;
 
