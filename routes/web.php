@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Middleware\AdminAuthMiddleware;
+use App\Http\Controllers\ClaimController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +50,9 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/promotions', [PromotionController::class, 'index']);
 Route::get('/vouchers', [VoucherController::class, 'index']);
-
-Route::post('/vouchers/claim', [VoucherController::class, 'claim'])->name('vouchers.claim');
+Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
+route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');
+Route::post('/vouchers/claim', [ClaimController::class, 'claim'])->name('vouchers.claim');
 
 
 Route::middleware([AdminAuthMiddleWare::class])->group(function () {
@@ -98,6 +100,14 @@ Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->nam
 
 Route::get('/admin/users', [UserController::class, 'admin']);
 
+Route::get('/admin/profile', [UserController::class, 'profile'])->name('admin.profile');
+Route::post('/admin/profile', [UserController::class, 'updateProfile'])->name('admin.profile.update');
+
+Route::get('/admin/claims', [ClaimController::class, 'index'])->name('admin.claims');
+Route::post('/admin/claims', [ClaimController::class, 'update'])->name('admin.claims.update');
+Route::delete('/admin/claims/{claim}', [ClaimController::class, 'delete'])->name('admin.claims.delete');
+
+
 
 
 Route::get('/admin/games', [GameController::class, 'admin']);
@@ -140,9 +150,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
 /* for RL only */
 use App\Http\Controllers\SearchController;
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-
