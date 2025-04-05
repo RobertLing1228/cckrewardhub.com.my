@@ -31,11 +31,7 @@ export default function VoucherIndex ({ vouchers }) {
                 <div className='mt-4'>
                     {activeTab === 'vouchers' && (
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4'>
-                            {activeVouchers.map((voucher) => {
-                            
-                            const expiryDate = new Date(voucher.end_date);
-                            const isExpired = currentDate > expiryDate;
-                            
+                            {activeVouchers.map((voucher) => {                        
                             return (
                                 <div key={voucher.id} className="bg-white rounded-2xl shadow-md p-4 border border-gray-200">
                                 <div className="flex justify-between items-center">
@@ -49,13 +45,14 @@ export default function VoucherIndex ({ vouchers }) {
                                 <p className="text-gray-500 text-sm">Valid for applicable products</p>
                           
                                 <p className="text-gray-400 text-xs mt-4">Expires {voucher.end_date}</p>
-                          
-                                <Link 
-                                    href={`/vouchers/${voucher.id}`} 
-                                    className="w-full mt-4 py-2 text-red-500 font-semibold border border-red-500 rounded-lg hover:bg-red-500 hover:text-white transition text-center block"
-                                >
-                                    Redeem
-                                </Link>
+                                <div className='mt-auto'>
+                                    <Link 
+                                        href={`/vouchers/${voucher.id}`} 
+                                        className="w-full mt-4 py-2 text-red-500 font-semibold border border-red-500 rounded-lg hover:bg-red-500 hover:text-white transition text-center block"
+                                    >
+                                        Redeem
+                                    </Link>
+                                </div>
                               </div>
                             );
                             })}

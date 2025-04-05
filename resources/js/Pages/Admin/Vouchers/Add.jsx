@@ -1,14 +1,15 @@
 import React from "react";
 import { Head, useForm } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
+import Dropdown from "@/Components/Dropdown";
 
 export default function Add () {
 
     const {data, setData, post, errors, processing} = useForm({
         name: '',
         code: '',
-        date_issued: null,
-        end_date: null,
+        end_date: "",
+        status: "unclaimed",
         discount_type: '',
         discount_value: '',
     })
@@ -16,11 +17,12 @@ export default function Add () {
     function submit(e) {
         e.preventDefault();
 
+
         const formData = new FormData();
         formData.append("name", data.name);
         formData.append("code", data.code);
-        formData.append("date_issued", new Date().toISOString().split('T')[0]);
         formData.append("end_date", data.end_date);  // Append file
+        formData.append("status", data.status);
         formData.append("discount_type", data.discount_type);
         formData.append("discount_value", data.discount_value);
 
@@ -61,8 +63,12 @@ export default function Add () {
                     <label>Code</label>
                     {errors.code && <div className="error">{errors.code}</div>}
                     <input
+                    maxLength={8}
                     value={data.code}
-                    onChange={(e) => setData("code", e.target.value)}
+                    onChange={(e) => {
+                        const val = e.target.value.toUpperCase().replace(/[^a-zA-Z0-9]/g, '').slice(0, 8);
+                        setData("code", val);
+                    }}
                     className={errors.code && "!ring-red-500"}
                     ></input>
 
@@ -77,19 +83,45 @@ export default function Add () {
 
                     <label>Discount Type</label>
                     {errors.discount_type && <div className="error">{errors.discount_type}</div>}
-                    <input 
-                    type="text" 
-                    value={data.discount_type}
-                    onChange={(e) => setData("discount_type", e.target.value)}
-                    className={errors.discount_type && "!ring-red-500"}
-                    />
+                    <Dropdown>
+                        <Dropdown.Trigger>
+                            <button 
+                                type="button"
+                                className={`w-full px-4 py-2 text-left border rounded-md ${
+                                    errors.discount_type ? "ring-red-500 border-red-500" : "border-gray-300"
+                                }`}
+                            >
+                                {data.discount_type || "Select Discount Type"}
+                                <span className="ml-2">▼</span>
+                            </button>
+                        </Dropdown.Trigger>
+
+                        <Dropdown.Content>
+                            <button 
+                                type="button"
+                                className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                                onClick={() => setData("discount_type", "percentage")}
+                            >
+                                percentage
+                            </button>
+                            <button 
+                                type="button"
+                                className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                                onClick={() => setData("discount_type", "fixed")}
+                            >
+                                fixed
+                            </button>
+                        </Dropdown.Content>
+                    </Dropdown>
 
                     <label>Discount Value</label>
                     {errors.discount_value && <div className="error">{errors.discount_value}</div>}
                     <input 
-                    type="text" 
+                    type="number" 
+                    placeholder="0.00"
                     value={data.discount_value}
                     onChange={(e) => setData("discount_value", e.target.value)}
+                    onBlur={(e) => setData("discount_value", parseFloat(e.target.value).toFixed(2))}
                     className={errors.discount_value && "!ring-red-500"}
                     />
 

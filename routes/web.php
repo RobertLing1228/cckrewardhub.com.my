@@ -47,18 +47,66 @@ Route::get('/play', function(){
 Route::post('/check-member', [UserController::class, 'checkMember']);
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
 Route::get('/recipes', [RecipeController::class, 'index']);
+Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+
 Route::get('/promotions', [PromotionController::class, 'index']);
+Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->name('promotions.show');
+
 Route::get('/vouchers', [VoucherController::class, 'index']);
 Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
-route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');
-Route::post('/vouchers/claim', [ClaimController::class, 'claim'])->name('vouchers.claim');
+Route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');
+Route::post('/claim', [ClaimController::class, 'claim'])->name('claim');
 
 
 Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::get('/admin', function(){
         return Inertia::render('Admin/Dashboard');
     })->name('admindashboard');
+
+    Route::get('/admin/products', [ProductController::class, 'admin']);
+    Route::get('/admin/products/add', [ProductController::class, 'create']);
+    Route::post('/admin/products/add', [ProductController::class, 'store'])->name('products.store');
+    Route::delete('/admin/products/{product}', [ProductController::class, 'delete'])->name('products.delete');
+    Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::post('/admin/products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+    Route::get('/admin/recipes', [RecipeController::class, 'admin']);
+    Route::get('/admin/recipes/add', [RecipeController::class, 'create']);
+    Route::post('/admin/recipes/add', [RecipeController::class, 'store'])->name('recipes.store');
+    Route::delete('/admin/recipes/{recipe}', [RecipeController::class, 'delete'])->name('recipes.delete');
+    Route::get('/admin/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
+    Route::post('/admin/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipes.update');
+
+    Route::get('/admin/promotions', [PromotionController::class, 'admin']);
+    Route::get('/admin/promotions/add', [PromotionController::class, 'create']);
+    Route::post('/admin/promotions/add', [PromotionController::class, 'store'])->name('promotions.store');
+    Route::delete('/admin/promotions/{promotion}', [PromotionController::class, 'delete'])->name('promotions.delete');
+    Route::get('/admin/promotions/{promotion}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
+    Route::post('/admin/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
+
+    Route::get('/admin/users', [UserController::class, 'admin']);
+
+    Route::get('/admin/profile', [UserController::class, 'profile'])->name('admin.profile');
+    Route::post('/admin/profile', [UserController::class, 'updateProfile'])->name('admin.profile.update');
+
+    Route::get('/admin/claims', [ClaimController::class, 'index'])->name('admin.claims');
+    Route::post('/admin/claims', [ClaimController::class, 'update'])->name('admin.claims.update');
+    Route::delete('/admin/claims/{claim}', [ClaimController::class, 'delete'])->name('admin.claims.delete');
+
+    Route::get('/admin/games', [GameController::class, 'admin']);
+    Route::delete('/admin/games/{game}', [GameController::class, 'delete'])->name('games.delete');
+    Route::get('/admin/games/add', [GameController::class, 'create']);
+    Route::post('/admin/games/add', [GameController::class, 'store'])->name('games.store');
+    Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit'); 
+    Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
+
+    Route::get('admin/vouchers', [VoucherController::class, 'admin']);
+    Route::delete('/admin/vouchers/{voucher}', [VoucherController::class, 'delete'])->name('vouchers.delete');
+    Route::get('/admin/vouchers/add', [VoucherController::class, 'create']);
+    Route::post('/admin/vouchers/add', [VoucherController::class, 'store'])->name('vouchers.store');
 });
 
 
@@ -67,62 +115,7 @@ Route::post('/adminlogin', [AdminAuthController::class, 'store'])->name('admin.l
 Route::post('/admin/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
 
 
-Route::get('/admin/products', [ProductController::class, 'admin']);
-Route::get('/admin/products/add', [ProductController::class, 'create']);
-Route::post('/admin/products/add', [ProductController::class, 'store'])->name('products.store');
-Route::delete('admin/products/{product}', [ProductController::class, 'delete'])->name('products.delete');
-Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-Route::post('admin/products/{product}', [ProductController::class, 'update'])->name('products.update');
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
-
-
-
-Route::get('/admin/recipes', [RecipeController::class, 'admin']);
-Route::get('/admin/recipes/add', [RecipeController::class, 'create']);
-Route::post('/admin/recipes/add', [RecipeController::class, 'store'])->name('recipes.store');
-Route::delete('admin/recipes/{recipe}', [RecipeController::class, 'delete'])->name('recipes.delete');
-Route::get('/admin/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
-Route::post('admin/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipes.update');
-Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
-
-
-
-Route::get('/admin/promotions', [PromotionController::class, 'admin']);
-Route::get('/admin/promotions/add', [PromotionController::class, 'create']);
-Route::post('/admin/promotions/add', [PromotionController::class, 'store'])->name('promotions.store');
-Route::delete('admin/promotions/{promotion}', [PromotionController::class, 'delete'])->name('promotions.delete');
-Route::get('/admin/promotions/{promotion}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
-Route::post('admin/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
-Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->name('promotions.show');
-
-
-
-Route::get('/admin/users', [UserController::class, 'admin']);
-
-Route::get('/admin/profile', [UserController::class, 'profile'])->name('admin.profile');
-Route::post('/admin/profile', [UserController::class, 'updateProfile'])->name('admin.profile.update');
-
-Route::get('/admin/claims', [ClaimController::class, 'index'])->name('admin.claims');
-Route::post('/admin/claims', [ClaimController::class, 'update'])->name('admin.claims.update');
-Route::delete('/admin/claims/{claim}', [ClaimController::class, 'delete'])->name('admin.claims.delete');
-
-
-
-
-Route::get('/admin/games', [GameController::class, 'admin']);
-Route::delete('admin/games/{game}', [GameController::class, 'delete'])->name('games.delete');
-Route::get('/admin/games/add', [GameController::class, 'create']);
-Route::post('/admin/games/add', [GameController::class, 'store'])->name('games.store');
-Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit'); 
-Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
-
-Route::get('admin/vouchers', [VoucherController::class, 'admin']);
-Route::delete('admin/vouchers/{voucher}', [VoucherController::class, 'delete'])->name('vouchers.delete');
-Route::get('/admin/vouchers/add', [VoucherController::class, 'create']);
-Route::post('/admin/vouchers/add', [VoucherController::class, 'store'])->name('vouchers.store');
-Route::get('/admin/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
-Route::post('/admin/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
 
 
 Route::get('/base', function () {

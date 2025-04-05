@@ -12,5 +12,5 @@ class Claim extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['voucherID', 'memberID', 'gameID', 'claim_date', 'status'];
+    protected $fillable = ['voucherID', 'memberID', 'gameType', 'claim_date', 'status'];
 }

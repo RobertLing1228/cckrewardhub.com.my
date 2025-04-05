@@ -1,41 +1,44 @@
 import React, { useState } from "react";
-import { useForm } from "@inertiajs/react";
+import { useForm, router, usePage } from "@inertiajs/react";
 import Modal from "./Modal";
 
-export default function PrizeView({ prize, onClose }) {
+export default function PrizeView({ onClose, game }) {
     const [claimed, setClaimed] = useState(false);
+    const { props } = usePage();
+    const successMessage = props.flash?.success;
 
-    const {post, processing} = useForm();
+    const {processing, errors} = useForm();
     
-    const [prize2, setPrize2] = useState({
-            code: "VOUCHER123",
-            name: "Free Sausage Packet 100g",
-            date_issued: "2025-04-01",
-            end_date: "2025-04-30",
-            status: "active",
-            discount_type: "percentage",
-            discount_value: 100,
-            usage_limit: 1
-          });
+    console.log(game);
 
-    const handleClaim = () => {
-        post("/vouchers/claim", {
-            ...prize2,
-            onSuccess: (response) => {console.log(response), setClaimed(true)},
-            onError: (error) => {console.log(error)},
-        });
+    function handleClaim(){
+        
+        router.post("/claim", { gameType: game }, {
+            onSuccess: () => {
+              console.log("Claim successful");
+              setClaimed(true);
+            },
+            onError: (errors) => {
+              console.error("Error claiming:", errors);
+            },
+          });
     };
 
     return (
         <Modal show={true} onClose={onClose} maxWidth="lg">
             <div className="p-6">
                 <h2 className="text-lg font-bold">Claim Your Prize</h2>
-                <p className="mt-2">You won: <span className="font-semibold">{prize2.name}</span></p>
+                <p className="mt-2">You won: <span className="font-semibold">This</span></p>
 
                 {claimed ? (
-                    <p className="mt-4 text-green-600">🎉 Prize Claimed!</p>
+                    <p className="mt-4 text-green-600">🎉 Prize Claimed!</p> &&
+                    <div className="bg-green-100 text-green-800 p-4 rounded mb-4">
+                        <p>{successMessage}</p>
+                    </div>
+                    
                 ) : (
                     <button
+                        disabled={processing}
                         onClick={handleClaim}
                         className="mt-4 w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
                     >
@@ -43,7 +46,10 @@ export default function PrizeView({ prize, onClose }) {
                     </button>
                 )}
 
+                {errors && <p className="mt-4 text-red-600">{errors.message}</p>}
+
                 <button
+                    
                     onClick={onClose}
                     className="mt-4 w-full rounded bg-gray-300 px-4 py-2 text-black hover:bg-gray-400"
                 >
