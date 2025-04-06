@@ -1,87 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SpinWheel } from 'spin-wheel-game';
-import Modal from './Modal'; // Import the modal component
+import Modal from './Modal';
 
+// Segments with direct probability control (values should sum to 1)
 const segments = [
-    { segmentText: 'RM10 Voucher', segColor: 'red' },
-    { segmentText: '20% OFF', segColor: 'blue' },
-    { segmentText: 'BUY 1 FREE 1', segColor: 'green' },
+    { segmentText: 'RM10 Voucher', segColor: 'red', probability: 0.1 },    // 10% chance
+    { segmentText: '20% OFF', segColor: 'blue', probability: 0.3 },        // 30% chance
+    { segmentText: 'BUY 1 FREE 1', segColor: 'green', probability: 0.6 }, // 60% chance
 ];
 
-const MySpinWheel = () => {
+// Verify probabilities sum to 1 (100%)
+const totalProbability = segments.reduce((sum, seg) => sum + seg.probability, 0);
+if (Math.abs(totalProbability - 1) > 0.0001) {
+    console.error('Segment probabilities must sum to 1');
+}
+
+const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
     const [spinResult, setSpinResult] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isWheelFinished, setIsWheelFinished] = useState(false);
+    const [hasSpun, setHasSpun] = useState(false);
 
+    // Modified handleSpinFinish to use controlled probabilities
     const handleSpinFinish = (result) => {
-        setSpinResult(result);
-        setIsWheelFinished(true); // Mark that the wheel has finished spinning
+        // Our custom probability-based result selection
+        const random = Math.random();
+        let cumulativeProbability = 0;
+        let selectedSegment = segments[0]; // Default fallback
+        
+        for (const segment of segments) {
+            cumulativeProbability += segment.probability;
+            if (random <= cumulativeProbability) {
+                selectedSegment = segment;
+                break;
+            }
+        }
+
+        setSpinResult(selectedSegment.segmentText);
+        setIsWheelFinished(true);
+        setHasSpun(true);
+        if (onComplete) onComplete(selectedSegment.segmentText);
     };
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-        setIsWheelFinished(false); // Reset wheel state when reopening
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
+    const handleClose = () => {
         setSpinResult('');
+        setIsWheelFinished(false);
+        setHasSpun(false);
+        onClose();
     };
+
+    useEffect(() => {
+        if (!isOpen) {
+            setSpinResult('');
+            setIsWheelFinished(false);
+            setHasSpun(false);
+        }
+    }, [isOpen]);
 
     const spinWheelProps = {
-        segments,
+        segments: segments.map(({ segmentText, segColor }) => ({ segmentText, segColor })),
         onFinished: handleSpinFinish,
         primaryColor: 'black',
         contrastColor: 'white',
-        buttonText: 'Spin',
+        buttonText: hasSpun ? 'Spin Again' : 'Spin',
         isOnlyOnce: false,
-        size: 180, // Adjusted size to fit inside modal
-        upDuration: 200,
-        downDuration: 600,
+        size: 180,
+        upDuration: 500,
+        downDuration: 1000,
         fontFamily: 'Arial',
         arrowLocation: 'top',
         isSpinSound: true,
     };
 
     return (
-        <div className="flex flex-col items-center">
-            {/* Open Modal Button */}
-            <button 
-                onClick={handleOpenModal} 
-                className="px-4 py-2 bg-blue-500 text-white rounded-md"
-            >
-                Open Spin Wheel
-            </button>
+        <Modal show={isOpen} onClose={handleClose} maxWidth="lg">
+            <div className="p-6 text-center">
+                <h2 className="text-xl font-semibold">Try Your Luck!</h2>
 
-            {/* Spin Wheel Modal */}
-            <Modal show={isModalOpen} onClose={handleCloseModal}>
-                <div className="p-6 text-center">
-                    <h2 className="text-xl font-semibold">Try Your Luck!</h2>
+                {!isWheelFinished ? (
+                    <div className="flex justify-center mt-4">
+                        <SpinWheel {...spinWheelProps} />
+                    </div>
+                ) : (
+                    <div className="mt-4 flex flex-col items-center">
+                        <p className="text-lg">You won: <strong>{spinResult}</strong></p>
+                        <button
+                            onClick={() => {
+                                setIsWheelFinished(false);
+                                setSpinResult('');
+                            }}
+                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        >
+                            Spin Again
+                        </button>
+                    </div>
+                )}
 
-                    {/* Show Wheel if the spin hasn't finished yet */}
-                    {!isWheelFinished && (
-                        <div className="flex justify-center mt-4">
-                            <SpinWheel {...spinWheelProps} />
-                        </div>
-                    )}
-
-                    {/* Show Result when the wheel finishes */}
-                    {isWheelFinished && (
-                        <div className="mt-4 flex justify-center text-center">
-                            <p className="text-lg">You won: <strong>{spinResult}</strong></p>
-                        </div>
-                    )}
-
-                    {/* Close Button */}
-                    <button
-                        onClick={handleCloseModal}
-                        className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-md"
-                    >
-                        Close
-                    </button>
-                </div>
-            </Modal>
-        </div>
+                <button
+                    onClick={handleClose}
+                    className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                >
+                    Close
+                </button>
+            </div>
+        </Modal>
     );
 };
 
