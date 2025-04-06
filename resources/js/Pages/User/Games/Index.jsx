@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';  
 import MySpinWheel from '@/Components/SpinWheel';
-import PrizeView from '@/Components/PrizeView';
 import MissionList from '@/Components/MissionList';
+import { SpinWheel } from 'spin-wheel-game';
 
 
 export default function GameIndex({ games }) {
@@ -43,7 +43,7 @@ export default function GameIndex({ games }) {
                                 <p className="text-lg text-gray-700">{game.description}</p>
                                 <div className="flex justify-end pt-6">
                                     <Link
-                                        href={game.gameLink}
+                                        href={`/play?game=${game.gameID}`}
                                         className="bg-purple-700 text-white w-full font-bold text-base text-center p-3 rounded-lg hover:bg-purple-800 active:scale-95 transition-transform"
                                     >
                                         Play
@@ -54,7 +54,7 @@ export default function GameIndex({ games }) {
                     ))}
                 </div>
             </div>
-
+            <MissionList/>
             <div>
                 <MissionList missions={["Mission 1", "Mission 2", "Mission 3"]} />
             </div>
