@@ -1,29 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import MultipleImages from '@/Components/MultipleImages';
 
-export default function ProductIndex({ products, filters, categories }) {
+export default function ProductIndex({ products, filters, categories, branches }) {
     const { data, setData, get } = useForm({
         search: filters.search || '',
         category: filters.category || '',
+        branch_id: filters.branch_id || '',
     });
+
+    const [selectedBranch, setSelectedBranch] = useState(filters.branch_id || '');
+    const [selectedCategory, setSelectedCategory] = useState(filters.category || '');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        get('/products', { 
-            preserveState: true, 
-        });
+        get('/products', { preserveState: true });
     };
 
     const resetFilters = () => {
-        setData({ search: null, category: null });
-        get('/products', {
-            data: {},
-            preserveState: false,
-            replace: true, 
-            onSuccess: (page) => console.log('Received filters from backend:', page.props.filters)
-        });
+        setData({ search: '', category: '', branch_id: '' }); // Reset filters
+        setSelectedBranch('');
+        setSelectedCategory('');
+        get('/products', { preserveState: false, replace: true });
+        window.location.href = "/products"; // Reload the page
+    };
+
+    const handleBranchChange = (e) => {
+        const branchId = e.target.value;
+        setSelectedBranch(branchId);
+        setData('branch_id', branchId);
+        get(`/products?branch_id=${branchId}&category=${selectedCategory}`, { preserveState: true });
+    };
+
+    const handleCategoryChange = (e) => {
+        const categoryId = e.target.value;
+        setSelectedCategory(categoryId);
+        setData('category', categoryId);
+        get(`/products?branch_id=${selectedBranch}&category=${categoryId}`, { preserveState: true });
     };
 
     return (
@@ -32,8 +46,29 @@ export default function ProductIndex({ products, filters, categories }) {
             <div className="min-h-screen bg-gray-100 py-4">
                 <h1 className="text-2xl font-bold text-gray-800 mb-4 px-4">Products</h1>
 
-                {/* Search/Filter Form */}
-                <form onSubmit={handleSubmit} className="mb-4 bg-white p-4 rounded-lg shadow-md w-full max-w-md mx-auto">
+                {/* Branch Selection Dropdown */}
+                <div className="mb-4 px-4">
+                    <label htmlFor="branch" className="block text-sm font-medium text-gray-700">
+                        Select Branch
+                    </label>
+                    <select
+                        id="branch"
+                        name="branch_id"
+                        value={selectedBranch}
+                        onChange={handleBranchChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    >
+                        <option value="">All Branches</option>
+                        {branches.map((branch) => (
+                            <option key={branch.id} value={branch.id}>
+                                {branch.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                {/* Search & Filters */}
+                <form onSubmit={handleSubmit} className="mb-4 bg-white p-4 rounded-lg shadow-md">
                     <div className="space-y-4">
                         <div>
                             <label htmlFor="search" className="block text-sm font-medium text-gray-700">
@@ -45,7 +80,7 @@ export default function ProductIndex({ products, filters, categories }) {
                                 name="search"
                                 value={data.search || ''}
                                 onChange={(e) => setData('search', e.target.value)}
-                                className="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                 placeholder="Enter product name"
                             />
                         </div>
@@ -57,13 +92,13 @@ export default function ProductIndex({ products, filters, categories }) {
                             <select
                                 id="category"
                                 name="category"
-                                value={data.category || ''}
-                                onChange={(e) => setData('category', e.target.value)}
+                                value={selectedCategory}
+                                onChange={handleCategoryChange}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             >
                                 <option value="">All Categories</option>
                                 {categories.map((item) => (
-                                    <option key={item.categoryID} value={item.categoryID.toString() }>
+                                    <option key={item.categoryID} value={item.categoryID.toString()}>
                                         {item.categoryName}
                                     </option>
                                 ))}
@@ -71,17 +106,10 @@ export default function ProductIndex({ products, filters, categories }) {
                         </div>
 
                         <div className="flex space-x-2">
-                            <button
-                                type="submit"
-                                className="flex-1 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                            >
+                            <button type="submit" className="flex-1 py-2 px-4 bg-blue-500 text-white rounded">
                                 Apply Filters
                             </button>
-                            <button
-                                type="button"
-                                onClick={resetFilters}
-                                className="flex-1 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                            >
+                            <button type="button" onClick={resetFilters} className="flex-1 py-2 px-4 bg-gray-300 text-gray-700 rounded">
                                 Reset Filters
                             </button>
                         </div>
@@ -90,50 +118,26 @@ export default function ProductIndex({ products, filters, categories }) {
 
                 {/* Product Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
-                    {products.data.map((product) => (
-                        <div
-                            key={product.productID}
-                            className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200"
-                        >
-                            <Link href={`/products/${product.productID}`}>
-                            <MultipleImages images={product.image} name={product.name} />
-                            <div className="p-4">
-                                <h2 className="text-xl font-semibold text-gray-800 truncate">{product.name}</h2>
-                                <p className="text-lg font-bold text-gray-900 mt-2">RM{product.price}</p>
-                                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{product.description}</p>
-                                <div className="mt-4">
-                                    <p className="text-sm font-medium text-gray-600">
-                                        Category: <span className="text-gray-800">{product.category_name}</span>
-                                    </p>
-                                </div>
-                                
-                                    <div className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    {products.length > 0 ? (
+                        products.map((product) => (
+                            <div key={product.productID} className="bg-white shadow-md rounded-lg overflow-hidden">
+                                <MultipleImages images={product.image} name={product.name} />
+                                <div className="p-4">
+                                    <h2 className="text-xl font-semibold">{product.name}</h2>
+                                    <p className="text-lg font-bold mt-2">RM{product.price}</p>
+                                    <p className="text-sm text-gray-500 mt-1">{product.description}</p>
+                                    <Link href={`/products/${product.productID}`} className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                                         View Details
-                                    </div>
-                                    
-                                
+                                    </Link>
+                                </div>
                             </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Pagination Controls */}
-                <div className="mt-8 flex justify-center space-x-2 px-4 overflow-auto">
-                    {products.links.map((link, index) => (
-                        <Link
-                            key={index}
-                            href={link.url || '#'}
-                            className={`px-3 py-1 text-sm rounded ${
-                                link.active
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                            }`}
-                            dangerouslySetInnerHTML={{ __html: link.label }}
-                        />
-                    ))}
+                        ))
+                    ) : (
+                        <p className="text-center text-gray-500">No products available for this branch.</p>
+                    )}
                 </div>
             </div>
         </MainLayout>
     );
 }
+
