@@ -10,6 +10,8 @@ class Promotion extends Model
     protected $table = 'promotions';
     protected $primaryKey = 'promotionID';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'productID',
         'title',

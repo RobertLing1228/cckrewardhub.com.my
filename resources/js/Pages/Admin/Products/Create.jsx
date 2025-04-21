@@ -22,9 +22,8 @@ export default function Create ({ categories }) {
         formData.append("category", data.category);
         formData.append("image", data.image);  // Append file
 
-        post('/admin/products/add',
+        post('/admin/products/add', formData,
             {
-                data: formData,
                 forceFormData: true
             }
         );

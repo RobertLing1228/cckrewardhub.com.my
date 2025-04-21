@@ -17,11 +17,17 @@ class ClaimController extends Controller
         return inertia('Admin/Claim/Index', ['claims' => $claims]);
     }
 
+    public function delete(Claim $claim){
+        $claim->delete();
+        return redirect('admin/claims')->with('success', 'Claim deleted successfully.');
+    }
+
     public function claim(Request $request)
     {
 
         $user = Auth::user();
         $gameType = $request->gameType;
+        $prize = $request->prize;
 
         $claim = Claim::create([
             'memberID' => $user->memberID,
@@ -31,13 +37,23 @@ class ClaimController extends Controller
             'status' => 'pending',
         ]);
 
-        // Find an available RM5 Cash Voucher
+        $discountValue = null;
+        $successMsg = "You have successfully claimed an RM3 Cash Voucher!";
+
+        if ($gameType === 'Wheel') {
+            $discountValue = $prize;
+            $successMsg = "You have successfully claimed an RM{$discountValue} Cash Voucher!";
+        } else {
+            $discountValue = '3.00';
+        }
+
+        // Check if there's an available voucher
         $voucher = Vouchers::where('discount_type', 'fixed')
-                            ->where('discount_value', '3.00')
+                            ->where('discount_value', $discountValue)
                             ->where('status', 'unclaimed')
                             ->first();
 
-        // Check if there's an available voucher
+        
         if (!$voucher) {
             $claim->update(['status' => 'failed']);
             return back()->with('error', 'No RM5 Cash Vouchers available. Try again later!');
@@ -56,6 +72,6 @@ class ClaimController extends Controller
 
         $voucher->update(['status' => 'claimed']);
 
-        return back()->with('success', 'You have successfully claimed an RM5 Cash Voucher!');
+        return back()->with('success', $successMsg);
     }
 }

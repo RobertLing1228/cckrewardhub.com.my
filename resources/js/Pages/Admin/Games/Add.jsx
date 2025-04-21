@@ -11,6 +11,7 @@ export default function Add () {
         gameLink: '',
     })
 
+
     function submit(e) {
         e.preventDefault();
 

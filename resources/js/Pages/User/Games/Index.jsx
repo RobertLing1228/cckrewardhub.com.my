@@ -3,20 +3,22 @@ import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';  
 import MySpinWheel from '@/Components/SpinWheel';
 import MissionList from '@/Components/MissionList';
+import { SpinWheel } from 'spin-wheel-game';
 import PrizeView from '@/Components/PrizeView';
+
 
 export default function GameIndex({ games }) {
     const [showPrizeModal, setShowPrizeModal] = useState(false);
     const [prize, setPrize] = useState({
         code: "VOUCHER123",
-        name: "Free Sausage Packet 100g",
+        name: "RM3 Cash Voucher",
         date_issued: "2025-04-01",
         end_date: "2025-04-30",
-        status: "active",
+        status: "unclaimed",
         discount_type: "percentage",
-        discount_value: 100,
-        usage_limit: 1
-    });
+        discount_value: "3.00",
+        usage_limit: "1"
+      });
 
     return (
         <MainLayout>
@@ -78,7 +80,8 @@ export default function GameIndex({ games }) {
             {/* Prize Modal */}
             {showPrizeModal && (
                 <PrizeView
-                    game="Mission"
+                    game = "Mission"
+                    prize={prize}
                     onClose={() => setShowPrizeModal(false)}
                     prize={prize}
                 />

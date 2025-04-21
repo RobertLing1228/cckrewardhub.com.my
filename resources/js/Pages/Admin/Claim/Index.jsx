@@ -51,7 +51,7 @@ export default function Claims ({ claims }) {
                     <tr>
                     <th className="px-4 py-2 border">ID</th>
                     <th className="px-4 py-2 border">MemberID</th>
-                    <th className="px-4 py-2 border">GameID</th>
+                    <th className="px-4 py-2 border">Game Type</th>
                     <th className="px-4 py-2 border">Claim Date</th>
                     <th className="px-4 py-2 border">Status</th>
                     <th className="px-4 py-2 border">Actions</th>
@@ -62,7 +62,7 @@ export default function Claims ({ claims }) {
                     <tr key={claim.claimID} className="hover:bg-gray-50">
                         <td className="px-4 py-2 border">{claim.claimID}</td>
                         <td className="px-4 py-2 border">{claim.memberID}</td>
-                        <td className="px-4 py-2 border">{claim.gameID}</td>
+                        <td className="px-4 py-2 border">{claim.gameType}</td>
                         <td className="px-4 py-2 border">{claim.claim_date}</td>
                         <td className="px-4 py-2 border">{claim.status}</td>
                         <td className="px-4 py-2 border">

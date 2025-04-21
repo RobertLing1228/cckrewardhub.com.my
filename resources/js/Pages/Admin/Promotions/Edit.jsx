@@ -16,20 +16,7 @@ export default function Edit ({promotion}) {
     function submit(e) {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append("productid", data.productid);
-        formData.append("title", data.title);
-        formData.append("description", data.description);
-        formData.append("startdate", data.startdate);
-        formData.append("enddate", data.enddate);
-        formData.append("code", data.code);
-
-        post(`/admin/promotions/${promotion.promotionID}`,
-            {
-                data: formData,
-                forceFormData: true
-            }
-        );
+        post(`/admin/promotions/${promotion.promotionID}`)
     }
 
     console.log(errors);

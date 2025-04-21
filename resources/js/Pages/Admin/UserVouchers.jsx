@@ -6,7 +6,7 @@ import DT from 'datatables.net-dt';
 
 DataTable.use(DT);
 
-export default function UserVouchers(vouchers) {
+export default function UserVouchers({vouchers}) {
     return (
         <AdminLayout
             title="User Vouchers List"
@@ -29,22 +29,22 @@ export default function UserVouchers(vouchers) {
                                 <th className="px-4 py-2">Claim Date</th>
                                 <th className="px-4 py-2">Used Date</th>
                             </tr>
-
-                            <tbody>
-                                {vouchers.map((voucher) => (
-                                    <tr key={voucher.id}>
-                                        <td className="px-4 py-2">{voucher.id}</td>
-                                        <td className="px-4 py-2">{voucher.userID}</td>
-                                        <td className="px-4 py-2">{voucher.voucher_ID}</td>
-                                        <td className="px-4 py-2">{voucher.status}</td>
-                                        <td className="px-4 py-2">{voucher.claim_at}</td>
-                                        <td className="px-4 py-2">{voucher.used_at}</td>
-                                    </tr>
-                                ))}
-                        
-                            </tbody>
-
                         </thead>
+                        <tbody>
+                            {vouchers.map((voucher) => (
+                                <tr key={voucher.id}>
+                                    <td className="px-4 py-2">{voucher.id}</td>
+                                    <td className="px-4 py-2">{voucher.userID}</td>
+                                    <td className="px-4 py-2">{voucher.voucher_ID}</td>
+                                    <td className="px-4 py-2">{voucher.status}</td>
+                                    <td className="px-4 py-2">{voucher.claimed_at}</td>
+                                    <td className="px-4 py-2">{voucher.used_at ? voucher.used_at : "N/A"}</td>
+                                </tr>
+                            ))}
+                    
+                        </tbody>
+
+                        
                     </DataTable>
                 </div>
             </div>

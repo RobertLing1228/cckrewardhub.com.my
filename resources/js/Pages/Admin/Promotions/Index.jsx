@@ -45,7 +45,7 @@ export default function Promotions ({ promotions }) {
         >
             <Head title="Promotions List" />
             <div className="p-4 bg-white shadow-md rounded-lg">
-                <Link href="/admin/games/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create Promotion </Link>
+                <Link href="/admin/promotions/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create Promotion </Link>
             <div className="overflow-x-auto">
                 <DataTable id="promotionsTable" className="min-w-full border border-gray-300">
                 <thead className="bg-gray-100 text-gray-700">

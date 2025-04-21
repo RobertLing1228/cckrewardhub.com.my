@@ -74,6 +74,15 @@ export default function Login({ status }) {
                     </PrimaryButton>
                 </div>
             </form>
+
+            <div className="mt-6 text-center">
+                <Link
+                    href="/"
+                    className="text-sm text-blue-600 underline hover:text-blue-800 transition duration-150 ease-in-out"
+                >
+                    Continue as guest
+                </Link>
+            </div>
         </GuestLayout>
     );
 }

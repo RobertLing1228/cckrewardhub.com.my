@@ -4,9 +4,11 @@ import Modal from './Modal';
 
 // Segments with direct probability control (values should sum to 1)
 const segments = [
-    { segmentText: 'RM10 Voucher', segColor: 'red', probability: 0.1 },    // 10% chance
-    { segmentText: '20% OFF', segColor: 'blue', probability: 0.3 },        // 30% chance
-    { segmentText: 'BUY 1 FREE 1', segColor: 'green', probability: 0.6 }, // 60% chance
+    { segmentText: 'RM5 Voucher', segColor: 'red', probability: 0.1 },    // 10% chance
+    { segmentText: 'RM3 Voucher', segColor: 'blue', probability: 0.2 },
+    { segmentText: 'Nothing', segColor: 'yellow', probability: 0.2 },
+    { segmentText: 'Nothing', segColor: 'yellow', probability: 0.2 },        // 30% chance
+    { segmentText: 'RM2 Voucher', segColor: 'green', probability: 0.3 }, // 60% chance
 ];
 
 // Verify probabilities sum to 1 (100%)
@@ -83,15 +85,6 @@ const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
                 ) : (
                     <div className="mt-4 flex flex-col items-center">
                         <p className="text-lg">You won: <strong>{spinResult}</strong></p>
-                        <button
-                            onClick={() => {
-                                setIsWheelFinished(false);
-                                setSpinResult('');
-                            }}
-                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                        >
-                            Spin Again
-                        </button>
                     </div>
                 )}
 

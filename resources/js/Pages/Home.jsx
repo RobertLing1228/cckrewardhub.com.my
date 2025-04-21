@@ -13,7 +13,7 @@ export default function Home() {
             {/* Welcome Header */}
             <div className="text-center py-6 bg-yellow-50 shadow-sm rounded-xl mb-6">
                 <h1 className="text-3xl font-bold text-[#D62828]">
-                    Welcome, user{user.memberID} 👋
+                    Welcome, {user?.memberID ? `user${user.memberID}` : 'Guest'} 👋
                 </h1>
                 <p className="text-gray-600 mt-2 text-sm">Explore our latest deals, games & recipes!</p>
             </div>
