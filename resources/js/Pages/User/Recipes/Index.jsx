@@ -1,61 +1,67 @@
-//import React from 'react';
-import React, { useState } from 'react'; //  Import useState
+import React, { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import MultipleImages from '@/Components/MultipleImages';
 
-export default function RecipeIndex ({ recipe }){
+export default function RecipeIndex({ recipe }) {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const categories = ['all', ...new Set(recipe.map(r => r.category))];
+  const filteredRecipes = selectedCategory === 'all' ? recipe : recipe.filter(r => r.category === selectedCategory);
 
-    const [selectedCategory, setSelectedCategory] = useState('all');
+  return (
+    <MainLayout>
+      <Head title="Recipes" />
+      <div className="bg-[#f4f4f4] py-10 px-4 min-h-screen">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-4xl font-extrabold text-gray-800 mb-8 text-center">Delicious Recipes</h1>
 
-    // Extract unique categories from the recipe list
-    const categories = ['all', ...new Set(recipe.map(r => r.category))];
+          {/* Category Filter Buttons */}
+          <div className="flex flex-wrap justify-center mb-10 gap-4">
+            {categories.map((cat, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                  selectedCategory === cat
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-blue-100'
+                }`}
+              >
+                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </button>
+            ))}
+          </div>
 
-    // Filter recipes based on the selected category
-    const filteredRecipes = selectedCategory === 'all' 
-        ? recipe 
-        : recipe.filter(r => r.category === selectedCategory);
-
-
-    return (
-        <MainLayout>
-            <Head title="Recipes" />
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">All Recipe</h1>
-            
-            {/* Category Dropdown */}
-            <div className="mb-6">
-                    <label className="block text-lg font-semibold mb-2">Filter by Category:</label>
-                    <select 
-                        value={selectedCategory} 
-                        onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="border rounded px-4 py-2 w-full md:w-1/3"
-                    >
-                        {categories.map((cat, index) => (
-                            <option key={index} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
-                        ))}
-                    </select>
-            </div>
-
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredRecipes.map((recipe) => (
-                    <div key={recipe.recipeID} className="border rounded-lg shadow-lg p-4">
-                        <MultipleImages images={recipe.image} name={recipe.title} />
-                        <h2 className="text-xl font-semibold mt-4">{recipe.title}</h2>
-                        <p className="text-sm text-gray-500">{recipe.category}</p>
-                        <p className="mt-2">{recipe.description.slice(0, 100)}...</p>
-                        <Link 
-                            href={`/recipes/${recipe.recipeID}`} 
-                            className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-                        >
-                            View Recipe
-                        </Link>
-                    </div>
-                ))}
-            </div>
+          {/* Recipe Cards */}
+          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {filteredRecipes.map((recipe) => (
+              <div
+                key={recipe.recipeID}
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              >
+                <MultipleImages images={recipe.image} name={recipe.title} />
+                <div className="p-6">
+                  <h2 className="text-2xl font-semibold text-gray-800">{recipe.title}</h2>
+                  <p className="text-sm text-gray-500 italic mb-2">{recipe.category}</p>
+                  <p className="text-gray-600 mb-4">
+                    {recipe.description.length > 100
+                      ? recipe.description.slice(0, 100) + '...'
+                      : recipe.description}
+                  </p>
+                  <Link
+                    href={`/recipes/${recipe.recipeID}`}
+                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+                  >
+                    View Recipe
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        </MainLayout>
-    );
-};
+      </div>
+    </MainLayout>
+  );
+}
+
 
