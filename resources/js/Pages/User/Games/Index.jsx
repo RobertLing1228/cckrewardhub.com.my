@@ -56,7 +56,7 @@ export default function GameIndex({ games }) {
                         </div>
                     ))}
                 </div>
-            </div>
+            </section>
             <MissionList/>
             <MySpinWheel/>
             <button
@@ -84,7 +84,6 @@ export default function GameIndex({ games }) {
                     game = "Mission"
                     prize={prize}
                     onClose={() => setShowPrizeModal(false)}
-                    prize={prize}
                 />
             )}
         </MainLayout>

@@ -19,12 +19,8 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Middleware\AdminAuthMiddleware;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\UserVoucherController;
-use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ResetTimeController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\WheelRewardController;
-use App\Http\Controllers\QrCodeController;
-use App\Http\Controllers\UserMissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,10 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
     Route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');
     Route::post('/claim', [ClaimController::class, 'claim'])->name('claim');
-});
 
-
-Route::middleware(['auth'])->group(function () {
     // Mission Routes
     Route::get('/missions', [MissionController::class, 'index']);
     Route::get('/missions/{id}/progress', [MissionController::class, 'getProgress']);
