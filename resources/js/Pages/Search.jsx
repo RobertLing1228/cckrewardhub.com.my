@@ -24,63 +24,73 @@ export default function Search({ results = [], query = '', prev }) {
     return (
         <MainLayout>
             <Head title="Search" />
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-10">
                 
-                {/* 返回按钮 */}
-                <Link href={prev} className="text-blue-500 hover:text-blue-700">
-                    &larr; Back
-                </Link>
+                {/* Back Button */}
+                <div>
+                    <Link href={prev} className="text-gray-700 hover:text-blue-600 text-sm font-medium transition">
+                        &larr; Back
+                    </Link>
+                </div>
 
-                {/* 搜索框 */}
-                <form onSubmit={handleSearch} className="mb-6">
-                    <input 
-                        type="text" 
-                        value={searchQuery} 
-                        onChange={(e) => setSearchQuery(e.target.value)} 
-                        placeholder="Search for products or recipes..." 
-                        className="border rounded px-4 py-2 w-full"
-                    />
-                    <button type="submit" className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Search
-                    </button>
-                </form>
+                {/* Search Bar */}
+                <div className="mt-6 flex justify-center">
+                    <form onSubmit={handleSearch} className="relative w-full max-w-xl">
+                        <input
+                            type="text"
+                            placeholder="Search for products or recipes..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full px-4 py-2 pr-10 text-sm text-gray-700 bg-white rounded shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                        />
+                        <button
+                            type="submit"
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                        >
+                            🔍
+                        </button>
+                    </form>
+                </div>
 
-                {/* 分类筛选按钮 */}
-                <div className="mt-6 flex gap-4">
+
+
+
+                {/* Filter Buttons */}
+                <div className="mt-8 flex flex-wrap justify-center gap-3">
                     <button 
                         onClick={() => setFilter('all')} 
-                        className={`px-4 py-2 rounded ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                        className={`px-5 py-2 rounded-full text-sm font-medium transition ${filter === 'all' ? 'bg-gray-900 text-white' : 'bg-gray-200'}`}
                     >
                         All
                     </button>
                     <button 
                         onClick={() => setFilter('recipes')} 
-                        className={`px-4 py-2 rounded ${filter === 'recipes' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                        className={`px-5 py-2 rounded-full text-sm font-medium transition ${filter === 'recipes' ? 'bg-gray-900 text-white' : 'bg-gray-200'}`}
                     >
                         Recipes
                     </button>
                     <button 
                         onClick={() => setFilter('products')} 
-                        className={`px-4 py-2 rounded ${filter === 'products' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                        className={`px-5 py-2 rounded-full text-sm font-medium transition ${filter === 'products' ? 'bg-gray-900 text-white' : 'bg-gray-200'}`}
                     >
                         Products
                     </button>
                 </div>
 
-                {/* 搜索结果展示 */}
+                {/* Results */}
                 <div className="mt-6">
                     {filteredResults.length > 0 ? (
                         <div>
-                            <h2 className="text-2xl font-semibold mb-4">Search Results</h2>
+                            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Search Results:</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {filteredResults.map((item) => (
-                                    <div key={item.id} className="border rounded-lg shadow-lg p-4">
+                                    <div key={item.id} className="border rounded-lg shadow-lg p-4 bg-white">
                                         <h3 className="text-xl font-semibold">{item.name}</h3>
                                         <p className="text-sm text-gray-500 capitalize">{item.type}</p>
                                         <p className="mt-2">{item.description?.slice(0, 100)}...</p>
                                         <Link 
                                             href={`/${item.type}/${item.id}`} 
-                                            className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                                            className="inline-block mt-4 px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 transition text-sm"
                                         >
                                             View Details
                                         </Link>
