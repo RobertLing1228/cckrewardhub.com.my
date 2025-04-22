@@ -1,171 +1,103 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import { usePage, router } from '@inertiajs/react';
 import { Html5Qrcode } from 'html5-qrcode';
 import MySpinWheel from '@/Components/SpinWheel';
-
-const initialMissions = [
-  { 
-    id: 1, 
-    name: 'Scan QR Code', 
-    completed: false,
-    description: 'Scan the QR code at our store',
-  },
-  { 
-    id: 2, 
-    name: 'Play Match-3 Game', 
-    completed: false,
-    actionLink: '/play?game=match3',
-    description: 'Reach 300 points to complete'
-  },
-  { 
-    id: 3, 
-    name: 'Spin the Wheel', 
-    completed: false,
-    description: 'Try your luck on our prize wheel'
-  },
-];
-
-const MissionItem = ({ mission, onStart }) => (
-  <li className={`p-4 border rounded-lg transition-colors ${
-    mission.completed ? 'border-green-300 bg-green-50' : 'border-gray-200 hover:bg-gray-50'
-  }`}>
-    <div className="flex items-center justify-between">
-      <div className="flex items-center">
-        <div className={`w-6 h-6 rounded-full mr-3 flex items-center justify-center ${
-          mission.completed ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-500'
-        }`}>
-          {mission.completed ? '✓' : mission.id}
-        </div>
-        <div>
-          <h3 className={`font-medium ${mission.completed ? 'text-green-600' : 'text-gray-800'}`}>
-            {mission.name}
-          </h3>
-          <p className="text-sm text-gray-600 mt-1">{mission.description}</p>
-        </div>
-      </div>
-      {mission.completed ? (
-        <span className="px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">
-          Completed
-        </span>
-      ) : (
-        <button
-          onClick={() => onStart(mission)}
-          className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
-        >
-          Start
-        </button>
-      )}
-    </div>
-  </li>
-);
-
-const ProgressBar = ({ completed, total }) => {
-  const percentage = (completed / total) * 100;
-  return (
-    <div className="mb-8">
-      <div className="flex justify-between mb-2">
-        <span className="text-sm font-medium">Progress: {completed}/{total}</span>
-        <span className="text-sm font-medium">{Math.round(percentage)}%</span>
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5">
-        <div 
-          className="bg-green-500 h-2.5 rounded-full transition-all duration-300" 
-          style={{ width: `${percentage}%` }}
-        />
-      </div>
-    </div>
-  );
-};
+import PrizeView from './PrizeView'; // Import PrizeView
 
 const MissionList = () => {
-  const { url } = usePage();
-  const [missions, setMissions] = useState(() => {
-    const saved = localStorage.getItem('missions');
-    return saved ? JSON.parse(saved) : initialMissions;
-  });
+  const { auth } = usePage().props;
+  const [missions, setMissions] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showSpinWheel, setShowSpinWheel] = useState(false);
   const [showQRScanner, setShowQRScanner] = useState(false);
   const [scanStatus, setScanStatus] = useState('');
+  const [showPrizeModal, setShowPrizeModal] = useState(false);
   const qrScannerRef = useRef(null);
 
-  // Game completion listener
   useEffect(() => {
-    const handleMissionComplete = (event) => {
-      if (event.data.type === 'missionComplete') {
-        completeMission(event.data.missionId);
-      }
-      // Backward compatibility with gameScore messages
-      else if (event.data.gameScore >= 300) {
-        completeMission(2);
-      }
-    };
-
-    window.addEventListener('message', handleMissionComplete);
-    return () => window.removeEventListener('message', handleMissionComplete);
+    initializeMissions();
   }, []);
 
-  // Persist missions to localStorage
-  useEffect(() => {
-    localStorage.setItem('missions', JSON.stringify(missions));
-  }, [missions]);
+  const initializeMissions = async () => {
+    try {
+      await axios.post('/user-missions/start');
+      await fetchMissions();
+    } catch (error) {
+      console.error('Error initializing missions:', error);
+    }
+  };
 
-  const completeMission = (id) => {
-    setMissions(prev => prev.map(mission => 
-      mission.id === id ? { ...mission, completed: true } : mission
-    ));
+  const fetchMissions = async () => {
+    try {
+      const { data } = await axios.get('/missions');
+      setMissions(data);
+    } catch (error) {
+      console.error('Error fetching missions:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateProgress = async (missionId, progress = 1) => {
+    try {
+      await axios.post(`/missions/${missionId}/progress`, { progress });
+      await fetchMissions();
+    } catch (error) {
+      console.error('Failed to update progress', error);
+    }
   };
 
   const startScanning = () => {
     if (qrScannerRef.current) return;
-    
-    qrScannerRef.current = new Html5Qrcode("mission-scanner");
-    
+
+    qrScannerRef.current = new Html5Qrcode("reader");
     qrScannerRef.current.start(
       { facingMode: "environment" },
-      { qrbox: { width: 250, height: 250 }, fps: 5 },
-      (decodedText) => {
-        if (decodedText.includes('complete_mission=1')) {
-          completeMission(1);
-          setScanStatus('success');
-          setTimeout(() => {
-            stopScanning();
-            setShowQRScanner(false);
-          }, 1500);
-        } else {
+      { fps: 10, qrbox: 250 },
+      async (decodedText) => {
+        try {
+          const response = await axios.post('/scan', { qr_value: decodedText });
+
+          if (response.data.message === 'QR code scanned successfully!') {
+            await updateProgress(1); // mission id 1
+            setScanStatus('success');
+            setTimeout(() => {
+              stopScanning();
+              setShowQRScanner(false);
+            }, 1500);
+          } else {
+            setScanStatus('invalid');
+          }
+        } catch (error) {
+          console.error('Failed to verify QR code:', error);
           setScanStatus('invalid');
         }
       },
       (error) => {
-        console.warn("QR Scan Error:", error);
-        setScanStatus("Unable to scan the QR code. Please try again.");
+        console.warn('QR Code scanning error', error);
       }
     ).catch((err) => {
-      console.error("Unable to start scanning.", err);
-      setScanStatus("Failed to start the camera. Please ensure camera access is allowed.");
+      console.error('Failed to start scanner', err);
     });
   };
 
   const stopScanning = () => {
     if (qrScannerRef.current) {
-      qrScannerRef.current.stop()
-        .then(() => {
-          qrScannerRef.current = null;
-        })
-        .catch((err) => {
-          console.error("Failed to stop scanning.", err);
-        });
+      qrScannerRef.current.stop().then(() => {
+        qrScannerRef.current = null;
+      });
     }
   };
 
   const handleStartMission = (mission) => {
     if (mission.id === 1) {
       setShowQRScanner(true);
-      setScanStatus('');
-      setTimeout(startScanning, 100);
+      setTimeout(startScanning, 300);
     } else if (mission.id === 3) {
       setShowSpinWheel(true);
     } else {
-      router.visit(mission.actionLink);
+      router.visit('/play?game=match3');
     }
   };
 
@@ -175,72 +107,91 @@ const MissionList = () => {
     };
   }, []);
 
-  const completedCount = missions.filter(m => m.completed).length;
-  const allMissionsCompleted = completedCount === missions.length;
+  const completedMissions = missions.filter(m => m.progress >= m.mission_goal).length;
+  const allMissionsCompleted = completedMissions === missions.length && missions.length > 0;
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md max-w-2xl mx-auto">
+    <div className="p-6 bg-white rounded-lg shadow max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-6">Your Missions</h2>
-      <ProgressBar completed={completedCount} total={missions.length} />
 
-      <ul className="space-y-4 mb-8">
-        {missions.map(mission => (
-          <MissionItem 
-            key={mission.id} 
-            mission={mission} 
-            onStart={handleStartMission} 
-          />
-        ))}
-      </ul>
-
-      {/* QR Scanner Modal */}
-      {showQRScanner && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg w-full max-w-md overflow-hidden flex flex-col">
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-4">Scan Mission QR Code</h3>
-              
-              {scanStatus === 'success' && (
-                <div className="mb-4 p-3 bg-green-100 text-green-800 rounded-lg">
-                  ✓ Mission completed successfully!
-                </div>
-              )}
-              {scanStatus === 'invalid' && (
-                <div className="mb-4 p-3 bg-yellow-100 text-yellow-800 rounded-lg">
-                  This QR code is not valid for missions
-                </div>
-              )}
-              {scanStatus === 'error' && (
-                <div className="mb-4 p-3 bg-red-100 text-red-800 rounded-lg">
-                  Error scanning QR code
-                </div>
-              )}
-
-              <div id="mission-scanner" className="w-full h-64 bg-black"></div>
+      {loading ? (
+        <div className="text-center py-10 text-gray-400">
+          Loading missions...
+        </div>
+      ) : (
+        <>
+          <div className="mb-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm text-gray-700">Completed {completedMissions} / {missions.length}</span>
+              <span className="text-sm text-gray-700">{Math.round((completedMissions / missions.length) * 100)}%</span>
             </div>
-            
-            <div className="p-6 border-t bg-gray-50 flex justify-center">
+            <div className="w-full bg-gray-200 rounded-full h-2.5">
+              <div
+                className="bg-green-500 h-2.5 rounded-full transition-all"
+                style={{ width: `${(completedMissions / missions.length) * 100}%` }}
+              />
+            </div>
+          </div>
+
+          <ul className="space-y-4">
+            {missions.map(mission => (
+              <li
+                key={mission.id}
+                className={`p-4 border rounded-lg ${
+                  mission.progress >= mission.mission_goal
+                    ? 'border-green-300 bg-green-50'
+                    : 'border-gray-200 hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="font-semibold">{mission.mission_name}</h3>
+                    <p className="text-sm text-gray-500">{mission.mission_description}</p>
+                  </div>
+                  {mission.progress >= mission.mission_goal ? (
+                    <span className="text-green-600 font-semibold">Completed</span>
+                  ) : (
+                    <button
+                      onClick={() => handleStartMission(mission)}
+                      className="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+                    >
+                      Start
+                    </button>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {showQRScanner && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h3 className="text-xl font-bold mb-4">Scan QR Code</h3>
+            <div id="reader" className="w-full h-64 bg-gray-200" />
+            <div className="mt-4 flex justify-center">
               <button
                 onClick={() => {
                   stopScanning();
                   setShowQRScanner(false);
                 }}
-                className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
               >
-                Close
+                Cancel
               </button>
             </div>
           </div>
         </div>
       )}
 
-      <MySpinWheel 
+      <MySpinWheel
         isOpen={showSpinWheel}
         onClose={() => setShowSpinWheel(false)}
-        onComplete={() => {
-          completeMission(3);
-          setShowSpinWheel(false);
+        onComplete={async () => {
+          await updateProgress(3); // Mission id 3
         }}
+        updateProgress={updateProgress}
       />
 
       {allMissionsCompleted && (
@@ -249,17 +200,26 @@ const MissionList = () => {
             🎉 Congratulations!
           </h3>
           <p className="text-yellow-700 mb-3">
-            You've completed all missions and earned a <strong>RM2 Voucher</strong>!
+            You've completed all missions!
           </p>
-          <button 
-            onClick={() => router.visit('/rewards')}
-            className="px-6 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+          <button
+            onClick={() => setShowPrizeModal(true)}
+            className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
           >
-            Claim Your Reward
+            Click Here to Claim
           </button>
+
+          {showPrizeModal && (
+            <PrizeView
+              game="Mission"
+              prize={3.00}
+              onClose={() => setShowPrizeModal(false)}
+            />
+          )}
         </div>
       )}
     </div>
   );
 };
+
 export default MissionList;

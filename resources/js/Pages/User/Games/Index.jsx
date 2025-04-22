@@ -3,7 +3,6 @@ import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';  
 import MySpinWheel from '@/Components/SpinWheel';
 import MissionList from '@/Components/MissionList';
-import { SpinWheel } from 'spin-wheel-game';
 
 
 export default function GameIndex({ games }) {
@@ -55,10 +54,6 @@ export default function GameIndex({ games }) {
                 </div>
             </div>
             <MissionList/>
-            <div>
-                <MissionList missions={["Mission 1", "Mission 2", "Mission 3"]} />
-            </div>
-
             <MySpinWheel/>
             <button
                 onClick={() => setShowPrizeModal(true)}

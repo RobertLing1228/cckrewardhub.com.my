@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\MissionController;
+use App\Http\Controllers\WheelRewardController;
+use App\Http\Controllers\QRCodeController;
+use App\Http\Controllers\UserMissionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +64,21 @@ Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vou
 Route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');
 Route::post('/claim', [ClaimController::class, 'claim'])->name('claim');
 
+Route::middleware(['auth'])->group(function () {
+    // Mission Routes
+    Route::get('/missions', [MissionController::class, 'index']);
+    Route::get('/missions/{id}/progress', [MissionController::class, 'getProgress']);
+    Route::post('/missions/{id}/progress', [MissionController::class, 'updateProgress']);
+
+    // User Missions Initialization
+    Route::post('/user-missions/start', [UserMissionController::class, 'start']); // Create user missions if they don't exist
+
+    // Wheel Reward Routes
+    Route::get('/wheel-rewards', [WheelRewardController::class, 'index']);
+
+    // QR Code Routes
+    Route::post('/scan', [QRCodeController::class, 'scan']);
+});
 
 Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::get('/admin', function(){

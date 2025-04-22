@@ -1,46 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import { router } from '@inertiajs/react';
+import axios from 'axios'; 
 
 export default function GamePage() {
     const [showCompletion, setShowCompletion] = useState(false);
 
     useEffect(() => {
-        const handleGameMessage = (event) => {
-            // For security, verify the message origin in production
-            // if (event.origin !== "http://your-domain.com") return;
-            
+        const handleGameMessage = async (event) => {
             if (event.data.gameScore !== undefined) {
                 const gameScore = event.data.gameScore;
-                console.log("Game score updated:", gameScore);
-                
+                console.log("Game score received:", gameScore);
+
                 if (gameScore >= 300 && !showCompletion) {
                     setShowCompletion(true);
-                    
-                    // Post message to parent window (where MissionList is mounted)
-                    if (window.opener) {
-                        // If opened in new window
-                        window.opener.postMessage(
-                            { type: 'missionComplete', missionId: 2 }, 
-                            window.location.origin
-                        );
-                    } else {
-                        // If in same window
-                        window.parent.postMessage(
-                            { type: 'missionComplete', missionId: 2 }, 
-                            window.location.origin
-                        );
+                
+                    try {
+                        // Send the progress update request to the backend
+                        await axios.post(`/missions/2/progress`, { progress: 1 });
+                        console.log("Mission progress updated successfully.");
+                    } catch (error) {
+                        console.error("Failed to update mission progress:", error);
                     }
                 }
             }
         };
 
         window.addEventListener('message', handleGameMessage);
-        
+
         return () => {
             window.removeEventListener('message', handleGameMessage);
         };
     }, [showCompletion]);
+
+    const handleReturnToMissions = () => {
+        router.visit('/games', {
+            only: [],
+            onFinish: () => {
+                window.location.reload();
+            }
+        });
+    };
 
     return (
         <MainLayout>
@@ -52,7 +52,7 @@ export default function GamePage() {
                             <h2 className="text-2xl font-bold mb-4">Congratulations!</h2>
                             <p className="mb-6">You've reached 300 points! Mission completed.</p>
                             <button
-                                onClick={() => router.visit('/games')}
+                                onClick={handleReturnToMissions}
                                 className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                             >
                                 Return to Missions
@@ -64,7 +64,7 @@ export default function GamePage() {
                         <h1 className="text-3xl font-bold text-gray-800 mb-6">Play the Game</h1>
                         <div className="bg-white p-6 rounded-lg shadow-md">
                             <iframe
-                                src="/match3-gamever4/index.html"   
+                                src="/match3-gamever4/index.html"
                                 title="Match 3 Game"
                                 width="100%"
                                 height="600px"

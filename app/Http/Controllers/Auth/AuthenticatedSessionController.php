@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
 
+use App\Models\UserMission;
+use App\Models\Mission;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -28,13 +31,16 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+{
+    $request->authenticate();
+    $request->session()->regenerate();
 
-        $request->session()->regenerate();
+    // After successful login, ensure missions exist
+    $userId = auth()->id();
+    UserMission::ensureUserMissionsExist($userId);
 
-        return redirect()->intended(route('home', absolute: false));
-    }
+    return redirect()->intended(route('home', absolute: false));
+}
 
     /**
      * Destroy an authenticated session.
@@ -49,4 +55,5 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->route('login');
     }
+
 }

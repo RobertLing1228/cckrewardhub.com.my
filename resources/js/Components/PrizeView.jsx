@@ -28,7 +28,7 @@ export default function PrizeView({ onClose, game }) {
         <Modal show={true} onClose={onClose} maxWidth="lg">
             <div className="p-6">
                 <h2 className="text-lg font-bold">Claim Your Prize</h2>
-                <p className="mt-2">You won: <span className="font-semibold">This</span></p>
+                <p className="mt-2">You won: <span className="font-semibold">RM3 Cash Voucher</span></p>
 
                 {claimed ? (
                     <p className="mt-4 text-green-600">🎉 Prize Claimed!</p> &&
