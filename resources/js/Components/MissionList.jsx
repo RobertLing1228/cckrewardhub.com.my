@@ -110,6 +110,17 @@ const MissionList = () => {
   const completedMissions = missions.filter(m => m.progress >= m.mission_goal).length;
   const allMissionsCompleted = completedMissions === missions.length && missions.length > 0;
 
+  function claimReward() {
+    router.post("/claim", { gameType: "Mission" }, {
+      onSuccess: () => {
+        console.log("Claim successful");
+      },
+      onError: (errors) => {
+        console.error("Error claiming:", errors);
+      },
+    });
+  }
+
   return (
     <div className="p-6 bg-white rounded-lg shadow max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-6">Your Missions</h2>
@@ -200,11 +211,11 @@ const MissionList = () => {
             🎉 Congratulations!
           </h3>
           <p className="text-yellow-700 mb-3">
-            You've completed all missions!
+            You've completed all missions and earned a <strong>RM3 Voucher</strong>!
           </p>
-          <button
-            onClick={() => setShowPrizeModal(true)}
-            className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+          <button 
+            onClick={claimReward}
+            className="px-6 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
           >
             Click Here to Claim
           </button>

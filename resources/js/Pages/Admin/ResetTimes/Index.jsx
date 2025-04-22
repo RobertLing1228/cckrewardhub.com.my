@@ -1,0 +1,107 @@
+import React from "react";
+import { Head, Link, useForm, router } from "@inertiajs/react";
+import Swal from "sweetalert2";
+import AdminLayout from "@/Layouts/AdminLayout";
+import DataTable from "datatables.net-react";// Core DataTables library
+import DT from 'datatables.net-dt';
+import ResetTimer from "@/Components/ResetTimer";
+
+DataTable.use(DT);
+
+export default function ResetTimes({resetTimes}) {
+    const { delete: destroy } = useForm();
+
+    function updsubmit(e, r){
+        e.preventDefault();
+        router.visit(route("resettimes.edit", r));
+    }
+    function delsubmit(e, r, name) {
+            e.preventDefault();
+        
+            Swal.fire({
+                title: 'Delete "' + name + '" ?',
+                text: "This will remove the QRCode from the list.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Confirm",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    destroy(route("resettimes.delete", r), {
+                        onSuccess: () => {
+                            Swal.fire("Deleted!", "The Timer has been removed.", "success");
+                        },
+                        onError: () => {
+                            Swal.fire("Failed!", "Something went wrong. Timer not deleted.", "error");
+                        }
+                    });
+                }
+            });
+        }
+
+    return (
+        <AdminLayout
+            title="Reset Times List"
+            breadcrumbs={[
+                { label: "Admin", url: "/admin" },
+                { label: "Reset Times" }
+            ]}
+        >
+            <Head title="Reset Times List" />
+            
+
+            {resetTimes.map((r) => {
+                return(
+                <ResetTimer key={r.id} label={r.game_type} time={r.reset_time} isWeekly={r.isWeekly == 1 ? true : false} />
+                )
+            })}
+
+            <Link href="/admin/resettimes/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add Reset Timer </Link>
+            <div className="overflow-x-auto">
+                {resetTimes && resetTimes.length > 0 && (
+                    <DataTable id="qrcodesTable" className="min-w-full border border-gray-300">
+                        <thead>
+                            <tr>
+                                <th className="px-4 py-2">ID</th>
+                                <th className="px-4 py-2">Type</th>
+                                <th className="px-4 py-2">Time</th>
+                                <th className="px-4 py-2">Weekly?</th>
+                                <th className="px-4 py-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        {resetTimes.map((r) => {
+                            return (
+                                <tr key={r.id}>
+                                    <td className="px-4 py-2">{r.id}</td>
+                                    <td className="px-4 py-2">{r.game_type}</td>
+                                    <td className="px-4 py-2">{r.reset_time}</td>
+                                    <td className="px-4 py-2">{r.isWeekly ? "Yes" : "No"}</td>
+                                    <td className="px-4 py-2 space-x-2">
+                                        <button
+                                            onClick={(e) => updsubmit(e, r.id)}
+                                            className="bg-yellow-500 text-white px-3 py-1 rounded"
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            onClick={(e) => delsubmit(e, r, r.id)}
+                                            className="bg-red-500 text-white px-3 py-1 rounded"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+
+                        </tbody>
+                    </DataTable>
+                )}
+            </div>
+            
+        </AdminLayout>
+    )
+}

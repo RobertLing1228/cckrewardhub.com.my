@@ -44,7 +44,7 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'productID' => 'required|integer',
+            'productid' => 'required|integer',
             'category' => 'required|string|max:100',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -54,7 +54,7 @@ class RecipeController extends Controller
         $imagePath = $request->file('image')->store('images', 'public');
 
         Recipe::create([
-            'productID' => $validated['productID'],
+            'productID' => $validated['productid'],
             'category' => $validated['category'],
             'title' => $validated['title'],
             'description' => $validated['description'],
@@ -77,7 +77,7 @@ class RecipeController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         $validated = $request->validate([
-            'productID' => 'required|integer',
+            'productid' => 'required|integer',
             'category' => 'required|string|max:100',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -97,7 +97,13 @@ class RecipeController extends Controller
             $fields['image'] = $recipe->image;
         }
         
-        $recipe->update($validated);
+        $recipe->update([
+            'productID' => $validated['productid'],
+            'category' => $validated['category'],
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'image' => $fields['image']
+        ]);
 
         return redirect('admin/recipes')->with('success', 'Recipe updated successfully!');
     }

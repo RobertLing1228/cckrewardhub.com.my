@@ -60,6 +60,46 @@ class VoucherController extends Controller
         return redirect('/admin/vouchers')->with('success', 'Voucher created successfully.');
     }
 
+    public function edit($id){
+        $voucher = Vouchers::find($id);
+        return inertia('Admin/Vouchers/Edit', ['voucher' => $voucher]);
+    }
+
+    public function update(Vouchers $voucher, Request $request){
+
+        $fields = $request->validate([
+            'name' => 'required|string|max:255',
+            'code' => 'required|string|max:8',
+            'date_issued' => 'nullable|date|before_or_equal:end_date',
+            'end_date' => 'required|date|after_or_equal:date_issued',
+            'status' => 'required|string|in:unclaimed,claimed',
+            'discount_type' => 'required|string|in:fixed,percentage',
+            'discount_value' => 'required|numeric',
+        ]);
+
+        $date_issued = $request->date_issued ?? now()->toDateString();
+
+        $voucher->update([
+            'code' => $fields['code'],
+            'name' => $fields['name'],
+            'date_issued' => $date_issued,
+            'end_date' => $fields['end_date'],
+            'status' => $fields['status'],
+            'discount_type' => $fields['discount_type'],
+            'discount_value' => $fields['discount_value'],
+        ]);
+
+        return redirect('/admin/vouchers')->with('success', 'Voucher updated successfully.');
+
+
+    }
+
+    public function delete(Vouchers $voucher){
+        $voucher->delete();
+
+        return redirect('/admin/vouchers')->with('success', 'Voucher deleted successfully!');
+    }
+
     public function markAsUsed($id){
         $voucher = UserVouchers::where('id', $id)->first();
         $voucher->update(['status' => 'used']);

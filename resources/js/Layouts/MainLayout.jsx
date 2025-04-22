@@ -4,10 +4,10 @@ import { faHome, faGamepad, faUtensils, faBox, faTicket } from "@fortawesome/fre
 import CameraScan from "@/Components/CameraScan";
 import Topbar from "@/Components/TopBar";
 
-export default function MainLayout({ children, }) {
-  const { url } = usePage(); // Get the current URL
+export default function MainLayout({ children }) {
+  const { url } = usePage();
 
-  const isActive = (path) => url === path; // Exact match for home
+  const isActive = (path) => url === path;
 
   const handleScan = (result) => {
     console.log(result);
@@ -16,56 +16,42 @@ export default function MainLayout({ children, }) {
   return (
     <>
       <Head>
-        <meta
-          head-key="description"
-          name="description"
-          content="This is the default description"
-        />
+        <meta head-key="description" name="description" content="Customer Experience App" />
       </Head>
 
+      {/* Top bar and optional scan */}
       <Topbar />
-      <CameraScan onScan={handleScan}/>
-      <header>
-        <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white flex justify-around py-3 z-50 shadow-lg h-auto max-h-[calc(100vh/3)]">
-          <Link 
-            className={`nav-link flex flex-col items-center ${isActive("/") ? "text-blue-400" : ""}`}
-            href="/"
-          >
-            <FontAwesomeIcon icon={faHome} className="h-6 w-6" />
-            <span>Home</span>
-          </Link>
-          <Link 
-            className={`nav-link flex flex-col items-center ${isActive("/games") ? "text-blue-400" : ""}`}
-            href="/games"
-          >
-            <FontAwesomeIcon icon={faGamepad} className="h-6 w-6" />
-            <span>Games</span>
-          </Link>
-          <Link 
-            className={`nav-link flex flex-col items-center ${isActive("/recipes") ? "text-blue-400" : ""}`}
-            href="/recipes"
-          >
-            <FontAwesomeIcon icon={faUtensils} className="h-6 w-6" />
-            <span>Recipes</span>
-          </Link>
-          <Link 
-            className={`nav-link flex flex-col items-center ${isActive("/products") ? "text-blue-400" : ""}`}
-            href="/products"
-          >
-            <FontAwesomeIcon icon={faBox} className="h-6 w-6" />
-            <span>Products</span>
-          </Link>
-          <Link 
-            className={`nav-link flex flex-col items-center ${isActive("/vouchers") ? "text-blue-400" : ""}`}
-            href="/vouchers"
-          >
-            <FontAwesomeIcon icon={faTicket} className="h-6 w-6" />
-            <span>Vouchers</span>
-          </Link>
-        </nav>
-      </header>
-      <main className="w-full max-w-screen-xl mx-auto pt-16 pb-16 bg-[#dcdcdc]">{children}</main> {/* More padding to prevent content overlap */}
+      <CameraScan onScan={handleScan} />
+
+      {/* Main content with padding */}
+      <main className="w-full max-w-screen-xl mx-auto pt-20 pb-24 px-4 sm:px-6 bg-[#f9f9f9] min-h-screen">
+        {children}
+      </main>
+
+      {/* Bottom navigation bar */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t border-gray-200 flex justify-around py-2 z-50 rounded-t-2xl">
+        <NavItem icon={faHome} path="/" label="Home" isActive={isActive("/")} />
+        <NavItem icon={faGamepad} path="/games" label="Games" isActive={isActive("/games")} />
+        <NavItem icon={faUtensils} path="/recipes" label="Recipes" isActive={isActive("/recipes")} />
+        <NavItem icon={faBox} path="/products" label="Products" isActive={isActive("/products")} />
+        <NavItem icon={faTicket} path="/vouchers" label="Vouchers" isActive={isActive("/vouchers")} />
+      </nav>
     </>
   );
 }
+
+function NavItem({ icon, path, label, isActive }) {
+  return (
+    <Link
+      href={path}
+      className={`flex flex-col items-center text-sm transition-colors duration-200 ${
+        isActive ? "text-[#F59E0B]" : "text-gray-500 hover:text-yellow-500"
+      }`}
+    >
+      <FontAwesomeIcon icon={icon} className="h-5 w-5 mb-1" />
+      <span className="text-xs">{label}</span>
+    </Link>
+  );
+}
+
 

@@ -1,9 +1,11 @@
 //import React from "react"; (change to below code due to searching get error)
 import React, { useState } from "react";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 const Topbar = () => {
   const { post } = useForm();
+  const { auth } = usePage().props;
+  const user = auth?.user;
 
   const [searchQuery, setSearchQuery] = useState(""); // Manage search input state
 
@@ -50,12 +52,21 @@ const Topbar = () => {
 
 
         
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm sm:px-3 sm:py-1"
-        >
-          Logout
-        </button>
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm sm:px-3 sm:py-1"
+          >
+            Logout
+          </button>
+        ) : (
+          <a
+            href="/login"
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-sm sm:px-3 sm:py-1"
+          >
+            Login
+          </a>
+        )}
       </div>
     </div>
   );

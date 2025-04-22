@@ -3,8 +3,22 @@ import { SpinWheel } from 'spin-wheel-game';
 import Modal from './Modal';
 import axios from 'axios';
 
-const MySpinWheel = ({ isOpen, onClose, onComplete, updateProgress }) => {
-    const [segments, setSegments] = useState([]);
+// Segments with direct probability control (values should sum to 1)
+const segments = [
+    { segmentText: 'RM5 Voucher', segColor: 'red', probability: 0.1 },    // 10% chance
+    { segmentText: 'RM3 Voucher', segColor: 'blue', probability: 0.2 },
+    { segmentText: 'Nothing', segColor: 'yellow', probability: 0.2 },
+    { segmentText: 'Nothing', segColor: 'yellow', probability: 0.2 },        // 30% chance
+    { segmentText: 'RM2 Voucher', segColor: 'green', probability: 0.3 }, // 60% chance
+];
+
+// Verify probabilities sum to 1 (100%)
+const totalProbability = segments.reduce((sum, seg) => sum + seg.probability, 0);
+if (Math.abs(totalProbability - 1) > 0.0001) {
+    console.error('Segment probabilities must sum to 1');
+}
+
+const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
     const [spinResult, setSpinResult] = useState('');
     const [isWheelFinished, setIsWheelFinished] = useState(false);
     const [hasSpun, setHasSpun] = useState(false);
@@ -107,16 +121,6 @@ const MySpinWheel = ({ isOpen, onClose, onComplete, updateProgress }) => {
                 ) : (
                     <div className="mt-4 flex flex-col items-center">
                         <p className="text-lg">You won: <strong>{spinResult}</strong></p>
-                        <button
-                            onClick={() => {
-
-                                setIsWheelFinished(false);
-                                setSpinResult('');
-                            }}
-                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                        >
-                            Spin Again
-                        </button>
                     </div>
                 )}
 

@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Vouchers;
 
 class WheelReward extends Model
 {
-    protected $fillable = ['reward_type', 'voucher_id'];
+    protected $table = 'wheel_rewards';
 
-    public function voucher()
-    {
-        return $this->belongsTo(Vouchers::class, 'voucher_id');
-    }
+    protected $primaryKey = 'id';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'reward_type',
+        'voucher_value',
+    ];
+
+    
 }

@@ -4,102 +4,94 @@ import WheelSpinWidget from "@/Components/WheelSpin";
 import MultipleImages from "@/Components/MultipleImages";
 
 export default function Home() {
-    const { product, recipe, promotion, user } = usePage().props; // Access the props. (Alternatively put them in the parameters of the Home function)
+    const { product, recipe, promotion, user } = usePage().props;
 
     return (
-        <MainLayout >
+        <MainLayout>
             <Head title="Home" />
 
-            <h1 className="title">Welcome! user{user.memberID} </h1>
-
-            <div>
-                Games
+            {/* Welcome Header */}
+            <div className="text-center py-6 bg-yellow-50 shadow-sm rounded-xl mb-6">
+                <h1 className="text-3xl font-bold text-[#D62828]">
+                    Welcome, {user?.memberID ? `user${user.memberID}` : 'Guest'} 👋
+                </h1>
+                <p className="text-gray-600 mt-2 text-sm">Explore our latest deals, games & recipes!</p>
             </div>
 
-            <div className="banner">
-                <Link
-                    href="/games"
-                >
-                    <img 
+            {/* Banner */}
+            <div className="mb-8 rounded-xl overflow-hidden shadow-md">
+                <Link href="/games">
+                    <img
                         src="storage/images/game-banner.png"
                         alt="Game Banner"
-                        className="w-full h-auto"
+                        className="w-full h-auto object-cover transition-transform hover:scale-105 duration-300"
                     />
                 </Link>
-                
             </div>
 
-            <div className="carousel">
-                <h2 className="text-2xl font-bold mb-4">Promotions</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {/* Section: Promotions */}
+            <section className="mb-12">
+                <h2 className="text-2xl font-bold text-yellow-600 mb-4 border-b pb-2">🔥 Promotions</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {promotion.map((promotion) => (
-                        <div
-                            key={promotion.promotionID}
-                            className="p-4 border rounded-md }"
-                        >
-
-                        <Link   
-                            href={`/promotions/${promotion.promotionID}`}
-                            className="text-link mt-2 block"
-                        >
-                            <div key={promotion.promotionID} className="p-4 border rounded-md shadow-md bg-[#f2f2f2]">
-                                
-                                <h3 className="font-bold text-lg mt-2">{promotion.title}</h3>
-                                <p className="text-sm text-gray-600">{promotion.description}</p>
-                            </div>
-                        </Link>
-                        </div>
-                ))}
-                </div>
-            </div>
-            
-            <div>
-                <h2 className="text-2xl font-bold mb-4">Recipes</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {recipe.map((recipe) => (
-                        <div
-                            key={recipe.recipeID}
-                            className="p-4 border rounded-md shadow-md "
-                        >
-
                         <Link
-                            href={`/recipes/${recipe.recipeID}`}
-                            className="text-link mt-2 block"
+                            key={promotion.promotionID}
+                            href={`/promotions/${promotion.promotionID}`}
+                            className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
                         >
-                            <div key={recipe.recipeID} className="p-4 border rounded-md shadow-sm bg-[#f2f2f2]">
-                                <MultipleImages images={recipe.image} name={recipe.title} />
-                                <h3 className="font-bold text-lg mt-2">{recipe.title}</h3>
+                            <div className="p-4">
+                                <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                                    {promotion.title}
+                                </h3>
+                                <p className="text-sm text-gray-500">{promotion.description}</p>
                             </div>
                         </Link>
-                        </div>
                     ))}
                 </div>
-            </div>
+            </section>
 
-            <h2 className="text-2xl font-bold mb-4">Products</h2>        
+            {/* Section: Recipes */}
+            <section className="mb-12">
+                <h2 className="text-2xl font-bold text-yellow-600 mb-4 border-b pb-2">🍽 Recipes</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {recipe.map((recipe) => (
+                        <Link
+                            key={recipe.recipeID}
+                            href={`/recipes/${recipe.recipeID}`}
+                            className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
+                        >
+                            <div className="p-4">
+                                <MultipleImages images={recipe.image} name={recipe.title} />
+                                <h3 className="text-lg font-semibold text-gray-800 mt-2">
+                                    {recipe.title}
+                                </h3>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
 
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-
-                {product.map((product) => (
-                    <div
-                        key={product.productID}
-                        className="p-4 border rounded-md shadow-md"
-                    >
-
-                    <Link
-                        href={`/product/${product.productID}`}
-                        className="text-link mt-2 block"
-                    >
-                    <div key={product.id} className="p-4 border rounded-md shadow-sm">
-                        <MultipleImages images={product.image} name={product.name} />
-                        <h3 className="font-bold text-lg mt-2">{product.name}</h3>
-                        <p className="font-bold text-blue-500 mt-2">RM{product.price}</p>
-                    </div>
-                    </Link>
-                    </div>
-                ))}
-            </div>
+            {/* Section: Products */}
+            <section className="mb-12">
+                <h2 className="text-2xl font-bold text-yellow-600 mb-4 border-b pb-2">🛒 Products</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {product.map((product) => (
+                        <Link
+                            key={product.productID}
+                            href={`/product/${product.productID}`}
+                            className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
+                        >
+                            <div className="p-4">
+                                <MultipleImages images={product.image} name={product.name} />
+                                <h3 className="text-lg font-semibold text-gray-800 mt-2">
+                                    {product.name}
+                                </h3>
+                                <p className="text-red-600 font-bold mt-1">RM{product.price}</p>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
         </MainLayout>
     );
 }

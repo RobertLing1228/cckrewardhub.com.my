@@ -18,6 +18,13 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Middleware\AdminAuthMiddleware;
 use App\Http\Controllers\ClaimController;
+use App\Http\Controllers\UserVoucherController;
+use App\Http\Controllers\MissionController;
+use App\Http\Controllers\ResetTimeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\WheelRewardController;
+use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\UserMissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,23 +40,7 @@ use App\Http\Controllers\ClaimController;
 /*
 Base Pages
 */
-
-Route::middleware('auth')->group(function () {
-    Route::get('/', [ProductController::class, 'home'])->name('home');  
-
-});
-
-Route::get('/test', function(){
-    return Inertia::render('Test');
-});
-
-
-Route::get('/games', [GameController::class, 'index']);
-Route::get('/play', function(){
-    return Inertia::render('User/Games/Play');
-});
-Route::post('/check-member', [UserController::class, 'checkMember']);
-
+Route::get('/', [ProductController::class, 'home'])->name('home'); 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
@@ -59,10 +50,25 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipe
 Route::get('/promotions', [PromotionController::class, 'index']);
 Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->name('promotions.show');
 
-Route::get('/vouchers', [VoucherController::class, 'index']);
-Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
-Route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');
-Route::post('/claim', [ClaimController::class, 'claim'])->name('claim');
+
+
+Route::get('/test', function(){
+    return Inertia::render('Test');
+});
+
+//Auth pages
+Route::middleware('auth')->group(function () {
+    Route::get('/games', [GameController::class, 'index']);
+    Route::get('/play', function(){
+        return Inertia::render('User/Games/Play');
+    });
+    Route::post('/check-member', [UserController::class, 'checkMember']);
+    Route::get('/vouchers', [VoucherController::class, 'index']);
+    Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
+    Route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');
+    Route::post('/claim', [ClaimController::class, 'claim'])->name('claim');
+});
+
 
 Route::middleware(['auth'])->group(function () {
     // Mission Routes
@@ -81,9 +87,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware([AdminAuthMiddleWare::class])->group(function () {
-    Route::get('/admin', function(){
-        return Inertia::render('Admin/Dashboard');
-    })->name('admindashboard');
+    Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admindashboard'); 
 
     Route::get('/admin/products', [ProductController::class, 'admin']);
     Route::get('/admin/products/add', [ProductController::class, 'create']);
@@ -107,6 +111,7 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::post('/admin/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
 
     Route::get('/admin/users', [UserController::class, 'admin']);
+    Route::post('/admin/reset-password/{admin}', [UserController::class, 'resetPassword'])->name('admin.reset-password');
 
     Route::get('/admin/profile', [UserController::class, 'profile'])->name('admin.profile');
     Route::post('/admin/profile', [UserController::class, 'updateProfile'])->name('admin.profile.update');
@@ -122,10 +127,48 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit'); 
     Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
 
-    Route::get('admin/vouchers', [VoucherController::class, 'admin']);
+    Route::get('/admin/vouchers', [VoucherController::class, 'admin']);
     Route::delete('/admin/vouchers/{voucher}', [VoucherController::class, 'delete'])->name('vouchers.delete');
     Route::get('/admin/vouchers/add', [VoucherController::class, 'create']);
     Route::post('/admin/vouchers/add', [VoucherController::class, 'store'])->name('vouchers.store');
+    Route::get('/admin/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
+    Route::post('/admin/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
+    
+
+    Route::get('/admin/uservouchers', [UserVoucherController::class, 'admin']);
+
+    Route::get('/admin/missions', [MissionController::class, 'admin']);
+    Route::delete('/admin/missions/{mission}', [MissionController::class, 'delete'])->name('missions.delete');
+    Route::get('/admin/missions/add', [MissionController::class, 'create']);
+    Route::post('/admin/missions/add', [MissionController::class, 'store'])->name('missions.store');
+
+    Route::get('/admin/usermissions', [UserMissionController::class, 'admin']);
+    Route::get('/admin/usermissions/add', [UserMissionController::class, 'create']);
+    Route::post('/admin/usermissions/add', [UserMissionController::class, 'store'])->name('usermissions.store');
+    Route::get('/admin/usermissions/{usermission}/edit', [UserMissionController::class, 'edit'])->name('usermissions.edit');
+    Route::post('/admin/usermissions/{usermission}', [UserMissionController::class, 'update'])->name('usermissions.update');
+    Route::delete('/admin/usermissions/{usermission}', [UserMissionController::class, 'delete'])->name('usermissions.delete');
+
+    Route::get('/admin/wheelrewards', [WheelRewardController::class, 'index']);
+    Route::get('/admin/wheelrewards/add', [WheelRewardController::class, 'create']);
+    Route::post('/admin/wheelrewards/add', [WheelRewardController::class, 'store'])->name('wheelrewards.store');
+    Route::get('/admin/wheelrewards/{wheelreward}/edit', [WheelRewardController::class, 'edit'])->name('wheelrewards.edit');
+    Route::post('/admin/wheelrewards/{wheelreward}', [WheelRewardController::class, 'update'])->name('wheelrewards.update');
+    Route::delete('/admin/wheelrewards/{wheelreward}', [WheelRewardController::class, 'delete'])->name('wheelrewards.delete');
+
+    Route::get('/admin/qrcodes', [QrCodeController::class, 'admin']);
+    Route::get('/admin/qrcodes/add', [QrCodeController::class, 'create']);
+    Route::post('/admin/qrcodes/add', [QrCodeController::class, 'store'])->name('qrcodes.store');
+    Route::get('/admin/qrcodes/{qrcode}/edit', [QrCodeController::class, 'edit'])->name('qrcodes.edit');
+    Route::post('/admin/qrcodes/{qrcode}', [QrCodeController::class, 'update'])->name('qrcodes.update');
+    Route::delete('/admin/qrcodes/{qrcode}', [QrCodeController::class, 'delete'])->name('qrcodes.delete');
+
+    Route::get('/admin/resettimes', [ResetTimeController::class, 'admin']);
+    Route::get('/admin/resettimes/add', [ResetTimeController::class, 'create']);
+    Route::post('/admin/resettimes/add', [ResetTimeController::class, 'store'])->name('resettimes.store');
+    Route::get('/admin/resettimes/{resettimes}/edit', [ResetTimeController::class, 'edit'])->name('resettimes.edit');
+    Route::post('/admin/resettimes/{resettimes}', [ResetTimeController::class, 'update'])->name('resettimes.update');
+    Route::delete('/admin/resettimes/{resettimes}', [ResetTimeController::class, 'delete'])->name('resettimes.delete');
 });
 
 

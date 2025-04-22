@@ -42,8 +42,8 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'productID' => 'required|integer|exists:products,id',
+        $field = $request->validate([
+            'productID' => 'required|integer|exists:products,productID',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'start_date' => 'required|date|before_or_equal:end_date',
@@ -52,12 +52,12 @@ class PromotionController extends Controller
         ]);
 
         Promotion::create([
-            'productID' => $request->productID,
-            'title' => $request->title,
-            'description' => $request->description,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'code' => $request->code
+            'productID' => $field['productID'],
+            'title' => $field['title'],
+            'description' => $field['description'],
+            'start_date' => $field['start_date'],
+            'end_date' => $field['end_date'],
+            'code' => $field['code'],
         ]);
 
         // Redirect to the promotion index route using Ziggy

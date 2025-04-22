@@ -1,15 +1,15 @@
 import React from "react";
-import { Head, useForm } from "@inertiajs/react";
+import { Head, useForm, router } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 
 export default function Create () {
 
     const {data, setData, post, errors, processing} = useForm({
-        productid: '',
+        productID: '',
         title: '',
         description: '',
-        startdate: '',
-        enddate: '',
+        start_date: '',
+        end_date: '',
         code: '',
     })
 
@@ -17,11 +17,11 @@ export default function Create () {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("productid", data.productid);
+        formData.append("productID", data.productID);
         formData.append("title", data.title);
         formData.append("description", data.description);
-        formData.append("startdate", data.startdate);
-        formData.append("enddate", data.enddate);
+        formData.append("start_date", data.start_date);
+        formData.append("end_date", data.end_date);
         formData.append("code", data.code);
 
         post('/admin/promotions/add',
@@ -50,13 +50,13 @@ export default function Create () {
                 <form className="flex flex-col gap-4" onSubmit={submit}>
 
                     <label>Product ID</label>
-                    {errors.productid && <div className="error">{errors.productid}</div>}
+                    {errors.productID && <div className="error">{errors.productID}</div>}
                     <input 
                         type="number"
                         min={1}
                         step="any"
-                        value={data.productid}
-                        onChange={(e) => setData("productid", e.target.value)}
+                        value={data.productID}
+                        onChange={(e) => setData("productID", e.target.value)}
                         className={errors.title && "!ring-red-500"}
                     />
 
@@ -81,16 +81,16 @@ export default function Create () {
                     <label>Start Date</label>
                     <input 
                         type="date" 
-                        value={data.startdate} 
-                        onChange={(e) => setData("startdate", e.target.value)}
+                        value={data.start_date} 
+                        onChange={(e) => setData("start_date", e.target.value)}
                         className="border px-2 py-1 rounded"
                     />
 
                     <label>End Date</label>
                     <input 
                         type="date" 
-                        value={data.enddate} 
-                        onChange={(e) => setData("enddate", e.target.value)}
+                        value={data.end_date} 
+                        onChange={(e) => setData("end_date", e.target.value)}
                         className="border px-2 py-1 rounded"
                     />
 
@@ -122,11 +122,11 @@ export default function Create () {
                         
                         <tbody>
                             <tr>
-                                <td>{data.productid}</td>
+                                <td>{data.productID}</td>
                                 <td>{data.title}</td>
                                 <td>{data.description}</td>
-                                <td>{data.startdate}</td>
-                                <td>{data.enddate}</td>
+                                <td>{data.start_date}</td>
+                                <td>{data.end_date}</td>
                                 <td>{data.code}</td>
 
                             </tr>

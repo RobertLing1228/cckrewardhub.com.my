@@ -3,51 +3,55 @@ import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';  
 import MySpinWheel from '@/Components/SpinWheel';
 import MissionList from '@/Components/MissionList';
+import PrizeView from '@/Components/PrizeView';
 
 
 export default function GameIndex({ games }) {
     const [showPrizeModal, setShowPrizeModal] = useState(false);
     const [prize, setPrize] = useState({
         code: "VOUCHER123",
-        name: "Free Sausage Packet 100g",
+        name: "RM3 Cash Voucher",
         date_issued: "2025-04-01",
         end_date: "2025-04-30",
-        status: "active",
+        status: "unclaimed",
         discount_type: "percentage",
-        discount_value: 100,
-        usage_limit: 1
+        discount_value: "3.00",
+        usage_limit: "1"
       });
 
     return (
         <MainLayout>
             <Head title="Games" />
-            <div className="min-h-screen bg-gray-100 py-8">
-                <h1 className="text-3xl font-bold text-gray-800 mb-6">Games</h1>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+
+            {/* Hero Section */}
+            <section className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-12 px-6 rounded-b-3xl shadow-lg">
+                <h1 className="text-4xl font-extrabold text-center mb-2">Let’s Play & Win!</h1>
+                <p className="text-center text-lg">Complete missions, spin the wheel, and enjoy fun games to earn real rewards.</p>
+            </section>
+
+            {/* Game Cards */}
+            <section className="py-10 px-4 bg-[#f2f2f2]">
+                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Available Games</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {games.map((game) => (
                         <div
                             key={game.gameID}
-                            className="flex flex-col rounded-2xl w-full max-w-[500px] bg-white shadow-xl mx-auto"
+                            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden transform hover:-translate-y-1"
                         >
-                            <figure className="flex justify-center items-center rounded-2xl">
-                                <img
-                                    src={`${window.location.origin}/storage/${game.image}`}
-                                    alt="Card Preview"
-                                    className="rounded-t-2xl w-full h-56 object-cover"
-                                />
-                            </figure>
-                            <div className="flex flex-col p-6">
-                                <h2 className="text-2xl font-bold text-gray-800 pb-4">{game.title}</h2>
-                                <p className="text-lg text-gray-700">{game.description}</p>
-                                <div className="flex justify-end pt-6">
-                                    <Link
-                                        href={`/play?game=${game.gameID}`}
-                                        className="bg-purple-700 text-white w-full font-bold text-base text-center p-3 rounded-lg hover:bg-purple-800 active:scale-95 transition-transform"
-                                    >
-                                        Play
-                                    </Link>
-                                </div>
+                            <img
+                                src={`${window.location.origin}/storage/${game.image}`}
+                                alt={game.title}
+                                className="w-full h-56 object-cover"
+                            />
+                            <div className="p-6 flex flex-col justify-between h-[220px]">
+                                <h3 className="text-xl font-bold text-gray-800 mb-2">{game.title}</h3>
+                                <p className="text-gray-600 text-sm flex-grow">{game.description}</p>
+                                <Link
+                                    href={`/play?game=${game.gameID}`}
+                                    className="mt-4 bg-purple-700 text-white text-center py-2 px-4 rounded-lg font-semibold hover:bg-purple-800 transition"
+                                >
+                                    Play Now
+                                </Link>
                             </div>
                         </div>
                     ))}
@@ -62,10 +66,25 @@ export default function GameIndex({ games }) {
                 Open Prize Claim Modal
             </button>
 
+            {/* Spin the Wheel */}
+            <section className="py-10 px-4 bg-[#f9f9f9]">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Try Your Luck</h2>
+                <MySpinWheel />
+                <button
+                    onClick={() => setShowPrizeModal(true)}
+                    className="mt-6 bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
+                >
+                    Claim Prize
+                </button>
+            </section>
+
+            {/* Prize Modal */}
             {showPrizeModal && (
                 <PrizeView
                     game = "Mission"
+                    prize={prize}
                     onClose={() => setShowPrizeModal(false)}
+                    prize={prize}
                 />
             )}
         </MainLayout>

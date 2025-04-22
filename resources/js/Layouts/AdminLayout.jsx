@@ -111,16 +111,17 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
                                 <p>Products</p>
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link href="/admin/promotions" className="nav-link">
-                                <i className="nav-icon fas fa-tags"></i>
-                                <p>Promotions</p>
-                            </Link>
-                        </li>
+    
                         <li className="nav-item">
                             <Link href="/admin/recipes" className="nav-link">
                                 <i className="nav-icon fas fa-utensils"></i>
                                 <p>Recipes</p>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href='/admin/qrcodes' className='nav-link'>
+                                <i className="nav-icon fas fa-qrcode"></i>
+                                <p>QR Codes</p>
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -132,13 +133,49 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
                         <li className="nav-item">
                             <Link href="/admin/vouchers" className="nav-link">
                                 <i className="nav-icon fas fa-ticket-alt"></i>
-                                <p>Vouchers</p>
+                                <p>Vouchers List</p>
                             </Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/uservouchers" className="nav-link">
+                                <i className="nav-icon fas fa-ticket-alt"></i>
+                                <p>User Vouchers</p>
+                            </Link>
+                        </li>
+
                         <li className="nav-item">
                             <Link href="/admin/claims" className="nav-link">
                                 <i className="nav-icon fas fa-clipboard"></i>
                                 <p>Claims</p>
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/missions" className="nav-link">
+                                <i className="nav-icon fas fa-list"></i>
+                                <p>Missions</p>
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/usermissions" className="nav-link">
+                                <i className="nav-icon fas fa-list"></i>
+                                <p>User Missions</p>
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/wheelrewards" className="nav-link">
+                                <i className="nav-icon fas fa-gift"></i>
+                                <p>Wheel Rewards</p>
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/resettimes" className="nav-link">
+                                <i className="nav-icon fas fa-bell"></i>
+                                <p>Reset Times</p>
                             </Link>
                         </li>
                     </ul>

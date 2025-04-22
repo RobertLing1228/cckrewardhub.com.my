@@ -79,5 +79,7 @@ class UserMissionController extends Controller
         $userMission->save();
 
         return response()->json(['message' => 'Mission marked as completed']);
+
+
     }
 }

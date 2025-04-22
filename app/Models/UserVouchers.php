@@ -10,7 +10,7 @@ class UserVouchers extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
 
     protected $fillable = ['userID',	'voucher_ID',	'status',	'claimed_at',	'used_at'];

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm, router, usePage } from "@inertiajs/react";
 import Modal from "./Modal";
 
-export default function PrizeView({ onClose, game }) {
+export default function PrizeView({ onClose, game, prize }) {
     const [claimed, setClaimed] = useState(false);
     const { props } = usePage();
     const successMessage = props.flash?.success;
@@ -10,10 +10,11 @@ export default function PrizeView({ onClose, game }) {
     const {processing, errors} = useForm();
     
     console.log(game);
+    console.log(prize);
 
     function handleClaim(){
         
-        router.post("/claim", { gameType: game }, {
+        router.post("/claim", { gameType: game, prize: prize.discount_value }, {
             onSuccess: () => {
               console.log("Claim successful");
               setClaimed(true);
@@ -28,7 +29,10 @@ export default function PrizeView({ onClose, game }) {
         <Modal show={true} onClose={onClose} maxWidth="lg">
             <div className="p-6">
                 <h2 className="text-lg font-bold">Claim Your Prize</h2>
-                <p className="mt-2">You won: <span className="font-semibold">RM3 Cash Voucher</span></p>
+                <div className="border-2 border-dashed border-yellow-500 rounded-lg p-4 bg-yellow-50 text-center mb-4">
+                <p className="text-sm text-yellow-700">You won:</p>
+                <p className="text-xl font-bold text-yellow-800">{prize.name || "This"}</p>
+                </div>
 
                 {claimed ? (
                     <p className="mt-4 text-green-600">🎉 Prize Claimed!</p> &&

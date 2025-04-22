@@ -7,21 +7,26 @@ export default function GamePage() {
     const [showCompletion, setShowCompletion] = useState(false);
 
     useEffect(() => {
-        const handleGameMessage = async (event) => {
+        const handleGameMessage = (event) => {      
             if (event.data.gameScore !== undefined) {
                 const gameScore = event.data.gameScore;
                 console.log("Game score received:", gameScore);
 
                 if (gameScore >= 300 && !showCompletion) {
                     setShowCompletion(true);
-                
-                    try {
-                        // Send the progress update request to the backend
-                        await axios.post(`/missions/2/progress`, { progress: 1 });
-                        console.log("Mission progress updated successfully.");
-                    } catch (error) {
-                        console.error("Failed to update mission progress:", error);
-                    }
+                    
+                    // Update mission completion in localStorage
+                    const missions = JSON.parse(localStorage.getItem('missions') || '[]');
+                    const updatedMissions = missions.map(mission => 
+                        mission.id === 2 ? { ...mission, completed: true } : mission
+                    );
+                    localStorage.setItem('missions', JSON.stringify(updatedMissions));
+                    
+                    // Notify parent window
+                    window.parent.postMessage(
+                        { type: 'missionComplete', missionId: 2 }, 
+                        window.location.origin
+                    );
                 }
             }
         };
@@ -84,5 +89,5 @@ export default function GamePage() {
                 )}
             </div>
         </MainLayout>
-    );
+    );
 }

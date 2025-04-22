@@ -16,7 +16,7 @@ class AdminAuthController extends Controller
     {
         return Inertia::render('Admin/AdminLogin', [
             'status' => session('status'),
-        ]); // Create a login page for admins
+        ]);
     }
 
     public function store(AdminLoginRequest $request): RedirectResponse
