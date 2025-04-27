@@ -21,13 +21,21 @@ export default function Show({ recipe }) {
                     <MultipleImages images={recipe.image} name={recipe.title} />
 
                     {/* Recipe Name */}
-                    <h1 className="text-3xl font-bold text-gray-800 mb-2">{recipe.title}</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 leading-tight">
+                        {recipe.title}
+                    </h1>
 
-                    {/* Recipe Price */}
-                    <p className="text-2xl font-semibold text-gray-900 mb-4">{recipe.category}</p>
+                    {/* Recipe category */}
+                    <div className="mb-4 flex items-center">
+                        <span className="text-xs font-light text-gray-500 tracking-wider uppercase">
+                            {recipe.category}
+                        </span>
+                        <span className="mx-2 text-gray-300">|</span>
+                        <span className="text-xs text-gray-400">Recipe</span>
+                    </div>
 
                     {/* Recipe Description */}
-                    <p className="text-gray-600 mb-6">{recipe.description}</p>
+                    <p className="text-gray-600 mb-6 whitespace-pre-line">{recipe.description}</p>
 
                 </div>
             </div>
