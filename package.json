@@ -39,11 +39,13 @@
         "datatables.net-buttons-dt": "^3.2.2",
         "datatables.net-dt": "^2.2.1",
         "datatables.net-react": "^1.0.0",
+        "dayjs": "^1.11.13",
         "html5-qrcode": "^2.3.8",
         "jszip": "^3.10.1",
         "pdfmake": "^0.2.18",
         "qrcode.react": "^4.2.0",
         "react-barcode": "^1.6.1",
+        "react-router-dom": "^7.5.2",
         "spin-wheel-game": "^1.0.3-alpha.3",
         "sweetalert2": "^11.6.13",
         "swiper": "^11.2.4"

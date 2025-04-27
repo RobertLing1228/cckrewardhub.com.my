@@ -139,12 +139,25 @@ class MissionController extends Controller
         'progress' => 'required|integer|min:0',
     ]);
 
-    $userMission = UserMission::firstOrCreate([
-        'user_id' => $userId,
-        'mission_id' => $missionId,
-    ]);
+    $progress = $request->input('progress', 0);
 
-    $userMission->progress = $request->input('progress', 0);
+    $userMission = UserMission::firstOrCreate(
+        [
+            'user_id' => $userId,
+            'mission_id' => $missionId,
+        ],
+        [
+            'created_at' => now(),
+        ]
+    );
+
+    $userMission->progress = $progress;
+
+    $mission = Mission::find($missionId);
+    if ($mission && $progress >= $mission->mission_goal && !$userMission->completed_at) {
+        $userMission->completed_at = now();
+    }
+
     $userMission->save();
 
     return response()->json(['message' => 'Progress updated']);

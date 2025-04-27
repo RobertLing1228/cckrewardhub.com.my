@@ -61,5 +61,21 @@ class QrCodeController extends Controller
         return redirect('/admin/qrcodes')->with('success', 'QR Code deleted successfully!');
     }
 
+    public function scan(Request $request)
+{
+    $qrValue = $request->input('qr_value');
+
+    $qr = QrCode::where('qr_value', $qrValue)
+                ->where('is_active', true)
+                ->first();
+
+    if ($qr) {
+        return response()->json(['message' => 'QR code scanned successfully!']);
+    } else {
+        return response()->json(['message' => 'Invalid or inactive QR code.'], 400);
+    }
+}
+
+
 
 }

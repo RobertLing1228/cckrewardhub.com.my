@@ -10,7 +10,6 @@ export default function PrizeView({ onClose, game, prizeValue, prizeName }) {
     const {processing, errors} = useForm();
     
     console.log(game);
-    console.log(prize);
 
     function handleClaim(){
         
