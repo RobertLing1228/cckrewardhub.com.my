@@ -70,7 +70,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/missions/{id}/progress', [MissionController::class, 'updateProgress']);
 
     // User Missions Initialization
-    Route::post('/user-missions/start', [UserMissionController::class, 'start']); // Create user missions if they don't exist
+    Route::post('/user-missions/start', [UserMissionController::class, 'start']);
+    Route::post('/user-missions/claim', [UserMissionController::class, 'claim']);
+
+    // Route to reset the start_date and end_date for mission and wheel resets
+    Route::get('/reset-times', [ResetTimeController::class, 'index']);
+    Route::post('/reset-date', [ResetTimeController::class, 'resetDate'])->name('reset.date');
+
+    // Route to reset the progress for either missions or wheel spins
+    Route::post('/reset-progress/{gameType}', [ResetTimeController::class, 'resetProgress'])->name('reset.progress');
 
     // Wheel Reward Routes
     Route::get('/wheel-rewards', [WheelRewardController::class, 'index']);
