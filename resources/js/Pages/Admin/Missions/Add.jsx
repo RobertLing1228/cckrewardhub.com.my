@@ -5,24 +5,43 @@ import AdminLayout from "@/Layouts/AdminLayout";
 export default function Add () {
 
     const {data, setData, post, errors, processing} = useForm({
-        name: '',
-        description: '',
-        goal: null,
+        mission_name: 'Scan a QR Code',
+        mission_description: '',
+        mission_goal: 1,
     })
+
+    const handleMissionChange = (e) => {
+        const value = e.target.value;
+        setData("mission_name", value);
+
+        // Set default goal based on selected mission type
+        switch (value) {
+            case "Scan a QR Code":
+                setData("mission_goal", 1); // Could represent QR ID 1
+                break;
+            case "Play Match-3 Game":
+                setData("mission_goal", 100); // Default score threshold
+                break;
+            case "Spin the Prize Wheel":
+                setData("mission_goal", 1); // 1 means "Did spin"
+                break;
+            default:
+                setData("mission_goal", 1);
+        }
+    };
 
 
     function submit(e) {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("mission_name", data.title);
-        formData.append("mission_description", data.description);
-        formData.append("mission_goal", data.goal);  // Append file
+        formData.append("mission_name", data.mission_name);
+        formData.append("mission_description", data.mission_description);
+        formData.append("mission_goal", data.mission_goal);  // Append file
 
-        post('/admin/missions/add',
+        post('/admin/missions/add', formData,
             {
-                data: formData,
-                forceFormData: true
+                forceFormData: true,
             }
         );
     }
@@ -44,34 +63,37 @@ export default function Add () {
             <div className="mx-auto">
                     
                 <form className="flex flex-col gap-4" onSubmit={submit}>
-                    <label>Mission Name</label>
-                    {errors.name && <div className="error">{errors.name}</div>}
-                    <input 
-                        type="text" 
-                        value={data.name}
-                        onChange={(e) => setData("name", e.target.value)}
-                        className={errors.name && "!ring-red-500"}
-                    />
+                    <label>Mission Type</label>
+                        {errors.mission_name && <div className="error">{errors.mission_name}</div>}
+                        <select 
+                            value={data.mission_name}
+                            onChange={handleMissionChange}
+                            className={errors.mission_name && "!ring-red-500"}
+                        >
+                            <option>Scan a QR Code</option>
+                            <option>Play Match-3 Game</option>
+                            <option>Spin the Prize Wheel</option>
+                        </select>
 
                     <label>Description</label>
                     {errors.description && <div className="error">{errors.description}</div>}
                     <textarea 
                     rows="4" 
-                    value={data.description}
-                    onChange={(e) => setData("description", e.target.value)}
+                    value={data.mission_description}
+                    onChange={(e) => setData("mission_description", e.target.value)}
                     className={errors.description && "!ring-red-500"}
                     ></textarea>
 
                     <label>Goal</label>
-                    {errors.goal && <div className="error">{errors.goal}</div>}
-                    <input 
-                        type="number"
-                        min={1}
-                        step="any"
-                        value={data.goal}
-                        onChange={(e) => setData("goal", e.target.value)}
-                        className={errors.name && "!ring-red-500"}
-                    />
+                        {errors.mission_goal && <div className="error">{errors.mission_goal}</div>}
+                        <input 
+                            type="number"
+                            min={0}
+                            step="any"
+                            value={data.mission_goal}
+                            onChange={(e) => setData("mission_goal", e.target.value)}
+                            className={errors.mission_goal && "!ring-red-500"}
+                        />
 
                     <p>Example table:</p>
                     <table className="table">
@@ -85,9 +107,9 @@ export default function Add () {
                         
                         <tbody>
                             <tr>
-                                <td>{data.name}</td>
-                                <td>{data.description}</td>
-                                <td>{data.goal}</td>
+                                <td>{data.mission_name}</td>
+                                <td>{data.mission_description}</td>
+                                <td>{data.mission_goal}</td>
                             </tr>
                         </tbody>
                         

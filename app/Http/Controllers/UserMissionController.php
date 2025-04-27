@@ -5,10 +5,41 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserMission;
 use App\Models\Mission;
+use App\Model\User;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class UserMissionController extends Controller
 {
+    public function admin(){
+        $usermissions = UserMission::all();
+        return Inertia::render('Admin/UserMissions/Index', ['user_missions' => $usermissions]);
+    }
+
+    public function create(){    
+        $users = User::all();
+        $missions = Mission::all();
+        return Inertia::render('Admin/UserMissions/Add',['users' => $users, 'missions' => $missions]);
+    }
+
+    public function store(Request $request){
+        $fields = $request->validate([
+            'user_id' => 'required|integer|exists:user,userID',
+            'mission_id' => 'required|integer|exists:missions,id',
+            'progress' => 'required|integer',
+            'reward_claimed' => 'required|boolean',
+        ]);
+
+        UserMission::create([
+            'user_id' => $fields['user_id'],
+            'mission_id' => $fields['mission_id'],
+            'progress' => $fields['progress'],
+            'reward_claimed' => $fields['reward_claimed'],
+        ]);
+
+        return redirect('/admin/usermissions')->with('success', 'User Mission created successfully!');
+    }
+
     // [POST] /user-missions/start
     public function start()
     {

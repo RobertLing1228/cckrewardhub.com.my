@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Head, router } from "@inertiajs/react";
+import { Head, router, useForm, Link } from "@inertiajs/react";
+import Swal from "sweetalert2";
 import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "datatables.net-react";// Core DataTables library
 import DT from 'datatables.net-dt';
+import 'datatables.net-buttons-dt';
+import 'datatables.net-buttons/js/buttons.print.mjs';
+import "datatables.net-buttons/js/buttons.html5.mjs";
+import jszip from 'jszip';
+import pdfMake from 'pdfmake/build/pdfmake';
 
+window.JSZip = jszip;
+window.pdfMake = pdfMake;
 DataTable.use(DT);
 
 export default function Users ({ admins, members, flash }) {
+    const { delete: destroy } = useForm();
     const [showModal, setShowModal] = useState(false);
     const [selectedAdmin, setSelectedAdmin] = useState(null);
     const [errors, setErrors] = useState({});
@@ -43,6 +52,36 @@ export default function Users ({ admins, members, flash }) {
         });
     };
 
+    function updsubmit(e, u){
+                e.preventDefault();
+                router.visit(route("users.edit", u));
+            }
+    
+    function delsubmit(e, u, name){
+        e.preventDefault();
+        Swal.fire({
+            title: `Delete "${name}" ?`,
+            text: "This will remove the use from the table!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                destroy(route("users.delete", u),{
+                    onSuccess: () => {
+                        Swal.fire("Deleted!", "The use has been removed.", "success");
+                    },
+                    onError: () => {
+                        Swal.fire("Failed!", "Something went wrong. User not deleted.", "error");
+                    }
+                });
+            }
+        });
+    }
+
+
     return (
         
         <AdminLayout
@@ -58,16 +97,56 @@ export default function Users ({ admins, members, flash }) {
                     ✅ {flash.success}
                 </div>
             )}
+            {flash?.error && (
+                <div className="mb-4 p-4 rounded bg-red-200 text-red-800 border border-red-300">
+                    ❌ {flash.error}
+                </div>
+            )}
             <div className="p-4 bg-white shadow-md rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Existing Members</h2>
+            <Link href="/admin/users/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create User Mission </Link>  
             <div className="overflow-x-auto">
-                <DataTable id="productsTable" className="min-w-full border border-gray-300">
+                <DataTable id="productsTable" className="min-w-full border border-gray-300"
+                options={{
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                          extend: 'copy',
+                          exportOptions: {
+                            columns: ':not(.no-export)' // 👈 magic here
+                          }
+                        },
+                        {
+                          extend: 'csv',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }},
+                        {
+                          extend: 'excel',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'pdf',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'print',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        }
+                      ]
+                }}>
                 <thead className="bg-gray-100 text-gray-700">
                     <tr>
                     <th className="px-4 py-2 border">ID</th>
                     <th className="px-4 py-2 border">MemberID</th>
                     <th className="px-4 py-2 border">Phone Number</th>
-                    <th className="px-4 py-2 border">Actions</th>
+                    <th className="px-4 py-2 border no-export">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,10 +156,11 @@ export default function Users ({ admins, members, flash }) {
                         <td className="px-4 py-2 border">{member.memberID}</td>
                         <td className="px-4 py-2 border">{member.phoneNumber}</td>
                         <td className="px-4 py-2 border">
-                        <button
-                            className="bg-indigo-600 text-white px-3 py-1 rounded"
-                        >
-                            View Options
+                        <button onClick={(e) => updsubmit(e, member.existsmemID)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
+                            Edit
+                        </button>
+                        <button onClick={(e) => delsubmit(e, member.existsmemID, member.memberID)} className="bg-red-500 text-white px-3 py-1 rounded">
+                            Delete
                         </button>
                         </td>
                         
@@ -95,13 +175,47 @@ export default function Users ({ admins, members, flash }) {
 
             <h2 className="text-xl font-semibold mb-4">Admins</h2>
             <div className="overflow-x-auto">
-                <DataTable id="productsTable" className="min-w-full border border-gray-300">
+                <DataTable id="productsTable" className="min-w-full border border-gray-300"
+                options={{
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                          extend: 'copy',
+                          exportOptions: {
+                            columns: ':not(.no-export)' // 👈 magic here
+                          }
+                        },
+                        {
+                          extend: 'csv',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }},
+                        {
+                          extend: 'excel',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'pdf',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'print',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        }
+                      ]
+                }}>
                 <thead className="bg-gray-100 text-gray-700">
                     <tr>
                     <th className="px-4 py-2 border">ID</th>
                     <th className="px-4 py-2 border">Username</th>
                     <th className="px-4 py-2 border">Password</th>
-                    <th className="px-4 py-2 border">Actions</th>
+                    <th className="px-4 py-2 border no-export">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,9 +227,6 @@ export default function Users ({ admins, members, flash }) {
                         <td className="px-4 py-2 border">
                         <button className="bg-blue-500 text-white px-3 py-1 rounded mr-2" onClick={() => handleResetClick(admin)}>
                             Reset Password
-                        </button>
-                        <button className="bg-red-500 text-white px-3 py-1 rounded">
-                            Delete
                         </button>
                         </td>
                     </tr>

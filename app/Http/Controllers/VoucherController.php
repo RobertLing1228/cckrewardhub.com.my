@@ -17,8 +17,22 @@ class VoucherController extends Controller
 
     public function index(){
         $user = Auth::user();
-        $user_vouchers = UserVouchers::where('userID', $user->userID)->pluck('voucher_ID');
-        $vouchers = Vouchers::whereIn('id', $user_vouchers)->get();
+
+        // Get the vouchers for the current user, including their status and end_date
+        $vouchers = Vouchers::join('user_vouchers', 'vouchers.id', '=', 'user_vouchers.voucher_ID')
+            ->where('user_vouchers.userID', $user->userID)
+            ->where(function($query) {
+                // Filter active vouchers (claimed and not expired)
+                $query->where('user_vouchers.status', 'claimed')
+                      ->where('vouchers.end_date', '>=', now());  // Use the current time to check expiration
+            })
+            ->orWhere(function($query) {
+                // Filter expired vouchers (used or expired)
+                $query->where('user_vouchers.status', 'used')
+                      ->orWhere('vouchers.end_date', '<', now());
+            })
+            ->get();
+
         return inertia('User/Vouchers/Index', ['vouchers' => $vouchers]);
     }
 
@@ -102,7 +116,7 @@ class VoucherController extends Controller
 
     public function markAsUsed($id){
         $voucher = UserVouchers::where('id', $id)->first();
-        $voucher->update(['status' => 'used']);
-        return back()->with('success', 'Voucher marked as used successfully.');
+        $voucher->update(['status' => 'used', 'used_at' => now()]);
+        return redirect('/admin/vouchers')->with('success', 'Voucher marked as used successfully.');
     }
 }

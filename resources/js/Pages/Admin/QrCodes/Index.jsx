@@ -5,10 +5,17 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "datatables.net-react";// Core DataTables library
 import DT from 'datatables.net-dt';
 import { QRCodeSVG } from "qrcode.react";
+import 'datatables.net-buttons-dt';
+import 'datatables.net-buttons/js/buttons.print.mjs';
+import "datatables.net-buttons/js/buttons.html5.mjs";
+import jszip from 'jszip';
+import pdfMake from 'pdfmake/build/pdfmake';
 
+window.JSZip = jszip;
+window.pdfMake = pdfMake;
 DataTable.use(DT);
 
-export default function QRCodes({qr_codes}) {
+export default function QRCodes({qr_codes, flash}) {
     const { delete: destroy } = useForm();
         
     function updsubmit(e, qr){
@@ -52,11 +59,55 @@ export default function QRCodes({qr_codes}) {
         >
             
             <Head title="Qr Codes" />
+            {flash?.success && (
+                <div className="mb-4 p-4 rounded bg-green-200 text-green-800 border border-green-300">
+                    ✅ {flash.success}
+                </div>
+            )}
+            {flash?.error && (
+                <div className="mb-4 p-4 rounded bg-red-200 text-red-800 border border-red-300">
+                    ❌ {flash.error}
+                </div>
+            )}
             <div className="p-4 bg-white shadow-md rounded-lg">
                 <Link href="/admin/qrcodes/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create QRCode </Link>
                 <div className="overflow-x-auto">
                 {qr_codes && qr_codes.length > 0 && (
-                    <DataTable id="qrcodesTable" className="min-w-full border border-gray-300">
+                    <DataTable id="qrcodesTable" className="min-w-full border border-gray-300"
+                    options={{
+                        dom: 'Bfrtip',
+                        buttons: [
+                            {
+                              extend: 'copy',
+                              exportOptions: {
+                                columns: ':not(.no-export)' // 👈 magic here
+                              }
+                            },
+                            {
+                              extend: 'csv',
+                              exportOptions: {
+                                columns: ':not(.no-export)'
+                              }},
+                            {
+                              extend: 'excel',
+                              exportOptions: {
+                                columns: ':not(.no-export)'
+                              }
+                            },
+                            {
+                              extend: 'pdf',
+                              exportOptions: {
+                                columns: ':not(.no-export)'
+                              }
+                            },
+                            {
+                              extend: 'print',
+                              exportOptions: {
+                                columns: ':not(.no-export)'
+                              }
+                            }
+                          ]
+                    }}>
                         <thead>
                             <tr>
                                 <th className="px-4 py-2">ID</th>
@@ -64,7 +115,7 @@ export default function QRCodes({qr_codes}) {
                                 <th className="px-4 py-2">ProductID</th>
                                 <th className="px-4 py-2">Value</th>
                                 <th className="px-4 py-2">Image</th>
-                                <th className="px-4 py-2">Action</th>
+                                <th className="px-4 py-2 no-export">Action</th>
                             </tr>
                         </thead>
                         <tbody>

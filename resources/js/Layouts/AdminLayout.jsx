@@ -81,12 +81,10 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
             <div className="sidebar">
 
                 <div className="user-panel mt-2 pb-2 mb-2 d-flex">
-                    <div className="image">
-                        <img src="/storage/images/oldman.jpg" className="img-circle elevation-2" alt="User Image" />
-                    </div>
+                    
                     <div className="info">
                         <Link href="/admin/profile" className="d-block">
-                            <h2 className="text-lg">{auth?.admin?.name || "Admin"}</h2>
+                            <h2 className="text-lg">{auth.admin ? "Admin Profile" : "Admin"}</h2>
                         </Link>
                 </div>
             </div>
@@ -111,6 +109,13 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
                                 <p>Products</p>
                             </Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/branches" className="nav-link">
+                                <i className="nav-icon fas fa-building"></i>
+                                <p>Branches</p>
+                            </Link>
+                        </li>
     
                         <li className="nav-item">
                             <Link href="/admin/recipes" className="nav-link">
@@ -122,6 +127,13 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
                             <Link href='/admin/qrcodes' className='nav-link'>
                                 <i className="nav-icon fas fa-qrcode"></i>
                                 <p>QR Codes</p>
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/banners" className="nav-link">
+                                <i className="nav-icon fas fa-ribbon"></i>
+                                <p>Banners</p>
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -178,9 +190,18 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
                                 <p>Reset Times</p>
                             </Link>
                         </li>
+
+                        <li className="nav-item bg-white">
+                            <Link href="/admin/import" className="nav-link">
+                                <i className="nav-icon fas fa-file-import"></i>
+                                <p>Import</p>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>
+
+            
 
             <div className="sidebar-footer p-3">
                 <button onClick={handleLogout} className="btn btn-danger btn-block">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Branch;
+use App\Models\BranchProduct;
 use App\Models\Categories;
 use App\Models\Recipe;
 use App\Models\Promotion;
@@ -85,7 +86,8 @@ class ProductController extends Controller
     public function admin()
     {
         $products = Product::all();
-        return Inertia::render('Admin/Products/Index', ['products' => $products]);
+        $branched_product = BranchProduct::all();
+        return Inertia::render('Admin/Products/Index', ['products' => $products, 'branched_products' => $branched_product]);
     }
 
     /**
@@ -108,9 +110,9 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'description' => 'required|string',
             'category' => 'nullable|integer',
-            'branch_id' => 'required|integer', // Ensure branch selection
             'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
+
 
         $imagePath = $request->file('image')->store('images', 'public');
 
@@ -119,7 +121,6 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'description' => $validated['description'],
             'category' => $validated['category'],
-            'branch_id' => $validated['branch_id'], // Assign product to branch
             'image' => $imagePath
         ]);
 
@@ -138,10 +139,10 @@ class ProductController extends Controller
             ->firstOrFail();
 
         $branch_stock = DB::table('branch_product')
-            ->join('branches', 'branch_product.branch_id', '=', 'branches.id')
-            ->select('branches.name as branch_name', 'branch_product.stock')
-            ->where('branch_product.productID', $id)
-            ->get();
+        ->join('branches', 'branch_product.branch_id', '=', 'branches.id')
+        ->select('branches.name as branch_name', 'branch_product.stock')
+        ->where('branch_product.productID', $id)
+        ->get();
 
         return Inertia::render('User/Products/Show', [
             'product' => $product,
@@ -155,11 +156,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Categories::all();
-        $branches = Branch::all();
         return Inertia::render('Admin/Products/Edit', [
             'product' => $product, 
             'categories' => $categories,
-            'branches' => $branches
         ]);
     }
 
@@ -173,7 +172,6 @@ class ProductController extends Controller
             'price' => 'sometimes|required|numeric',
             'description' => 'sometimes|required|string',
             'category' => 'sometimes|nullable|integer',
-            'branch_id' => 'sometimes|required|integer', // Ensure branch is updated
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
@@ -187,7 +185,13 @@ class ProductController extends Controller
             $fields['image'] = $product->image;
         }
 
-        $product->update($fields);
+        $product->update([
+            'name' => $fields['name'],
+            'price' => $fields['price'],
+            'description' => $fields['description'],
+            'category' => $fields['category'],
+            'image' => $fields['image']
+        ]);
 
         return redirect('/admin/products')->with('success', 'Product updated successfully!');
     }

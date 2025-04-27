@@ -5,9 +5,63 @@ namespace App\Http\Controllers;
 use App\Models\Mission;
 use App\Models\UserMission;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class MissionController extends Controller
 {
+    public function admin(){
+        $missions = Mission::all();
+
+
+        return Inertia::render('Admin/Missions/Index', ['missions' => $missions]);
+    }
+
+    public function create(){
+        return Inertia::render('Admin/Missions/Add');
+    }
+
+    public function store(Request $request){
+        $fields = $request->validate([
+            'mission_name' => 'required|string|max:255',
+            'mission_description' => 'required|string',
+            'mission_goal' => 'required|integer',
+        ]);
+
+        Mission::create([
+            'mission_name' => $fields['mission_name'],
+            'mission_description' => $fields['mission_description'],
+            'mission_goal' => $fields['mission_goal'],
+        ]);
+
+        return redirect('/admin/missions')->with('success', 'Mission created successfully!');
+    }
+
+    public function edit(Mission $mission){
+        return Inertia::render('Admin/Missions/Edit', ['mission' => $mission]);
+    }
+
+    public function update(Request $request, Mission $mission){
+        $fields = $request->validate([
+            'mission_name' => 'required|string|max:255',
+            'mission_description' => 'required|string',
+            'mission_goal' => 'required|integer',
+        ]);
+
+        $mission->update([
+            'mission_name' => $fields['mission_name'],
+            'mission_description' => $fields['mission_description'],
+            'mission_goal' => $fields['mission_goal'],
+        ]);
+
+        return redirect('/admin/missions')->with('success', 'Mission updated successfully!');
+    }
+
+    public function delete(Mission $mission){
+        $mission->delete();
+        return redirect('/admin/missions')->with('success', 'Mission deleted successfully!');
+    }
+
+
     public function startUserMissions()
     {
         $userId = auth()->id();

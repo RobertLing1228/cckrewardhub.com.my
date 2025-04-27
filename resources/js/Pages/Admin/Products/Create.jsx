@@ -9,7 +9,8 @@ export default function Create ({ categories }) {
         price: '',
         description: '',
         category: '',
-        image: '',
+        image: ''
+
     })
 
     function submit(e) {

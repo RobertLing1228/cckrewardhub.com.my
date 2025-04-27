@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Claim;
 use App\Models\Vouchers;
+use App\Models\UserMissions;
 use App\Models\UserVouchers;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,7 @@ class ClaimController extends Controller
         $user = Auth::user();
         $gameType = $request->gameType;
         $prize = $request->prize;
+        $isMission = false;
 
         $claim = Claim::create([
             'memberID' => $user->memberID,
@@ -45,6 +47,7 @@ class ClaimController extends Controller
             $successMsg = "You have successfully claimed an RM{$discountValue} Cash Voucher!";
         } else {
             $discountValue = '3.00';
+            $isMission = true;
         }
 
         // Check if there's an available voucher
@@ -56,7 +59,7 @@ class ClaimController extends Controller
         
         if (!$voucher) {
             $claim->update(['status' => 'failed']);
-            return back()->with('error', 'No RM5 Cash Vouchers available. Try again later!');
+            return back()->with('error', 'No Cash Vouchers available. Try again later!');
         }
 
         // Assign the voucher to the user
@@ -71,6 +74,8 @@ class ClaimController extends Controller
 
 
         $voucher->update(['status' => 'claimed']);
+
+        $isMission ? UserMissions::where('user_id', $user->userID)->update(['reward_claimed' => true]) : null;
 
         return back()->with('success', $successMsg);
     }

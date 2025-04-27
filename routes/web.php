@@ -21,7 +21,9 @@ use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\UserVoucherController;
 use App\Http\Controllers\ResetTimeController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\FileImportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,6 +91,18 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::post('/admin/products/{product}', [ProductController::class, 'update'])->name('products.update');
 
+    Route::get('/admin/branches', [BranchController::class, 'admin']);
+    Route::get('/admin/branches/add', [BranchController::class, 'createBranch']);
+    Route::post('/admin/branches/add', [BranchController::class, 'storeBranch'])->name('branches.store');
+    Route::delete('/admin/branches/{branch}', [BranchController::class, 'deleteBranch'])->name('branches.delete');
+    Route::get('/admin/branches/{branch}/edit', [BranchController::class, 'editBranch'])->name('branches.edit');
+    Route::post('/admin/branches/{branch}', [BranchController::class, 'updateBranch'])->name('branches.update');
+    Route::get('/admin/branchproduct/add', [BranchController::class, 'createBranchProduct']);
+    Route::post('/admin/branchproduct/add', [BranchController::class, 'storeBranchProduct'])->name('branchproduct.store');
+    Route::delete('/admin/branchproduct/{branchproduct}', [BranchController::class, 'deleteBranchProduct'])->name('branchproduct.delete');
+    Route::get('/admin/branchproduct/{branchproduct}/edit', [BranchController::class, 'editBranchProduct'])->name('branchproduct.edit');
+    Route::post('/admin/branchproduct/{branchproduct}', [BranchController::class, 'updateBranchProduct'])->name('branchproduct.update');
+
     Route::get('/admin/recipes', [RecipeController::class, 'admin']);
     Route::get('/admin/recipes/add', [RecipeController::class, 'create']);
     Route::post('/admin/recipes/add', [RecipeController::class, 'store'])->name('recipes.store');
@@ -104,6 +118,11 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::post('/admin/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
 
     Route::get('/admin/users', [UserController::class, 'admin']);
+    Route::get('/admin/users/add', [UserController::class, 'create']);
+    Route::post('/admin/users/add', [UserController::class, 'store'])->name('users.store');
+    Route::delete('/admin/users/{user}', [UserController::class, 'delete'])->name('users.delete');
+    Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/admin/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/admin/reset-password/{admin}', [UserController::class, 'resetPassword'])->name('admin.reset-password');
 
     Route::get('/admin/profile', [UserController::class, 'profile'])->name('admin.profile');
@@ -134,6 +153,8 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::delete('/admin/missions/{mission}', [MissionController::class, 'delete'])->name('missions.delete');
     Route::get('/admin/missions/add', [MissionController::class, 'create']);
     Route::post('/admin/missions/add', [MissionController::class, 'store'])->name('missions.store');
+    Route::get('/admin/missions/{mission}/edit', [MissionController::class, 'edit'])->name('missions.edit');
+    Route::post('/admin/missions/{mission}', [MissionController::class, 'update'])->name('missions.update');
 
     Route::get('/admin/usermissions', [UserMissionController::class, 'admin']);
     Route::get('/admin/usermissions/add', [UserMissionController::class, 'create']);
@@ -142,7 +163,7 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::post('/admin/usermissions/{usermission}', [UserMissionController::class, 'update'])->name('usermissions.update');
     Route::delete('/admin/usermissions/{usermission}', [UserMissionController::class, 'delete'])->name('usermissions.delete');
 
-    Route::get('/admin/wheelrewards', [WheelRewardController::class, 'index']);
+    Route::get('/admin/wheelrewards', [WheelRewardController::class, 'admin']);
     Route::get('/admin/wheelrewards/add', [WheelRewardController::class, 'create']);
     Route::post('/admin/wheelrewards/add', [WheelRewardController::class, 'store'])->name('wheelrewards.store');
     Route::get('/admin/wheelrewards/{wheelreward}/edit', [WheelRewardController::class, 'edit'])->name('wheelrewards.edit');
@@ -162,6 +183,17 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::get('/admin/resettimes/{resettimes}/edit', [ResetTimeController::class, 'edit'])->name('resettimes.edit');
     Route::post('/admin/resettimes/{resettimes}', [ResetTimeController::class, 'update'])->name('resettimes.update');
     Route::delete('/admin/resettimes/{resettimes}', [ResetTimeController::class, 'delete'])->name('resettimes.delete');
+
+    Route::get('/admin/banners', [BannerController::class, 'admin']);
+    Route::get('/admin/banners/add', [BannerController::class, 'create']);
+    Route::post('/admin/banners/add', [BannerController::class, 'store'])->name('banners.store');
+    Route::get('/admin/banners/{banner}/edit', [BannerController::class, 'edit'])->name('banners.edit');
+    Route::post('/admin/banners/{banner}', [BannerController::class, 'update'])->name('banners.update');
+    Route::delete('/admin/banners/{banner}', [BannerController::class, 'delete'])->name('banners.delete');
+
+    Route::get('/admin/import', [FileImportController::class, 'admin']);
+    Route::post('/admin/import', [FileImportController::class, 'import'])->name('admin.import');
+
 });
 
 

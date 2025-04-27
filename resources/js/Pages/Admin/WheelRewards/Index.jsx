@@ -4,10 +4,17 @@ import Swal from "sweetalert2";
 import AdminLayout from "@/Layouts/AdminLayout";
 import DataTable from "datatables.net-react";// Core DataTables library
 import DT from 'datatables.net-dt';
+import 'datatables.net-buttons-dt';
+import 'datatables.net-buttons/js/buttons.print.mjs';
+import "datatables.net-buttons/js/buttons.html5.mjs";
+import jszip from 'jszip';
+import pdfMake from 'pdfmake/build/pdfmake';
 
+window.JSZip = jszip;
+window.pdfMake = pdfMake;
 DataTable.use(DT);
 
-export default function Index({rewards}) {
+export default function Index({rewards ,flash}) {
     const { delete: destroy } = useForm();
 
     function delsubmit(e, reward, title) {
@@ -38,16 +45,60 @@ export default function Index({rewards}) {
             ]}
         >
             <Head title="Wheel Rewards" />
+            {flash?.success && (
+                <div className="mb-4 p-4 rounded bg-green-200 text-green-800 border border-green-300">
+                    ✅ {flash.success}
+                </div>
+            )}
+            {flash?.error && (
+                <div className="mb-4 p-4 rounded bg-red-200 text-red-800 border border-red-300">
+                    ❌ {flash.error}
+                </div>
+            )}
             <div className="p-4 bg-white shadow-md rounded-lg">
             <Link href="/admin/wheelrewards/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add new Reward </Link>
             <div className="overflow-x-auto">
-                <DataTable id="wheelRewardsTable" className="min-w-full border border-gray-300">
+                <DataTable id="wheelRewardsTable" className="min-w-full border border-gray-300"
+                options={{
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                          extend: 'copy',
+                          exportOptions: {
+                            columns: ':not(.no-export)' // 👈 magic here
+                          }
+                        },
+                        {
+                          extend: 'csv',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }},
+                        {
+                          extend: 'excel',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'pdf',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'print',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        }
+                      ]
+                }}>
                 <thead className="bg-gray-100 text-gray-700">
                     <tr>
                     <th className="px-4 py-2 border">ID</th>
                     <th className="px-4 py-2 border">Type</th>
                     <th className="px-4 py-2 border">Voucher ID</th>
-                    <th className="px-4 py-2 border">Actions</th>
+                    <th className="px-4 py-2 border no-export">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

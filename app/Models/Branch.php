@@ -10,6 +10,10 @@ class Branch extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    protected $table = 'branches';
+
+    protected $primaryKey = 'id';
+    public $timestamps = true;
 
     public function products()
     {

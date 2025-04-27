@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import Barcode from 'react-barcode';
 
@@ -24,7 +24,7 @@ export default function ShowVoucher({voucher}) {
     }).replace(',', '');
 
     const handleMarkAsUsed = () => {
-        post(`/vouchers/${voucher.id}/mark-as-used`, {}, {
+        router.post(`/vouchers/${voucher.id}/mark-as-used`, {}, {
             onSuccess: () => "", // Update state after success
         });
     };

@@ -5,7 +5,8 @@ import AdminLayout from "@/Layouts/AdminLayout";
 export default function AddUserMission({users, missions}) {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [userSearchTerm, setUserSearchTerm] = useState("");
-    const userListRef = useRef();
+    const userListRef = useRef(null);
+    const [visibleCount, setVisibleCount] = useState(15);
     
     const { data, setData, post, errors, processing } = useForm({
         user_id: '',

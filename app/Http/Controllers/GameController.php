@@ -11,7 +11,7 @@ class GameController extends Controller
     public function admin(){
         $game = Games::all();
 
-        return inertia('Admin/Games/Index', ['games' => $game, 'missions' => $missions, 'rewards' => $rewards, 'qrcodes' => $qrcodes, 'resettimes' => $resettimes]);
+        return inertia('Admin/Games/Index', ['games' => $game]);
     }
 
     public function index(){

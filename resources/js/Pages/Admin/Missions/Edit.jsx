@@ -2,12 +2,13 @@ import React from "react";
 import { Head, useForm } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 
-export default function Edit ({mission}) {
+export default function Edit ({mission, flash}) {
 
     const {data, setData, post, errors, processing} = useForm({
-        name: mission.mission_name,
-        description: mission.mission_description,
-        goal: mission.mission_goal,
+        mission_name: mission.mission_name,
+        mission_description: mission.mission_description,
+        mission_goal: mission.mission_goal,
+        error: flash.error
     })
 
 
@@ -15,13 +16,12 @@ export default function Edit ({mission}) {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("mission_name", data.title);
-        formData.append("mission_description", data.description);
-        formData.append("mission_goal", data.goal);  // Append file
+        formData.append("mission_name", data.mission_name);
+        formData.append("mission_description", data.mission_description);
+        formData.append("mission_goal", data.mission_goal);  // Append file
 
-        post(`/admin/missions/${mission.missionID}`,
+        post(route('missions.update', mission), formData,
             {
-                data: formData,
                 forceFormData: true
             }
         );
@@ -45,32 +45,29 @@ export default function Edit ({mission}) {
                     
                 <form className="flex flex-col gap-4" onSubmit={submit}>
                     <label>Mission Name</label>
-                    {errors.name && <div className="error">{errors.name}</div>}
                     <input 
                         type="text" 
-                        value={mission.mission_name}
-                        onChange={(e) => setData("name", e.target.value)}
+                        value={data.mission_name}
+                        onChange={(e) => setData("mission_name", e.target.value)}
                         className={errors.name && "!ring-red-500"}
                     />
 
                     <label>Description</label>
-                    {errors.description && <div className="error">{errors.description}</div>}
                     <textarea 
                     rows="4" 
-                    value={mission.mission_description}
-                    onChange={(e) => setData("description", e.target.value)}
+                    value={data.mission_description}
+                    onChange={(e) => setData("mission_description", e.target.value)}
                     className={errors.description && "!ring-red-500"}
                     ></textarea>
 
                     <label>Goal</label>
-                    {errors.goal && <div className="error">{errors.goal}</div>}
                     <input 
                         type="number"
                         min={1}
                         step="any"
-                        value={mission.mission_goal}
-                        onChange={(e) => setData("goal", e.target.value)}
-                        className={errors.name && "!ring-red-500"}
+                        value={data.mission_goal}
+                        onChange={(e) => setData("mission_goal", e.target.value)}
+                        className={errors.goal && "!ring-red-500"}
                     />
 
                     <p>Changes:</p>
@@ -93,9 +90,9 @@ export default function Edit ({mission}) {
                         
                         <tbody>
                             <tr>
-                                <td>{data.title}</td>
-                                <td>{data.description}</td>
-                                <td>{data.goal}</td>
+                                <td>{data.mission_name}</td>
+                                <td>{data.mission_description}</td>
+                                <td>{data.mission_goal}</td>
                             </tr>
                         </tbody>
                         

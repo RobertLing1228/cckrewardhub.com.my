@@ -9,7 +9,7 @@ export default function Edit ({ product, categories }) {
         price: product.price,
         description: product.description,
         category: product.category,
-        image: '',
+        image: ''
     })
 
     function submit(e) {
@@ -94,6 +94,7 @@ export default function Edit ({ product, categories }) {
                     onChange={(e) => setData("image", e.target.files[0])}
                     />
 
+
                     <h2 className="font-bold mt-4">Changes:</h2>
                     <table className="table">
                         <thead>
@@ -123,6 +124,8 @@ export default function Edit ({ product, categories }) {
                                 <td>{data.price}</td>
                                 <td>{data.description}</td>
                                 <td>{data.category}</td>
+                                <td>{data.branch_id}</td>
+                                <td>{data.stock}</td>
                                
                             </tr>
                         </tbody>

@@ -16,6 +16,12 @@ class WheelRewardController extends Controller
         return response()->json($rewards);
     }
 
+    public function admin()
+    {
+        $rewards = WheelReward::all();
+        return Inertia::render('Admin/WheelRewards/Index', ['rewards' => $rewards]);
+    }
+
     public function create()
     {
         $vouchers = Vouchers::all();

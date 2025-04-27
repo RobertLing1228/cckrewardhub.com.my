@@ -109,7 +109,7 @@ export default function Edit ({resettimes}) {
                 </div>
 
 
-                    <p>Example table:</p>
+                    <p>Changes:</p>
                     <table className="table">
                         <thead>
                             <tr>
@@ -120,15 +120,15 @@ export default function Edit ({resettimes}) {
 
                         <tbody>
                             <tr>
-                                <td>{resettimes.reward_type}</td>
-                                <td>{resettimes.voucher_id}</td>
+                                <td>{resettimes.game_type}</td>
+                                <td>{resettimes.reset_time}</td>
                             </tr>
                         </tbody>
                         
                         <tbody>
                             <tr>
-                                <td>{data.reward_type}</td>
-                                <td>{data.voucher_id}</td>
+                                <td>{data.game_type}</td>
+                                <td>{data.reset_time}</td>
                             </tr>
                         </tbody>
                         

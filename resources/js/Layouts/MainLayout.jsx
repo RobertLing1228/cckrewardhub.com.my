@@ -24,7 +24,7 @@ export default function MainLayout({ children }) {
       <CameraScan onScan={handleScan} />
 
       {/* Main content with padding */}
-      <main className="w-full max-w-screen-xl mx-auto pt-20 pb-24 px-4 sm:px-6 bg-[#f9f9f9] min-h-screen">
+      <main className="w-full max-w-screen-xl mx-auto pt-20 pb-24 bg-[#f9f9f9] min-h-screen">
         {children}
       </main>
 
