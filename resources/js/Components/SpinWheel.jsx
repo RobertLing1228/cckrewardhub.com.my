@@ -1,27 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import {  router } from '@inertiajs/react';
 import { SpinWheel } from 'spin-wheel-game';
 import Modal from './Modal';
 import axios from 'axios';
 
-// Segments with direct probability control (values should sum to 1)
-const segments = [
-    { segmentText: 'RM5 Voucher', segColor: 'red', probability: 0.1 },    // 10% chance
-    { segmentText: 'RM3 Voucher', segColor: 'blue', probability: 0.2 },
-    { segmentText: 'Nothing', segColor: 'yellow', probability: 0.2 },
-    { segmentText: 'Nothing', segColor: 'yellow', probability: 0.2 },        // 30% chance
-    { segmentText: 'RM2 Voucher', segColor: 'green', probability: 0.3 }, // 60% chance
-];
-
-// Verify probabilities sum to 1 (100%)
-const totalProbability = segments.reduce((sum, seg) => sum + seg.probability, 0);
-if (Math.abs(totalProbability - 1) > 0.0001) {
-    console.error('Segment probabilities must sum to 1');
-}
-
-const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
+const MySpinWheel = ({ isOpen, onClose, onComplete, updateProgress }) => {
+    const [segments, setSegments] = useState([]);
     const [spinResult, setSpinResult] = useState('');
     const [isWheelFinished, setIsWheelFinished] = useState(false);
     const [hasSpun, setHasSpun] = useState(false);
+    const [prizeValue, setPrizeValue] = useState(null);
+    const [showPrizeModal, setShowPrizeModal] = useState(false);
+
 
     // Fetch wheel rewards from backend
     useEffect(() => {
@@ -29,15 +19,16 @@ const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
             axios.get('/wheel-rewards')
                 .then(response => {
                     const rewards = response.data;
-    
+
                     const mappedSegments = rewards.map(reward => ({
-                        segmentValue: reward.voucher_value,
                         segmentText: reward.reward_type === 'voucher' && reward.voucher_value !== null
                             ? `RM ${parseInt(reward.voucher_value)} Voucher`
                             : 'LOSS',
                         segColor: reward.reward_type === 'voucher' ? 'green' : 'red',
-                        probability: 1 / rewards.length, // equal chance
+                        probability: reward.probability,
+                        value: reward.voucher_value
                     }));
+                    
     
                     setSegments(mappedSegments);
                 })
@@ -50,7 +41,7 @@ const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
     const handleSpinFinish = async () => {
         const random = Math.random();
         let cumulativeProbability = 0;
-        let selectedSegment = segments[0]; // fallback
+        let selectedSegment = segments[0]; 
     
         for (const segment of segments) {
             cumulativeProbability += segment.probability;
@@ -60,7 +51,15 @@ const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
             }
         }
     
-        setSpinResult(`${selectedSegment.segmentText}`);
+        setSpinResult(selectedSegment.segmentText);
+
+        if (selectedSegment.value !== null) {
+            setPrizeValue(parseFloat(selectedSegment.value));
+        } else {
+            setPrizeValue(null);
+        }
+        
+
         setIsWheelFinished(true);
         setHasSpun(true);
     
@@ -105,6 +104,18 @@ const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
         isSpinSound: true,
     };
 
+    function claimReward() {
+        router.post("/claim", { gameType: "Wheel", prize: prizeValue }, {
+            onSuccess: () => {
+                console.log("Claim successful");
+                handleClose(); 
+            },
+            onError: (errors) => {
+                console.error("Error claiming:", errors);
+            },
+        });
+    }    
+
     return (
         <Modal show={isOpen} onClose={handleClose} maxWidth="lg">
             <div className="p-6 text-center">
@@ -121,7 +132,33 @@ const MySpinWheel = ({ isOpen, onClose, onComplete }) => {
                 ) : (
                     <div className="mt-4 flex flex-col items-center">
                         <p className="text-lg">You won: <strong>{spinResult}</strong></p>
+
+                        {prizeValue !== null && (
+                            <button
+                                onClick={claimReward}
+                                className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+                            >
+                                Click Here to Claim
+                            </button>
+                        )}
+
+                        <button
+                            onClick={() => {
+                                setIsWheelFinished(false);
+                                setSpinResult('');
+                            }}
+                            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        >
+                            Spin Again
+                        </button>
                     </div>
+                )}
+                {showPrizeModal && (
+                    <PrizeView
+                        game="Wheel"
+                        prize={prizeValue}
+                        onClose={() => setShowPrizeModal(false)}
+                    />
                 )}
 
                 <button
