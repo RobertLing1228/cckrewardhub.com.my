@@ -40,6 +40,14 @@ export default function ProductIndex({ products, filters, categories, branches }
         get(`/products?branch_id=${selectedBranch}&category=${categoryId}`, { preserveState: true });
     };
 
+    const sortedCategories = [...categories].sort((a, b) =>
+        a.categoryName.localeCompare(b.categoryName)
+    );
+
+    const sortedBranches = [...branches].sort((a, b) =>
+        a.name.localeCompare(b.name)
+    );
+
     return (
         <MainLayout>
             <Head title="Products" />
@@ -61,7 +69,7 @@ export default function ProductIndex({ products, filters, categories, branches }
                             className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         >
                             <option value="">All Branches</option>
-                            {branches.map((branch) => (
+                            {sortedBranches.map((branch) => (
                                 <option key={branch.id} value={branch.id}>
                                     {branch.name}
                                 </option>
@@ -81,8 +89,8 @@ export default function ProductIndex({ products, filters, categories, branches }
                             onChange={handleCategoryChange}
                             className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         >
-                            <option value="">All Categories</option>
-                            {categories.map((item) => (
+                           <option value="">All Categories</option>
+                           {sortedCategories.map((item) => (
                                 <option key={item.categoryID} value={item.categoryID.toString()}>
                                     {item.categoryName}
                                 </option>
@@ -125,7 +133,7 @@ export default function ProductIndex({ products, filters, categories, branches }
                 </form>
 
                 {/* Product Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {products.length > 0 ? (
                         products.map((product) => (
                             <div key={product.productID} className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
@@ -133,7 +141,7 @@ export default function ProductIndex({ products, filters, categories, branches }
                                 <div className="p-4">
                                     <h2 className="text-xl font-semibold text-gray-800">{product.name}</h2>
                                     <p className="text-blue-500 font-bold mt-2">RM{product.price}</p>
-                                    <p className="text-sm text-gray-600 mt-1">{product.description}</p>
+                                    
                                     <Link
                                         href={`/products/${product.productID}`}
                                         className="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"

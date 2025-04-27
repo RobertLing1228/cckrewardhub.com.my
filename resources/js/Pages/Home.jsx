@@ -2,9 +2,11 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
 import WheelSpinWidget from "@/Components/WheelSpin";
 import MultipleImages from "@/Components/MultipleImages";
+import BannerSwiper from "@/Components/BannerSwiper";
+
 
 export default function Home() {
-    const { product, recipe, promotion, user } = usePage().props;
+    const { product, recipe, promotion, user, banners } = usePage().props;
 
     return (
         <MainLayout>
@@ -13,47 +15,20 @@ export default function Home() {
             {/* Welcome Header */}
             <div className="text-center py-6 bg-yellow-50 shadow-sm rounded-xl mb-6">
                 <h1 className="text-3xl font-bold text-[#D62828]">
-                    Welcome, {user?.memberID ? `user${user.memberID}` : 'Guest'} 👋
+                    Welcome, user{user.memberID} 👋
                 </h1>
                 <p className="text-gray-600 mt-2 text-sm">Explore our latest deals, games & recipes!</p>
             </div>
 
             {/* Banner */}
-            <div className="mb-8 rounded-xl overflow-hidden shadow-md">
-                <Link href="/games">
-                    <img
-                        src="storage/images/game-banner.png"
-                        alt="Game Banner"
-                        className="w-full h-auto object-cover transition-transform hover:scale-105 duration-300"
-                    />
-                </Link>
+            <div className="mb-8">
+                <BannerSwiper banners={banners} />
             </div>
-
-            {/* Section: Promotions */}
-            <section className="mb-12">
-                <h2 className="text-2xl font-bold text-yellow-600 mb-4 border-b pb-2">🔥 Promotions</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {promotion.map((promotion) => (
-                        <Link
-                            key={promotion.promotionID}
-                            href={`/promotions/${promotion.promotionID}`}
-                            className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
-                        >
-                            <div className="p-4">
-                                <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                                    {promotion.title}
-                                </h3>
-                                <p className="text-sm text-gray-500">{promotion.description}</p>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
 
             {/* Section: Recipes */}
             <section className="mb-12">
                 <h2 className="text-2xl font-bold text-yellow-600 mb-4 border-b pb-2">🍽 Recipes</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {recipe.map((recipe) => (
                         <Link
                             key={recipe.recipeID}

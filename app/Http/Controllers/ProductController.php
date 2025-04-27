@@ -7,7 +7,9 @@ use App\Models\Branch;
 use App\Models\Categories;
 use App\Models\Recipe;
 use App\Models\Promotion;
+use App\Models\Banner;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,11 +22,13 @@ class ProductController extends Controller
         $product = Product::orderBy('name', 'asc')->take(6)->get();
         $recipe = Recipe::orderBy('title', 'asc')->take(6)->get();
         $promotion = Promotion::orderBy('title', 'asc')->take(6)->get();
+        $banners = Banner::all();
         
         return Inertia::render('Home', [
             'product' => $product, 
             'recipe' => $recipe, 
             'promotion' => $promotion, 
+            'banners' => $banners,
             'user' => auth()->check() ? auth()->user() : null
         ]);
     }
@@ -133,8 +137,15 @@ class ProductController extends Controller
             ->where('products.productID', $id)
             ->firstOrFail();
 
+        $branch_stock = DB::table('branch_product')
+            ->join('branches', 'branch_product.branch_id', '=', 'branches.id')
+            ->select('branches.name as branch_name', 'branch_product.stock')
+            ->where('branch_product.productID', $id)
+            ->get();
+
         return Inertia::render('User/Products/Show', [
             'product' => $product,
+            'branch_stock' => $branch_stock,
         ]);
     }
 
