@@ -8,29 +8,6 @@ use Illuminate\Http\Request;
 
 class MissionController extends Controller
 {
-    public function startUserMissions()
-    {
-        $userId = auth()->id();
-        if (!$userId) {
-            return response()->json(['error' => 'User not authenticated'], 401);
-        }
-
-        $existingMissions = UserMission::where('user_id', $userId)->exists();
-        if (!$existingMissions) {
-            $missions = Mission::all();
-            foreach ($missions as $mission) {
-                UserMission::create([
-                    'user_id' => $userId,
-                    'mission_id' => $mission->id,
-                    'progress' => 0,
-                    'reward_claimed' => 0,
-                ]);
-            }
-        }
-
-        return response()->json(['message' => 'User missions initialized']);
-    }
-
     public function index()
     {
         $userId = auth()->id();
@@ -85,12 +62,25 @@ class MissionController extends Controller
         'progress' => 'required|integer|min:0',
     ]);
 
-    $userMission = UserMission::firstOrCreate([
-        'user_id' => $userId,
-        'mission_id' => $missionId,
-    ]);
+    $progress = $request->input('progress', 0);
 
-    $userMission->progress = $request->input('progress', 0);
+    $userMission = UserMission::firstOrCreate(
+        [
+            'user_id' => $userId,
+            'mission_id' => $missionId,
+        ],
+        [
+            'created_at' => now(),
+        ]
+    );
+
+    $userMission->progress = $progress;
+
+    $mission = Mission::find($missionId);
+    if ($mission && $progress >= $mission->mission_goal && !$userMission->completed_at) {
+        $userMission->completed_at = now();
+    }
+
     $userMission->save();
 
     return response()->json(['message' => 'Progress updated']);

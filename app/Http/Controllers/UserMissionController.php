@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UserMissionController extends Controller
 {
-    // [POST] /user-missions/start
+    protected $resetTimeController;
+    public function __construct(ResetTimeController $resetTimeController)
+    {
+        // Inject ResetTimeController into the UserMissionController
+        $this->resetTimeController = $resetTimeController;
+    }
+
     public function start()
     {
         $userId = Auth::id();
@@ -17,6 +23,11 @@ class UserMissionController extends Controller
             return response()->json(['error' => 'User not authenticated'], 401);
         }
 
+        // Call resetProgress for both 'Mission' and 'Wheel' before fetching missions
+        $this->resetTimeController->resetProgress('Mission');
+        $this->resetTimeController->resetProgress('Wheel');
+
+        // Initialize user missions if they don't already exist
         if (!UserMission::where('user_id', $userId)->exists()) {
             $missions = Mission::all();
             foreach ($missions as $mission) {
@@ -24,8 +35,9 @@ class UserMissionController extends Controller
                     'user_id' => $userId,
                     'mission_id' => $mission->id,
                     'progress' => 0,
-                    'is_completed' => false,
                     'reward_claimed' => false,
+                    'created_at' => now(),
+                    'completed_at' => null,
                 ]);
             }
         }
@@ -33,53 +45,16 @@ class UserMissionController extends Controller
         return response()->json(['message' => 'User missions initialized']);
     }
 
-    // [GET] /missions/{id}/progress
-    public function show($id)
+    public function claim()
     {
-        $userMission = UserMission::where('user_id', Auth::id())
-            ->where('mission_id', $id)
-            ->first();
-
-        if (!$userMission) {
-            return response()->json(['progress' => 0]); // Return 0 if not found
+        $userId = Auth::id();
+        if (!$userId) {
+            return response()->json(['error' => 'User not authenticated'], 401);
         }
 
-        return response()->json([
-            'progress' => $userMission->progress,
-            'is_completed' => $userMission->is_completed,
-        ]);
-    }
+        UserMission::where('user_id', $userId)
+            ->update(['reward_claimed' => 1]);
 
-    // [POST] /missions/{id}/progress
-    public function update(Request $request, $id)
-    {
-        $userMission = UserMission::firstOrCreate(
-            ['user_id' => Auth::id(), 'mission_id' => $id],
-            ['progress' => 0, 'is_completed' => false, 'reward_claimed' => false]
-        );
-
-        $userMission->progress = $request->input('progress', $userMission->progress);
-        $userMission->save();
-
-        return response()->json(['message' => 'Progress updated', 'progress' => $userMission->progress]);
-    }
-
-    // [POST] /missions/{id}/complete
-    public function complete($id)
-    {
-        $userMission = UserMission::where('user_id', Auth::id())
-            ->where('mission_id', $id)
-            ->first();
-
-        if (!$userMission) {
-            return response()->json(['error' => 'Mission not found.'], 404);
-        }
-
-        $userMission->is_completed = true;
-        $userMission->save();
-
-        return response()->json(['message' => 'Mission marked as completed']);
-
-
+        return response()->json(['message' => 'Reward claimed successfully']);
     }
 }
