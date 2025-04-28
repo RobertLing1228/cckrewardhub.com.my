@@ -12,22 +12,24 @@ import pdfMake from 'pdfmake/build/pdfmake';
 
 window.JSZip = jszip;
 window.pdfMake = pdfMake;
-DataTable.use(DT);
 
-export default function Index({rewards ,flash}) {
+DataTable.use(DT);
+ 
+export default function Categories ({ categories, flash }) {
     const { delete: destroy } = useForm();
 
-    function updsubmit(e, reward){
-      e.preventDefault();
-      router.visit(route("wheelrewards.edit", reward));
+    function updsubmit(e, c){
+        e.preventDefault();
+
+        router.visit(route('categories.edit', c));
     }
 
-    function delsubmit(e, reward, title) {
+    function delsubmit(e, c, title) {
         e.preventDefault();
     
         Swal.fire({
             title: 'Delete "' + title + '" ?',
-            text: "This will remove the reward from the list.",
+            text: "This will remove the category from the list.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#d33",
@@ -35,21 +37,21 @@ export default function Index({rewards ,flash}) {
             confirmButtonText: "Confirm",
         }).then((result) => {
             if (result.isConfirmed) {
-                destroy(route("wheelrewards.delete", reward));
-                Swal.fire("Deleted!", "The reward has been removed.", "success");
+                destroy(route("categories.delete", c));
+                Swal.fire("Deleted!", "The category has been removed.", "success");
             }
         });
     }
 
     return (
         <AdminLayout
-            title="Wheel Rewards"
+            title="Categoriess"
             breadcrumbs={[
                 { label: "Admin", url: "/admin" },
-                { label: "Wheel Rewards" },
+                { label: "Categoriess" }
             ]}
-        >
-            <Head title="Wheel Rewards" />
+        >   
+            <Head title="Categories List" />
             {flash?.success && (
                 <div className="mb-4 p-4 rounded bg-green-200 text-green-800 border border-green-300">
                     ✅ {flash.success}
@@ -60,10 +62,12 @@ export default function Index({rewards ,flash}) {
                     ❌ {flash.error}
                 </div>
             )}
+            <Link href="/admin/categories/add" className="bg-green-500 text-white px-3 py-1 rounded">
+                Add Category
+            </Link>
             <div className="p-4 bg-white shadow-md rounded-lg">
-            <Link href="/admin/wheelrewards/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add new Reward </Link>
             <div className="overflow-x-auto">
-                <DataTable id="wheelRewardsTable" className="min-w-full border border-gray-300"
+                <DataTable id="categoriesTable" className="min-w-full border border-gray-300"
                 options={{
                     dom: 'Bfrtip',
                     buttons: [
@@ -101,24 +105,20 @@ export default function Index({rewards ,flash}) {
                 <thead className="bg-gray-100 text-gray-700">
                     <tr>
                     <th className="px-4 py-2 border">ID</th>
-                    <th className="px-4 py-2 border">Type</th>
-                    <th className="px-4 py-2 border">Prizes</th>
-                    <th className="px-4 py-2 border">Probability</th>
+                    <th className="px-4 py-2 border">Name</th>
                     <th className="px-4 py-2 border no-export">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {rewards.map((reward) => (
-                    <tr key={reward.id} className="hover:bg-gray-50">
-                        <td className="px-4 py-2 border">{reward.id}</td>
-                        <td className="px-4 py-2 border">{reward.reward_type}</td>
-                        <td className="px-4 py-2 border">{reward.voucher_value ? reward.voucher_value : "Loss"}</td>
-                        <td className="px-4 py-2 border">{reward.probability}</td>
+                    {categories.map((c) => (
+                    <tr key={c.categoryID} className="hover:bg-gray-50">
+                        <td className="px-4 py-2 border">{c.categoryID}</td>
+                        <td className="px-4 py-2 border">{c.categoryName}</td>
                         <td className="px-4 py-2 border">
-                                <button onClick={(e) => updsubmit(e, reward.id)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
+                                <button onClick={(e) => updsubmit(e, c.categoryID)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
                                     Edit
                                 </button>
-                                <button onClick={(e) => delsubmit(e, reward.id, reward.id)}  className="bg-red-500 text-white px-3 py-1 rounded">
+                                <button onClick={(e) => delsubmit(e, c.categoryID, c.categoryName)}  className="bg-red-500 text-white px-3 py-1 rounded">
                                     Delete
                                 </button>
                         
@@ -130,6 +130,5 @@ export default function Index({rewards ,flash}) {
             </div>
             </div>
         </AdminLayout>
-    )
-}
-                        
+    );
+};

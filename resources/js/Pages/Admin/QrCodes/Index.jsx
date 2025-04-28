@@ -115,6 +115,7 @@ export default function QRCodes({qr_codes, flash}) {
                                 <th className="px-4 py-2">ProductID</th>
                                 <th className="px-4 py-2">Value</th>
                                 <th className="px-4 py-2">Image</th>
+                                <th className="px-4 py-2">Is_Active</th>
                                 <th className="px-4 py-2 no-export">Action</th>
                             </tr>
                         </thead>
@@ -162,7 +163,7 @@ export default function QRCodes({qr_codes, flash}) {
                                         <div className="flex flex-col items-center gap-1">
                                             <QRCodeSVG
                                                 id={svgId}
-                                                value={`${window.location.origin}${qr.qr_value}`}
+                                                value={`${qr.qr_value}`}
                                                 size={128}
                                             />
                                             <button
@@ -173,6 +174,7 @@ export default function QRCodes({qr_codes, flash}) {
                                             </button>
                                         </div>
                                     </td>
+                                    <td className="px-4 py-2">{qr.is_active ? "Active" : "Inactive"} </td>
                                     <td className="px-4 py-2 space-x-2">
                                         <button
                                             onClick={(e) => updsubmit(e, qr)}

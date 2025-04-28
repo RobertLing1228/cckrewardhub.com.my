@@ -3,12 +3,12 @@ import { Head, useForm } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 import Dropdown from "@/Components/Dropdown";
 
-export default function Add ({vouchers}) {
+export default function Add ({reward}) {
 
     const {data, setData, post, errors, processing} = useForm({
-        reward_type: '',
-        voucher_value: null,
-        probability: 0,
+        reward_type: reward.reward_type,
+        voucher_value: reward.voucher_value,
+        probability: reward.probability,
     })
 
     const [showVoucherDropdown, setShowVoucherDropdown] = useState(false);
@@ -22,7 +22,7 @@ export default function Add ({vouchers}) {
         formData.append("voucher_value", data.voucher_value);
         formData.append("probability", data.probability);
 
-        post('/admin/wheelrewards/add',
+        post(`/admin/wheelrewards/${reward.id}`,
             {
                 data: formData,
                 forceFormData: true
@@ -36,6 +36,7 @@ export default function Add ({vouchers}) {
             setShowVoucherDropdown(true);
         } else {
             setShowVoucherDropdown(false);
+            setData('voucher_value', null)
         }
     }
 
@@ -121,7 +122,7 @@ export default function Add ({vouchers}) {
                         className={errors.probability && "!ring-red-500"}
                     />
 
-                    <p>Example table:</p>
+                    <p>Changes:</p>
                     <table className="table">
                         <thead>
                             <tr>
@@ -130,6 +131,13 @@ export default function Add ({vouchers}) {
                                 <th className="font-bold">Probability</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr>
+                                <td>{reward.reward_type}</td>
+                                <td>{reward.voucher_value}</td>
+                                <td>{reward.probability}</td>
+                            </tr>
+                        </tbody>
                         
                         <tbody>
                             <tr>

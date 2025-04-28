@@ -16,6 +16,7 @@ class QrCode extends Model
         'qr_type',
         'product_id',
         'qr_value',
+        'is_active',
     ];
 
 

@@ -15,7 +15,9 @@ class ResetTime extends Model
     // Allow mass assignment on these fields
     protected $fillable = [
         'game_type',
-        'reset_time',
+        'start_date',
+        'end_date',
+        'reset_day',
     ];
 
     // Optional: constants for game types

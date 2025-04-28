@@ -15,6 +15,8 @@ class UserMission extends Model
         'mission_id',
         'progress',
         'reward_claimed',
+        'created_at',
+        'completed_at',
     ];
 
     public static function ensureUserMissionsExist($userId)
@@ -28,6 +30,8 @@ class UserMission extends Model
                     'mission_id' => $mission->id,
                     'progress' => 0,
                     'reward_claimed' => false,
+                    'created_at' => now(),
+                    'completed_at' => null,
                 ]);
             }
         }

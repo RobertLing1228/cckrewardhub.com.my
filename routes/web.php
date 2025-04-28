@@ -24,6 +24,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FileImportController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -110,6 +111,14 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::delete('/admin/branchproduct/{branchproduct}', [BranchController::class, 'deleteBranchProduct'])->name('branchproduct.delete');
     Route::get('/admin/branchproduct/{branchproduct}/edit', [BranchController::class, 'editBranchProduct'])->name('branchproduct.edit');
     Route::post('/admin/branchproduct/{branchproduct}', [BranchController::class, 'updateBranchProduct'])->name('branchproduct.update');
+
+    Route::get('/admin/categories', [CategoryController::class, 'admin']);
+    Route::get('/admin/categories/add', [CategoryController::class, 'create']);
+    Route::post('/admin/categories/add', [CategoryController::class, 'store'])->name('categories.store');
+    Route::delete('/admin/categories/{category}', [CategoryController::class, 'delete'])->name('categories.delete');
+    Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::post('/admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+
 
     Route::get('/admin/recipes', [RecipeController::class, 'admin']);
     Route::get('/admin/recipes/add', [RecipeController::class, 'create']);

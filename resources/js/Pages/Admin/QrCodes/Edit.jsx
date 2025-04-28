@@ -13,6 +13,7 @@ export default function Edit({ qrcode, products }) {
     qr_type: qrcode.qr_type || "product",
     productID: qrcode.product_id || "",
     qr_value: qrcode.qr_value || "",
+    is_active: qrcode.is_active || null,
   });
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function Edit({ qrcode, products }) {
     formData.append("qr_type", data.qr_type);
     formData.append("productID", data.productID);
     formData.append("qr_value", data.qr_value);
+    formData.append("is_active", data.is_active);
     post(`/admin/qrcodes/${qrcode.id}`, { data: formData, forceFormData: true });
   }
 
@@ -132,6 +134,32 @@ export default function Edit({ qrcode, products }) {
             </>
           )}
 
+          {/* Status */}
+          <label>Active</label>
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-1">
+              <input
+                type="radio"
+                name="is_active"
+                value="1"
+                checked={data.is_active == 1}
+                onChange={(e) => setData("is_active", e.target.value)}
+              />
+              Yes
+            </label>
+
+            <label className="flex items-center gap-1">
+              <input
+                type="radio"
+                name="is_active"
+                value="0"
+                checked={data.is_active == 0}
+                onChange={(e) => setData("is_active", e.target.value)}
+              />
+              No
+            </label>
+          </div>
+
           {/* Summary */}
           {data.qr_value && (
             <>
@@ -143,6 +171,10 @@ export default function Edit({ qrcode, products }) {
               <div>
                 <p className="font-semibold">QR Code:</p>
                 <QRCodeSVG value={`${window.location.origin}${data.qr_value}`} />
+              </div>
+              <div>
+                <p className="font-semibold">Is Active?</p>
+                <p>{data.is_active == 1 ? "Yes" : "No"}</p>
               </div>
             </>
           )}
