@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import MultipleImages from '@/Components/MultipleImages';
@@ -8,6 +8,24 @@ export default function RecipeIndex({ recipe }) {
   const categories = ['all', ...new Set(recipe.map(r => r.category))];
   const filteredRecipes = selectedCategory === 'all' ? recipe : recipe.filter(r => r.category === selectedCategory);
 
+
+   const [showScrollTop, setShowScrollTop] = useState(false);
+  
+      useEffect(() => {
+          const onScroll = () => {
+              if (window.scrollY > 300) {
+                  setShowScrollTop(true);
+              } else {
+                  setShowScrollTop(false);
+              }
+          };
+          window.addEventListener('scroll', onScroll);
+          return () => window.removeEventListener('scroll', onScroll);
+      }, []);
+  
+      const scrollToTop = () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
   return (
     <MainLayout>
       <Head title="Recipes" />
@@ -39,6 +57,7 @@ export default function RecipeIndex({ recipe }) {
                 key={recipe.recipeID}
                 className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
               >
+                <Link href={`/recipes/${recipe.recipeID}`}>
                 <MultipleImages images={recipe.image} name={recipe.title} />
                 <div className="p-6">
                   <h2 className="text-2xl font-semibold text-gray-800">{recipe.title}</h2>
@@ -48,16 +67,24 @@ export default function RecipeIndex({ recipe }) {
                       ? recipe.description.slice(0, 100) + '...'
                       : recipe.description}
                   </p>
-                  <Link
-                    href={`/recipes/${recipe.recipeID}`}
-                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
-                  >
-                    View Recipe
-                  </Link>
+                  <div className="mt-4 text-center text-blue-600 hover:underline">                     
+                      View Details    
+                  </div>
                 </div>
+                </Link>
               </div>
             ))}
           </div>
+
+          {/* Scroll to top button */}
+          {showScrollTop && (
+                    <button
+                        onClick={scrollToTop}
+                        className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
+                    >
+                        Scroll to Top
+                    </button>
+                )}
         </div>
       </div>
     </MainLayout>

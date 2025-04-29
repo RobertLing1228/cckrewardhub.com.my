@@ -24,11 +24,11 @@ export default function Recipes ({ recipes, flash }) {
             router.visit(route('recipes.edit', recipe));
         }
     
-        function delsubmit(e, recipe) {
+        function delsubmit(e, recipe, title) {
             e.preventDefault();
         
             Swal.fire({
-                title: 'Delete "' + recipe.title + '" ?',
+                title: 'Delete "' + title + '" ?',
                 text: "This will remove the recipe from the list.",
                 icon: "warning",
                 showCancelButton: true,
@@ -125,10 +125,10 @@ export default function Recipes ({ recipes, flash }) {
                         <MultipleImages images={recipe.image} name={recipe.title} />
                         </td>
                         <td className="px-4 py-2 border">
-                        <button onClick={(e) => updsubmit(e, recipe)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
+                        <button onClick={(e) => updsubmit(e, recipe.recipeID)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
                             Edit
                         </button>
-                        <button onClick={(e) => delsubmit(e, recipe)} className="bg-red-500 text-white px-3 py-1 rounded">
+                        <button onClick={(e) => delsubmit(e, recipe.recipeID, recipe.title)} className="bg-red-500 text-white px-3 py-1 rounded">
                             Delete
                         </button>
                         </td>
