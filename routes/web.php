@@ -252,3 +252,10 @@ require __DIR__.'/auth.php';
 use App\Http\Controllers\SearchController;
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+/* for mission history only */
+Route::get('/mission-history', function () {
+    return Inertia::render('MissionHistory');
+});
+Route::get('/mission-history', [UserMissionController::class, 'history'])->middleware('auth');
+

@@ -33,19 +33,19 @@ const Topbar = () => {
       <div className="flex items-center gap-4">
 
         <div className="flex items-center border border-gray-300 rounded-md bg-white">
-          <form onSubmit={handleSearch} className="flex w-full">
+          <form onSubmit={handleSearch} className="relative w-full max-w-xl">
             <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="p-2 text-black bg-white w-48 sm:w-32 text-sm focus:outline-none"
+                type="text"
+                placeholder="Search ..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-4 py-2 pr-10 text-sm text-gray-700 bg-white rounded shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
             <button
-              type="submit"
-              className="px-3 py-2 text-gray-600 text-sm hover:bg-gray-100"
+                type="submit"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
             >
-              🔍
+                🔍
             </button>
           </form>
         </div>
