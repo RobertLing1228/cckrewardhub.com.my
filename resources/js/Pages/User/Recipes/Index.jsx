@@ -33,22 +33,24 @@ export default function RecipeIndex({ recipe }) {
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-extrabold text-gray-800 mb-8 text-center">Delicious Recipes</h1>
 
-          {/* Category Filter Buttons */}
-          <div className="flex flex-wrap justify-center mb-10 gap-4">
-            {categories.map((cat, index) => (
-              <button
-                key={index}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                  selectedCategory === cat
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-blue-100'
-                }`}
-              >
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </button>
-            ))}
+          {/* Category Dropdown Filter */}
+          <div className="w-full max-w-xs mx-auto mb-10">
+            <label className="block mb-2 text-sm font-medium text-gray-700 text-center">
+              Select Recipe Category
+            </label>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-full text-sm shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700"
+            >
+              {categories.map((cat, index) => (
+                <option key={index} value={cat}>
+                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                </option>
+              ))}
+            </select>
           </div>
+
 
           {/* Recipe Cards */}
           <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

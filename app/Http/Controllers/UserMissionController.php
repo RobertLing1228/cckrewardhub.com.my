@@ -89,4 +89,23 @@ class UserMissionController extends Controller
 
         return response()->json(['message' => 'Reward claimed successfully']);
     }
+
+    public function history()
+    {
+        $userId = Auth::id();
+        if (!$userId) {
+            return redirect()->route('login');
+        }
+
+        $missions = UserMission::with('mission') // Eager load mission details
+            ->where('user_id', $userId)
+            ->get();
+
+        return Inertia::render('MissionHistory', [
+            'history' => $missions
+        ]);
+    }
+
+
+    
 }

@@ -36,4 +36,10 @@ class UserMission extends Model
             }
         }
     }
+
+    public function mission()
+    {
+        return $this->belongsTo(Mission::class);
+    }
+
 }
