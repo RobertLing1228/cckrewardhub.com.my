@@ -40,6 +40,7 @@ use App\Http\Controllers\CategoryController;
 Base Pages
 */
 Route::get('/', [ProductController::class, 'home'])->name('home'); 
+Route::post('/check-member', [UserController::class, 'checkMember']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
@@ -62,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/play', function(){
         return Inertia::render('User/Games/Play');
     });
-    Route::post('/check-member', [UserController::class, 'checkMember']);
+
     Route::get('/vouchers', [VoucherController::class, 'index']);
     Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
     Route::post('/vouchers/{voucher}/mark-as-used', [VoucherController::class, 'markAsUsed'])->name('vouchers.mark-as-used');

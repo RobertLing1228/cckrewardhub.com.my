@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -104,5 +105,15 @@ class UserController extends Controller
         ]);
 
         return back()->with('success', 'Password reset successfully!');
+    }
+
+    public function checkMember(Request $request){
+        $phoneNumber = $request->input('phoneNumber');
+        $member = ExistingMember::where('phoneNumber', $phoneNumber)->first();
+
+        if(!$member){
+            return response()->json(['message' => 'Member not found'], 404);
+        }
+        return response()->json($member);
     }
 }
