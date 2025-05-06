@@ -141,16 +141,6 @@ const MySpinWheel = ({ isOpen, onClose, onComplete, updateProgress }) => {
                                 Click Here to Claim
                             </button>
                         )}
-
-                        <button
-                            onClick={() => {
-                                setIsWheelFinished(false);
-                                setSpinResult('');
-                            }}
-                            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                        >
-                            Spin Again
-                        </button>
                     </div>
                 )}
                 {showPrizeModal && (
