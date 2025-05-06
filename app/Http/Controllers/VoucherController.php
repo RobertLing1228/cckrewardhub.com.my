@@ -115,8 +115,8 @@ class VoucherController extends Controller
     }
 
     public function markAsUsed($id){
-        $voucher = UserVouchers::where('id', $id)->first();
+        $voucher = UserVouchers::where('voucher_ID', $id)->first();
         $voucher->update(['status' => 'used', 'used_at' => now()]);
-        return redirect('/admin/vouchers')->with('success', 'Voucher marked as used successfully.');
+        return redirect('/vouchers')->with('success', 'Voucher marked as used successfully.');
     }
 }

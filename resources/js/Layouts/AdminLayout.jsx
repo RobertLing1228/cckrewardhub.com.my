@@ -116,6 +116,13 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
                                 <p>Branches</p>
                             </Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link href="/admin/categories" className="nav-link">
+                                <i className="nav-icon fas fa-book"></i>
+                                <p>Categories</p>
+                            </Link>
+                        </li>
     
                         <li className="nav-item">
                             <Link href="/admin/recipes" className="nav-link">

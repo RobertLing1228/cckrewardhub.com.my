@@ -15,6 +15,7 @@ class WheelReward extends Model
     protected $fillable = [
         'reward_type',
         'voucher_value',
+        'probability',
     ];
 
     

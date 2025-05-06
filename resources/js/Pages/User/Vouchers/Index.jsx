@@ -5,6 +5,7 @@ import MainLayout from '@/Layouts/MainLayout';
 
 export default function VoucherIndex ({ vouchers }) {
     const [activeTab, setActiveTab] = useState("vouchers");
+    console.log(vouchers);
 
     const currentDate = new Date();
     const activeVouchers = vouchers.filter(voucher => new Date(voucher.end_date) >= currentDate && voucher.status === "claimed");
@@ -48,7 +49,7 @@ export default function VoucherIndex ({ vouchers }) {
                                 </div>
                                 <div className='mt-auto'>
                                     <Link 
-                                        href={`/vouchers/${voucher.id}`} 
+                                        href={`/vouchers/${voucher.voucher_ID}`} 
                                         className="w-full mt-4 py-2 text-red-500 font-semibold border-2 border-dashed border-red-500 rounded-lg hover:bg-red-500 hover:text-white transition text-center block"
                                     >
                                         Redeem

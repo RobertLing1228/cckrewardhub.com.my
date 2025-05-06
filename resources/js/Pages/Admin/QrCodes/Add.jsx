@@ -14,6 +14,7 @@ export default function Create({ products }) {
     productID: "",
     qr_image: "",
     qr_value: "",
+    is_active: 0,
   });
 
   useEffect(() => {
@@ -54,6 +55,7 @@ export default function Create({ products }) {
     formData.append("product_id", data.productID);
     formData.append("qr_image", data.qr_image);
     formData.append("qr_value", data.qr_value);
+    formData.append("is_active", data.is_active);
     post("/admin/qrcodes/add", { data: formData, forceFormData: true });
   }
 
@@ -129,10 +131,36 @@ export default function Create({ products }) {
                 value={data.qr_value}
                 onChange={(e) => setData("qr_value", e.target.value)}
                 className="border px-2 py-1 rounded"
-                placeholder="https://..."
+                placeholder="Type text or URL..."
               />
             </>
           )}
+
+          {/* Is Active? */}
+          <label>Is Active?</label>
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-1">
+              <input
+                type="radio"
+                name="is_active"
+                value= "1"
+                checked={data.is_active === 1}
+                onChange={() => setData("is_active", 1)}
+              />
+              Yes
+            </label>
+
+            <label className="flex items-center gap-1">
+              <input
+                type="radio"
+                name="is_active"
+                value= "0"
+                checked={data.is_active === 0}
+                onChange={() => setData("is_active", 0)}
+              />
+              No
+            </label>
+          </div>
 
           {/* Summary */}
           {data.qr_value && (

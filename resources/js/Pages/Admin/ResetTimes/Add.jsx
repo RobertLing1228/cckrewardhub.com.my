@@ -6,20 +6,20 @@ import Dropdown from "@/Components/Dropdown";
 export default function Add() {
     const { data, setData, post, errors, processing } = useForm({
         game_type: '',
-        reset_time: '',
-        isWeekly: 0
+        start_date: '',
+        end_date: '',
+        reset_day: ''
     });
 
-    const [showGameTypeDropdown, setShowGameTypeDropdown] = useState(false);
-    const [showWeeklyDropdown, setShowWeeklyDropdown] = useState(false);
 
     function submit(e) {
         e.preventDefault();
 
         const formData = new FormData();
         formData.append("game_type", data.game_type);
-        formData.append("reset_time", data.reset_time);
-        formData.append("isWeekly", data.isWeekly);
+        formData.append("start_date", data.start_date);
+        formData.append("end_date", data.end_date);
+        formData.append("reset_day", data.reset_day);
 
         post("/admin/resettimes/add", {
             data: formData,
@@ -65,45 +65,48 @@ export default function Add() {
                             {errors.game_type && <div className="text-red-500 text-sm mt-1">{errors.game_type}</div>}
                         </div>
 
-                        {/* Reset Time */}
+                        {/* Start Date */}
                         <div>
-                            <label className="font-bold block mb-2">Reset Time (HH:MM:SS)</label>
+                            <label className="font-bold block mb-2">Start Date & Time</label>
                             <input
-                                type="time"
-                                step="1"
-                                value={data.reset_time}
-                                onChange={(e) => setData("reset_time", e.target.value)}
+                                type="datetime-local"
+                                value={data.start_date}
+                                onChange={(e) => setData("start_date", e.target.value)}
                                 className="border px-4 py-2 rounded w-full"
                             />
-                            {errors.reset_time && <div className="text-red-500 text-sm mt-1">{errors.reset_time}</div>}
+                            {errors.start_date && <div className="text-red-500 text-sm mt-1">{errors.start_date}</div>}
                         </div>
 
-                        {/* Is Weekly */}
+                        {/* End Date */}
                         <div>
-                            <label className="font-bold block mb-2">Is Weekly?</label>
-                            <div className="flex gap-4">
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="radio"
-                                        name="isWeekly"
-                                        value="1"
-                                        checked={data.isWeekly === 1}
-                                        onChange={() => setData("isWeekly", 1)}
-                                    />
-                                    Yes
-                                </label>
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="radio"
-                                        name="isWeekly"
-                                        value="0"
-                                        checked={data.isWeekly === 0}
-                                        onChange={() => setData("isWeekly", 0)}
-                                    />
-                                    No
-                                </label>
-                            </div>
-                            {errors.isWeekly && <div className="text-red-500 text-sm mt-1">{errors.isWeekly}</div>}
+                            <label className="font-bold block mb-2">End Date & Time</label>
+                            <input
+                                type="datetime-local"
+                                value={data.end_date}
+                                onChange={(e) => setData("end_date", e.target.value)}
+                                className="border px-4 py-2 rounded w-full"
+                            />
+                            {errors.end_date && <div className="text-red-500 text-sm mt-1">{errors.end_date}</div>}
+                        </div>
+
+                        {/* Reset Day */}
+                        <div>
+                            <label className="font-bold block mb-2">Reset Day (0 = Sunday, 1 = Monday, etc.)</label>
+                            <select
+                                value={data.reset_day}
+                                onChange={(e) => setData("reset_day", Number(e.target.value))}
+                                className="border px-4 py-2 rounded w-full"
+                            >
+                                <option value="">Select Reset Day</option>
+                                <option value="0">Sunday</option>
+                                <option value="1">Monday</option>
+                                <option value="2">Tuesday</option>
+                                <option value="3">Wednesday</option>
+                                <option value="4">Thursday</option>
+                                <option value="5">Friday</option>
+                                <option value="6">Saturday</option>
+                            </select>
+                            {errors.reset_day && <div className="text-red-500 text-sm mt-1">{errors.reset_day}</div>}
                         </div>
 
                         {/* Example table */}
@@ -112,15 +115,17 @@ export default function Add() {
                             <thead className="bg-gray-100">
                                 <tr>
                                     <th className="font-bold border px-2 py-1">Game Type</th>
-                                    <th className="font-bold border px-2 py-1">Reset Time</th>
-                                    <th className="font-bold border px-2 py-1">Is Weekly</th>
+                                    <th className="font-bold border px-2 py-1">Start Date</th>
+                                    <th className="font-bold border px-2 py-1">End Date</th>
+                                    <th className="font-bold border px-2 py-1">Reset Day</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td className="border px-2 py-1">{data.game_type}</td>
-                                    <td className="border px-2 py-1">{data.reset_time}</td>
-                                    <td className="border px-2 py-1">{data.isWeekly === 1 ? "Yes" : "No"}</td>
+                                    <td className="border px-2 py-1">{data.start_date}</td>
+                                    <td className="border px-2 py-1">{data.end_date}</td>
+                                    <td className="border px-2 py-1">{data.reset_day}</td>
                                 </tr>
                             </tbody>
                         </table>

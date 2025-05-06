@@ -156,14 +156,49 @@ export default function Branches ({ branches, branched_products, flash }) {
                 <h2 className="text-xl font-semibold mb-4">Branch Products</h2>
                 <Link href="/admin/branchproduct/add" className="bg-green-500 text-white px-3 py-1 rounded">Add Branch Product</Link>
                 <div className="overflow-x-auto">
-                <DataTable id="branchProductsTable" className="min-w-full border border-gray-300">
+                <DataTable id="branchProductsTable" className="min-w-full border border-gray-300"
+                options={{
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                          extend: 'copy',
+                          exportOptions: {
+                            columns: ':not(.no-export)' // 👈 magic here
+                          }
+                        },
+                        {
+                          extend: 'csv',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }},
+                        {
+                          extend: 'excel',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'pdf',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        },
+                        {
+                          extend: 'print',
+                          exportOptions: {
+                            columns: ':not(.no-export)'
+                          }
+                        }
+                      ]
+                }}
+                >
                 <thead className="bg-gray-100 text-gray-700">
                     <tr>
                     <th className="px-4 py-2 border">ID</th>
                     <th className="px-4 py-2 border">Product ID</th>
                     <th className="px-4 py-2 border">Branch ID</th>
                     <th className="px-4 py-2 border">Stock</th>
-                    <th className="px-4 py-2 border">Actions</th>
+                    <th className="px-4 py-2 border no-export">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

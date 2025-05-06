@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\Product;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -37,39 +38,51 @@ class RecipeController extends Controller
     // Show the form to create a new recipe
     public function create()
     {
-        return Inertia::render('Admin/Recipes/Create');
+        $products = Product::all();
+        $categories = Recipe::select('category')->distinct()->pluck('category');
+        return Inertia::render('Admin/Recipes/Create', ['categories' => $categories, 'products' => $products]);
     }
 
     // Store the new recipe
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'productid' => 'required|integer',
+            'productID' => 'required|integer',
             'category' => 'required|string|max:100',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'image' => 'required|array',
+            'image.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
-
-        $imagePath = $request->file('image')->store('images', 'public');
-
+    
+        $imagePaths = [];
+    
+        foreach ($request->file('image') as $image) {
+            $path = $image->store('images', 'public');
+            $imagePaths[] = $path;
+        }
+    
         Recipe::create([
-            'productID' => $validated['productid'],
+            'productID' => $validated['productID'],
             'category' => $validated['category'],
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'image' => $imagePath
-
+            'image' => json_encode($imagePaths),
         ]);
 
         return redirect('admin/recipes')->with('success', 'Recipe created successfully!');
     }
 
     // Show the form to edit a recipe
-    public function edit(Recipe $recipe)
+    public function edit($id)
     {
+        $recipe = Recipe::findOrFail($id);
+        $products = Product::all();
+        $categories = Recipe::select('category')->distinct()->pluck('category');
         return inertia('Admin/Recipes/Edit', [
             'recipe' => $recipe,
+            'categories' => $categories,
+            'products' => $products
         ]);
     }
 
@@ -77,40 +90,54 @@ class RecipeController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         $validated = $request->validate([
-            'productid' => 'required|integer',
+            'productID' => 'required|integer',
             'category' => 'required|string|max:100',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'image' => 'nullable|array',
+            'image.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
-
+    
+        $fields = [];
+    
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($recipe->image && file_exists(public_path("storage/{$recipe->image}"))) {
-                unlink(public_path("storage/{$recipe->image}"));
+            // Delete old images
+            $oldImages = json_decode($recipe->image, true);
+            if (is_array($oldImages)) {
+                foreach ($oldImages as $oldImage) {
+                    if (file_exists(public_path("storage/{$oldImage}"))) {
+                        unlink(public_path("storage/{$oldImage}"));
+                    }
+                }
             }
     
-            // Store new image
-            $fields['image'] = $request->file('image')->store('images', 'public');
+            // Store new images
+            $newImagePaths = [];
+            foreach ($request->file('image') as $image) {
+                $newImagePaths[] = $image->store('images', 'public');
+            }
+            $fields['image'] = json_encode($newImagePaths);
         } else {
-            // Keep old image if no new file uploaded
+            // Keep existing images
             $fields['image'] = $recipe->image;
         }
-        
+    
         $recipe->update([
-            'productID' => $validated['productid'],
+            'productID' => $validated['productID'],
             'category' => $validated['category'],
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'image' => $fields['image']
+            'image' => $fields['image'],
         ]);
+    
 
         return redirect('admin/recipes')->with('success', 'Recipe updated successfully!');
     }
 
     // Delete the recipe
-    public function destroy(Recipe $recipe)
+    public function delete($id)
     {
+        $recipe = Recipe::findOrFail($id);
         $recipe->delete();
 
         return redirect('admin/recipes')->with('success', 'Recipe deleted successfully!');

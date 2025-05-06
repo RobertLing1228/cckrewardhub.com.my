@@ -1,22 +1,49 @@
-import React from "react";
+import React, {useState, useRef, useEffect} from "react";
 import { Head, useForm } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 
-export default function Create () {
+export default function Create ({categories, products}) {
+    const [productSearchTerm, setProductSearchTerm] = useState("");
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const productListRef = useRef(null);
+    const [visibleCount, setVisibleCount] = useState(15);
+
+    useEffect(() => {
+        const list = productListRef.current;
+        if (!list) return;
+      
+        const handleScroll = () => {
+          if (list.scrollTop + list.clientHeight >= list.scrollHeight - 5) {
+            // Near bottom, load more
+            setVisibleCount((prev) => prev + 15);
+          }
+        };
+      
+        list.addEventListener("scroll", handleScroll);
+        return () => list.removeEventListener("scroll", handleScroll);
+    }, [filteredProducts]);
+
+    
+
 
     const {data, setData, post, errors, processing} = useForm({
-        productid: '',
+        productID: '',
         category: '',
         title: '',
         description: '',
-        image: '',
+        image: [],
     })
+
+    const [search, setSearch] = useState('');
+    const filteredCategories = categories.filter(cat =>
+        cat.toLowerCase().includes(search.toLowerCase())
+    );
 
     function submit(e) {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("productid", data.productid);
+        formData.append("productID", data.productID);
         formData.append("category", data.category);
         formData.append("title", data.title);
         formData.append("description", data.description);
@@ -29,6 +56,22 @@ export default function Create () {
             }
         );
     }
+
+    const handleProductSearchChange = (e) => {
+        const value = e.target.value;
+        setProductSearchTerm(value);
+        const filtered = products.filter((p) =>
+            `${p.productID} ${p.name}`.toLowerCase().includes(value.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+        setVisibleCount(15);
+    };
+    
+    const handleProductSelect = (product) => {
+        setData("productID", product.productID);
+        setProductSearchTerm(`${product.productID} - ${product.name}`);
+        setFilteredProducts([]);
+    };
 
     console.log(errors);
 
@@ -58,14 +101,30 @@ export default function Create () {
 
                     <label>Product ID</label>
                     {errors.productid && <div className="error">{errors.productid}</div>}
-                    <input 
-                        type="number"
-                        min={1}
-                        step="any"
-                        value={data.productid}
-                        onChange={(e) => setData("productid", e.target.value)}
-                        className={errors.title && "!ring-red-500"}
-                    />
+                    <input
+                            type="text"
+                            value={productSearchTerm}
+                            onChange={handleProductSearchChange}
+                            className={`border px-2 py-1 rounded ${errors.productID ? "!ring-red-500" : ""}`}
+                            placeholder="Type Product ID or Name..."
+                        />
+
+                        {filteredProducts.length > 0 && (
+                            <ul
+                                ref={productListRef}
+                                className="border rounded bg-white max-h-48 overflow-y-auto shadow z-50"
+                            >
+                                {filteredProducts.slice(0, visibleCount).map((product) => (
+                                    <li
+                                        key={product.productID}
+                                        onClick={() => handleProductSelect(product)}
+                                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                    >
+                                        {product.productID} - {product.name}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
 
                     
 
@@ -78,24 +137,30 @@ export default function Create () {
                     className={errors.description && "!ring-red-500"}
                     ></textarea>
 
-                    <label>Category</label>
-                    {errors.cateogry && <div className="error">{errors.category}</div>}
-                    <select onChange={(e) => setData("category", e.target.value)}>
-                        <option value="">Select a category</option>
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                        <option value="Dessert">Dessert</option>
-                        <option value="Snack">Snack</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <label>Category (type to search):</label>
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={e => {
+                            setSearch(e.target.value);
+                            setData('category', e.target.value); // Sync to form
+                        }}
+                        list="category-options"
+                    />
+                    <datalist id="category-options">
+                        {filteredCategories.map((cat, i) => (
+                            <option key={i} value={cat} />
+                        ))}
+                    </datalist>
+                    {errors.category && <div>{errors.category}</div>}
 
                     <label>Image</label>
                     {errors.image && <div className="error">{errors.image}</div>}
                     <input 
                     type="file" 
+                    multiple
                     className="border p-2 w-full rounded-md"
-                    onChange={(e) => setData("image", e.target.files[0])}
+                    onChange={(e) => setData("image", Array.from(e.target.files))}
                     />
 
 
@@ -116,7 +181,7 @@ export default function Create () {
                         <tbody>
                             <tr>
                                 <td>{data.title}</td>
-                                <td>{data.productid}</td>
+                                <td>{data.productID}</td>
                                 <td>{data.description}</td>
                                 <td>{data.category}</td>
 

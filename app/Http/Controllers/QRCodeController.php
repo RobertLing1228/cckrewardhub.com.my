@@ -24,12 +24,14 @@ class QrCodeController extends Controller
             'qr_type' => 'required|string',
             'productID' => 'nullable|integer|exists:products,productID',
             'qr_value' => 'required|string',
+            'is_active' => 'required|boolean',
         ]);
 
         QrCode::create([
             'qr_type' => $fields['qr_type'],
             'product_id' => $fields['productID'],
             'qr_value' => $fields['qr_value'],
+            'is_active' => $fields['is_active'],
         ]);
 
         return redirect('/admin/qrcodes')->with('success', 'QR Code created successfully!');
@@ -45,12 +47,14 @@ class QrCodeController extends Controller
             'qr_type' => 'required|string',
             'productID' => 'nullable|integer|exists:products,productID',
             'qr_value' => 'required|string',
+            'is_active' => 'required|boolean',
         ]);
 
         $qrcode->update([
             'qr_type' => $fields['qr_type'],
             'product_id' => $fields['productID'],
             'qr_value' => $fields['qr_value'],
+            'is_active' => $fields['is_active'],
         ]);
 
         return redirect('/admin/qrcodes')->with('success', 'QR Code updated successfully!');

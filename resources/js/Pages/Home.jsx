@@ -1,12 +1,11 @@
 import { Head, Link, usePage } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
-import WheelSpinWidget from "@/Components/WheelSpin";
 import MultipleImages from "@/Components/MultipleImages";
 import BannerSwiper from "@/Components/BannerSwiper";
 
 
 export default function Home() {
-    const { product, recipe, promotion, user, banners } = usePage().props;
+    const { product, recipe, user, banners } = usePage().props;
 
     return (
         <MainLayout>
@@ -15,15 +14,17 @@ export default function Home() {
             {/* Welcome Header */}
             <div className="text-center py-6 bg-yellow-50 shadow-sm rounded-xl mb-6">
                 <h1 className="text-3xl font-bold text-[#D62828]">
-                    Welcome, user{user.memberID} 👋
+                    Welcome, {user?.memberID || "Guest"} 👋
                 </h1>
                 <p className="text-gray-600 mt-2 text-sm">Explore our latest deals, games & recipes!</p>
             </div>
 
-            {/* Banner */}
-            <div className="mb-8">
+            {/* Banner
+             */}
+             <div className="mb-8">
                 <BannerSwiper banners={banners} />
             </div>
+            
 
             {/* Section: Recipes */}
             <section className="mb-12">

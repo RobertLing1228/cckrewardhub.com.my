@@ -57,7 +57,23 @@ export default function GameIndex({ games }) {
                     ))}
                 </div>
             </section>
+
+            {/* Mission section title with history link*/}
+            <div className="px-4 mt-12 mb-4 flex items-center justify-center">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Your Missions</h2>
+                <span className="mx-2 text-gray-300">|</span>
+                <Link
+                    href="/mission-history"
+                    className="text-xs text-gray-400 hover:text-gray-600 transition"
+                >
+                    View History
+                </Link>
+            </div>
+
+
+
             <MissionList/>
+            
             <MySpinWheel/>
             <button
                 onClick={() => setShowPrizeModal(true)}
