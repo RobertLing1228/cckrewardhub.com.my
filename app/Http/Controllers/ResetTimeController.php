@@ -59,6 +59,7 @@ class ResetTimeController extends Controller
         return response()->json(['message' => 'New wheel mission records created for all users.']);
     }
 
+
     public function admin(){
         $resetTimes = ResetTime::all();
 
@@ -113,31 +114,4 @@ class ResetTimeController extends Controller
 
         return redirect('/admin/resettimes')->with('success', 'Reset Time deleted successfully!');
     }
-
-    public function index()
-{
-    try {
-        $resetTimes = ResetTime::all();
-        
-        $wheelMissions = UserMission::whereHas('mission', function ($query) {
-            $query->where('type', 'wheel');
-        })->select('mission_id')->distinct()->get();
-
-        foreach ($users as $user) {
-            foreach ($wheelMissions as $missionRef) {
-                UserMission::create([
-                    'user_id' => $user,
-                    'mission_id' => $missionRef->mission_id,
-                    'progress' => 0,
-                    'reward_claimed' => false,
-                    'completed_at' => null,
-                    'created_at' => Carbon::now(),
-                    'type' => 'wheel'
-                ]);
-            }
-        }
-
-        return response()->json(['message' => 'New wheel mission records created for all users.']);
-    }
-}
 }
