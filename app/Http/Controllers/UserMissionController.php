@@ -54,12 +54,6 @@ class UserMissionController extends Controller
         if (!$userId) {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
-
-        // Call resetProgress for both 'Mission' and 'Wheel' before fetching missions
-        $this->resetTimeController->resetProgress('Mission');
-        $this->resetTimeController->resetProgress('Wheel');
-
-        // Initialize user missions if they don't already exist
         if (!UserMission::where('user_id', $userId)->exists()) {
             $missions = Mission::all();
             foreach ($missions as $mission) {

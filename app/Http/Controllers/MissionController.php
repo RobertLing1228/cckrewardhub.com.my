@@ -61,30 +61,6 @@ class MissionController extends Controller
         return redirect('/admin/missions')->with('success', 'Mission deleted successfully!');
     }
 
-
-    public function startUserMissions()
-    {
-        $userId = auth()->id();
-        if (!$userId) {
-            return response()->json(['error' => 'User not authenticated'], 401);
-        }
-
-        $existingMissions = UserMission::where('user_id', $userId)->exists();
-        if (!$existingMissions) {
-            $missions = Mission::all();
-            foreach ($missions as $mission) {
-                UserMission::create([
-                    'user_id' => $userId,
-                    'mission_id' => $mission->id,
-                    'progress' => 0,
-                    'reward_claimed' => 0,
-                ]);
-            }
-        }
-
-        return response()->json(['message' => 'User missions initialized']);
-    }
-
     public function index()
     {
         $userId = auth()->id();
@@ -141,15 +117,15 @@ class MissionController extends Controller
 
     $progress = $request->input('progress', 0);
 
-    $userMission = UserMission::firstOrCreate(
-        [
-            'user_id' => $userId,
-            'mission_id' => $missionId,
-        ],
-        [
-            'created_at' => now(),
-        ]
-    );
+    $userMission = UserMission::where('user_id', $userId)
+    ->where('mission_id', $missionId)
+    ->orderByDesc('created_at')
+    ->first();
+
+
+    if (!$userMission) {
+        return response()->json(['error' => 'Mission not found for user'], 404);
+    }
 
     $userMission->progress = $progress;
 

@@ -8,7 +8,6 @@ import PrizeView from './PrizeView';
 const MissionList = () => {
   const { auth } = usePage().props;
   const [missions, setMissions] = useState([]);
-  const [resetTimes, setResetTimes] = useState([]); // To store reset times for mission and wheel
   const [loading, setLoading] = useState(true);
   const [showSpinWheel, setShowSpinWheel] = useState(false);
   const [showQRScanner, setShowQRScanner] = useState(false);
@@ -18,7 +17,6 @@ const MissionList = () => {
 
   useEffect(() => {
     initializeMissions();
-    fetchResetTimes(); // Fetch reset times
   }, []);
 
   const initializeMissions = async () => {
@@ -38,15 +36,6 @@ const MissionList = () => {
       console.error('Error fetching missions:', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchResetTimes = async () => {
-    try {
-      const { data } = await axios.get('/reset-times');
-      setResetTimes(data); // Store the reset times for mission and wheel
-    } catch (error) {
-      console.error('Error fetching reset times:', error);
     }
   };
 
@@ -124,14 +113,10 @@ const MissionList = () => {
 
   const claimReward = async () => {
     try {
-      await router.post("/claim", { gameType: "Mission", prize: 3.00}, {
+      await router.post("/claim", { gameType: "Mission", prize: 3.00 }, {
         onSuccess: async () => {
           console.log("Claim successful");
-  
-          // NEW: Tell backend to update reward_claimed = 1
           await axios.post('/user-missions/claim');
-  
-          // Refresh missions to get updated reward_claimed
           await fetchMissions();
         },
         onError: (errors) => {
@@ -141,11 +126,6 @@ const MissionList = () => {
     } catch (error) {
       console.error("Error during reward claim:", error);
     }
-  };
-
-  const getTimeLeftForGameType = (gameType) => {
-    const resetTime = resetTimes.find(r => r.game_type === gameType);
-    return resetTime ? resetTime.time_left : 'Not available';
   };
 
   return (
@@ -159,15 +139,23 @@ const MissionList = () => {
       ) : (
         <>
           <div className="mb-6">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-700">Completed {completedMissions} / {missions.length}</span>
-              <span className="text-sm text-gray-700">{Math.round((completedMissions / missions.length) * 100)}%</span>
+            <h4 className="text-sm font-medium text-gray-800 mb-2">Mission Progress</h4>
+            <div className="flex space-x-1">
+              {missions.map((mission, index) => {
+                const isCompleted = mission.progress >= mission.mission_goal;
+                return (
+                  <div
+                    key={index}
+                    className={`flex-1 h-4 rounded-md transition-all duration-300
+                      ${isCompleted ? 'bg-yellow-500' : 'bg-gray-300'}
+                    `}
+                    title={`${mission.mission_name}: ${isCompleted ? 'Completed' : 'Incomplete'}`}
+                  ></div>
+                );
+              })}
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div
-                className="bg-green-500 h-2.5 rounded-full transition-all"
-                style={{ width: `${(completedMissions / missions.length) * 100}%` }}
-              />
+            <div className="mt-2 text-sm text-center text-gray-600">
+              {completedMissions} of {missions.length} missions completed
             </div>
           </div>
 
@@ -181,22 +169,6 @@ const MissionList = () => {
                   <div>
                     <h3 className="font-semibold">{mission.mission_name}</h3>
                     <p className="text-sm text-gray-500">{mission.mission_description}</p>
-                    {/* Display the time left for mission */}
-                    {mission.id === 1 && (
-                      <span className="text-xs text-gray-500">
-                        Time Left: {getTimeLeftForGameType('Mission')}
-                      </span>
-                    )}
-                    {mission.id === 2 && (
-                      <span className="text-xs text-gray-500">
-                        Time Left: {getTimeLeftForGameType('Mission')}
-                      </span>
-                    )}
-                    {mission.id === 3 && (
-                      <span className="text-xs text-gray-500">
-                        Time Left: {getTimeLeftForGameType('Wheel')}
-                      </span>
-                    )}
                   </div>
                   {mission.progress >= mission.mission_goal ? (
                     <span className="text-green-600 font-semibold">Completed</span>
@@ -214,12 +186,11 @@ const MissionList = () => {
           </ul>
         </>
       )}
-      
+
       {showQRScanner && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
             <h3 className="text-xl font-bold mb-4 text-center">Scan QR Code</h3>
-
             <p className={`text-center text-sm mb-4 ${
               scanStatus === 'success'
                 ? 'text-green-600'
@@ -234,14 +205,14 @@ const MissionList = () => {
                 : 'Scanning...'}
             </p>
 
-            <div id="reader" className="w-full h-64 bg-gray-200 rounded" />
+            <div id="reader" className="w-full h-74 bg-gray-200 rounded" />
 
-            <div className="mt-4 flex justify-center">
+            <div className="mt-6 flex justify-center">
               <button
                 onClick={() => {
                   stopScanning();
                   setShowQRScanner(false);
-                  setScanStatus(''); // Reset scan status when closing
+                  setScanStatus('');
                 }}
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
               >
@@ -265,8 +236,8 @@ const MissionList = () => {
         <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-center">
           {alreadyClaimedReward ? (
             <>
-              <h3 className="text-xl font-bold text-green-700 mb-2">🎉 Reward Claimed</h3>
-              <p className="text-green-600">You have already claimed your RM3 Voucher.</p>
+              <h3 className="text-xl font-bold text-gray-700 mb-2">🎉 Reward Claimed</h3>
+              <p className="text-gray-600">You have already claimed your RM3 Voucher.</p>
             </>
           ) : (
             <>
@@ -288,8 +259,8 @@ const MissionList = () => {
       {showPrizeModal && (
         <PrizeView
           game="Mission"
-          prizevalue = {3.00}
-          prizename = "RM 3 Cash Voucher"
+          prizevalue={3.00}
+          prizename="RM 3 Cash Voucher"
           onClose={() => setShowPrizeModal(false)}
         />
       )}

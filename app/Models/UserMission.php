@@ -15,9 +15,16 @@ class UserMission extends Model
         'mission_id',
         'progress',
         'reward_claimed',
-        'created_at',
         'completed_at',
+        'created_at',
+        'type',
     ];
+
+    public function mission()
+    {
+        return $this->belongsTo(Mission::class, 'mission_id');
+    }
+
 
     public static function ensureUserMissionsExist($userId)
     {
@@ -25,21 +32,18 @@ class UserMission extends Model
             $missions = \App\Models\Mission::all();
 
             foreach ($missions as $mission) {
+                $type = $mission->id === 3 ? 'wheel' : 'mission';
+
                 self::create([
                     'user_id' => $userId,
                     'mission_id' => $mission->id,
                     'progress' => 0,
                     'reward_claimed' => false,
-                    'created_at' => now(),
                     'completed_at' => null,
+                    'created_at' => now(),
+                    'type' => $type,
                 ]);
             }
         }
     }
-
-    public function mission()
-    {
-        return $this->belongsTo(Mission::class);
-    }
-
 }

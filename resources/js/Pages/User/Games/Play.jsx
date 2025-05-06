@@ -20,7 +20,7 @@ export default function GamePage() {
                     setShowCompletion(true);
         
                     try {
-                        await axios.post("/missions/2/progress", { progress: 1 });
+                        await axios.post(`/missions/2/progress`, { progress: 1 });
                         console.log("Mission progress updated successfully.");
                     } catch (error) {
                         console.error("Failed to update mission progress:", error);

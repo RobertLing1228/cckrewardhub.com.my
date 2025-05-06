@@ -81,8 +81,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/user-missions/claim', [UserMissionController::class, 'claim']);
 
     // Route to reset the start_date and end_date for mission and wheel resets
-    Route::get('/reset-times', [ResetTimeController::class, 'index']);
-    Route::post('/reset-date', [ResetTimeController::class, 'resetDate'])->name('reset.date');
+    Route::get('/reset/missions', [ResetTimeController::class, 'resetMissions']);
+    Route::get('/reset/wheel', [ResetTimeController::class, 'resetWheel']);
 
     // Route to reset the progress for either missions or wheel spins
     Route::post('/reset-progress/{gameType}', [ResetTimeController::class, 'resetProgress'])->name('reset.progress');
