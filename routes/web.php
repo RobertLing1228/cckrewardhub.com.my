@@ -51,6 +51,8 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipe
 Route::get('/promotions', [PromotionController::class, 'index']);
 Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->name('promotions.show');
 
+Route::post('/qrcode/validate', [QRCodeController::class, 'validate']);
+
 
 
 Route::get('/test', function(){

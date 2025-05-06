@@ -3,18 +3,69 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import Modal from "./Modal"; // Import your custom modal
+import { usePage } from '@inertiajs/react';
 
-export default function CameraScan({onScan}) {
+export default function CameraScan() {
     const [isScanning, setIsScanning] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const qrScannerRef = useRef(null);
+    const { props } = usePage();
+    const isLoggedIn = !!props.auth.user;
 
     useEffect(() => {
         return () => {
             stopScanning();
         };
     }, []);
+
+    const validateQrCode = async (text) => {
+        try {
+            stopScanning();
+            {/*const res = await axios.post('/qrcode/validate', { text });
+    
+            if (!res.data.valid) {
+                setErrorMessage("Invalid QR Code.");
+                return;
+            }   */}
+            
+    
+            const isFullUrl = text.startsWith("http://") || text.startsWith("https://");
+            const isProductLink = text.includes("/products/");
+
+            if (isProductLink) {
+                console.log("Product link checking:", text);
+                // Guests AND users can be redirected
+                const redirectUrl = isFullUrl ? text : `${text}`;
+                window.location.href = redirectUrl;
+                return
+            } else if (isLoggedIn) {
+                const response = await axios.post('/scan', { qr_value: text });
+                if (response.data.message === 'QR code scanned successfully!') {
+                    await updateProgress(1);
+                }
+            } else if(!isLoggedIn) {
+                setErrorMessage("Login to complete the mission.");
+            }else{
+                setErrorMessage("Invalid QR Code.");
+            }
+    
+            closePopup();
+        } catch (error) {
+            console.error("QR validation failed", error);
+            setErrorMessage("An error occurred while validating the QR code.");
+            
+        }
+    };
+
+    const updateProgress = async (missionId, progress = 1) => {
+        try {
+          await axios.post(`/missions/${missionId}/progress`, { progress });
+          await fetchMissions();
+        } catch (error) {
+          console.error('Failed to update progress', error);
+        }
+      };
 
     const startScanning = () => {
         if (isScanning || qrScannerRef.current) return;
@@ -26,7 +77,7 @@ export default function CameraScan({onScan}) {
             { qrbox: { width: 250, height: 250 }, fps: 5 },
             (decodedText) => {
                 console.log("QR Code Scanned:", decodedText);
-                onScan(decodedText);
+                validateQrCode(decodedText);
                 closePopup();
             },
             (error) => {

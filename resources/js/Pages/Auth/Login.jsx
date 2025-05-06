@@ -3,7 +3,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm, router } from '@inertiajs/react';
 import React, { useState } from 'react';
 import { auth } from '../../firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
@@ -17,43 +17,63 @@ export default function Login({ status }) {
     const [otpCode, setOtpCode] = useState('');
     const [confirmationResult, setConfirmationResult] = useState(null);
     const [memberID, setMemberID] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [value, setValue] = useState('');
 
 
-    const { data, setData, post, processing, errors, reset } = useForm({
-        phoneNumber: "",
-    });
+    const { post, processing, errors, reset } = useForm();
 
     const setupRecaptcha = () => {
-
+        const recaptchaElement = document.getElementById('recaptcha-container');
+        if (!recaptchaElement) {
+            console.error('Recaptcha container not found in DOM!');
+            return;
+        }
         if (!window.recaptchaVerifier) {
             console.log("Setting up recaptcha with auth:", auth); // debug log
 
             window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                size: 'invisible',
-                callback: (response) => {
+                'size': 'invisible',
+                'callback': (response) => {
                     console.log("Recaptcha callback called with response:", response);
                 },
             });
         }
+
+        window.recaptchaVerifier.render().then((widgetId) => {
+            window.recaptchaWidgetId = widgetId;
+        });
     };
 
     const handleSendOtp = async () => {
         try {
-            // 1. Check if phone number exists in database
+            //Check if phone number exists in database
 
             const response = await axios.post('/check-member', { phoneNumber: value });
-            if (!response.data.memberID) {
+            const fetchedMemberID = response.data.memberID;
+            if (!fetchedMemberID) {
                 alert('Member not found');
                 return;
             }
-            setMemberID(response.data.memberID); // Save associated memberID
-            console.log("Member ID:", memberID);
+            setMemberID(fetchedMemberID);
+            setPhoneNumber(value);
+            console.log("Member ID:", fetchedMemberID);// debug log
 
-            // 2. Setup and send OTP
-            setupRecaptcha();
+            //Setup and send OTP
+            if (!window.recaptchaVerifier) {
+                console.log("Setting up recaptcha with auth:", auth); // debug log
+    
+                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                    'size': 'invisible',    
+                    'callback': (response) => {
+                        console.log("Recaptcha callback called with response:", response);
+                    },
+                });
+            }
             const appVerifier = window.recaptchaVerifier;
-            const result = await signInWithPhoneNumber(auth, value, appVerifier);
+            console.log("App verifier:", appVerifier);// debug log
+            const result = await signInWithPhoneNumber(auth, value, appVerifier); 
+            console.log("Sign in with phone number result:", result);// debug log
             setConfirmationResult(result);
             setOtpSent(true);
             alert('OTP sent!');
@@ -67,12 +87,17 @@ export default function Login({ status }) {
     const handleVerifyOtp = async () => {
         try {
             const result = await confirmationResult.confirm(otpCode);
-            const user = result.user;
+
             alert('OTP verified! Logging in...');
 
             // 3. Log in using Inertia POST
-            post(route('login'), {
-                data: { memberID, phoneNumber: value },
+            router.post(route('login'), {
+                memberID: memberID,
+                phoneNumber: phoneNumber,
+            }, {
+                onSuccess: () => {
+                    console.log('Login successful, redirecting...');
+                },
                 onFinish: () => reset('phoneNumber'),
             });
         } catch (error) {
@@ -84,7 +109,7 @@ export default function Login({ status }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
-
+            
             {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">{status}</div>
             )}
@@ -101,6 +126,8 @@ export default function Login({ status }) {
                         onChange={setValue}
                     />
                     <InputError message={errors.phoneNumber} className="mt-2" />
+
+                    <div id="recaptcha-container"></div>
                 </div>
 
                 {!otpSent ? (
@@ -113,7 +140,7 @@ export default function Login({ status }) {
                         >
                             Not a member? Join now!
                         </a>
-                        <PrimaryButton onClick={handleSendOtp}>Send OTP</PrimaryButton>
+                        <PrimaryButton disabled={processing} onClick={handleSendOtp}>Send OTP</PrimaryButton>
                     </div>
                 ) : (
                     <>
@@ -129,7 +156,7 @@ export default function Login({ status }) {
                             />
                         </div>
                         <div className="mt-4 flex justify-end">
-                            <PrimaryButton onClick={handleVerifyOtp}>Verify & Login</PrimaryButton>
+                            <PrimaryButton disabled={processing} onClick={handleVerifyOtp}>Verify & Login</PrimaryButton>
                         </div>
                     </>
                 )}
@@ -144,7 +171,7 @@ export default function Login({ status }) {
                 </Link>
             </div>
 
-            <div id="recaptcha-container"></div>
+            
         </GuestLayout>
     );
 }

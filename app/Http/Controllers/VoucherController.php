@@ -20,16 +20,18 @@ class VoucherController extends Controller
 
         // Get the vouchers for the current user, including their status and end_date
         $vouchers = Vouchers::join('user_vouchers', 'vouchers.id', '=', 'user_vouchers.voucher_ID')
-            ->where('user_vouchers.userID', $user->userID)
-            ->where(function($query) {
-                // Filter active vouchers (claimed and not expired)
-                $query->where('user_vouchers.status', 'claimed')
-                      ->where('vouchers.end_date', '>=', now());  // Use the current time to check expiration
-            })
-            ->orWhere(function($query) {
-                // Filter expired vouchers (used or expired)
-                $query->where('user_vouchers.status', 'used')
-                      ->orWhere('vouchers.end_date', '<', now());
+            ->where(function($query) use ($user) {
+                $query->where('user_vouchers.userID', $user->userID)
+                    ->where(function($subQuery) {
+                        $subQuery->where(function($q) {
+                            $q->where('user_vouchers.status', 'claimed')
+                                ->where('vouchers.end_date', '>=', now());
+                        })
+                        ->orWhere(function($q) {
+                            $q->where('user_vouchers.status', 'used')
+                                ->orWhere('vouchers.end_date', '<', now());
+                        });
+                    });
             })
             ->get();
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Product;
 
-class QrCodeController extends Controller
+class QRCodeController extends Controller
 {
     public function admin() {
         $qr_codes = QrCode::all();
@@ -78,7 +78,19 @@ class QrCodeController extends Controller
     } else {
         return response()->json(['message' => 'Invalid or inactive QR code.'], 400);
     }
+    
 }
+
+    public function validate(Request $request) {
+        $text = $request->input('text');
+
+    // Check if the QR text exists in the database
+        $exists = QrCode::where('qr_value', $text)->exists();
+
+        return response()->json([
+            'valid' => $exists,
+        ]);
+    }
 
 
 

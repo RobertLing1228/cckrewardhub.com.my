@@ -108,6 +108,10 @@ class UserController extends Controller
     }
 
     public function checkMember(Request $request){
+        if(!$request->input('phoneNumber')){
+            return response()->json(['message' => 'Phone number is required'], 400);
+        }
+        
         $phoneNumber = $request->input('phoneNumber');
         $member = ExistingMember::where('phoneNumber', $phoneNumber)->first();
 
