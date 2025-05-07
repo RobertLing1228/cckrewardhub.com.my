@@ -5,7 +5,7 @@ import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm, router } from '@inertiajs/react';
 import React, { useState } from 'react';
-import { auth } from '../../firebase';
+import { auth } from '../../Firebase/firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import axios from 'axios';
 
@@ -22,28 +22,6 @@ export default function Login({ status }) {
 
 
     const { post, processing, errors, reset } = useForm();
-
-    const setupRecaptcha = () => {
-        const recaptchaElement = document.getElementById('recaptcha-container');
-        if (!recaptchaElement) {
-            console.error('Recaptcha container not found in DOM!');
-            return;
-        }
-        if (!window.recaptchaVerifier) {
-            console.log("Setting up recaptcha with auth:", auth); // debug log
-
-            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                'size': 'invisible',
-                'callback': (response) => {
-                    console.log("Recaptcha callback called with response:", response);
-                },
-            });
-        }
-
-        window.recaptchaVerifier.render().then((widgetId) => {
-            window.recaptchaWidgetId = widgetId;
-        });
-    };
 
     const handleSendOtp = async () => {
         try {

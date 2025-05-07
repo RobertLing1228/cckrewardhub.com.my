@@ -2,26 +2,26 @@ import React from "react";
 import { Head, useForm } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 
-export default function Edit ({member}) {
+export default function Add () {
     const {data, setData, post, errors, processing} = useForm({
-            memberID: member.memberID,
-            phoneNumber: member.phoneNumber,
+            memberID: '',
+            phoneNumber: '',
         })
     
     function submit(e) {
         e.preventDefault();
     
-        post(`/admin/users/${member.userID}`, data);
+        post('/admin/members/add', data);
     }
 
     return (
-        <AdminLayout title="Edit Users"
+        <AdminLayout title="Add Users"
             breadcrumbs={[
                 { label: "Admin", url: "/admin" },
                 { label: "Users", url: "/admin/users" },
-                { label: "Edit User" }
+                { label: "Add Member" }
             ]}>
-            <Head title="Edit User" />
+            <Head title="Add Member" />
             <div className="p-4 bg-white shadow-md rounded-lg">
             <div className="mx-auto">
                     
@@ -44,7 +44,7 @@ export default function Edit ({member}) {
                         className={errors.phoneNumber && "!ring-red-500"}
                     />
 
-                    <p>Changes:</p>
+                    <p>Example table:</p>
                     <table className="table">
                         <thead>
                             <tr>
@@ -52,13 +52,6 @@ export default function Edit ({member}) {
                                 <th className="font-bold">PhoneNumber</th>
                             </tr>
                         </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>{member.memberID}</td>
-                                <td>{member.phoneNumber}</td>
-                            </tr>
-                        </tbody>
                         
                         <tbody>
                             <tr>

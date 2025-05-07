@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use App\Models\ResetTimes;
 
 class ResetTimeController extends Controller
 {
@@ -61,7 +62,7 @@ class ResetTimeController extends Controller
 
 
     public function admin(){
-        $resetTimes = ResetTime::all();
+        $resetTimes = ResetTimes::all();
 
         return Inertia::render('Admin/ResetTimes/Index', ['resetTimes' => $resetTimes]);
     }
@@ -77,7 +78,7 @@ class ResetTimeController extends Controller
             'isWeekly' => 'required|boolean',
         ]);
 
-        ResetTime::create([
+        ResetTimes::create([
             'game_type' => $fields['game_type'],
             'reset_time' => $fields['reset_time'],
             'isWeekly' => $fields['isWeekly'],
@@ -89,11 +90,11 @@ class ResetTimeController extends Controller
 
 
     public function edit($id){
-        $resettimes = ResetTime::find($id);
+        $resettimes = ResetTimes::find($id);
         return Inertia::render('Admin/ResetTimes/Edit', ['resettimes' => $resettimes]);
     }
 
-    public function update(ResetTime $resettimes, Request $request){
+    public function update(ResetTimes $resettimes, Request $request){
         $fields = $request->validate([
             'game_type' => 'required|string',
             'reset_time' => ['required', 'date_format:H:i:s'],
@@ -109,7 +110,7 @@ class ResetTimeController extends Controller
         return redirect('/admin/resettimes')->with('success', 'Reset Time updated successfully!');
     }
 
-    public function delete(ResetTime $resettimes){
+    public function delete(ResetTimes $resettimes){
         $resettimes->delete();
 
         return redirect('/admin/resettimes')->with('success', 'Reset Time deleted successfully!');

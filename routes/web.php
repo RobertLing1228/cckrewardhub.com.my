@@ -25,6 +25,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FileImportController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExistMemController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -145,6 +146,13 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/admin/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/admin/reset-password/{admin}', [UserController::class, 'resetPassword'])->name('admin.reset-password');
+    Route::get('admin/members/add', [ExistMemController::class, 'create']);
+    Route::post('admin/members/add', [ExistMemController::class, 'store'])->name('members.store');
+    Route::get('admin/members/{member}/edit', [ExistMemController::class, 'edit'])->name('members.edit');
+    Route::post('admin/members/{member}', [ExistMemController::class, 'update'])->name('members.update');
+    Route::delete('admin/members/{member}', [ExistMemController::class, 'delete'])->name('members.delete');
+
+
 
     Route::get('/admin/profile', [UserController::class, 'profile'])->name('admin.profile');
     Route::post('/admin/profile', [UserController::class, 'updateProfile'])->name('admin.profile.update');

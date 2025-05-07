@@ -11,17 +11,17 @@ export default function Edit ({member}) {
     function submit(e) {
         e.preventDefault();
     
-        post(`/admin/users/${member.userID}`, data);
+        post(`/admin/members/${member.existsmemID}`, data);
     }
 
     return (
-        <AdminLayout title="Edit Users"
+        <AdminLayout title="Edit Members"
             breadcrumbs={[
                 { label: "Admin", url: "/admin" },
                 { label: "Users", url: "/admin/users" },
-                { label: "Edit User" }
+                { label: "Edit Member" }
             ]}>
-            <Head title="Edit User" />
+            <Head title="Edit Member" />
             <div className="p-4 bg-white shadow-md rounded-lg">
             <div className="mx-auto">
                     

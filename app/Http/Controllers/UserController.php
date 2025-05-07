@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\User;
 use App\Models\ExistingMember;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -16,7 +17,8 @@ class UserController extends Controller
     public function admin(){
         $admin = Admin::all();
         $member = ExistingMember::all();
-        return inertia('Admin/Users/Index', ['admins' => $admin, 'members' => $member]);
+        $user = User::all();
+        return inertia('Admin/Users/Index', ['admins' => $admin, 'members' => $member, 'users' => $user]);
     }
 
     public function create(){
@@ -29,7 +31,7 @@ class UserController extends Controller
             'phoneNumber' => 'required|string|max:255',
         ]);
 
-        ExistingMember::create([
+        User::create([
             'memberID' => $fields['memberID'],
             'phoneNumber' => $fields['phoneNumber'],
         ]);
@@ -39,7 +41,7 @@ class UserController extends Controller
     }
 
     public function edit($id){
-        $member = ExistingMember::find($id);
+        $member = User::find($id);
         return inertia('Admin/Users/Edit', [
             'member' => $member
         ]);
@@ -51,7 +53,7 @@ class UserController extends Controller
             'phoneNumber' => 'required|string|max:255',
         ]);
 
-        $member = ExistingMember::find($id);
+        $member = User::find($id);
         $member->update([
             'memberID' => $fields['memberID'],
             'phoneNumber' => $fields['phoneNumber'],
@@ -62,7 +64,7 @@ class UserController extends Controller
     }
 
     public function delete($id){
-        $member = ExistingMember::find($id);
+        $member = User::find($id);
         $member->delete();
         return redirect('/admin/users')->with('success', 'Member deleted successfully!');
     }
