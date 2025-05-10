@@ -72,17 +72,37 @@ class UserMissionController extends Controller
     }
 
     public function claim()
-    {
-        $userId = Auth::id();
-        if (!$userId) {
-            return response()->json(['error' => 'User not authenticated'], 401);
-        }
-
-        UserMission::where('user_id', $userId)
-            ->update(['reward_claimed' => 1]);
-
-        return response()->json(['message' => 'Reward claimed successfully']);
+{
+    $userId = Auth::id();
+    if (!$userId) {
+        return response()->json(['error' => 'User not authenticated'], 401);
     }
+
+    $latestCreatedAt = UserMission::where('user_id', $userId)
+        ->orderByDesc('created_at')
+        ->limit(1)
+        ->value('created_at');
+
+    if (!$latestCreatedAt) {
+        return response()->json(['error' => 'No missions found for user'], 404);
+    }
+
+    $latestMissions = UserMission::where('user_id', $userId)
+        ->where('created_at', $latestCreatedAt)
+        ->whereNotNull('completed_at')
+        ->where('reward_claimed', 0)
+        ->get();
+
+    if ($latestMissions->isEmpty()) {
+        return response()->json(['error' => 'No completed unclaimed missions found in latest batch'], 404);
+    }
+
+    foreach ($latestMissions as $mission) {
+        $mission->update(['reward_claimed' => 1]);
+    }
+
+    return response()->json(['message' => 'Rewards claimed for latest completed missions']);
+}
 
     public function history()
     {

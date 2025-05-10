@@ -19,6 +19,7 @@ export default function Edit ({resettimes}) {
         const formData = new FormData();
         formData.append("game_type", data.game_type);
         formData.append("reset_time", data.reset_time);
+        formData.append("isWeekly", data.isWeekly);
 
         post(`/admin/resettimes/${resettimes.id}`, formData,
             {

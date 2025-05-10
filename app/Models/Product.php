@@ -23,6 +23,7 @@ class Product extends Model
         'description',
         'category',
         'image',
+        'itemHot'
     ];
 
     // Optionally, define casts for specific fields

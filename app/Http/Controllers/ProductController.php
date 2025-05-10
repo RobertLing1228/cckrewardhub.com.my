@@ -111,6 +111,7 @@ class ProductController extends Controller
             'description' => 'required|string',
             'category' => 'nullable|integer',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'itemHot' => 'nullable|boolean'
         ]);
 
 
@@ -121,7 +122,8 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'description' => $validated['description'],
             'category' => $validated['category'],
-            'image' => $imagePath
+            'image' => $imagePath,
+            'itemHot' => $validated['itemHot']
         ]);
 
         return redirect('/admin/products')->with('success', 'Product created successfully!');
@@ -173,6 +175,7 @@ class ProductController extends Controller
             'description' => 'sometimes|required|string',
             'category' => 'sometimes|nullable|integer',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'itemHot' => 'nullable|boolean'
         ]);
 
         if ($request->hasFile('image')) {
@@ -190,7 +193,8 @@ class ProductController extends Controller
             'price' => $fields['price'],
             'description' => $fields['description'],
             'category' => $fields['category'],
-            'image' => $fields['image']
+            'image' => $fields['image'],
+            'itemHot' => $fields['itemHot']
         ]);
 
         return redirect('/admin/products')->with('success', 'Product updated successfully!');

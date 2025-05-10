@@ -9,7 +9,8 @@ export default function Create ({ categories }) {
         price: '',
         description: '',
         category: '',
-        image: ''
+        image: '',
+        itemHot: 0
 
     })
 
@@ -22,6 +23,7 @@ export default function Create ({ categories }) {
         formData.append("description", data.description);
         formData.append("category", data.category);
         formData.append("image", data.image);  // Append file
+        formData.append("itemHot", data.itemHot)
 
         post('/admin/products/add', formData,
             {
@@ -92,6 +94,33 @@ export default function Create ({ categories }) {
                     onChange={(e) => setData("image", e.target.files[0])}
                     />
 
+                    {/* Is Hot Item */}
+                    <div>
+                        <label className="font-bold block mb-2">Is Hot Item?</label>
+                        <div className="flex gap-4">
+                            <label className="flex items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="itemHot"
+                                    value="1"
+                                    checked={data.itemHot === 1}
+                                    onChange={() => setData("itemHot", 1)}
+                                />
+                                Yes
+                            </label>
+                            <label className="flex items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="itemHot"
+                                    value="0"
+                                    checked={data.itemHot === 0}
+                                    onChange={() => setData("itemHot", 0)}
+                                />
+                                No
+                            </label>
+                        </div>
+                    </div>
+
                     <p>Example table:</p>
                     <table className="table">
                         <thead>
@@ -100,6 +129,7 @@ export default function Create ({ categories }) {
                                 <th className="font-bold">Price</th>
                                 <th className="font-bold">Description</th>
                                 <th className="font-bold">Category</th>
+                                <th className="font-bold">Hot Item?</th>
                             </tr>
                         </thead>
                         
@@ -109,6 +139,7 @@ export default function Create ({ categories }) {
                                 <td>{data.price}</td>
                                 <td>{data.description}</td>
                                 <td>{data.category}</td>
+                                <td>{data.itemHot ? "Yes" : "No"}</td>
 
                             </tr>
                         </tbody>

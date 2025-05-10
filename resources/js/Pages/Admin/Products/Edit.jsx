@@ -9,7 +9,8 @@ export default function Edit ({ product, categories }) {
         price: product.price,
         description: product.description,
         category: product.category,
-        image: ''
+        image: '',
+        itemHot: product.itemHot
     })
 
     function submit(e) {
@@ -21,6 +22,7 @@ export default function Edit ({ product, categories }) {
         formData.append("description", data.description);
         formData.append("category", data.category);
         formData.append("image", data.image);  // Append file
+        formData.append("itemHot", data.itemHot ? 1 : 0);
 
 
         post(`/admin/products/${product.productID}`, formData, {
@@ -94,6 +96,18 @@ export default function Edit ({ product, categories }) {
                     onChange={(e) => setData("image", e.target.files[0])}
                     />
 
+                    <label flex items-center mt-2>
+                    {errors.itemHot && <div className="error">{errors.itemHot}</div>}
+                    <input 
+                                    type="checkbox" 
+                                    name="itemHot"
+                                    checked={data.itemHot} 
+                                    onChange={e => setData('itemHot', e.target.checked)} 
+                                    className="mr-2"
+                                />
+                    Make this a Hot item?
+                    </label>
+
 
                     <h2 className="font-bold mt-4">Changes:</h2>
                     <table className="table">
@@ -103,6 +117,7 @@ export default function Edit ({ product, categories }) {
                                 <th className="font-bold">Price</th>
                                 <th className="font-bold">Description</th>
                                 <th className="font-bold">Category</th>
+                                <th className="font-bold">Hot Item?</th>
 
                             </tr>
                         </thead>
@@ -113,6 +128,7 @@ export default function Edit ({ product, categories }) {
                                 <td>{product.price}</td>
                                 <td>{product.description}</td>
                                 <td>{product.category}</td>
+                                <td>{product.itemHot ? "Yes" : "No"}</td>
 
                                 
                             </tr>
@@ -124,8 +140,7 @@ export default function Edit ({ product, categories }) {
                                 <td>{data.price}</td>
                                 <td>{data.description}</td>
                                 <td>{data.category}</td>
-                                <td>{data.branch_id}</td>
-                                <td>{data.stock}</td>
+                                <td>{data.itemHot ? "Yes" : "No"}</td>
                                
                             </tr>
                         </tbody>
