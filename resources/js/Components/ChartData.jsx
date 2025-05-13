@@ -1,13 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
-const DashboardChart = () => {
+const DashboardChart = ({loginsPerMonthData}) => {
   const barChartRef = useRef(null);
   const pieChartRef = useRef(null);
   const doughnutChartRef = useRef(null);
 
   const chartInstances = useRef([]);
 
+  console.log(loginsPerMonthData);
+
+  
   useEffect(() => {
     // Destroy previous charts if they exist to prevent duplication
     chartInstances.current.forEach((chart) => chart?.destroy());
@@ -22,15 +25,31 @@ const DashboardChart = () => {
           labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
           datasets: [
             {
-              label: "Sales",
-              data: [30, 45, 60, 40, 80, 90],
+              label: "Logins",
+              data: loginsPerMonthData,
               backgroundColor: "rgba(54, 162, 235, 0.5)",
               borderColor: "rgba(54, 162, 235, 1)",
               borderWidth: 1,
             },
           ],
         },
-        options: { responsive: true, maintainAspectRatio: false },
+        options: { 
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              ticks: {
+                callback: function (value) {
+                  // Only show whole numbers
+                  return Number.isInteger(value) ? value : null;
+                },
+                stepSize: 1,
+              },
+              beginAtZero: true,
+            },
+          
+          },
+        }
       })
     );
 
@@ -75,13 +94,13 @@ const DashboardChart = () => {
     return () => {
       chartInstances.current.forEach((chart) => chart.destroy());
     };
-  }, []);
+  }, [loginsPerMonthData]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {/* Bar Chart */}
       <div className="bg-white p-4 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-2">Visitors Per Month</h3>
+        <h3 className="text-lg font-semibold mb-2">Logins Per Month</h3>
         <div className="w-full h-72">
           <canvas ref={barChartRef}></canvas>
         </div>
