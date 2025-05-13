@@ -12,73 +12,72 @@ use App\Models\Banner;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductController extends Controller
 {
     /**
      * Display homepage with limited products, recipes, and promotions.
      */
-    public function home()
-    {
-        $product = Product::orderBy('name', 'asc')->take(6)->get();
-        $recipe = Recipe::orderBy('title', 'asc')->take(6)->get();
-        $promotion = Promotion::orderBy('title', 'asc')->take(6)->get();
-        $banners = Banner::all();
-        
-        return Inertia::render('Home', [
-            'product' => $product, 
-            'recipe' => $recipe, 
-            'promotion' => $promotion, 
-            'banners' => $banners,
-            'user' => auth()->check() ? auth()->user() : null
-        ]);
-    }
+   public function home()
+{
+    $product = Product::where('is_hot', true)->orderBy('name')->take(6)->get();
+    $recipe = Recipe::orderBy('title')->take(6)->get();
+    $promotion = Promotion::orderBy('title')->take(6)->get();
+    $banners = Banner::all();
 
+    return Inertia::render('Home', [
+        'product' => $product,
+        'recipe' => $recipe,
+        'promotion' => $promotion,
+        'banners' => $banners,
+        'user' => auth()->check() ? auth()->user() : null
+    ]);
+}
     /**
      * Display product listing with branch and category filtering.
      */
-    public function index(Request $request)
-    {
-        $categories = Categories::all();
-        $branches = Branch::all(); // Fetch all branches
-    
-        $products = Product::query()
-            ->join('categories', 'products.category', '=', 'categories.categoryID')
-            ->select('products.*', 'categories.categoryName as category_name')
-            ->orderBy('products.name', 'asc');
-    
-        //  Search by product name
-        if ($request->filled('search')) {
-            $products->where('products.name', 'like', '%' . $request->search . '%');
-        }
-    
-        //  Filter by category
-        if ($request->filled('category') && $request->category !== "") {
-            $products->where('products.category', (int) $request->category);
-        }
-    
-        //  Filter by branch and ensure stock is available
-        if ($request->filled('branch_id')) {
-            $branch_id = (int) $request->branch_id;
-            $products->whereIn('products.productID', function ($query) use ($branch_id) {
-                $query->select('productID')
-                    ->from('branch_product')
-                    ->where('branch_id', $branch_id)
-                    ->where('stock', '>', 0);
-            });
-        }
-    
-        return Inertia::render('User/Products/Index', [
-            'products' => $products->get(),
-            'filters' => [
-                'search' => $request->search ?? null,
-                'category' => $request->category ?? null,
-                'branch_id' => $request->branch_id ?? null
-            ],
-            'categories' => $categories,
-            'branches' => $branches
-        ]);
+   public function index(Request $request)
+{
+    $categories = Categories::all();
+    $branches = Branch::all();
+
+    $products = Product::query()
+        ->join('categories', 'products.category', '=', 'categories.categoryID')
+        ->select('products.*', 'categories.categoryName as category_name')
+        ->orderBy('products.name', 'asc');
+
+    if ($request->filled('search')) {
+        $products->where('products.name', 'like', '%' . $request->search . '%');
     }
+
+    if ($request->filled('category') && $request->category !== "") {
+        $products->where('products.category', (int) $request->category);
+    }
+
+    if ($request->filled('branch_id')) {
+        $branch_id = (int) $request->branch_id;
+        $products->whereIn('products.productID', function ($query) use ($branch_id) {
+            $query->select('productID')
+                ->from('branch_product')
+                ->where('branch_id', $branch_id)
+                ->where('stock', '>', 0);
+        });
+    }
+
+    $paginatedProducts = $products->paginate(12)->withQueryString(); // 👈 paginate!
+
+    return Inertia::render('User/Products/Index', [
+        'products' => $paginatedProducts,
+        'filters' => [
+            'search' => $request->search ?? null,
+            'category' => $request->category ?? null,
+            'branch_id' => $request->branch_id ?? null
+        ],
+        'categories' => $categories,
+        'branches' => $branches
+    ]);
+}
 
     /**
      * Show admin product management page.
