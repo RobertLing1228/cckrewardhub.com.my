@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
    public function home()
 {
-    $product = Product::where('is_hot', true)->orderBy('name')->take(6)->get();
+    $product = Product::where('itemHot', true)->orderBy('name')->take(6)->get();
     $recipe = Recipe::orderBy('title')->take(6)->get();
     $promotion = Promotion::orderBy('title')->take(6)->get();
     $banners = Banner::all();

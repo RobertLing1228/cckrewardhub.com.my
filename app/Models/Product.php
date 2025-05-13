@@ -19,7 +19,7 @@ class Product extends Model
         'description',
         'category',
         'image',
-        'is_hot',
+        'itemHot',
     ];
 
     protected $casts = [
