@@ -33,7 +33,7 @@ export default function ShowVoucher({voucher}) {
     return (
         <MainLayout>
             <Head title={voucher.name} />
-            <div className="min-h-screen bg-gray-100 py-8 px-4">
+            <div className="min-h-screen py-8 px-4">
                 <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
                     {/* Back Button */}
                     <Link

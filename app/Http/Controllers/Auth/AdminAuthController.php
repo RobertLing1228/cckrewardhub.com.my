@@ -32,7 +32,7 @@ class AdminAuthController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        $request->session()->invalidate();
+        $request->session()->forget(['admin_id', 'admin_stuff']);
         $request->session()->regenerateToken();
 
         return redirect()->route('admin.login');
