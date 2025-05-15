@@ -6,7 +6,8 @@ import MySpinWheel from '@/Components/SpinWheel';
 import PrizeView from './PrizeView'; 
 
 const MissionList = () => {
-  const { auth } = usePage().props;
+  const {props} = usePage();
+  const [errors, setErrors] = useState([]);
   const [missions, setMissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showSpinWheel, setShowSpinWheel] = useState(false);
@@ -113,13 +114,14 @@ const MissionList = () => {
 
   const claimReward = async () => {
     try {
-      await router.post("/claim", { gameType: "Mission", prize: 3.00 }, {
+      router.post("/claim", { gameType: "Mission", prize: 3.00 }, {
         onSuccess: async () => {
           console.log("Claim successful");
-          await axios.post('/user-missions/claim');
+          router.post('/user-missions/claim');
           await fetchMissions();
         },
         onError: (errors) => {
+          setErrors(errors);
           console.error("Error claiming:", errors);
         },
       });
@@ -131,6 +133,15 @@ const MissionList = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-6">Your Missions</h2>
+      {errors.length > 0 && (
+        <div className="alert alert-danger">
+          <ul>
+            {errors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {loading ? (
         <div className="text-center py-10 text-gray-400">

@@ -127,16 +127,6 @@ export default function ProductIndex({ products, filters, categories, branches }
                         </button>
                     </div>
                 )}
-
-                {/* Scroll to top button */}
-                {showScrollTop && (
-                    <button
-                        onClick={scrollToTop}
-                        className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
-                    >
-                        Scroll to Top
-                    </button>
-                )}
             </div>
         </MainLayout>
     );

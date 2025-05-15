@@ -75,24 +75,6 @@ export default function GameIndex({ games }) {
             <MissionList/>
             
             <MySpinWheel/>
-            <button
-                onClick={() => setShowPrizeModal(true)}
-                className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
-            >
-                Open Prize Claim Modal
-            </button>
-
-            {/* Spin the Wheel */}
-            <section className="py-10 px-4 bg-[#f9f9f9]">
-                <h2 className="text-2xl font-bold mb-4 text-gray-800">Try Your Luck</h2>
-                <MySpinWheel />
-                <button
-                    onClick={() => setShowPrizeModal(true)}
-                    className="mt-6 bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
-                >
-                    Claim Prize
-                </button>
-            </section>
 
             {/* Prize Modal */}
             {showPrizeModal && (

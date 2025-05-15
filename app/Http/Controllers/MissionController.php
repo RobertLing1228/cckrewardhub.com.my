@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mission;
 use App\Models\UserMission;
+use App\Models\MissionCompletionLog;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -105,38 +106,81 @@ class MissionController extends Controller
     }
 
     public function updateProgress(Request $request, $missionId)
-{
-    $userId = auth()->id();
-    if (!$userId) {
-        return response()->json(['error' => 'User not authenticated'], 401);
+    {
+        $userId = auth()->id();
+        if (!$userId) {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
+
+        $request->validate([
+            'progress' => 'required|integer|min:0',
+        ]);
+
+        $progress = $request->input('progress', 0);
+
+        $userMission = UserMission::where('user_id', $userId)
+        ->where('mission_id', $missionId)
+        ->orderByDesc('created_at')
+        ->first();
+
+
+        if (!$userMission) {
+            return response()->json(['error' => 'Mission not found for user'], 404);
+        }
+
+        $userMission->progress = $progress;
+
+        $mission = Mission::find($missionId);
+        if ($mission && $progress >= $mission->mission_goal && !$userMission->completed_at) {
+            $userMission->completed_at = now();
+        }
+
+        $userMission->save();
+
+        $this->checkAndLogMissionCompletion($userId);
+
+        return response()->json(['message' => 'Progress updated']);
     }
 
-    $request->validate([
-        'progress' => 'required|integer|min:0',
-    ]);
+    private function checkAndLogMissionCompletion($userId)
+    {
 
-    $progress = $request->input('progress', 0);
+        $latestCreatedAt = UserMission::where('user_id', $userId)
+            ->orderByDesc('created_at')
+            ->value('created_at'); // gets the most recent timestamp
 
-    $userMission = UserMission::where('user_id', $userId)
-    ->where('mission_id', $missionId)
-    ->orderByDesc('created_at')
-    ->first();
+        if (!$latestCreatedAt) {
+            return; // no missions
+        }
 
+        // Get the 3 missions created at that exact timestamp
+        $latestMissions = UserMission::where('user_id', $userId)
+            ->where('created_at', $latestCreatedAt)
+            ->get();
 
-    if (!$userMission) {
-        return response()->json(['error' => 'Mission not found for user'], 404);
+        // If less than 3, skip
+        if ($latestMissions->count() < 3) {
+            return;
+        }
+
+        // Check if all three are completed (progress >= mission_goal or completed_at is not null)
+        $allCompleted = $latestMissions->every(function ($mission) {
+            return $mission->completed_at !== null;
+        });
+
+        if ($allCompleted) {
+            // Avoid duplicate logging (if already logged)
+            $alreadyLogged = MissionCompletionLog::where('user_id', $userId)
+                ->whereDate('date_completed', today())
+                ->exists();
+
+            if (!$alreadyLogged) {
+                MissionCompletionLog::create([
+                    'user_id' => $userId,
+                    'date_completed' => now(),
+                ]);
+            }
+        }
     }
-
-    $userMission->progress = $progress;
-
-    $mission = Mission::find($missionId);
-    if ($mission && $progress >= $mission->mission_goal && !$userMission->completed_at) {
-        $userMission->completed_at = now();
-    }
-
-    $userMission->save();
-
-    return response()->json(['message' => 'Progress updated']);
-}
 
 }
