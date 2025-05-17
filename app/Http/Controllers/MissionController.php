@@ -78,6 +78,7 @@ class MissionController extends Controller
                 'mission_name' => $mission->mission_name,
                 'mission_description' => $mission->mission_description,
                 'mission_goal' => $mission->mission_goal,
+                'mission_image' => $mission->mission_image,
                 'progress' => $userMission ? $userMission->progress : 0,
                 'reward_claimed' => $userMission ? $userMission->reward_claimed : 0,
             ];

@@ -10,7 +10,11 @@ class Mission extends Model
     protected $table = 'missions';
 
     protected $primaryKey = 'id';
-    protected $fillable = ['mission_name', 'mission_description', 'mission_goal'];
+    protected $fillable = ['mission_name', 'mission_description', 'mission_goal','mission_image'];
+    protected $casts = [
+        'mission_image' => 'array',
+    ];
+
 
     public $timestamps = false;
 

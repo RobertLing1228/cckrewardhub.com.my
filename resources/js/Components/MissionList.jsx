@@ -4,6 +4,8 @@ import { usePage, router } from '@inertiajs/react';
 import { Html5Qrcode } from 'html5-qrcode';
 import MySpinWheel from '@/Components/SpinWheel';
 import PrizeView from './PrizeView'; 
+import MultipleImages from "@/Components/MultipleImages";
+
 
 const MissionList = () => {
   const { auth } = usePage().props;
@@ -129,63 +131,83 @@ const MissionList = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Your Missions</h2>
+    <div className="p-6 bg-[#f9fafb] rounded-xl shadow max-w-4xl mx-auto">
+      <h2 className="text-3xl font-bold mb-4 text-gray-800">Weekly Missions</h2>
 
       {loading ? (
-        <div className="text-center py-10 text-gray-400">
-          Loading missions...
-        </div>
+        <div className="text-center py-10 text-gray-400">Loading missions...</div>
       ) : (
         <>
-          <div className="mb-6">
-            <h4 className="text-sm font-medium text-gray-800 mb-2">Mission Progress</h4>
-            <div className="flex space-x-1">
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-1 text-sm text-gray-600">
+              <span>{completedMissions} of {missions.length} missions completed</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-4">
+               <div className="flex space-x-1">
               {missions.map((mission, index) => {
                 const isCompleted = mission.progress >= mission.mission_goal;
                 return (
                   <div
                     key={index}
                     className={`flex-1 h-4 rounded-md transition-all duration-300
-                      ${isCompleted ? 'bg-yellow-500' : 'bg-gray-300'}
+                      ${isCompleted ? 'bg-green-500' : 'bg-gray-300'}
                     `}
                     title={`${mission.mission_name}: ${isCompleted ? 'Completed' : 'Incomplete'}`}
                   ></div>
                 );
               })}
             </div>
-            <div className="mt-2 text-sm text-center text-gray-600">
-              {completedMissions} of {missions.length} missions completed
             </div>
           </div>
 
-          <ul className="space-y-4">
-            {missions.map(mission => (
-              <li
-                key={mission.id}
-                className={`p-4 border rounded-lg ${mission.progress >= mission.mission_goal ? 'border-green-300 bg-green-50' : 'border-gray-200 hover:bg-gray-50'}`}
-              >
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h3 className="font-semibold">{mission.mission_name}</h3>
-                    <p className="text-sm text-gray-500">{mission.mission_description}</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {missions.map(mission => {
+              const isCompleted = mission.progress >= mission.mission_goal;
+
+              console.log('Image path:', mission.mission_image);
+              return (
+                <div
+                  key={mission.id}
+                  className={`p-5 rounded-lg shadow-sm border transition-all ${
+                    isCompleted ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'
+                  }`}
+                >
+                  <div className="flex flex-col h-full justify-between gap-3">
+
+                    <div className="flex justify-center">
+                      <MultipleImages images={mission.mission_image} name={mission.mission_name} />
+                    </div>
+
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">{mission.mission_name}</h3>
+                      <p className="text-sm text-gray-500">{mission.mission_description}</p>
+                    </div>
+
+                    {isCompleted ? (
+                      <div className="mt-4 flex justify-center">
+                        <span className="inline-block mt-4 px-3 py-1 text-lg font-medium text-green-700 bg-green-100 rounded-full w-fit">
+                          ✅ Done
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="mt-4 flex justify-center">
+                        <button
+                          onClick={() => handleStartMission(mission)}
+                          className="w-1/2 bg-white text-blue-800 border border-blue-800 font-semibold px-4 py-2 rounded-full shadow hover:brightness-110 transition"
+                        >
+                          Start Now
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  {mission.progress >= mission.mission_goal ? (
-                    <span className="text-green-600 font-semibold">Completed</span>
-                  ) : (
-                    <button
-                      onClick={() => handleStartMission(mission)}
-                      className="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
-                    >
-                      Start
-                    </button>
-                  )}
                 </div>
-              </li>
-            ))}
-          </ul>
+              );
+            })}
+          </div>
         </>
       )}
+
 
       {showQRScanner && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
