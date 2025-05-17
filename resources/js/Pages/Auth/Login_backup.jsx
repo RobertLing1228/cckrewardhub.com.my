@@ -4,15 +4,11 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { useState } from 'react';
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
 
 export default function Login({ status }) {
-    const [value, setValue] = useState('');
     const { data, setData, post, processing, errors, reset } = useForm({
         memberID: '',
-        phoneNumber: value,
+        phoneNumber: '',
     });
 
     const submit = (e) => {
@@ -51,13 +47,13 @@ export default function Login({ status }) {
                 <div className="mt-4">
                     <InputLabel htmlFor="phoneNumber" value="Phone Number" />
 
-                    <PhoneInput
+                    <TextInput
                         id="phoneNumber"
+                        type="text"
                         name="phoneNumber"
-                        placeholder="Enter phone number"
-                        defaultCountry='MY'
                         value={data.phoneNumber}
-                        onChange={(e) => setData('phoneNumber', e)}
+                        className="mt-1 block w-full"
+                        onChange={(e) => setData('phoneNumber', e.target.value)}
                     />
                     <InputError message={errors.phoneNumber} className="mt-2" />
                 </div>

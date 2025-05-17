@@ -1,194 +1,134 @@
-import React, { useState, useEffect } from 'react';
-import { Head, Link, useForm } from '@inertiajs/react';
+import React, { useState } from 'react';
+import { Head, Link, useForm, router } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import MultipleImages from '@/Components/MultipleImages';
 
 export default function ProductIndex({ products, filters, categories, branches }) {
-    const { data, setData, get } = useForm({
+    const { data, setData } = useForm({
         search: filters.search || '',
         category: filters.category || '',
         branch_id: filters.branch_id || '',
     });
-    
-    const [showScrollTop, setShowScrollTop] = useState(false);
 
-    useEffect(() => {
-        const onScroll = () => {
-            if (window.scrollY > 300) {
-                setShowScrollTop(true);
-            } else {
-                setShowScrollTop(false);
-            }
-        };
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    const [selectedBranch, setSelectedBranch] = useState(filters.branch_id || '');
-    const [selectedCategory, setSelectedCategory] = useState(filters.category || '');
+    const [productList, setProductList] = useState(products.data);
+    const [nextPage, setNextPage] = useState(products.next_page_url);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        get('/products', { preserveState: true });
+        router.get('/products', data, {
+            preserveState: false,
+            replace: true,
+            onSuccess: (page) => {
+                setProductList(page.props.products.data);
+                setNextPage(page.props.products.next_page_url);
+            }
+        });
     };
 
     const resetFilters = () => {
         setData({ search: '', category: '', branch_id: '' });
-        setSelectedBranch('');
-        setSelectedCategory('');
-        get('/products', { preserveState: false, replace: true });
-        window.location.href = "/products";
+        router.get('/products', {}, {
+            replace: true,
+            onSuccess: (page) => {
+                setProductList(page.props.products.data);
+                setNextPage(page.props.products.next_page_url);
+            }
+        });
     };
 
-    const handleBranchChange = (e) => {
-        const branchId = e.target.value;
-        setSelectedBranch(branchId);
-        setData('branch_id', branchId);
-        get(`/products?branch_id=${branchId}&category=${selectedCategory}`, { preserveState: true });
+    const loadMore = () => {
+        if (!nextPage) return;
+
+        router.get(nextPage, {}, {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: (page) => {
+                setProductList(prev => [...prev, ...page.props.products.data]);
+                setNextPage(page.props.products.next_page_url);
+            }
+        });
     };
 
-    const handleCategoryChange = (e) => {
-        const categoryId = e.target.value;
-        setSelectedCategory(categoryId);
-        setData('category', categoryId);
-        get(`/products?branch_id=${selectedBranch}&category=${categoryId}`, { preserveState: true });
-    };
-
-    const sortedCategories = [...categories].sort((a, b) =>
-        a.categoryName.localeCompare(b.categoryName)
-    );
-
-    const sortedBranches = [...branches].sort((a, b) =>
-        a.name.localeCompare(b.name)
-    );
+    const sortedCategories = [...categories].sort((a, b) => a.categoryName.localeCompare(b.categoryName));
+    const sortedBranches = [...branches].sort((a, b) => a.name.localeCompare(b.name));
 
     return (
         <MainLayout>
             <Head title="Products" />
+
             <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-8">
-                <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Browse Products</h1>
+                <h1 className="text-3xl font-bold text-center text-[#D62828] mb-8">🛍️ Our Products</h1>
 
                 {/* Filters */}
-                <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl shadow-lg mb-10 max-w-4xl mx-auto space-y-6">
-                    {/* Branch Filter */}
-                    <div>
-                        <label htmlFor="branch" className="block text-sm font-semibold text-gray-700 mb-1">
-                            Branch
-                        </label>
-                        <select
-                            id="branch"
-                            name="branch_id"
-                            value={selectedBranch}
-                            onChange={handleBranchChange}
-                            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        >
-                            <option value="">All Branches</option>
-                            {sortedBranches.map((branch) => (
-                                <option key={branch.id} value={branch.id}>
-                                    {branch.name}
-                                </option>
-                            ))}
-                        </select>
+                <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-6 max-w-4xl mx-auto mb-10 space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label className="text-sm font-semibold">Branch</label>
+                            <select value={data.branch_id} onChange={e => setData('branch_id', e.target.value)} className="mt-1 w-full rounded-md border-gray-300">
+                                <option value="">All Branches</option>
+                                {sortedBranches.map(branch => (
+                                    <option key={branch.id} value={branch.id}>{branch.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-sm font-semibold">Category</label>
+                            <select value={data.category} onChange={e => setData('category', e.target.value)} className="mt-1 w-full rounded-md border-gray-300">
+                                <option value="">All Categories</option>
+                                {sortedCategories.map(cat => (
+                                    <option key={cat.categoryID} value={cat.categoryID}>{cat.categoryName}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-sm font-semibold">Search</label>
+                            <input type="text" value={data.search} onChange={e => setData('search', e.target.value)} className="mt-1 w-full rounded-md border-gray-300" />
+                        </div>
                     </div>
-
-                    {/* Category Filter */}
-                    <div>
-                        <label htmlFor="category" className="block text-sm font-semibold text-gray-700 mb-1">
-                            Category
-                        </label>
-                        <select
-                            id="category"
-                            name="category"
-                            value={selectedCategory}
-                            onChange={handleCategoryChange}
-                            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        >
-                           <option value="">All Categories</option>
-                           {sortedCategories.map((item) => (
-                                <option key={item.categoryID} value={item.categoryID.toString()}>
-                                    {item.categoryName}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Search */}
-                    <div>
-                        <label htmlFor="search" className="block text-sm font-semibold text-gray-700 mb-1">
-                            Search Product
-                        </label>
-                        <input
-                            type="text"
-                            id="search"
-                            name="search"
-                            value={data.search || ''}
-                            onChange={(e) => setData('search', e.target.value)}
-                            placeholder="Enter product name"
-                            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        />
-                    </div>
-
-                    {/* Buttons */}
-                    <div className="flex gap-3">
-                        <button
-                            type="submit"
-                            className="flex-1 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
-                        >
+                    <div className="flex justify-between pt-4 gap-3">
+                        <button type="submit" className="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition w-full">
                             Apply Filters
                         </button>
-                        <button
-                            type="button"
-                            onClick={resetFilters}
-                            className="flex-1 bg-gray-300 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-400 transition"
-                        >
+                        <button type="button" onClick={resetFilters} className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-400 transition w-full">
                             Reset
                         </button>
                     </div>
                 </form>
 
-                {/* Product Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {products.length > 0 ? (
-                        products.map((product) => (
-                            <div key={product.productID} className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition">
-                                <Link
-                                            href={`/products/${product.productID}`}
-                                        >
+                {/* Products */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {productList.length > 0 ? (
+                        productList.map(product => (
+                            <Link
+                                key={product.productID}
+                                href={`/products/${product.productID}`}
+                                className="block bg-white rounded-xl shadow hover:shadow-lg hover:ring-2 hover:ring-yellow-400 transition overflow-hidden"
+                            >
                                 <MultipleImages images={product.image} name={product.name} />
                                 <div className="p-4">
-                                    <h2 className="text-xl font-semibold text-gray-800">{product.name}</h2>
-                                    <p className="text-blue-500 font-bold mt-2">RM{product.price}</p>
-                                    
-                                    <div className="mt-4 text-center text-blue-600 hover:underline">
-                                        
-                                            View Details
-                                        
-                                    </div>
+                                    <h3 className="text-lg font-bold text-gray-800">{product.name}</h3>
+                                    <p className="text-red-600 font-bold mt-1">RM{product.price}</p>
                                 </div>
-                                </Link>
-                            </div>
+                            </Link>
                         ))
                     ) : (
-                        <p className="text-center text-gray-500 col-span-full">No products available for this branch.</p>
+                        <p className="text-center text-gray-500 col-span-full">No products found.</p>
                     )}
                 </div>
 
-                {/* Scroll to top button */}
-                {showScrollTop && (
-                    <button
-                        onClick={scrollToTop}
-                        className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
-                    >
-                        Scroll to Top
-                    </button>
+                {/* Load More Button */}
+                {nextPage && (
+                    <div className="text-center mt-10">
+                        <button
+                            onClick={loadMore}
+                            className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition"
+                        >
+                            Load More
+                        </button>
+                    </div>
                 )}
             </div>
         </MainLayout>
     );
 }
-
 

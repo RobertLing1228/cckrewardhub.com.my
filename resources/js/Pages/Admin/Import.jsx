@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Head, router, useForm } from "@inertiajs/react";
 import AdminLayout from "@/Layouts/AdminLayout";
 
@@ -10,6 +10,64 @@ export default function Import({ tableNames, tableColumns, flash }) {
     });
 
     const [selectedTableColumns, setSelectedTableColumns] = useState([]);
+    //Sample data states
+    const [sampleData, setSampleData] = useState([]);
+    const [sampleHeaders, setSampleHeaders] = useState([]);
+
+    //Sample data generator
+    const generateSampleRow = (columns) => {
+        return columns
+            .filter(col => !(col.key === 'PRI' && col.extra && col.extra.includes('auto_increment')))
+            .map(col => {
+                if (col.type.includes("int")) return 123456;
+                if (col.type.includes("char") || col.type.includes("text")) return "example_text";
+                if (col.type.includes("date") || col.type.includes("time")) return null;
+                return "sample_data";
+            });
+    };
+
+    const handleGenerateSample = () => {
+        if (!data.table_name || !selectedTableColumns.length) return;
+
+        const headers = selectedTableColumns
+            .filter(col => !(col.key === 'PRI' && col.extra && col.extra.includes('auto_increment')))
+            .map(col => col.name);
+
+        const sampleRow = generateSampleRow(selectedTableColumns);
+        
+        setSampleHeaders(headers);
+        setSampleData([sampleRow]);
+
+    };
+
+    const handleDownloadSample = () => {
+        if (!data.table_name || !selectedTableColumns.length) return;
+        // For download
+        const csvContent = [
+            sampleHeaders.join(","),
+            ...sampleData.map(row =>
+                row.map(val => `"${val === null ? 'null' : val}"`).join(",")
+            )
+        ].join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${data.table_name}_sample.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    useEffect(() => {
+        if (data.table_name && selectedTableColumns.length) {
+            handleGenerateSample();
+        }
+    }, [selectedTableColumns]);
+
+
 
     const isOptional = (column) => {
         return (column.key === 'PRI' && column.extra && column.extra.includes('auto_increment')) || column.nullable;
@@ -94,7 +152,7 @@ export default function Import({ tableNames, tableColumns, flash }) {
                                                 <span className={`px-3 py-1.5 rounded-md text-sm ${getColumnStyle(column)}`}>
                                                     {column.name}
                                                     {isOptional(column) && (
-                                                        <span className="absolute -top-1 -right-1 transform translate-x-1/2 -translate-y-1/2 bg-white text-xs text-gray-500 border border-gray-300 rounded-full w-4 h-4 flex items-center justify-center">
+                                                        <span title="This field is optional" className="absolute -top-1 -right-1 transform translate-x-1/2 -translate-y-1/2 bg-white text-xs text-gray-500 border border-gray-300 rounded-full w-4 h-4 flex items-center justify-center">
                                                             ?
                                                         </span>
                                                     )}
@@ -153,7 +211,57 @@ export default function Import({ tableNames, tableColumns, flash }) {
                                     <p>• NULL values only accepted for nullable columns</p>
                                 </div>
                             </div>
+                            
                         )}
+
+                        {sampleHeaders.length > 0 && (
+                            <div className="mb-4">
+                                <h4 className="text-gray-700 font-medium mb-2">Sample CSV Preview</h4>
+                                <div className="overflow-x-auto">
+                                    <table className="table-auto border-collapse border border-gray-300 w-full text-sm">
+                                        <thead>
+                                            <tr>
+                                                {sampleHeaders.map((header, i) => (
+                                                    <th key={i} className="border border-gray-300 px-2 py-1 bg-gray-100">
+                                                        {header}
+                                                    </th>
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {sampleData.map((row, rowIndex) => (
+                                                <tr key={rowIndex}>
+                                                    {row.map((cell, cellIndex) => (
+                                                        <td key={cellIndex} className="border border-gray-300 px-2 py-1 text-gray-700">
+                                                            {cell === null ? 'NULL' : cell}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+
+                                    <div className="mt-4">
+                                        <h4 className="text-gray-700 font-medium mb-2">CSV Text Preview</h4>
+                                        <pre className="bg-gray-100 border border-gray-300 p-2 text-sm overflow-x-auto whitespace-pre-wrap">
+                                            {[sampleHeaders.join(","), sampleData[0].map(cell => (cell === null ? 'NULL' : `"${cell}"`)).join(",")].join("\n")}
+                                        </pre>
+                                    </div>
+                                </div>
+
+                                <div className="mb-4">
+                                    <button
+                                        type="button"
+                                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+                                        onClick={handleDownloadSample}
+                                    >
+                                        Download Sample CSV
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        
 
                         <div className="mb-4">
                             <label className="block text-gray-700">CSV File</label>

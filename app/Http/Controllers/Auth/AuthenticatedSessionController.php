@@ -49,7 +49,7 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        $request->session()->forget(['user_id', 'user_stuff']);
 
         $request->session()->regenerateToken();
 

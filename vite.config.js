@@ -10,5 +10,10 @@ export default defineConfig({
         }),
         react(),
     ],
+    input: [
+        'resources/js/app.jsx', // or .js depending on your setup
+        'resources/js/Pages/Error.jsx',
+        'resources/css/app.css',
+    ],
     base: process.env.VITE_BASE_PATH || "/Customer-Interaction-System",
 });

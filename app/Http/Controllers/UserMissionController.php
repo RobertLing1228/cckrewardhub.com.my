@@ -75,7 +75,7 @@ class UserMissionController extends Controller
 {
     $userId = Auth::id();
     if (!$userId) {
-        return response()->json(['error' => 'User not authenticated'], 401);
+        return redirect()->back()->with(['error' => 'User not authenticated'], 401);
     }
 
     $latestCreatedAt = UserMission::where('user_id', $userId)
@@ -84,7 +84,7 @@ class UserMissionController extends Controller
         ->value('created_at');
 
     if (!$latestCreatedAt) {
-        return response()->json(['error' => 'No missions found for user'], 404);
+        return redirect()->back()->with(['error' => 'No missions found for user'], 404);
     }
 
     $latestMissions = UserMission::where('user_id', $userId)
@@ -94,17 +94,15 @@ class UserMissionController extends Controller
         ->get();
 
     if ($latestMissions->isEmpty()) {
-        return response()->json(['error' => 'No completed unclaimed missions found in latest batch'], 404);
+        return redirect()->back()->with(['error' => 'No completed unclaimed missions found in latest batch'], 404);
     }
 
     foreach ($latestMissions as $mission) {
         $mission->update(['reward_claimed' => 1]);
     }
 
-    return response()->json(['message' => 'Rewards claimed for latest completed missions']);
+    return redirect()->back()->with(['message' => 'Rewards claimed for latest completed missions']);
 }
-
-
 
     public function history()
     {

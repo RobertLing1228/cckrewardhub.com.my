@@ -29,7 +29,7 @@ export default function VoucherIndex ({ vouchers }) {
                     >History</button>
                 </div>
 
-                <div className='mt-4 bg-gray-300'>
+                <div className='mt-4'>
                     {activeTab === 'vouchers' && (
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4'>
                             {activeVouchers.map((voucher) => {                        
@@ -68,7 +68,7 @@ export default function VoucherIndex ({ vouchers }) {
                                 <p className="text-gray-500">No expired vouchers yet.</p>
                             ) : (
                                 expiredVouchers.map((voucher) => (
-                                    <div key={voucher.id} className="bg-gray-100 rounded-2xl shadow-md p-4 border border-gray-200">
+                                    <div key={voucher.id} className="bg-white rounded-2xl shadow-md p-4 border border-gray-200">
                                         <h2 className="text-xl font-bold mt-2">{voucher.name}</h2>
                                         <p className="text-gray-500 text-sm">
                                             {voucher.status === 'used' 

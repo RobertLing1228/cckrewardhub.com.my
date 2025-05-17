@@ -8,7 +8,8 @@ import MultipleImages from "@/Components/MultipleImages";
 
 
 const MissionList = () => {
-  const { auth } = usePage().props;
+  const {props} = usePage();
+  const [errors, setErrors] = useState([]);
   const [missions, setMissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showSpinWheel, setShowSpinWheel] = useState(false);
@@ -115,13 +116,14 @@ const MissionList = () => {
 
   const claimReward = async () => {
     try {
-      await router.post("/claim", { gameType: "Mission", prize: 3.00 }, {
+      router.post("/claim", { gameType: "Mission", prize: 3.00 }, {
         onSuccess: async () => {
           console.log("Claim successful");
-          await axios.post('/user-missions/claim');
+          router.post('/user-missions/claim');
           await fetchMissions();
         },
         onError: (errors) => {
+          setErrors(errors);
           console.error("Error claiming:", errors);
         },
       });

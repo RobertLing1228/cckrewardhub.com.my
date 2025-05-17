@@ -110,9 +110,8 @@ export default function ResetTimes({resetTimes, flash}) {
                             <tr>
                                 <th className="px-4 py-2">ID</th>
                                 <th className="px-4 py-2">Type</th>
-                                <th className="px-4 py-2">Start Date</th>
-                                <th className="px-4 py-2">End_Date</th>
-                                <th className="px-4 py-2">Reset Day</th>
+                                <th className="px-4 py-2">Reset Time</th>
+                                <th className="px-4 py-2">isWeekly?</th>
                                 <th className="px-4 py-2 no-export">Action</th>
                             </tr>
                         </thead>
@@ -123,9 +122,9 @@ export default function ResetTimes({resetTimes, flash}) {
                                 <tr key={r.id}>
                                     <td className="px-4 py-2">{r.id}</td>
                                     <td className="px-4 py-2">{r.game_type}</td>
-                                    <td className="px-4 py-2">{r.start_date}</td>
-                                    <td className="px-4 py-2">{r.end_date}</td>
-                                    <td className="px-4 py-2">{r.reset_day}</td>
+                                    <td className="px-4 py-2">{r.reset_time}</td>
+                                    <td className="px-4 py-2">{r.isWeekly}</td>
+
                                     <td className="px-4 py-2 space-x-2">
                                         <button
                                             onClick={(e) => updsubmit(e, r.id)}

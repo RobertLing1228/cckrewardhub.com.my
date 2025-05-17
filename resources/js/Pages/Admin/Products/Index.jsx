@@ -108,6 +108,7 @@ export default function Products ({ products, flash }) {
                     <th className="px-4 py-2 border">Description</th>
                     <th className="px-4 py-2 border">Category</th>
                     <th className="px-4 py-2 border">Image</th>
+                    <th className="px-4 py-2 border">Hot Item</th>
                     <th className="px-4 py-2 border no-export">Actions</th>
                     </tr>
                 </thead>
@@ -124,6 +125,7 @@ export default function Products ({ products, flash }) {
                         <td className="px-4 py-2 border">
                         <MultipleImages images={product.image} name={product.name}/>
                         </td>
+                        <td className="px-4 py-2 border">{product.itemHot ? "Yes" : "No"}</td>
                         <td className="px-4 py-2 border">
                         <button onClick={(e) => updsubmit(e, product)} className="bg-yellow-500 text-white px-3 py-1 rounded mr-2">
                             Edit
