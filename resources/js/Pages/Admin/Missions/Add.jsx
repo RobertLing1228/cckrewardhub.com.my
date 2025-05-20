@@ -8,6 +8,7 @@ export default function Add () {
         mission_name: 'Scan a QR Code',
         mission_description: '',
         mission_goal: 1,
+        mission_image: '',
     })
 
     const handleMissionChange = (e) => {
@@ -38,6 +39,7 @@ export default function Add () {
         formData.append("mission_name", data.mission_name);
         formData.append("mission_description", data.mission_description);
         formData.append("mission_goal", data.mission_goal);  // Append file
+        formData.append("mission_image", data.mission_image);
 
         post('/admin/missions/add', formData,
             {
@@ -94,6 +96,14 @@ export default function Add () {
                             onChange={(e) => setData("mission_goal", e.target.value)}
                             className={errors.mission_goal && "!ring-red-500"}
                         />
+
+                    <label>Image</label>
+                        {errors.mission_image && <div className="error">{errors.mission_image}</div>}
+                        <input 
+                        type="file" 
+                        className="border p-2 w-full rounded-md"
+                        onChange={(e) => setData("mission_image", e.target.files[0])}
+                    />
 
                     <p>Example table:</p>
                     <table className="table">

@@ -21,6 +21,7 @@ class ProductController extends Controller
      */
    public function home()
 {
+
     $product = Product::where('itemHot', true)->orderBy('name')->take(6)->get();
     $recipe = Recipe::orderBy('title')->take(6)->get();
     $promotion = Promotion::orderBy('title')->take(6)->get();
@@ -131,8 +132,9 @@ class ProductController extends Controller
     /**
      * Display a single product.
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $prev = $request->input('prev', '/products'); // default fallback
         $product = Product::query()
             ->join('categories', 'products.category', '=', 'categories.categoryID')
             ->select('products.*', 'categories.categoryName as category_name')
@@ -148,6 +150,7 @@ class ProductController extends Controller
         return Inertia::render('User/Products/Show', [
             'product' => $product,
             'branch_stock' => $branch_stock,
+            'prev' => $prev
         ]);
     }
 

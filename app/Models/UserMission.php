@@ -32,7 +32,6 @@ class UserMission extends Model
             $missions = \App\Models\Mission::all();
 
             foreach ($missions as $mission) {
-                $type = $mission->id === 3 ? 'wheel' : 'mission';
 
                 self::create([
                     'user_id' => $userId,
@@ -41,7 +40,6 @@ class UserMission extends Model
                     'reward_claimed' => false,
                     'completed_at' => null,
                     'created_at' => now(),
-                    'type' => $type,
                 ]);
             }
         }

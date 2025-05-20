@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Claim;
 use App\Models\Vouchers;
-use App\Models\UserMissions;
+use App\Models\UserMission;
 use App\Models\UserVouchers;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,7 +75,7 @@ class ClaimController extends Controller
 
         $voucher->update(['status' => 'claimed']);
 
-        $isMission ? UserMissions::where('user_id', $user->userID)->update(['reward_claimed' => true]) : null;
+        $isMission ? UserMission::where('user_id', $user->userID)->update(['reward_claimed' => true]) : null;
 
         return back()->with('success', $successMsg);
     }

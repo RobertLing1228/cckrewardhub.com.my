@@ -8,6 +8,7 @@ export default function Edit ({mission, flash}) {
         mission_name: mission.mission_name,
         mission_description: mission.mission_description,
         mission_goal: mission.mission_goal,
+        mission_image: '',
         error: flash.error
     })
 
@@ -19,6 +20,7 @@ export default function Edit ({mission, flash}) {
         formData.append("mission_name", data.mission_name);
         formData.append("mission_description", data.mission_description);
         formData.append("mission_goal", data.mission_goal);  // Append file
+        formData.append("mission_image", data.mission_image);
 
         post(route('missions.update', mission), formData,
             {
@@ -68,6 +70,14 @@ export default function Edit ({mission, flash}) {
                         value={data.mission_goal}
                         onChange={(e) => setData("mission_goal", e.target.value)}
                         className={errors.goal && "!ring-red-500"}
+                    />
+
+                    <label>Image</label>
+                        {errors.mission_image && <div className="error">{errors.mission_image}</div>}
+                        <input 
+                        type="file" 
+                        className="border p-2 w-full rounded-md"
+                        onChange={(e) => setData("mission_image", e.target.files[0])}
                     />
 
                     <p>Changes:</p>

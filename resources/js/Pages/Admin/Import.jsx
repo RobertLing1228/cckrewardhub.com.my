@@ -77,6 +77,16 @@ export default function Import({ tableNames, tableColumns, flash }) {
         const tableName = e.target.value;
         setData("table_name", tableName);
         setSelectedTableColumns(tableName ? tableColumns[tableName] || [] : []);
+
+        if (!tableName) {
+            // Clear the sample data if "-- Choose Table --" is selected
+            setSampleHeaders([]);
+            setSampleData([]);
+            setSelectedTableColumns([]);
+        } else {
+            const columns = tableColumns[tableName] || [];
+            setSelectedTableColumns(columns);
+        }
     };
 
     // Helper function to determine column style
@@ -262,51 +272,54 @@ export default function Import({ tableNames, tableColumns, flash }) {
                         )}
 
                         
-
-                        <div className="mb-4">
-                            <label className="block text-gray-700">CSV File</label>
-                            <input
-                                type="file"
-                                accept=".csv,.txt"  // Add both extensions explicitly
-                                className="w-full border rounded p-2"  // Added border and padding
-                                onChange={(e) => {
-                                    if (e.target.files.length > 0) {
-                                        const file = e.target.files[0];
-                                        // Additional client-side validation
-                                        if (!['text/csv', 'text/plain', 'application/vnd.ms-excel'].includes(file.type) && 
-                                            !file.name.match(/\.(csv|txt)$/i)) {
-                                            alert('Please upload a CSV or text file');
-                                            e.target.value = ''; // Clear the input
-                                            return;
+                        {data.table_name && (
+                            <div className="mb-4">
+                                <label className="block text-gray-700">CSV File</label>
+                                <input
+                                    type="file"
+                                    accept=".csv,.txt"  // Add both extensions explicitly
+                                    className="w-full border rounded p-2"  // Added border and padding
+                                    onChange={(e) => {
+                                        if (e.target.files.length > 0) {
+                                            const file = e.target.files[0];
+                                            // Additional client-side validation
+                                            if (!['text/csv', 'text/plain', 'application/vnd.ms-excel'].includes(file.type) && 
+                                                !file.name.match(/\.(csv|txt)$/i)) {
+                                                alert('Please upload a CSV or text file');
+                                                e.target.value = ''; // Clear the input
+                                                return;
+                                            }
+                                            setData('csv_file', file);
                                         }
-                                        setData('csv_file', file);
-                                    }
-                                }}
-                            />
-                            <p className="text-xs text-gray-500 mt-1">
-                                Accepted formats: .csv, .txt (Max 5MB)
-                            </p>
-                            {errors.csv_file && <p className="text-red-500">{errors.csv_file}</p>}
-                            
-
-                            <label className="flex items-center mt-2">
-                                <input 
-                                    type="checkbox" 
-                                    checked={data.has_header} 
-                                    onChange={e => setData('has_header', e.target.checked)} 
-                                    className="mr-2"
+                                    }}
                                 />
-                                First row is header
-                            </label>
-                        </div>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    Accepted formats: .csv, .txt (Max 5MB)
+                                </p>
+                                {errors.csv_file && <p className="text-red-500">{errors.csv_file}</p>}
+                                
 
-                        <button
-                            type="submit"
-                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-                            disabled={processing}
-                        >
-                            {processing ? 'Uploading...' : 'Upload CSV'}
-                        </button>
+                                <label className="flex items-center mt-2">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={data.has_header} 
+                                        onChange={e => setData('has_header', e.target.checked)} 
+                                        className="mr-2"
+                                    />
+                                    First row is header
+                                </label>
+
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                                    disabled={processing}
+                                >
+                                    {processing ? 'Uploading...' : 'Upload CSV'}
+                                </button>
+                            </div>
+
+                            
+                        )}
                     </form>
                 </div>
             </div>

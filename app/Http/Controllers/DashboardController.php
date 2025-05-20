@@ -75,6 +75,17 @@ class DashboardController extends Controller
 
 
     private function getMissionData() {
+        $missionCompletionsPerMonth = MissionCompletionLog::selectRaw('MONTH(date_completed) as month, COUNT(*) as count')
+        ->whereYear('date_completed', now()->year)
+        ->groupBy('month')
+        ->orderBy('month')
+        ->get()
+        ->pluck('count', 'month');
+
+        $completionsPerMonthData = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $completionsPerMonthData[] = $missionCompletionsPerMonth->get($i, 0);
+        }
         return [
             'today' => MissionCompletionLog::whereDate('date_completed', today())->count(),
             'weekly' => MissionCompletionLog::where('date_completed', '>=', Carbon::now()->startOfWeek())->count(),
@@ -83,7 +94,8 @@ class DashboardController extends Controller
                 ->where('date_completed', '>=', Carbon::now()->subDays(30))
                 ->groupBy('date')
                 ->orderBy('date')
-                ->get()
+                ->get(),
+            'perMonth' => $completionsPerMonthData
         ];
     }
 

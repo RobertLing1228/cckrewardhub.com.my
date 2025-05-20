@@ -9,7 +9,6 @@ class WheelProbabilityService
     public static function adjustProbabilities($changedReward = null, $newProbability = null)
     {
         $rewards = WheelReward::all();
-        $totalProbability = $rewards->sum('probability');
         
         // If adding a new reward
         if (!$changedReward) {

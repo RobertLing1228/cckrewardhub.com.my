@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
-const DashboardChart = ({loginsPerMonthData}) => {
+const DashboardChart = ({loginsPerMonthData, missionsPerMonthData, sucessfulClaim, failedClaim}) => {
   const barChartRef = useRef(null);
+  const completionChartRef = useRef(null);
   const pieChartRef = useRef(null);
-  const doughnutChartRef = useRef(null);
 
   const chartInstances = useRef([]);
 
@@ -53,48 +53,67 @@ const DashboardChart = ({loginsPerMonthData}) => {
       })
     );
 
-    // Pie Chart (User Distribution)
-    const pieCtx = pieChartRef.current.getContext("2d");
+    // Bar Chart (Mission Completion Per Month)
+    const completionCtx = completionChartRef.current.getContext("2d");
     chartInstances.current.push(
-      new Chart(pieCtx, {
-        type: "pie",
+      new Chart(completionCtx, {
+        type: "bar",
         data: {
-          labels: ["Admin", "Users", "Guests"],
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
           datasets: [
             {
-              label: "Users",
-              data: [10, 50, 40],
-              backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+              label: "Mission Completions",
+              data: missionsPerMonthData,
+              backgroundColor: "rgba(255, 99, 132, 0.5)",
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
             },
           ],
         },
-        options: { responsive: true, maintainAspectRatio: false },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              ticks: {
+                callback: function (value) {
+                  return Number.isInteger(value) ? value : null;
+                },
+                stepSize: 1,
+              },
+              beginAtZero: true,
+            },
+          },
+        },
       })
     );
 
-    // Doughnut Chart (Revenue Breakdown)
-    const doughnutCtx = doughnutChartRef.current.getContext("2d");
-    chartInstances.current.push(
-      new Chart(doughnutCtx, {
-        type: "doughnut",
-        data: {
-          labels: ["Product A", "Product B", "Product C"],
-          datasets: [
-            {
-              label: "Revenue",
-              data: [200, 150, 100],
-              backgroundColor: ["#4BC0C0", "#FF9F40", "#9966FF"],
-            },
-          ],
-        },
-        options: { responsive: true, maintainAspectRatio: false },
-      })
-    );
+    // Pie Chart (Claim Success vs Failed Today)
+      const claimsPieCtx = pieChartRef.current.getContext("2d");
+      chartInstances.current.push(
+        new Chart(claimsPieCtx, {
+          type: "pie",
+          data: {
+            labels: ["Successful", "Failed"],
+            datasets: [
+              {
+                label: "Today's Claims",
+                data: [sucessfulClaim, failedClaim],
+                backgroundColor: ["#4CAF50", "#F44336"],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+          },
+        })
+      );
 
     return () => {
       chartInstances.current.forEach((chart) => chart.destroy());
     };
-  }, [loginsPerMonthData]);
+  }, [loginsPerMonthData, missionsPerMonthData, sucessfulClaim, failedClaim]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
@@ -106,19 +125,24 @@ const DashboardChart = ({loginsPerMonthData}) => {
         </div>
       </div>
 
-      {/* Pie Chart */}
+      {/* Completion Chart */}
       <div className="bg-white p-4 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-2">User Distribution</h3>
+        <h3 className="text-lg font-semibold mb-2">Mission Completions</h3>
         <div className="w-full h-72">
-          <canvas ref={pieChartRef}></canvas>
+          <canvas ref={completionChartRef}></canvas>
         </div>
       </div>
 
-      {/* Doughnut Chart */}
+      {/* Pie Chart */}
       <div className="bg-white p-4 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-2">Revenue Breakdown</h3>
+        <h3 className="text-lg font-semibold mb-2">Claims</h3>
         <div className="w-full h-72">
-          <canvas ref={doughnutChartRef}></canvas>
+          {(sucessfulClaim === 0 && failedClaim === 0) ? (
+            <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+              No claims today.
+            </div>
+          ) : null}
+          <canvas ref={pieChartRef}  style={{ display: (sucessfulClaim === 0 && failedClaim === 0) ? "none" : "block" }}></canvas>
         </div>
       </div>
     </div>

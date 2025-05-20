@@ -47,10 +47,10 @@ export default function Dashboard({ resetTimes, loginData = {}, missionData = {}
                     <div
                         className=" bg-white rounded-lg shadow-md p-4"
                     >
-                        <h3 className="text-lg font-semibold mb-2">Mission Completions Today</h3>
-                        <div className="text-5xl font-bold text-blue-600">{missionData.today}</div>
+                        <h3 className="text-lg font-semibold mb-2">Mission Completed Weekly</h3>
+                        <div className="text-5xl font-bold text-blue-600">{missionData.weekly}</div>
                         <div className="text-sm text-gray-600 mt-2">
-                            <span className="block">This Week: {missionData.weekly}</span>
+                            <span className="block">Today: {missionData.today}</span>
                             <span className="block">This Month: {missionData.monthly}</span>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ export default function Dashboard({ resetTimes, loginData = {}, missionData = {}
             </div>
 
             <div className="p-6">
-                <DashboardChart loginsPerMonthData={loginData.perMonth} />
+                <DashboardChart loginsPerMonthData={loginData.perMonth} missionsPerMonthData={missionData.perMonth} sucessfulClaim={claimData.successfulToday} failedClaim={claimData.failedToday} />
             </div>
 
             

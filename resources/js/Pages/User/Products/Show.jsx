@@ -4,7 +4,7 @@ import MainLayout from '@/Layouts/MainLayout';
 import MultipleImages from '@/Components/MultipleImages';
 import { QRCodeSVG } from 'qrcode.react';
 
-export default function Show({ product, branch_stock }) {
+export default function Show({ product, branch_stock, prev }) {
     return (
         <MainLayout>
             <Head title={product.name} />
@@ -13,10 +13,10 @@ export default function Show({ product, branch_stock }) {
 
                     {/* Back Link */}
                     <Link
-                        href="/products"
+                        href={prev ? prev : '/products'}
                         className="inline-block text-blue-500 hover:text-blue-600 font-medium mb-6 transition"
                     >
-                        ← Back to Products
+                        ← Back
                     </Link>
 
                     {/* Image Gallery */}

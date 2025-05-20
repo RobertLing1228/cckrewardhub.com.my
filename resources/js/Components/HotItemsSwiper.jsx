@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/react";
 import MultipleImages from "./MultipleImages";
 
 export default function HotItemsSwiper({ products }) {
+    const prevPage = window.location.href;
     return (
         <section className="mb-12">
             <h2 className="text-2xl font-bold text-red-600 mb-4 border-b pb-2">🔥 Hot Items</h2>
@@ -21,7 +22,7 @@ export default function HotItemsSwiper({ products }) {
                 {products.map(product => (
                     <SwiperSlide key={product.productID}>
                         <Link
-                            href={`/product/${product.productID}`}
+                            href={`/products/${product.productID}?prev=${encodeURIComponent(prevPage)}`}
                             className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden block"
                         >
                             <div className="p-4">

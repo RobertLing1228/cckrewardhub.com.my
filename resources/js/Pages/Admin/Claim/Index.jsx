@@ -101,6 +101,7 @@ export default function Claims ({ claims, flash }) {
                 <thead className="bg-gray-100 text-gray-700">
                     <tr>
                     <th className="px-4 py-2 border">ID</th>
+                    <th className="px-4 py-2 border">VoucherID</th>
                     <th className="px-4 py-2 border">MemberID</th>
                     <th className="px-4 py-2 border">Game Type</th>
                     <th className="px-4 py-2 border">Claim Date</th>
@@ -112,6 +113,7 @@ export default function Claims ({ claims, flash }) {
                     {claims.map((claim) => (
                     <tr key={claim.claimID} className="hover:bg-gray-50">
                         <td className="px-4 py-2 border">{claim.claimID}</td>
+                        <td className="px-4 py-2 border">{claim.voucherID}</td>
                         <td className="px-4 py-2 border">{claim.memberID}</td>
                         <td className="px-4 py-2 border">{claim.gameType}</td>
                         <td className="px-4 py-2 border">{claim.claim_date}</td>

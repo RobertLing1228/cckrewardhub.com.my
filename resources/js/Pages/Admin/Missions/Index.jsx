@@ -106,6 +106,7 @@ export default function Missions({missions, flash}) {
                                 <th className="px-4 py-2">Name</th>
                                 <th className="px-4 py-2">Description</th>
                                 <th className="px-4 py-2">Goal</th>
+                                <th className="px-4 py-2 no-export">Image</th>
                                 <th className="px-4 py-2 no-export">Action</th>
                             </tr>
                         </thead>
@@ -116,6 +117,9 @@ export default function Missions({missions, flash}) {
                                     <td className="px-4 py-2">{mission.mission_name}</td>
                                     <td className="px-4 py-2">{mission.mission_description}</td>
                                     <td className="px-4 py-2">{mission.mission_goal}</td>
+                                    <td className="px-4 py-2 border">
+                                        <MultipleImages images={mission.mission_image} name={mission.mission_name}/>
+                                    </td>
                                     <td className="px-4 py-2">
                                         <button onClick={(e) => updsubmit(e, mission)} className="bg-blue-500 text-white px-3 py-1 rounded mr-2">
                                             Edit
