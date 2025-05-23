@@ -22,7 +22,11 @@ export default function HotItemsSwiper({ products }) {
                 {products.map(product => (
                     <SwiperSlide key={product.productID}>
                         <Link
+<<<<<<< Updated upstream
                             href={`/products/${product.productID}?prev=${encodeURIComponent(prevPage)}`}
+=======
+                            href={`/products/${product.productID}`}
+>>>>>>> Stashed changes
                             className="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden block"
                         >
                             <div className="p-4">
