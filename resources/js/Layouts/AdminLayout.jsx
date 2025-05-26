@@ -6,6 +6,7 @@ import "../../../public/plugins/fontawesome-free/css/all.min.css";
 
 export default function AdminLayout({ children, title = "Dashboard", breadcrumbs = [] }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [manualToggle, setManualToggle] = useState(false);
     
     const {auth} = usePage().props;
     console.log(auth);
@@ -13,14 +14,16 @@ export default function AdminLayout({ children, title = "Dashboard", breadcrumbs
 
     useEffect(() => {
         // Set sidebar state based on initial screen width
-        setIsSidebarOpen(window.innerWidth > 992);
+        const handleResize = () => {
+            if (!manualToggle) {
+                setIsSidebarOpen(window.innerWidth > 992);
+            }
+        };
 
         // Update sidebar state on window resize
-        const handleResize = () => setIsSidebarOpen(window.innerWidth > 992);
         window.addEventListener("resize", handleResize);
-
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [manualToggle]);
 
     return (
         <div className={`wrapper min-vh-100 ${isSidebarOpen ? "sidebar-open" : ""}`}>
@@ -71,7 +74,10 @@ function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
                 </Link>
                 <button
                     className="btn btn-sm text-white border-0 bg-transparent"
-                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                    onClick={() => {
+                        setIsSidebarOpen(!isSidebarOpen);
+                        setManualToggle(true);
+                    }}
                     title="Close Sidebar"
                 >
                     <i className="fas fa-arrow-left"></i>
