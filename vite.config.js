@@ -12,6 +12,7 @@ export default defineConfig({
     ],
     input: [
         'resources/js/app.jsx', // or .js depending on your setup
+        'resources/css/app.css',
         'resources/js/Pages/ErrorPage.jsx',
     ],
     base: process.env.VITE_BASE_PATH || "/Customer-Interaction-System",
