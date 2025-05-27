@@ -16,7 +16,9 @@ class ResetTimeController extends Controller
     {
         $users = UserMission::select('user_id')->distinct()->pluck('user_id');
 
-        $existingMissions = UserMission::select('mission_id')->distinct()->get(); 
+        $existingMissions = UserMission::whereHas('mission', function ($query) {
+            $query->where('type', 'mission');
+        })->select('mission_id')->distinct()->get(); 
 
         foreach ($users as $user) {
             foreach ($existingMissions as $missionRef) {
@@ -27,7 +29,7 @@ class ResetTimeController extends Controller
                     'reward_claimed' => false,
                     'completed_at' => null,
                     'created_at' => Carbon::now(),
-                    'type' => $missionRef->mission_id == 3 ? 'wheel' : 'mission',
+                    'type' => 'mission',
                 ]);
             }
         }        
