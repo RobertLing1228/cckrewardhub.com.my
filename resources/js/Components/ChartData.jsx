@@ -138,7 +138,7 @@ const DashboardChart = ({loginsPerMonthData, missionsPerMonthData, sucessfulClai
         <h3 className="text-lg font-semibold mb-2">Claims</h3>
         <div className="w-full h-72">
           {(sucessfulClaim === 0 && failedClaim === 0) ? (
-            <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+            <div className="inset-0 flex items-center justify-center text-gray-500">
               No claims today.
             </div>
           ) : null}
