@@ -87,6 +87,7 @@ export default function Edit ({mission, flash}) {
                                 <th className="font-bold">Title</th>
                                 <th className="font-bold">Description</th>
                                 <th className="font-bold">Goal</th>
+                                <th className="font-bold">Image</th>
                             </tr>
                         </thead>
 
@@ -95,6 +96,7 @@ export default function Edit ({mission, flash}) {
                                 <td>{mission.mission_name}</td>
                                 <td>{mission.mission_description}</td>
                                 <td>{mission.mission_goal}</td>
+                                <td>{mission.mission_image}</td>
                             </tr>
                         </tbody>
                         
@@ -103,6 +105,7 @@ export default function Edit ({mission, flash}) {
                                 <td>{data.mission_name}</td>
                                 <td>{data.mission_description}</td>
                                 <td>{data.mission_goal}</td>
+                                <td>{data.mission_image}</td>
                             </tr>
                         </tbody>
                         

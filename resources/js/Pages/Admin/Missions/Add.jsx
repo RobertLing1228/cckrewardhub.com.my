@@ -112,6 +112,7 @@ export default function Add () {
                                 <th className="font-bold">Title</th>
                                 <th className="font-bold">Description</th>
                                 <th className="font-bold">Goal</th>
+                                <th className="font-bold">Image</th>
                             </tr>
                         </thead>
                         
@@ -120,6 +121,7 @@ export default function Add () {
                                 <td>{data.mission_name}</td>
                                 <td>{data.mission_description}</td>
                                 <td>{data.mission_goal}</td>
+                                <td>{data.mission_image}</td>
                             </tr>
                         </tbody>
                         

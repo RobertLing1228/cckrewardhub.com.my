@@ -40,6 +40,37 @@ class UserMissionController extends Controller
         return redirect('/admin/usermissions')->with('success', 'User Mission created successfully!');
     }
 
+    public function edit($id){
+        $usermission = UserMission::find($id);
+        $users = User::all();
+        $missions = Mission::all();
+        return Inertia::render('Admin/UserMissions/Edit', ['usermission' => $usermission, 'users' => $users, 'missions' => $missions]);
+    }
+
+    public function update(UserMission $usermission, Request $request){
+        $fields = $request->validate([
+            'user_id' => 'required|integer|exists:user,userID',
+            'mission_id' => 'required|integer|exists:missions,id',
+            'progress' => 'required|integer',
+            'reward_claimed' => 'required|boolean',
+            
+        ]);
+
+        $usermission->update([
+            'user_id' => $fields['user_id'],
+            'mission_id' => $fields['mission_id'],
+            'progress' => $fields['progress'],
+            'reward_claimed' => $fields['reward_claimed'],
+        ]);
+
+        return redirect('/admin/usermissions')->with('success', 'User Mission updated successfully!');
+    }
+
+    public function delete(UserMission $usermission){
+        $usermission->delete();
+        return redirect('/admin/usermissions')->with('success', 'User Mission deleted successfully!');
+    }
+
     // [POST] /user-missions/start
     protected $resetTimeController;
     public function __construct(ResetTimeController $resetTimeController)

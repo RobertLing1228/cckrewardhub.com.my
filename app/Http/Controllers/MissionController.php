@@ -26,12 +26,14 @@ class MissionController extends Controller
             'mission_name' => 'required|string|max:255',
             'mission_description' => 'required|string',
             'mission_goal' => 'required|integer',
+            'mission_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         Mission::create([
             'mission_name' => $fields['mission_name'],
             'mission_description' => $fields['mission_description'],
             'mission_goal' => $fields['mission_goal'],
+            'mission_image' => $fields['mission_image'],
         ]);
 
         return redirect('/admin/missions')->with('success', 'Mission created successfully!');
@@ -46,12 +48,14 @@ class MissionController extends Controller
             'mission_name' => 'required|string|max:255',
             'mission_description' => 'required|string',
             'mission_goal' => 'required|integer',
+            'mission_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $mission->update([
             'mission_name' => $fields['mission_name'],
             'mission_description' => $fields['mission_description'],
             'mission_goal' => $fields['mission_goal'],
+            'mission_image' => $fields['mission_image'],
         ]);
 
         return redirect('/admin/missions')->with('success', 'Mission updated successfully!');
