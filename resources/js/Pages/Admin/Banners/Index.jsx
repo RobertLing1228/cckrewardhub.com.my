@@ -37,7 +37,7 @@ export default function Index({banners, flash}) {
             confirmButtonText: "Confirm",
         }).then((result) => {
             if (result.isConfirmed) {
-                destroy(route("branches.delete", banner));
+                destroy(route("banners.delete", banner));
                 Swal.fire("Deleted!", "The banner has been removed.", "success");
             }
         });
