@@ -144,13 +144,14 @@ class FileImportController extends Controller
 
     protected function getAutoIncrementColumn($tableName)
     {
+        $database = config('database.connections.mysql.database');
         return DB::select("
             SELECT COLUMN_NAME 
             FROM INFORMATION_SCHEMA.COLUMNS 
             WHERE TABLE_SCHEMA = ? 
             AND TABLE_NAME = ? 
             AND EXTRA LIKE '%auto_increment%'
-        ", [env('DB_DATABASE'), $tableName])[0]->COLUMN_NAME ?? null;
+        ", [$database, $tableName])[0]->COLUMN_NAME ?? null;
     }
 
     protected function validateCsvColumns($csvColumns, $tableColumns, $tableName)
@@ -196,12 +197,13 @@ class FileImportController extends Controller
 
     protected function getNullableColumns($tableName)
     {
+        $database = config('database.connections.mysql.database');
         return collect(DB::select("
             SELECT COLUMN_NAME 
             FROM INFORMATION_SCHEMA.COLUMNS 
             WHERE TABLE_SCHEMA = ? 
             AND TABLE_NAME = ? 
             AND IS_NULLABLE = 'YES'
-        ", [env('DB_DATABASE'), $tableName]))->pluck('COLUMN_NAME')->toArray();
+        ", [$database, $tableName]))->pluck('COLUMN_NAME')->toArray();
     }
 }
