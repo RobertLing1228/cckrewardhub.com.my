@@ -9,6 +9,7 @@ import 'datatables.net-buttons/js/buttons.print.mjs';
 import "datatables.net-buttons/js/buttons.html5.mjs";
 import jszip from 'jszip';
 import pdfMake from 'pdfmake/build/pdfmake';
+import MultipleImages from "@/Components/MultipleImages";
 
 window.JSZip = jszip;
 window.pdfMake = pdfMake;

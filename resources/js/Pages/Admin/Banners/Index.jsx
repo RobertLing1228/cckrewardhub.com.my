@@ -48,7 +48,7 @@ export default function Index({banners, flash}) {
             title="Banner"
             breadcrumbs={[
                 { label: "Admin", url: "/admin" },
-                { label: "Branches" }
+                { label: "Banners" }
             ]}
         > 
 

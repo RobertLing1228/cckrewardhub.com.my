@@ -45,10 +45,10 @@ export default function Categories ({ categories, flash }) {
 
     return (
         <AdminLayout
-            title="Categoriess"
+            title="Categories"
             breadcrumbs={[
                 { label: "Admin", url: "/admin" },
-                { label: "Categoriess" }
+                { label: "Categories" }
             ]}
         >   
             <Head title="Categories List" />
