@@ -13,17 +13,11 @@ export default function AdminLayout({ children, title = "Dashboard", breadcrumbs
     
 
     useEffect(() => {
-        // Set sidebar state based on initial screen width
-        const handleResize = () => {
-            if (!manualToggle) {
-                setIsSidebarOpen(window.innerWidth > 992);
-            }
-        };
-
-        // Update sidebar state on window resize
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [manualToggle]);
+    // Only run this on first load to set default sidebar state
+    if (!manualToggle) {
+        setIsSidebarOpen(window.innerWidth > 992);
+    }
+}, []);
 
     return (
         <div className={`wrapper min-vh-100 ${isSidebarOpen ? "sidebar-open" : ""}`}>
@@ -31,7 +25,7 @@ export default function AdminLayout({ children, title = "Dashboard", breadcrumbs
             <NavBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
             {/* Sidebar */}
-            <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} auth={auth} />
+            <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} auth={auth} manualToggle={manualToggle} setManualToggle={setManualToggle} />
 
             {/* Content */}
             <Content title={title} breadcrumbs={breadcrumbs}>{children}</Content>
@@ -50,7 +44,6 @@ function NavBar({ isSidebarOpen, setIsSidebarOpen }) {
                     <button
                         className="nav-link border-0 bg-transparent"
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        style={{ display: window.innerWidth > 992 && isSidebarOpen ? "none" : "block" }}
                     >
                         <i className={`fas ${isSidebarOpen ? "fa-times" : "fa-bars"}`}></i>
                     </button>
@@ -60,14 +53,14 @@ function NavBar({ isSidebarOpen, setIsSidebarOpen }) {
     );
 }
 
-function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth }) {
+function Sidebar({ isSidebarOpen, setIsSidebarOpen, auth, manualToggle, setManualToggle }) {
     const { post } = useForm();
     const handleLogout = () => {
         post("/admin/logout");
     };
 
     return (
-        <aside className={`main-sidebar sidebar-dark-primary elevation-4 ${isSidebarOpen ? "show-sidebar" : "hide-sidebar"}`}>
+        <aside className={`main-sidebar sidebar-dark-primary elevation-4 ${isSidebarOpen ? "sidebar-open" : "sidebar-closed"}`}>
             <div className="d-flex align-items-center justify-content-between p-3">
                 <Link href="#" className="brand-link m-0 text-white">
                     <span className="brand-text font-weight-light">Admin Panel</span>
