@@ -11,7 +11,7 @@ class FileImportController extends Controller
 {
     public function admin()
     {
-        $database = env('DB_DATABASE');
+        $database = config('database.connections.mysql.database');
         $excludedTables = [
             'admins', 'cache', 'cache_locks', 'failed_jobs', 
             'jobs', 'job_batches', 'migrations', 
