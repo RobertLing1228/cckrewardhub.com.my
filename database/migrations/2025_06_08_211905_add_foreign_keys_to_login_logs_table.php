@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exist_member', function (Blueprint $table) {
-            $table->integer('existsmemID', true);
-            $table->string('memberID', 10);
-            $table->string('phoneNumber', 10);
+        Schema::table('login_logs', function (Blueprint $table) {
+            $table->foreign(['user_id'])->references(['userID'])->on('user')->onUpdate('restrict')->onDelete('cascade');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exist_member');
+        Schema::table('login_logs', function (Blueprint $table) {
+            $table->dropForeign('login_logs_user_id_foreign');
+        });
     }
 };

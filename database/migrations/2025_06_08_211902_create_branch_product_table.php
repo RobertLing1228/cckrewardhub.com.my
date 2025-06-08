@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mission_completion_logs', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->timestamp('date_completed');
+        Schema::create('branch_product', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('productID')->index('fk_branch_product_product');
+            $table->unsignedBigInteger('branch_id')->index('fk_branch_product_branch');
+            $table->integer('stock')->default(0);
             $table->timestamps();
-
-            $table->foreign('user_id')->references('userID')->on('user')->onDelete('cascade');
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('branch_product');
     }
 };

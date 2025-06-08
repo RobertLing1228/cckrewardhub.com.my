@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('claim', function (Blueprint $table) {
-            $table->integer('claimID', true);
-            $table->string('memberID', 32);
-            $table->integer('gameID');
-            $table->date('claim_date')->comment('claiming date resets after midnight');
-            $table->string('status', 50);
+        Schema::create('reset_times', function (Blueprint $table) {
+            $table->integer('id', true);
+            $table->enum('game_type', ['mission', 'wheel']);
+            $table->time('reset_time');
+            $table->boolean('isWeekly');
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('claim');
+        Schema::dropIfExists('reset_times');
     }
 };

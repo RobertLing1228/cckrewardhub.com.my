@@ -12,16 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_vouchers', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('userID');
-            $table->foreign('userID')->references('userID')->on('user')->onDelete('cascade');
-            $table->foreignId('voucher_ID')->constrained('vouchers')->onDelete('cascade');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('userID')->index('user_vouchers_userid_foreign');
+            $table->unsignedBigInteger('voucher_ID')->index('user_vouchers_voucher_id_foreign');
             $table->enum('status', ['claimed', 'used'])->default('claimed');
             $table->timestamp('claimed_at')->useCurrent();
             $table->timestamp('used_at')->nullable();
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_voucher');
+        Schema::dropIfExists('user_vouchers');
     }
 };

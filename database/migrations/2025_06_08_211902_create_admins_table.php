@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('product', function (Blueprint $table) {
-            $table->foreign(['category'], 'fk_product_category')->references(['categoryID'])->on('categories')->onUpdate('cascade')->onDelete('set null');
+        Schema::create('admins', function (Blueprint $table) {
+            $table->bigIncrements('adminID');
+            $table->string('name')->unique();
+            $table->string('password');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('product', function (Blueprint $table) {
-            $table->dropForeign('fk_product_category');
-        });
+        Schema::dropIfExists('admins');
     }
 };

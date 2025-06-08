@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('daily_wheel', function (Blueprint $table) {
-            $table->integer('rewardID', true);
-            $table->string('reward_value', 50);
-            $table->string('color', 7);
+        Schema::create('games', function (Blueprint $table) {
+            $table->integer('gameID', true);
+            $table->string('title');
+            $table->text('description');
+            $table->string('image');
+            $table->string('gameLink');
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('daily_wheel');
+        Schema::dropIfExists('games');
     }
 };
