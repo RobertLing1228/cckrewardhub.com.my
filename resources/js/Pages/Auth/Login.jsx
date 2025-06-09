@@ -29,9 +29,14 @@ export default function Login({ status }) {
 
             router.post(route('login'), {
                 memberID: fetchedMemberID,
-                phoneNumber: data.phoneNumber,},
-                {
-                onFinish: () => reset('phoneNumber'),
+                phoneNumber: data.phoneNumber,
+            }, {
+                onSuccess: () => {
+                    reset('phoneNumber');
+                },
+                onError: () => {
+                    alert('Login failed. Please try again.');
+                },
             });
             
         } catch (error) {
