@@ -41,6 +41,9 @@ class LoginRequest extends FormRequest
      */
     public function authenticate(): void
     {
+
+        $this->ensureIsNotRateLimited();
+            
         $member = DB::table('exist_member')
             ->where('memberID', $this->memberID)
             ->where('phoneNumber', $this->phoneNumber)
@@ -94,6 +97,7 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('phoneNumber')).'|'.$this->ip());
+
     }
 }
