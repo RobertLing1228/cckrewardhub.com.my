@@ -61,7 +61,7 @@ export default function Index({rewards ,flash}) {
                 </div>
             )}
             <div className="p-4 bg-white shadow-md rounded-lg">
-              <div className="flex justify-end mb-4">
+              <div className="flex justify-between mb-4">
             <Link href="/admin/wheelrewards/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add new Reward </Link>
             </div>
             <div className="overflow-x-auto">

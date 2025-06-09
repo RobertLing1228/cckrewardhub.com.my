@@ -63,10 +63,13 @@ export default function Index({banners, flash}) {
                 ❌ {flash.error}
             </div>
         )}
-        <Link href="/admin/banners/add" className="bg-green-500 text-white px-3 py-1 rounded">
-                Add Banner
-            </Link>
+        
             <div className="p-4 bg-white shadow-md rounded-lg">
+                <div className="flex justify-between mb-4">
+                    <Link href="/admin/banners/add" className="bg-blue-500 text-white px-3 py-1 rounded">
+                        Add Banner
+                    </Link>
+                </div>
             <div className="overflow-x-auto">
                 <DataTable id="bannersTable" className="min-w-full border border-gray-300"
                 options={{

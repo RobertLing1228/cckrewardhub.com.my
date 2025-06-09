@@ -62,10 +62,13 @@ export default function Categories ({ categories, flash }) {
                     ❌ {flash.error}
                 </div>
             )}
-            <Link href="/admin/categories/add" className="bg-green-500 text-white px-3 py-1 rounded">
-                Add Category
-            </Link>
+            
             <div className="p-4 bg-white shadow-md rounded-lg">
+                <div className="flex justify-between mb-4">
+                    <Link href="/admin/categories/add" className="bg-blue-500 text-white px-3 py-1 rounded">
+                        Add Category
+                    </Link>
+                </div>
             <div className="overflow-x-auto">
                 <DataTable id="categoriesTable" className="min-w-full border border-gray-300"
                 options={{

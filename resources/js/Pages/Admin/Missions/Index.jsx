@@ -63,7 +63,7 @@ export default function Missions({missions, flash}) {
                 </div>
             )}
             <div className="p-4 bg-white shadow-md rounded-lg">
-                <div className="flex justify-end mb-4">
+                <div className="flex justify-between mb-4">
                 <Link href="/admin/missions/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create Mission </Link>
                 </div>
                 <div className="overflow-x-auto">

@@ -62,7 +62,10 @@ export default function Games ({ games, flash }) {
                 </div>
             )}
             <div className="p-4 bg-white shadow-md rounded-lg">
-            <Link href="/admin/games/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add new Game </Link>
+                <div className="flex justify-between mb-4">
+                    <Link href="/admin/games/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add new Game </Link>
+                </div>
+            
             <div className="overflow-x-auto">
                 <DataTable id="gamesTable" className="min-w-full border border-gray-300"
                 options={{

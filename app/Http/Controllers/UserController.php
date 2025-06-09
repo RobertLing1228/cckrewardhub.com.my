@@ -109,4 +109,17 @@ class UserController extends Controller
         return back()->with('success', 'Password reset successfully!');
     }
 
+    public function checkMember(Request $request){
+        if(!$request->input('phoneNumber')){
+            return response()->json(['message' => 'Phone number is required'], 400);
+        }
+        
+        $phoneNumber = $request->input('phoneNumber');
+        $member = ExistingMember::where('phoneNumber', $phoneNumber)->first();
+
+        if(!$member){
+            return response()->json(['message' => 'Member not found'], 404);
+        }
+        return response()->json($member);
+    }
 }

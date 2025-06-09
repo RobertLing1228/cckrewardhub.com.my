@@ -62,8 +62,8 @@ export default function Promotions ({ promotions, flash }) {
                 </div>
             )}
             <div className="p-4 bg-white shadow-md rounded-lg">
-                <div className="flex justify-end mb-4">
-                <Link href="/admin/promotions/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create Promotion </Link>
+                <div className="flex justify-between mb-4">
+                <Link href="/admin/promotions/add" className="bg-blue-500 text-white px-3 py-1 rounded">Create Promotion </Link>
                 </div>
             <div className="overflow-x-auto">
                 <DataTable id="promotionsTable" className="min-w-full border border-gray-300"
