@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
     $userId = auth()->id();
     UserMission::ensureUserMissionsExist($userId);
 
-    return Inertia::render('/');
+    return Inertia::location(route('home'));
 }
 
     /**
