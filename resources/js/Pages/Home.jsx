@@ -46,7 +46,6 @@ export default function Home() {
                     ))}
                 </div>
             </section>
-
             {/* Product Section */}
             <HotItemsSwiper products={product} />
         </MainLayout>

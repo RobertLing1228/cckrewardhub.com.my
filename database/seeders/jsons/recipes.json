@@ -1,0 +1,310 @@
+{
+    "type": "table",
+    "name": "products",
+    "data": [
+        {
+            "recipeID": 1,
+            "productID": 1,
+            "category": "CCK product",
+            "title": "Baked Parmesan Cheese Corn",
+            "description": "-CCK SWEET CORN\r\n\r\nIngredients：\r\n1/2 cup mayonnaise\r\n1/2 teaspoon ground black pepper\r\n1/2 teaspoon garlic salt\r\n2 teaspoons sugar\r\n1 tablespoon grated parmesan cheese\r\n1/2 cup shredded parmesan cheese, divided\r\nParsley flakes, for garnish\r\n\r\nInstructions：\r\nStep1: Preheat the oven to 380°F (198°C). In a large bowl, combine 2 cans of sweet corn, mayonnaise, ground black pepper, garlic salt, sugar, grated Parmesan cheese, and half of the shredded Parmesan cheese. Stir well with a spatula.\r\n\r\nStep 2: Pour the mixture into a baking dish and sprinkle the remaining shredded Parmesan cheese on top.\r\n\r\nStep 3: Bake for 20 to 30 minutes, or until the cheese is melted and bubbly.\r\n\r\nStep 4: Remove from the oven and serve immediately, garnished with additional shredded Parmesan cheese and parsley flakes, if desired.\r\n\r\nNotes:\r\n-To make this dish creamer, you may substitute one can of sweet whole-kernel corn with cream-style corn to add richness.\r\n\r\n-Add a cheesy topping to the dish with more kinds of cheese. You may broil the dish for an extra 5 minutes with a cup of mozzarella cheese evenly sprinkled on top. Let the cheese melt and drizzle down.\r\n\r\n-Give the dish a spicy kick with some paprika sprinkled on top before serving.",
+            "image": "[ \"images/Baked Parmesan Cheese Corn_1.jpg\", \"images/Baked Parmesan Cheese Corn_2.jpg\", \"images/Baked Parmesan Cheese Corn_3.jpg\", \"images/Baked Parmesan Cheese Corn_4.jpg\", \"images/Baked Parmesan Cheese Corn_5.jpg\" ]"
+        },
+        {
+            "recipeID": 2,
+            "productID": 3,
+            "category": "CCK product",
+            "title": "Fried Popiah",
+            "description": "-CCK MINCED BEEF\r\n\r\nIngredients:\r\n1 pack spring roll wrappers\r\n3 tablespoons cooking oil\r\n2 cloves garlic, chopped finely\r\n150 g (5 oz) baby shrimp, chopped finely\r\n5-6 dried shitake mushrooms, soaked and chopped finely\r\n200 g (7 oz) yam bean, sliced\r\n100 g (3½ oz) carrot, sliced\r\n\r\nSeasonings:\r\n1 teaspoon chicken stock granules\r\n1/2 teaspoon salt\r\n1 dash pepper\r\n1 cup water\r\n1 teaspoon oyster sauce\r\n1 tablespoon cornstarch, mix with water\r\n\r\nFlour Mixture:\r\n2 tablespoons plain flour\r\n4 tablespoons water\r\n\r\nInstructions:\r\nStep 1: In a wok, heat the cooking oil. Add the garlic and stir-fry until aromatic. Then, add the CCK MINCED BEEF, shrimp, and mushrooms, and continue to stir-fry until cooked.\r\n\r\nStep 2：Add the yam bean and carrot, and stir-fry for 1-2 minutes. Then, add 1 cup of water, cover with a lid, and simmer for 15-20 minutes until the vegetables are tender. Add the seasoning ingredients and mix well. Dish out and set aside.\r\n\r\nStep 3: Place a piece of spring roll wrapper on a flat surface. Add 2 spoonfuls of filling to the center of the wrapper, then fold in the two sides and roll it up. Use the flour mixture to seal the edges.\r\n\r\nStep 4: Heat a wok and pour in 2 cups of cooking oil. Deep fry the spring rolls over medium heat until golden brown and crispy. Remove them and drain on paper towels. Serve hot with chili sauce.\r\n\r\nNotes:\r\n-When you’re adding the filling to the wrappers, keep it simple—don’t overstuff! Two spoonfuls is just right; otherwise, it gets messy.\r\n\r\n-Keep an eye on your oil temperature at around 350°F (175°C) while frying. If it’s too hot, the outside will burn before the inside cooks, and if it’s too cool, your popiah will soak up too much oil and get greasy.\r\n\r\n-Don’t overcrowd the pan! Frying in small batches helps everything cook evenly and stay nice and crispy.",
+            "image": "[ \"images/popiah_1.jpg\", \"images/popiah_2.webp\", \"images/popiah_3.webp\", \"images/popiah_4.webp\", \"images/popiah_5.webp\" ]"
+        },
+        {
+            "recipeID": 3,
+            "productID": 11,
+            "category": "CCK product",
+            "title": "Ginger Scallion Fish",
+            "description": "-CCK BREADED POLLOCK FILLET\r\n\r\nIngredients:\r\n1 1/2 tablespoons oil\r\n2- inch ginger, skin peeled and cut into thin slices\r\n2 stalks scallion, cut into 2-inch lengths (5 cm)\r\n\r\nMarinade:\r\n1 teaspoon cornstarch\r\n1 teaspoon Shaoxing wine\r\n\r\nSauce:\r\n1/2 tablespoon soy sauce\r\n1/2 tablespoon oyster sauce\r\n1/2 teaspoon cornstarch\r\n1 teaspoon sugar\r\n1/4 teaspoon sesame oil\r\n3-4 tablespoons water\r\nSalt to taste\r\n3 dashes white pepper powder\r\n\r\nInstructions:\r\nStep 1: Marinate the fish for about 10 minutes. Mix the sauce ingredients in a small bowl and set aside.\r\n\r\nStep 2: Heat up the wok with cooking oil. Add ginger slices to the wok when the oil is very hot. Stir-fry the ginger until aromatic, then add the fish fillet. Stir-fry the fish until it is half cooked.\r\n\r\nStep 3: Add the sauce and continue to stir-fry until the fish is cooked through. If the sauce dries out, add a little water. Add the chopped scallions and stir briefly. Dish out and serve hot.\r\n\r\nNotes:\r\n-Using fresh ginger and scallions will enhance the flavor of the dish. Avoid using old or wilted ingredients.\r\n\r\n-Opt for firm-fleshed fish fillets like Basa, tilapia, or cod that can withstand stir-frying without falling apart.\r\n\r\n-Make sure your wok or pan is hot enough before adding ingredients. This helps to quickly stir-fry and sear the fish without overcooking.\r\n\r\n-If the sauce becomes too thick or dries out during cooking, add a splash of water to adjust the consistency.",
+            "image": "[ \"images/Ginger Scallion Fish_1.jpg\", \"images/Ginger Scallion Fish_2.jpg\", \"images/Ginger Scallion Fish_3.webp\", \"images/Ginger Scallion Fish_4.webp\", \"images/Ginger Scallion Fish_5.webp\" ]"
+        },
+        {
+            "recipeID": 4,
+            "productID": 94,
+            "category": "Frozen Food",
+            "title": "Spam Fried Rice",
+            "description": "-SUPREME MIXED VEGETABLE\r\n\r\nIngredients：\r\n3 cups overnight steamed rice\r\n2 1/2 tablespoons oil\r\n3 large eggs, lightly beaten\r\n2 cloves garlic, minced\r\n6 oz (170g) spam, cut into small cubes\r\n1 cup frozen mixed vegetables, thaw and defrost\r\nsalt, to taste\r\n\r\nSeasonings:\r\n1 1/2 tablespoons soy sauce\r\n1/2 tablespoon fish sauce\r\n1/2 teaspoon sesame oil\r\n3 dashes ground white pepper\r\n\r\nInstructions：\r\n\r\nStep 1: Break up the lumpy overnight rice using the back of a spoon, a fork, or your hand. In a small bowl, mix all the ingredients for the Seasonings.\r\n\r\nStep 2: Heat 1/2 tablespoon of the oil in a wok over high heat and cook the eggs, breaking them into small pieces with a spatula. Set aside. Reheat the wok with the remaining 2 tablespoons of oil and stir-fry the garlic until aromatic.\r\n\r\nStep 3: Add the spam pieces and stir-fry until they are light brown, then add the mixed vegetables. Stir to combine well.\r\n\r\nStep 4: Add the rice to the wok and use the spatula to stir-fry continuously until all the ingredients are well blended. Add the seasonings, mixing thoroughly with the rice and other ingredients. Return the cooked eggs to the wok and combine with the rice. Dish out and serve immediately.",
+            "image": "[ \"images/Spam Fried Rice_ (1).jpg\", \"images/Spam Fried Rice_ (1).png\", \"images/Spam Fried Rice_ (2).jpg\", \"images/Spam Fried Rice_ (3).jpg\", \"images/Spam Fried Rice_5.webp\" ]"
+        },
+        {
+            "recipeID": 5,
+            "productID": 12,
+            "category": "CCK product",
+            "title": "Teriyaki Beef Meatballs",
+            "description": "-CCK PREMIO BEEF BALL 500G\r\n\r\nIngredients:\r\noil, for shallow frying\r\n1/3 cup Japanese mirin, sweet rice wine\r\n2 tablespoons soy sauce\r\n1 tablespoon sugar\r\nwhite sesame, optional\r\nscallion , or cilantro, chopped, optional\r\n\r\nInstructions:\r\nStep 1:Heat a pan or skillet with some oil and shallow-fry the meatballs until they are lightly browned and cooked through.\r\n\r\nStep 2: Remove the excess oil from the pan or skillet. Lower the heat to medium-low and add the Japanese mirin, soy sauce, and sugar. Stir well with the chicken meatballs. Simmer and cook until the sauce slightly thickens, about 5 minutes.\r\n\r\nStep 3: Top with sesame seeds and chopped scallions or cilantro, if desired. Dish out and serve immediately.",
+            "image": "[ \"images/Teriyaki Chicken Meatballs_ (1).jpg\", \"images/Teriyaki Chicken Meatballs_ (2).jpg\", \"images/Teriyaki Chicken Meatballs_ (3).jpg\", \"images/Teriyaki Chicken Meatballs_ (4).jpg\", \"images/Teriyaki Chicken Meatballs_ (5).jpg\" ]"
+        },
+        {
+            "recipeID": 6,
+            "productID": 0,
+            "category": "Local Delight",
+            "title": "Chicken Satay",
+            "description": "Ingredients:\r\n500g chicken thigh fillets, cut into 1-inch cubes\r\n2 tablespoons vegetable oil\r\n1 red onion, finely chopped\r\n2 cloves garlic, minced\r\n1 teaspoon ground turmeric\r\n1 teaspoon ground cumin\r\n1/2 teaspoon ground coriander\r\n1/4 teaspoon chili powder (optional)\r\n2 tablespoons soy sauce\r\n1 tablespoon honey\r\nBamboo skewers, soaked in water\r\n\r\nInstructions:\r\nStep 1: In a bowl, combine the chopped onion, minced garlic, turmeric, cumin, coriander, chili powder (if using), soy sauce, and honey. Mix well to form a marinade.\r\n\r\nStep 2: Add the chicken cubes to the marinade, ensuring they are fully coated. Cover the bowl and refrigerate for at least 30 minutes, or up to 4 hours for a more intense flavor.\r\n\r\nStep 3: Thread the marinated chicken cubes onto the soaked bamboo skewers, leaving a small space between each piece.\r\n\r\nStep 4: Heat the vegetable oil in a grill pan or outdoor grill over medium heat. Grill the satay skewers for about 3-4 minutes per side, or until they are cooked through and have a nice char. Alternatively, you can bake them in a preheated oven at 375°F (190°C) for 15-20 minutes, flipping halfway through.\r\n\r\nStep 5: Serve the chicken satay hot with peanut sauce, sliced cucumbers, and red onions.",
+            "image": "[ \"images/satay_1.jpg\", \"images/satay_2.jpg\", \"images/satay_3.jpg\" ]"
+        },
+        {
+            "recipeID": 7,
+            "productID": 0,
+            "category": "Quick Meal",
+            "title": "One-Pan Lemon Herb Roasted Chicken and Veggies",
+            "description": "Ingredients:\r\n1 whole chicken (about 3-4 lbs)\r\n1 lb small potatoes, halved or quartered if large\r\n1 lb carrots, roughly chopped\r\n1 red onion, cut into wedges\r\n2 tablespoons olive oil\r\n1 teaspoon dried rosemary\r\n1 teaspoon dried thyme\r\n1 lemon, sliced\r\n4 cloves garlic, minced\r\nSalt and pepper to taste\r\nFresh parsley, chopped (for garnish)\r\n\r\nInstructions:\r\nStep 1: Preheat your oven to 400°F (200°C).\r\n\r\nStep 2: In a large bowl, toss the potatoes, carrots, and red onion with olive oil, rosemary, thyme, salt, and pepper.\r\n\r\nStep 3: Place the vegetables in a single layer on a large baking sheet.\r\n\r\nStep 4: Rinse the chicken inside and out and pat it dry with paper towels. Place the chicken in the center of the baking sheet with the vegetables around it.\r\n\r\nStep 5: Stuff the cavity of the chicken with half of the lemon slices and the minced garlic. Arrange the remaining lemon slices around the chicken and vegetables.\r\n\r\nStep 6: Season the chicken generously with salt and pepper.\r\n\r\nStep 7: Roast for 1 hour and 15 minutes to 1 hour and 30 minutes, or until the chicken is cooked through and the juices run clear when pierced with a fork or a meat thermometer inserted into the thickest part of the thigh registers 165°F (74°C). The vegetables should be tender and slightly browned.\r\n\r\nStep 8: Let the chicken rest for 10 minutes before carving. Garnish with fresh parsley and serve hot with the roasted vegetables.",
+            "image": "[ \"images/roasted_chicken_1.jpg\", \"images/roasted_chicken_2.jpg\", \"images/roasted_chicken_3.jpg\" ]"
+        },
+        {
+            "recipeID": 8,
+            "productID": 0,
+            "category": "Dessert",
+            "title": "Classic Chocolate Chip Cookies",
+            "description": "Ingredients:\r\n1 cup (2 sticks) unsalted butter, softened\r\n3/4 cup granulated sugar\r\n3/4 cup packed brown sugar\r\n2 teaspoons vanilla extract\r\n2 large eggs\r\n2 1/4 cups all-purpose flour\r\n1 teaspoon baking soda\r\n1 teaspoon salt\r\n2 cups chocolate chips\r\n\r\nInstructions:\r\nStep 1: Preheat your oven to 375°F (190°C).\r\n\r\nStep 2: In a large bowl, cream together the softened butter, granulated sugar, and brown sugar until light and fluffy.\r\n\r\nStep 3: Beat in the vanilla extract and then the eggs, one at a time, mixing well after each addition.\r\n\r\nStep 4: In a separate medium bowl, whisk together the flour, baking soda, and salt.\r\n\r\nStep 5: Gradually add the dry ingredients to the wet ingredients, mixing until just combined. Be careful not to overmix.\r\n\r\nStep 6: Stir in the chocolate chips.\r\n\r\nStep 7: Drop rounded tablespoons of cookie dough onto ungreased baking sheets, leaving about 2 inches between each cookie.\r\n\r\nStep 8: Bake for 9-11 minutes, or until the edges are golden brown and the centers still look slightly soft. Let the cookies cool on the baking sheets for a few minutes before transferring them to a wire rack to cool completely.",
+            "image": "[ \"images/chocolate_chip_cookie_1.jpg\", \"images/chocolate_chip_cookie_2.jpg\", \"images/chocolate_chip_cookie_3.jpg\" ]"
+        },
+        {
+            "recipeID": 9,
+            "productID": 0,
+            "category": "Vegetarian",
+            "title": "Creamy Tomato Pasta",
+            "description": "Ingredients:\r\n1 pound pasta (such as spaghetti, penne, or fusilli)\r\n2 tablespoons olive oil\r\n2 cloves garlic, minced\r\n1 (28 ounce) can crushed tomatoes\r\n1/2 cup heavy cream\r\n1/4 cup grated Parmesan cheese, plus more for serving\r\n1 teaspoon dried oregano\r\n1/2 teaspoon salt, or to taste\r\n1/4 teaspoon black pepper, or to taste\r\nFresh basil leaves, chopped (for garnish)\r\n\r\nInstructions:\r\nStep 1: Cook the pasta according to package directions until al dente. Reserve about 1/2 cup of the pasta water before draining.\r\n\r\nStep 2: While the pasta is cooking, heat the olive oil in a large skillet over medium heat. Add the minced garlic and cook for about 30 seconds until fragrant, being careful not to burn it.\r\n\r\nStep 3: Pour in the crushed tomatoes, oregano, salt, and pepper. Bring to a simmer and cook for about 10-15 minutes, stirring occasionally, to allow the flavors to meld.\r\n\r\nStep 4: Reduce the heat to low and stir in the heavy cream and Parmesan cheese. Cook for another 2-3 minutes until the sauce is heated through and slightly thickened.\r\n\r\nStep 5: Add the drained pasta to the skillet with the tomato cream sauce. Toss to coat the pasta evenly. If the sauce seems too thick, add a little of the reserved pasta water until it reaches your desired consistency.\r\n\r\nStep 6: Serve the creamy tomato pasta hot, garnished with extra grated Parmesan cheese and fresh basil leaves.",
+            "image": "[ \"images/tomato_pasta_1.jpg\", \"images/tomato_pasta_2.jpg\", \"images/tomato_pasta_3.jpg\" ]"
+        },
+        {
+            "recipeID": 10,
+            "productID": 0,
+            "category": "Breakfast",
+            "title": "Fluffy Pancakes",
+            "description": "Ingredients:\r\n1 1/2 cups all-purpose flour\r\n3 1/2 teaspoons baking powder\r\n1 teaspoon salt\r\n1 tablespoon white sugar\r\n1 1/4 cups milk\r\n1 egg\r\n3 tablespoons butter, melted\r\n\r\nInstructions:\r\nStep 1: In a large bowl, whisk together the flour, baking powder, salt, and sugar.\r\nStep 2: Make a well in the center and pour in the milk, egg, and melted butter; mix until smooth.\r\nStep 3: Heat a lightly oiled griddle or frying pan over medium-high heat.\r\nStep 4: Pour or scoop the batter onto the hot griddle, using approximately 1/4 cup for each pancake. Cook for 2-3 minutes per side, or until golden brown and cooked through.\r\nStep 5: Serve hot with your favorite toppings like syrup, fruit, or whipped cream.",
+            "image": "[ \"images/pancakes_1.jpg\", \"images/pancakes_2.jpg\", \"images/pancakes_3.jpg\" ]"
+        },
+        {
+            "recipeID": 11,
+            "productID": 0,
+            "category": "Breakfast",
+            "title": "Scrambled Eggs",
+            "description": "Ingredients:\r\n4 large eggs\r\n2 tablespoons milk or cream\r\n1 tablespoon butter\r\nSalt and pepper to taste\r\nOptional: chopped chives or cheese\r\n\r\nInstructions:\r\nStep 1: In a bowl, whisk together the eggs and milk or cream until just combined. Season with salt and pepper.\r\nStep 2: Melt the butter in a non-stick skillet over medium-low heat.\r\nStep 3: Pour the egg mixture into the skillet. As the eggs begin to set around the edges, gently push the cooked portions towards the center, tilting the pan to allow uncooked egg to flow underneath.\r\nStep 4: Continue cooking until the eggs are set but still slightly moist. Do not overcook.\r\nStep 5: Stir in chopped chives or cheese if desired. Serve immediately.",
+            "image": "[ \"images/scrambled_eggs_1.jpg\", \"images/scrambled_eggs_2.jpg\", \"images/scrambled_eggs_3.jpg\" ]"
+        },
+        {
+            "recipeID": 12,
+            "productID": 0,
+            "category": "Lunch",
+            "title": "Tuna Salad Sandwich",
+            "description": "Ingredients:\r\n1 can (5 ounces) tuna in water, drained\r\n1/4 cup mayonnaise\r\n1/4 cup chopped celery\r\n1/4 cup chopped red onion\r\n1 tablespoon lemon juice\r\nSalt and pepper to taste\r\nBread slices\r\nLettuce leaves (optional)\r\nTomato slices (optional)\r\n\r\nInstructions:\r\nStep 1: In a medium bowl, flake the drained tuna with a fork.\r\nStep 2: Stir in the mayonnaise, chopped celery, red onion, and lemon juice.\r\nStep 3: Season with salt and pepper to taste. Mix well.\r\nStep 4: Spread the tuna salad evenly onto slices of bread.\r\nStep 5: Top with lettuce and tomato slices if desired. Place another slice of bread on top to make a sandwich. Serve immediately.",
+            "image": "[ \"images/tuna_sandwich_1.jpg\", \"images/tuna_sandwich_2.jpg\", \"images/tuna_sandwich_3.jpg\" ]"
+        },
+        {
+            "recipeID": 13,
+            "productID": 0,
+            "category": "Lunch",
+            "title": "Grilled Cheese Sandwich",
+            "description": "Ingredients:\r\n2 slices of bread\r\n1 tablespoon butter\r\n2 slices of cheese (cheddar, American, or your favorite)\r\n\r\nInstructions:\r\nStep 1: Spread butter on one side of each slice of bread.\r\nStep 2: Place one slice of bread, butter-side down, in a skillet over medium heat.\r\nStep 3: Place the cheese slices on top of the bread.\r\nStep 4: Top with the other slice of bread, butter-side up.\r\nStep 5: Grill for 3-5 minutes per side, or until the bread is golden brown and the cheese is melted and gooey. Serve immediately.",
+            "image": "[ \"images/grilled_cheese_1.jpg\", \"images/grilled_cheese_2.jpg\", \"images/grilled_cheese_3.jpg\" ]"
+        },
+        {
+            "recipeID": 14,
+            "productID": 0,
+            "category": "Dinner",
+            "title": "Spaghetti with Marinara Sauce",
+            "description": "Ingredients:\r\n1 pound spaghetti\r\n1 (24 ounce) jar marinara sauce\r\nOptional: ground meat, Italian sausage, or vegetables\r\nGrated Parmesan cheese (for serving)\r\nFresh basil leaves (for garnish)\r\n\r\nInstructions:\r\nStep 1: Cook the spaghetti according to package directions until al dente. Drain well.\r\nStep 2: While the pasta is cooking, heat the marinara sauce in a saucepan over medium heat. If using, add ground meat, Italian sausage, or vegetables and cook until browned or tender.\r\nStep 3: Simmer the sauce for 5-10 minutes to heat through.\r\nStep 4: Toss the cooked spaghetti with the marinara sauce.\r\nStep 5: Serve hot, garnished with grated Parmesan cheese and fresh basil leaves.",
+            "image": "[ \"images/spaghetti_1.jpg\", \"images/spaghetti_2.jpg\", \"images/spaghetti_3.jpg\" ]"
+        },
+        {
+            "recipeID": 15,
+            "productID": 0,
+            "category": "Dinner",
+            "title": "Chicken Stir-Fry",
+            "description": "Ingredients:\r\n1 pound boneless, skinless chicken breasts, cut into bite-sized pieces\r\n1 tablespoon soy sauce\r\n1 teaspoon cornstarch\r\n1 tablespoon vegetable oil\r\n1 onion, sliced\r\n2 cloves garlic, minced\r\n1 bell pepper (any color), sliced\r\n1 cup broccoli florets\r\n1/4 cup stir-fry sauce (store-bought or homemade)\r\nCooked rice, for serving\r\n\r\nInstructions:\r\nStep 1: In a bowl, toss the chicken pieces with soy sauce and cornstarch. Let it marinate for 10 minutes.\r\nStep 2: Heat the vegetable oil in a large skillet or wok over medium-high heat.\r\nStep 3: Add the chicken and stir-fry until cooked through and lightly browned.\r\nStep 4: Add the onion and garlic and stir-fry for 1 minute until fragrant.\r\nStep 5: Add the bell pepper and broccoli and stir-fry for 3-5 minutes until the vegetables are tender-crisp.\r\nStep 6: Pour in the stir-fry sauce and cook for another 1-2 minutes until the sauce has thickened slightly and coats the chicken and vegetables.\r\nStep 7: Serve hot over cooked rice.",
+            "image": "[ \"images/chicken_stir_fry_1.jpg\", \"images/chicken_stir_fry_2.jpg\", \"images/chicken_stir_fry_3.jpg\" ]"
+        },
+        {
+            "recipeID": 16,
+            "productID": 0,
+            "category": "Side Dish",
+            "title": "Garlic Bread",
+            "description": "Ingredients:\r\n1 baguette, sliced lengthwise\r\n1/2 cup unsalted butter, softened\r\n3 cloves garlic, minced\r\n1/4 cup grated Parmesan cheese\r\n1 tablespoon chopped fresh parsley\r\n\r\nInstructions:\r\nStep 1: Preheat your oven to 350°F (175°C).\r\nStep 2: In a small bowl, combine the softened butter, minced garlic, Parmesan cheese, and parsley. Mix well.\r\nStep 3: Spread the garlic butter mixture evenly over the cut sides of the baguette.\r\nStep 4: Place the baguette halves on a baking sheet.\r\nStep 5: Bake for 10-12 minutes, or until the bread is golden brown and the garlic butter is melted and bubbly. Slice into individual pieces and serve warm.",
+            "image": "[ \"images/garlic_bread_1.jpg\", \"images/garlic_bread_2.jpg\", \"images/garlic_bread_3.jpg\" ]"
+        },
+        {
+            "recipeID": 17,
+            "productID": 0,
+            "category": "Side Dish",
+            "title": "Mashed Potatoes",
+            "description": "Ingredients:\r\n2 pounds potatoes (such as Russet or Yukon Gold), peeled and quartered\r\n1/2 cup milk or cream, warmed\r\n4 tablespoons butter\r\nSalt and pepper to taste\r\nOptional: garlic powder, chives, or sour cream\r\n\r\nInstructions:\r\nStep 1: Place the potatoes in a large pot and cover with cold, salted water. Bring to a boil and cook until the potatoes are tender and easily pierced with a fork, about 15-20 minutes.\r\nStep 2: Drain the potatoes well and return them to the pot.\r\nStep 3: Mash the potatoes with a potato masher or ricer until smooth.\r\nStep 4: Gradually stir in the warmed milk or cream and butter until the mashed potatoes are creamy and smooth.\r\nStep 5: Season with salt and pepper to taste. Stir in any optional ingredients if desired. Serve hot.",
+            "image": "[ \"images/mashed_potatoes_1.jpg\", \"images/mashed_potatoes_2.jpg\", \"images/mashed_potatoes_3.jpg\" ]"
+        },
+        {
+            "recipeID": 18,
+            "productID": 0,
+            "category": "Dessert",
+            "title": "Fruit Salad",
+            "description": "Ingredients:\r\nAssorted fresh fruits of your choice (e.g., strawberries, blueberries, melon, grapes, kiwi, banana)\r\nOptional: honey, lime juice, or mint leaves\r\n\r\nInstructions:\r\nStep 1: Wash and prepare all the fruits. Peel and chop any fruits with thick skins or large seeds.\r\nStep 2: Cut the remaining fruits into bite-sized pieces.\r\nStep 3: Combine all the cut fruits in a large bowl.\r\nStep 4: If desired, drizzle with a little honey or lime juice for added flavor. Toss gently to combine.\r\nStep 5: Garnish with fresh mint leaves if desired. Serve immediately or chill for later.",
+            "image": "[ \"images/fruit_salad_1.jpg\", \"images/fruit_salad_2.jpg\", \"images/fruit_salad_3.jpg\" ]"
+        },
+        {
+            "recipeID": 19,
+            "productID": 0,
+            "category": "Dessert",
+            "title": "Chocolate Mug Cake",
+            "description": "Ingredients:\r\n4 tablespoons all-purpose flour\r\n4 tablespoons granulated sugar\r\n2 tablespoons unsweetened cocoa powder\r\n1/4 teaspoon baking powder\r\n1/4 teaspoon salt\r\n3 tablespoons milk\r\n1 tablespoon vegetable oil\r\n1/2 teaspoon vanilla extract\r\nOptional: chocolate chips or powdered sugar\r\n\r\nInstructions:\r\nStep 1: In a microwave-safe mug, whisk together the flour, sugar, cocoa powder, baking powder, and salt until well combined.\r\nStep 2: Add the milk, vegetable oil, and vanilla extract to the mug. Stir until the batter is smooth.\r\nStep 3: If desired, sprinkle chocolate chips on top.\r\nStep 4: Microwave on high for 60-90 seconds, or until the cake is set but still slightly gooey in the center. Cooking time may vary depending on your microwave.\r\nStep 5: Let cool for a minute before serving. Dust with powdered sugar if desired. Enjoy!",
+            "image": "[ \"images/mug_cake_1.jpg\", \"images/mug_cake_2.jpg\", \"images/mug_cake_3.jpg\" ]"
+        },
+        {
+            "recipeID": 20,
+            "productID": 0,
+            "category": "Beverage",
+            "title": "Lemonade",
+            "description": "Ingredients:\r\n1 cup fresh lemon juice (about 4-6 lemons)\r\n1 cup granulated sugar\r\n4 cups cold water\r\nIce cubes\r\nLemon slices and mint sprigs (for garnish)\r\n\r\nInstructions:\r\nStep 1: In a small saucepan, combine the lemon juice and sugar. Heat over low heat, stirring until the sugar is completely dissolved. This creates a simple syrup.\r\nStep 2: Remove the syrup from the heat and let it cool slightly.\r\nStep 3: In a pitcher, pour the cooled syrup and add the cold water. Stir well to combine.\r\nStep 4: Taste and adjust sweetness or tartness by adding more sugar or lemon juice if needed.\r\nStep 5: Fill glasses with ice cubes and pour the lemonade over the ice.\r\nStep 6: Garnish with lemon slices and mint sprigs if desired. Serve immediately.",
+            "image": "[ \"images/lemonade_1.jpg\", \"images/lemonade_2.jpg\", \"images/lemonade_3.jpg\" ]"
+        },
+        {
+            "recipeID": 21,
+            "productID": 0,
+            "category": "Beverage",
+            "title": "Iced Tea",
+            "description": "Ingredients:\r\n4 black tea bags\r\n4 cups boiling water\r\nSugar or sweetener to taste (optional)\r\nIce cubes\r\nLemon slices (optional)\r\n\r\nInstructions:\r\nStep 1: Place the tea bags in a heatproof pitcher or teapot.\r\nStep 2: Pour the boiling water over the tea bags. Steep for 3-5 minutes, depending on your desired strength.\r\nStep 3: Remove the tea bags and stir in sugar or sweetener if using, until dissolved.\r\nStep 4: Let the tea cool to room temperature, or speed up the process by adding some ice.\r\nStep 5: Fill glasses with ice cubes and pour the cooled tea over the ice.\r\nStep 6: Garnish with lemon slices if desired. Serve chilled.",
+            "image": "[ \"images/iced_tea_1.jpg\", \"images/iced_tea_2.jpg\", \"images/iced_tea_3.jpg\" ]"
+        },
+        {
+            "recipeID": 22,
+            "productID": 0,
+            "category": "Snack",
+            "title": "Popcorn",
+            "description": "Ingredients:\r\n1/4 cup popcorn kernels\r\n2 tablespoons vegetable oil or coconut oil\r\nSalt to taste\r\nOptional: butter, nutritional yeast, or other seasonings\r\n\r\nInstructions:\r\nStep 1: Heat the oil in a large pot with a lid over medium heat.\r\nStep 2: Add a few popcorn kernels to the pot. When they pop, it indicates that the oil is hot enough.\r\nStep 3: Add the remaining popcorn kernels in a single layer. Cover the pot.\r\nStep 4: Once the popping starts, shake the pot occasionally to prevent burning.\r\nStep 5: Continue cooking until the popping slows down to a few seconds between pops.\r\nStep 6: Remove the pot from the heat and let it sit for a minute before opening the lid. Be careful of steam.\r\nStep 7: Pour the popcorn into a large bowl and sprinkle with salt to taste. Add any other desired seasonings. Serve immediately.",
+            "image": "[ \"images/popcorn_1.jpg\", \"images/popcorn_2.jpg\", \"images/popcorn_3.jpg\" ]"
+        },
+        {
+            "recipeID": 23,
+            "productID": 0,
+            "category": "Snack",
+            "title": "Peanut Butter and Banana Sandwich",
+            "description": "Ingredients:\r\n2 slices of bread\r\n2 tablespoons peanut butter\r\n1/2 banana, sliced\r\nOptional: honey or cinnamon\r\n\r\nInstructions:\r\nStep 1: Spread peanut butter evenly on one or both slices of bread.\r\nStep 2: Arrange the banana slices on top of the peanut butter on one slice of bread.\r\nStep 3: If desired, drizzle with a little honey or sprinkle with cinnamon.\r\nStep 4: Place the other slice of bread on top to make a sandwich. Serve immediately.",
+            "image": "[ \"images/peanut_butter_banana_1.jpg\", \"images/peanut_butter_banana_2.jpg\", \"images/peanut_butter_banana_3.jpg\" ]"
+        },
+        {
+            "recipeID": 24,
+            "productID": 0,
+            "category": "Salad",
+            "title": "Simple Green Salad",
+            "description": "Ingredients:\r\nMixed salad greens (lettuce, spinach, etc.)\r\n1/2 cucumber, sliced\r\n1/2 tomato, chopped\r\n1/4 red onion, thinly sliced\r\nYour favorite salad dressing\r\nOptional: croutons, shredded carrots, bell pepper slices\r\n\r\nInstructions:\r\nStep 1: Wash and dry the salad greens.\r\nStep 2: In a salad bowl, combine the salad greens, sliced cucumber, chopped tomato, and sliced red onion.\r\nStep 3: Add any other desired vegetables like croutons, shredded carrots, or bell pepper slices.\r\nStep 4: Just before serving, drizzle your favorite salad dressing over the salad. Toss gently to combine.",
+            "image": "[ \"images/green_salad_1.jpg\", \"images/green_salad_2.jpg\", \"images/green_salad_3.jpg\" ]"
+        },
+        {
+            "recipeID": 25,
+            "productID": 0,
+            "category": "Salad",
+            "title": "Caprese Salad",
+            "description": "Ingredients:\r\nFresh mozzarella cheese, sliced\r\nRipe tomatoes, sliced\r\nFresh basil leaves\r\nExtra virgin olive oil\r\nBalsamic glaze (optional)\r\nSalt and pepper to taste\r\n\r\nInstructions:\r\nStep 1: Arrange the slices of mozzarella and tomato alternately on a serving platter.\r\nStep 2: Tuck fresh basil leaves between the mozzarella and tomato slices.\r\nStep 3: Drizzle generously with extra virgin olive oil.\r\nStep 4: If desired, drizzle with balsamic glaze.\r\nStep 5: Season with salt and pepper to taste. Serve immediately.",
+            "image": "[ \"images/caprese_salad_1.jpg\", \"images/caprese_salad_2.jpg\", \"images/caprese_salad_3.jpg\" ]"
+        },
+        {
+            "recipeID": 26,
+            "productID": 0,
+            "category": "Soup",
+            "title": "Tomato Soup",
+            "description": "Ingredients:\r\n1 tablespoon olive oil\r\n1 onion, chopped\r\n2 cloves garlic, minced\r\n1 (28 ounce) can crushed tomatoes\r\n4 cups vegetable broth\r\n1 teaspoon dried oregano\r\n1/2 teaspoon salt\r\n1/4 teaspoon black pepper\r\nOptional: heavy cream, fresh basil\r\n\r\nInstructions:\r\nStep 1: Heat the olive oil in a large pot over medium heat. Add the chopped onion and cook until softened, about 5 minutes.\r\nStep 2: Add the minced garlic and cook for another minute until fragrant.\r\nStep 3: Stir in the crushed tomatoes, vegetable broth, oregano, salt, and pepper.\r\nStep 4: Bring the soup to a simmer, then reduce heat and cook for at least 20 minutes to allow the flavors to meld.\r\nStep 5: Use an immersion blender or carefully transfer the soup to a regular blender to blend until smooth. (Be cautious when blending hot liquids).\r\nStep 6: Return the soup to the pot. If desired, stir in a swirl of heavy cream for added richness.\r\nStep 7: Serve hot, garnished with fresh basil leaves if desired.",
+            "image": "[ \"images/tomato_soup_1.jpg\", \"images/tomato_soup_2.jpg\", \"images/tomato_soup_3.jpg\" ]"
+        },
+        {
+            "recipeID": 27,
+            "productID": 0,
+            "category": "Soup",
+            "title": "Chicken Noodle Soup",
+            "description": "Ingredients:\r\n8 cups chicken broth\r\n1 pound boneless, skinless chicken breasts or thighs\r\n1 cup chopped carrots\r\n1 cup chopped celery\r\n1 cup chopped onion\r\n1 teaspoon dried thyme\r\n1/2 teaspoon salt\r\n1/4 teaspoon black pepper\r\n2 cups egg noodles\r\nFresh parsley, chopped (for garnish)\r\n\r\nInstructions:\r\nStep 1: In a large pot, bring the chicken broth to a boil.\r\nStep 2: Add the chicken, carrots, celery, onion, thyme, salt, and pepper.\r\nStep 3: Reduce heat to a simmer, cover, and cook for 15-20 minutes, or until the chicken is cooked through.\r\nStep 4: Remove the chicken from the pot and shred it with two forks. Return the shredded chicken to the pot.\r\nStep 5: Add the egg noodles and cook according to package directions, usually about 8-10 minutes, or until tender.\r\nStep 6: Stir in fresh parsley before serving. Serve hot.",
+            "image": "[ \"images/chicken_noodle_soup_1.jpg\", \"images/chicken_noodle_soup_2.jpg\", \"images/chicken_noodle_soup_3.jpg\" ]"
+        },
+        {
+            "recipeID": 28,
+            "productID": 0,
+            "category": "Baking",
+            "title": "Banana Bread",
+            "description": "Ingredients:\r\n3 ripe bananas, mashed\r\n1/3 cup melted butter\r\n1 teaspoon baking soda\r\n1/4 teaspoon salt\r\n3/4 cup granulated sugar\r\n1 egg, beaten\r\n1 teaspoon vanilla extract\r\n1 1/2 cups all-purpose flour\r\nOptional: 1/2 cup chopped nuts or chocolate chips\r\n\r\nInstructions:\r\nStep 1: Preheat your oven to 350°F (175°C). Grease and flour a loaf pan (approximately 9x5 inches).\r\nStep 2: In a large bowl, mash the ripe bananas with a fork until smooth.\r\nStep 3: Stir in the melted butter, baking soda, and salt.\r\nStep 4: Add the sugar and beaten egg and mix well.\r\nStep 5: Stir in the vanilla extract.\r\nStep 6: Gradually add the flour to the wet ingredients, mixing until just combined. Be careful not to overmix.\r\nStep 7: If desired, stir in chopped nuts or chocolate chips.\r\nStep 8: Pour the batter into the prepared loaf pan.\r\nStep 9: Bake for 50-60 minutes, or until a wooden skewer inserted into the center comes out clean.\r\nStep 10: Let the banana bread cool in the pan for a few minutes before transferring it to a wire rack to cool completely.",
+            "image": "[ \"images/banana_bread_1.jpg\", \"images/banana_bread_2.jpg\", \"images/banana_bread_3.jpg\" ]"
+        },
+        {
+            "recipeID": 29,
+            "productID": 0,
+            "category": "Baking",
+            "title": "Chocolate Cake",
+            "description": "Ingredients:\r\n1 3/4 cups all-purpose flour\r\n1 3/4 cups granulated sugar\r\n3/4 cup unsweetened cocoa powder\r\n1 1/2 teaspoons baking powder\r\n1 1/2 teaspoons baking soda\r\n1 teaspoon salt\r\n2 large eggs\r\n1 cup buttermilk\r\n1/2 cup vegetable oil\r\n2 teaspoons vanilla extract\r\n1 cup boiling water\r\nYour favorite chocolate frosting\r\n\r\nInstructions:\r\nStep 1: Preheat your oven to 350°F (175°C). Grease and flour two 9-inch round cake pans.\r\nStep 2: In a large bowl, whisk together the flour, sugar, cocoa powder, baking powder, baking soda, and salt.\r\nStep 3: Add the eggs, buttermilk, oil, and vanilla extract to the dry ingredients. Beat with an electric mixer on medium speed for 2 minutes.\r\nStep 4: Carefully pour in the boiling water and mix until just combined. The batter will be thin.\r\nStep 5: Divide the batter evenly between the prepared cake pans.\r\nStep 6: Bake for 30-35 minutes, or until a wooden skewer inserted into the center comes out clean.\r\nStep 7: Let the cakes cool in the pans for 10 minutes before inverting them onto a wire rack to cool completely.\r\nStep 8: Once the cakes are completely cool, frost them with your favorite chocolate frosting.",
+            "image": "[ \"images/chocolate_cake_1.jpg\", \"images/chocolate_cake_2.jpg\", \"images/chocolate_cake_3.jpg\" ]"
+        },
+        {
+            "recipeID": 30,
+            "productID": 0,
+            "category": "Pasta",
+            "title": "Mac and Cheese",
+            "description": "Ingredients:\r\n1 pound elbow macaroni\r\n1/2 cup butter\r\n1/2 cup all-purpose flour\r\n3 cups milk\r\n1 teaspoon salt\r\n1/2 teaspoon black pepper\r\n4 cups shredded cheddar cheese\r\nOptional: breadcrumbs for topping\r\n\r\nInstructions:\r\nStep 1: Cook the macaroni according to package directions until al dente. Drain well and set aside.\r\nStep 2: In a large saucepan, melt the butter over medium heat. Whisk in the flour and cook for 1 minute, stirring constantly, to make a roux.\r\nStep 3: Gradually whisk in the milk until the mixture is smooth. Bring to a simmer, stirring constantly, until the sauce thickens.\r\nStep 4: Remove the saucepan from the heat and stir in the salt and pepper.\r\nStep 5: Add the shredded cheddar cheese, one cup at a time, stirring until each cup is melted and the sauce is smooth and creamy.\r\nStep 6: Add the cooked macaroni to the cheese sauce and stir to coat evenly.\r\nStep 7: Pour the mac and cheese into a greased baking dish. If desired, sprinkle breadcrumbs on top.\r\nStep 8: Bake in a preheated oven at 375°F (190°C) for 15-20 minutes, or until bubbly and the topping is golden brown (if using). Serve hot.",
+            "image": "[ \"images/mac_and_cheese_1.jpg\", \"images/mac_and_cheese_2.jpg\", \"images/mac_and_cheese_3.jpg\" ]"
+        },
+        {
+            "recipeID": 31,
+            "productID": 0,
+            "category": "Pasta",
+            "title": "Pesto Pasta",
+            "description": "Ingredients:\r\n1 pound pasta (such as linguine or penne)\r\n1/2 cup pesto (store-bought or homemade)\r\n2 tablespoons olive oil\r\n1/4 cup grated Parmesan cheese, plus more for serving\r\nOptional: cherry tomatoes, pine nuts\r\n\r\nInstructions:\r\nStep 1: Cook the pasta according to package directions until al dente. Reserve about 1/2 cup of the pasta water before draining.\r\nStep 2: While the pasta is cooking, in a large bowl, whisk together the pesto and olive oil.\r\nStep 3: Add the drained pasta to the bowl with the pesto mixture. Toss to coat evenly. If the sauce seems too thick, add a little of the reserved pasta water until it reaches your desired consistency.\r\nStep 4: Stir in the grated Parmesan cheese.\r\nStep 5: If desired, add halved cherry tomatoes or toasted pine nuts.\r\nStep 6: Serve hot, garnished with extra Parmesan cheese.",
+            "image": "[ \"images/pesto_pasta_1.jpg\", \"images/pesto_pasta_2.jpg\", \"images/pesto_pasta_3.jpg\" ]"
+        },
+        {
+            "recipeID": 32,
+            "productID": 0,
+            "category": "International",
+            "title": "Quesadillas",
+            "description": "Ingredients:\r\n8 flour tortillas\r\n2 cups shredded cheese (Monterey Jack, cheddar, or a blend)\r\nOptional fillings: cooked chicken, black beans, corn, sautéed vegetables, salsa, sour cream\r\nVegetable oil or butter for cooking\r\n\r\nInstructions:\r\nStep 1: Heat a large skillet or griddle over medium heat.\r\nStep 2: Place one tortilla in the skillet. Sprinkle half of it with shredded cheese and any desired fillings.\r\nStep 3: Fold the other half of the tortilla over the cheese and fillings.\r\nStep 4: Cook for 2-3 minutes per side, or until the tortilla is golden brown and the cheese is melted and gooey. You may need to add a little oil or butter to the skillet to prevent sticking.\r\nStep 5: Carefully remove the quesadilla from the skillet and cut it into wedges.\r\nStep 6: Repeat with the remaining tortillas, cheese, and fillings. Serve hot with salsa and sour cream if desired.",
+            "image": "[ \"images/quesadillas_1.jpg\", \"images/quesadillas_2.jpg\", \"images/quesadillas_3.jpg\" ]"
+        },
+        {
+            "recipeID": 33,
+            "productID": 0,
+            "category": "International",
+            "title": "Tacos",
+            "description": "Ingredients:\r\n1 pound ground beef, chicken, or other protein\r\n1 packet taco seasoning\r\n1/2 cup water\r\n12 corn or flour tortillas\r\nToppings of your choice: shredded lettuce, chopped tomatoes, shredded cheese, salsa, sour cream, guacamole\r\n\r\nInstructions:\r\nStep 1: Cook the ground beef (or other protein) in a skillet over medium heat until browned. Drain off any excess grease.\r\nStep 2: Stir in the taco seasoning and water. Bring to a simmer and cook for 5-10 minutes, or until the liquid has reduced and the meat is well seasoned.\r\nStep 3: Warm the tortillas according to package directions (you can heat them in a dry skillet, microwave, or oven).\r\nStep 4: Fill each warm tortilla with the seasoned meat and your favorite toppings such as shredded lettuce, chopped tomatoes, shredded cheese, salsa, sour cream, and guacamole.\r\nStep 5: Serve immediately.",
+            "image": "[ \"images/tacos_1.jpg\", \"images/tacos_2.jpg\", \"images/tacos_3.jpg\" ]"
+        },
+        {
+            "recipeID": 34,
+            "productID": 0,
+            "category": "Seafood",
+            "title": "Garlic Butter Shrimp",
+            "description": "Ingredients:\r\n1 pound shrimp, peeled and deveined\r\n4 tablespoons butter\r\n4 cloves garlic, minced\r\n1/4 cup chopped fresh parsley\r\n1/4 teaspoon red pepper flakes (optional)\r\nSalt and pepper to taste\r\nLemon wedges (for serving)\r\n\r\nInstructions:\r\nStep 1: Pat the shrimp dry with paper towels and season with salt and pepper.\r\nStep 2: Melt the butter in a large skillet over medium heat.\r\nStep 3: Add the minced garlic and red pepper flakes (if using) and cook for about 1 minute until fragrant, being careful not to burn the garlic.\r\nStep 4: Add the shrimp to the skillet in a single layer. Cook for 2-3 minutes per side, or until pink and cooked through.\r\nStep 5: Stir in the chopped parsley.\r\nStep 6: Serve immediately with lemon wedges for squeezing over the shrimp.",
+            "image": "[ \"images/garlic_butter_shrimp_1.jpg\", \"images/garlic_butter_shrimp_2.jpg\", \"images/garlic_butter_shrimp_3.jpg\" ]"
+        },
+        {
+            "recipeID": 35,
+            "productID": 0,
+            "category": "Seafood",
+            "title": "Baked Salmon with Lemon and Dill",
+            "description": "Ingredients:\r\n2 salmon fillets (about 6 ounces each)\r\n2 tablespoons olive oil\r\n1 lemon, thinly sliced\r\n2 tablespoons fresh dill, chopped\r\nSalt and pepper to taste\r\n\r\nInstructions:\r\nStep 1: Preheat your oven to 400°F (200°C).\r\nStep 2: Line a baking sheet with parchment paper.\r\nStep 3: Place the salmon fillets on the prepared baking sheet.\r\nStep 4: Drizzle the salmon fillets with olive oil and season with salt and pepper.\r\nStep 5: Top each fillet with lemon slices and sprinkle with fresh dill.\r\nStep 6: Bake for 12-15 minutes, or until the salmon is cooked through and flakes easily with a fork. Serve immediately.",
+            "image": "[ \"images/baked_salmon_1.jpg\", \"images/baked_salmon_2.jpg\", \"images/baked_salmon_3.jpg\" ]"
+        },
+        {
+            "recipeID": 36,
+            "productID": 0,
+            "category": "Poultry",
+            "title": "Roasted Chicken",
+            "description": "Ingredients:\r\n1 whole chicken (about 3-4 pounds)\r\n1 tablespoon olive oil\r\n1 teaspoon salt\r\n1/2 teaspoon black pepper\r\nOptional: herbs (rosemary, thyme), garlic cloves, lemon wedges\r\n\r\nInstructions:\r\nStep 1: Preheat your oven to 425°F (220°C).\r\nStep 2: Rinse the chicken inside and out and pat it dry with paper towels.\r\nStep 3: Rub the chicken with olive oil and season generously with salt and pepper.\r\nStep 4: If desired, stuff the cavity with herbs, garlic cloves, and lemon wedges.\r\nStep 5: Place the chicken in a roasting pan or on a wire rack set inside a baking sheet.\r\nStep 6: Roast for 1 hour and 15 minutes to 1 hour and 30 minutes, or until the juices run clear when the thickest part of the thigh is pierced and a meat thermometer registers 165°F (74°C).\r\nStep 7: Let the chicken rest for 10-15 minutes before carving and serving.",
+            "image": "[ \"images/roasted_chicken_whole_1.jpg\", \"images/roasted_chicken_whole_2.jpg\", \"images/roasted_chicken_whole_3.jpg\" ]"
+        },
+        {
+            "recipeID": 37,
+            "productID": 0,
+            "category": "Poultry",
+            "title": "Chicken Caesar Salad",
+            "description": "Ingredients:\r\n2 boneless, skinless chicken breasts\r\n1 tablespoon olive oil\r\nSalt and pepper to taste\r\n1 head romaine lettuce, chopped\r\n1 cup croutons\r\n1/2 cup grated Parmesan cheese\r\nCaesar dressing (store-bought or homemade)\r\n\r\nInstructions:\r\nStep 1: Season the chicken breasts with salt and pepper.\r\nStep 2: Heat the olive oil in a skillet over medium heat. Cook the chicken for 6-8 minutes per side, or until cooked through. Let it rest for a few minutes before slicing or shredding.\r\nStep 3: In a large bowl, combine the chopped romaine lettuce and croutons.\r\nStep 4: Drizzle with Caesar dressing and toss to coat.\r\nStep 5: Add the sliced or shredded chicken and sprinkle with grated Parmesan cheese. Serve immediately.",
+            "image": "[ \"images/chicken_caesar_salad_1.jpg\", \"images/chicken_caesar_salad_2.jpg\", \"images/chicken_caesar_salad_3.jpg\" ]"
+        },
+        {
+            "recipeID": 38,
+            "productID": 0,
+            "category": "Beef",
+            "title": "Beef and Broccoli",
+            "description": "Ingredients:\r\n1 pound flank steak or sirloin, thinly sliced against the grain\r\n1 tablespoon soy sauce\r\n1 teaspoon cornstarch\r\n2 tablespoons vegetable oil\r\n2 cloves garlic, minced\r\n1 inch ginger, grated\r\n4 cups broccoli florets\r\n1/4 cup beef broth\r\n2 tablespoons oyster sauce\r\n1 tablespoon soy sauce (additional)\r\n1 teaspoon sesame oil\r\nCooked rice, for serving\r\n\r\nInstructions:\r\nStep 1: In a bowl, toss the sliced beef with 1 tablespoon of soy sauce and cornstarch. Let it marinate for 10 minutes.\r\nStep 2: Heat 1 tablespoon of vegetable oil in a large skillet or wok over high heat. Add the beef and stir-fry until browned, about 2-3 minutes. Remove the beef and set aside.\r\nStep 3: Add the remaining 1 tablespoon of vegetable oil to the skillet. Add the garlic and ginger and stir-fry for 30 seconds until fragrant.\r\nStep 4: Add the broccoli florets and stir-fry for 2-3 minutes until bright green and slightly tender-crisp.\r\nStep 5: In a small bowl, whisk together the beef broth, oyster sauce, remaining 1 tablespoon of soy sauce, and sesame oil.\r\nStep 6: Pour the sauce over the broccoli and bring to a simmer, stirring constantly, until the sauce thickens slightly.\r\nStep 7: Return the cooked beef to the skillet and toss to coat with the sauce.\r\nStep 8: Serve hot over cooked rice.",
+            "image": "[ \"images/beef_and_broccoli_1.jpg\", \"images/beef_and_broccoli_2.jpg\", \"images/beef_and_broccoli_3.jpg\" ]"
+        }
+    ]
+}

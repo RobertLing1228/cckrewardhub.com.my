@@ -1,0 +1,2022 @@
+{
+    "type": "table",
+    "name": "products",
+    "data": [
+        {
+            "productID": "1",
+            "name": "CCK SWEET CORN 500G",
+            "price": "5.00",
+            "description": "One of the main nutritional benefits of sweetcorn is its high fibre content. And as we know, dietary fibre is important for our health: it aids digestion, it can decrease the risk of heart disease, strokes.\r\nOn top of that, fibre helps you stay fuller for longer just like consuming potatoes.",
+            "category": "1",
+            "image": "[\"images\/corn_product.jpeg\"]",
+            "itemHot": "1"
+        },
+        {
+            "productID": "2",
+            "name": "CCK CHICKEN NUGGETS 450G",
+            "price": "10.00",
+            "description": "food product consisting of a small piece of deboned chicken meat that is breaded or battered\r\nSuggest cooking method : Deep fried or air-fryer\r\nWeight: 900g",
+            "category": "1",
+            "image": "[\"images\/chickennuggets.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "3",
+            "name": "CCK MINCED BEEF 400G",
+            "price": "13.00",
+            "description": "Minced beef or beef mince is beef that has been finely chopped with a knife or a meatgrinder or mincing machine.\r\nIt is used in many recipes including hamburgers,spaghetti Bolognese and also used many other Asian cookings.",
+            "category": "1",
+            "image": "[\"images\/mincedbeef.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "4",
+            "name": "CCK FISH BALL (S) 500G",
+            "price": "9.00",
+            "description": "Fish balls are balls made from fish paste which are then boiled or deep-fried.",
+            "category": "1",
+            "image": "[\"images\/fishball.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "5",
+            "name": "CCK SATAY BEEF 300G",
+            "price": "26.00",
+            "description": "Marinated overnight with spices, skewed to satay and grilled.\r\nBest eaten with local peanut sauce taste juicy and nutty.",
+            "category": "1",
+            "image": "[\"images\/sataybeef.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "6",
+            "name": "CCK MIX VEGETABLES 900G",
+            "price": "8.00",
+            "description": "Variety of vegetables mixed in one pack\r\nSuitable for cooking fried rice, soups, dumplings , etc.\r\nConvenient to cook",
+            "category": "1",
+            "image": "[\"images\/mixvege.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "7",
+            "name": "CCK CHICKEN BURGER 900G",
+            "price": "14.00",
+            "description": "No defrosting is required before cooking; simply heat the pan to 175°C-180°C and cook each side for 3 to 4 minutes.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "1",
+            "image": "[\"images\/chickenburger.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "8",
+            "name": "UNIIFOOD CHICKEN DIM SUM 400G",
+            "price": "17.00",
+            "description": "Uniifood Chicken Dim Sum is suitable for steam.",
+            "category": "1",
+            "image": "[\"images\/dimsum.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "9",
+            "name": "CCK ORIGINAL CHICKEN FRANK 300G",
+            "price": "5.00",
+            "description": "Suitable to be eaten as a side dish or as accompaniment in fried rice. \r\nCan be cooked in many ways : Fried, BBQ, Steamboat\/Hotpot or cooked in Soup\r\nHalal",
+            "category": "1",
+            "image": "[\"images\/orichickenfrank.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "10",
+            "name": "CCK BREADED POLLOCK FINGER 400G",
+            "price": "16.00",
+            "description": "Enjoy 16 pieces of Halal-certified deep-sea pollock fish coated in a crunchy breading, rich in omega-3 fatty acids and protein, with a 400g box offering a 24-month shelf life. Conveniently cook from frozen using your preferred method—deep fry at 175-180°C for 2-3 minutes, air fry at 200-220°C for 5-8 minutes, or oven heat at 200-220°C for 5-8 minutes. Perfect for appetizers, fish and chips, children’s meals, fried platters, fish tacos, or sandwich wraps!\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "1",
+            "image": "[\"images\/pollockfinger.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "11",
+            "name": "CCK BREADED POLLOCK FILLET 450G",
+            "price": "16.00",
+            "description": "Enjoy 6 pieces of Halal-certified deep-sea pollock fish coated in crunchy breading, packed in a 450g box with a 24-month shelf life. Rich in omega-3 fatty acids and protein, these fish fillets are easy to cook from frozen. Simply deep fry at 175-180°C for 3-4 minutes or air fry at 200°C for 7-8 minutes. Perfect for serving with fries, potatoes, pickles, lemon, in a sandwich, taco, or bun!\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "1",
+            "image": "[\"images\/pollockfillet.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "12",
+            "name": "CCK PREMIO BEEF BALL 500G",
+            "price": "14.00",
+            "description": "",
+            "category": "1",
+            "image": "[\"images\/premiobeefball.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "13",
+            "name": "CCK CRAB MEAT STICK 200G",
+            "price": "3.00",
+            "description": "Suitable for steamboat, hotpot, BBQ & soups. For storage keep frozen at -18°C and do not refreeze.",
+            "category": "1",
+            "image": "[\"images\/crabstick.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "14",
+            "name": "CCK SEAFOOD MASTER SALAD SALMON 60G",
+            "price": "8.00",
+            "description": "Available in three delicious flavors: Smoked, Sweet BBQ, and Rattan Pepper.",
+            "category": "1",
+            "image": "[\"images\/saladsalmon60.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "15",
+            "name": "CCK SATAY CHICKEN 300G",
+            "price": "15.00",
+            "description": "Marinated overnight with spices, skewed to satay and grilled. Best eaten with local peanut sauce taste juicy and nutty.",
+            "category": "1",
+            "image": "[\"images\/sataychicken.jpeg\"]",
+            "itemHot": "1"
+        },
+        {
+            "productID": "16",
+            "name": "CCK GOLDEN FISH CAKE 450G",
+            "price": "10.00",
+            "description": "It is somewhat like a sausage made of fish meat. It is a simple, tasty and affordable version of a dish for fish\r\nTaste savory with soft texture and can have various flavors depending on the additional ingredient",
+            "category": "1",
+            "image": "[\"images\/fishcake450g.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "17",
+            "name": "CCK CHICKEN BALL 400G",
+            "price": "10.00",
+            "description": "✅Weight: 400g, Defrost is not needed.\r\nBoil fish balls in boiling water for 4-5 minutes or fry the fish balls in hot oil at 170°C-180°C for 3-4 minutes.",
+            "category": "1",
+            "image": "[\"images\/chickenball.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "18",
+            "name": "CCK FISH FILLET 700G",
+            "price": "13.70",
+            "description": "There are several advantages to filleting fish for cooking. It reduces the cooking time and makes it easier to portion and eat. It is particularly useful for bigger fish, especially meatier varieties that don't easily fall apart. Filleting also allows you to eat the fish over several meals.",
+            "category": "1",
+            "image": "[\"images\/fishfillet700g.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "19",
+            "name": "CCK CHICKEN NUGGETS 900G",
+            "price": "16.10",
+            "description": "This 900g pack of breaded or battered deboned chicken pieces is perfect for a quick and delicious meal. Ideal cooking methods include deep frying or using an air fryer for crispy perfection.",
+            "category": "1",
+            "image": "[\"images\/chicnugget900g.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "20",
+            "name": "CCK SQUID TUBE 500G",
+            "price": "16.90",
+            "description": "24 Months Shelf Life and Halal Certified. Todaroes Pacificus, STTP Treated.\r\n",
+            "category": "1",
+            "image": "[\"images\/squidtube500g.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "21",
+            "name": "CCK WHITE FISH CAKE 500G",
+            "price": "9.20",
+            "description": "Fish Meat, Potato Starch, Salt, Sugar, Monosodium Glutamate and Garlic.\r\n",
+            "category": "1",
+            "image": "[\"images\/whitefishcake.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "22",
+            "name": "CCK BREADED SALMON FINGER 400G",
+            "price": "14.90",
+            "description": "16pcs\/box, 24 Months Shelf Life, Halal Certified. Wild Salmon, Coated in a crunchy breading\r\nRich in omega-3 fatty acids, Protein\r\nCook from frozen, easy to cook",
+            "category": "1",
+            "image": "[\"images\/salmonfinger400g.jpeg\"]",
+            "itemHot": "1"
+        },
+        {
+            "productID": "23",
+            "name": "CCK HONEY CHICKEN FRANK 300G",
+            "price": "5.30",
+            "description": "This 300g Halal-certified chicken product is versatile and perfect as a side dish or an accompaniment to fried rice. Enjoy it prepared in various ways, including frying, BBQ, steamboat\/hotpot, or in soups. Made from chicken meat, soy protein, spices, and a touch of honey, it contains MSG as a permitted flavor enhancer and is crafted to deliver rich, satisfying flavors.",
+            "category": "1",
+            "image": "[\"images\/honeychickenfrank.jpeg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "24",
+            "name": "CCK MINCED CHICKEN 400G",
+            "price": "13.30",
+            "description": "Chicken Mince (ground chicken) is the white meat, leaner alternative to beef mince.\r\nBasically, anything you make with beef mince you can make with chicken mince, Rissoles, burgers, meatballs, meatloaf.",
+            "category": "1",
+            "image": "[\"images\/mincedchicken.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "25",
+            "name": "SNOW PEA (U)",
+            "price": "6.10",
+            "description": "In terms of their nutrient content, snow peas are packed with vitamin A, vitamin C, iron, potassium, dietary fiber, magnesium, folic acid, and small levels of healthy fats. These pods are also very low in calories & also lack cholesterol, making them a filling, yet nutritious dietary component. There are many impressive health benefits of snow peas, including weight loss, improved heart health, reduced constipation, stronger bones, optimized immunity and lower levels of inflammation, among others. It's best for fried, boiled, baked or roasted.",
+            "category": "2",
+            "image": "[\"images\/snowpea.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "26",
+            "name": "GOLDEN NEEDLE MUSHROOM 100G",
+            "price": "2.00",
+            "description": "Enoki mushrooms, also known as needle mushrooms (榎茸, エノキタケ) in Japanese, have a delicate, savory flavor and a satisfying crunch from their thin strands. They can be enjoyed sautéed, raw in salads, or added directly to ramen and hot pot where they cook perfectly in the broth. Well-packed for freshness, they bring a delightful texture and taste to any dish.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "2",
+            "image": "[\"images\/goldneedlemushroom.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "27",
+            "name": "POH LIAN ONION 100G",
+            "price": "3.50",
+            "description": "",
+            "category": "2",
+            "image": "[\"images\/pohlianonion.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "28",
+            "name": "POH LIAN DAUN SUP 80G (U)",
+            "price": "2.80",
+            "description": "",
+            "category": "2",
+            "image": "[\"images\/pohliandaun.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "29",
+            "name": "INDIA BOMBAY ONION 40-60MM (KG)",
+            "price": "5.20",
+            "description": "",
+            "category": "2",
+            "image": "[\"images\/bombayonion.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "30",
+            "name": "CHINA NAVEL ORANGE (KG)",
+            "price": "10.90",
+            "description": "China Navel Oranges are large, spherical oranges with thick, deep-orange, loose rinds that are easy to peel.",
+            "category": "2",
+            "image": "[\"images\/chinanavelorange.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "31",
+            "name": "NZ DIVA APPLE 120'S -135'S (U)",
+            "price": "1.70",
+            "description": "NZ Diva Apple is rich in vitamin C and high fibre to support a healthy system.",
+            "category": "2",
+            "image": "[\"images\/divaapple.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "32",
+            "name": "GENTING TOMATO CHERRY ASSORTED 275G",
+            "price": "13.20",
+            "description": "Genting Tomato Cherry is pearly round or plum-shaped, sweet or tangy, red or gold, these petite treats are bursting with flavour and a succulent taste.",
+            "category": "2",
+            "image": "[\"images\/gentingtomatocherry.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "33",
+            "name": "NZ ENVY APPLE 120'S-138'S (U)",
+            "price": "2.10",
+            "description": "Envy apples are a round variety with striated, ruby red skin with green undertones. They have a crisp, sweet white flesh that will stay pure white for up to 10 hours before succumbing to oxidation and turning brown.",
+            "category": "2",
+            "image": "[\"images\/envyapple.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "34",
+            "name": "SA NAVEL ORANGE 72'S - 88'S (PCS)",
+            "price": "2.50",
+            "description": "Navel Orange has a round shape and dimpled, bright orange skin. They are very high in fiber which helps improve cholesterol ratios in the body. Fiber helps regulate sugar levels in the blood, aids in preventing colon cancer.",
+            "category": "2",
+            "image": "[\"images\/navelorange.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "35",
+            "name": "CHINA GREEN RADISH 500G",
+            "price": "5.30",
+            "description": "China Green Radish also known as the Qingluobo radish are best known for their colour, which is bright green both inside and out. The skin is deep bright green toward the stalk, often fading to white near the roots. The flesh is also bright green though it's a lighter, fresher shade. The combined shades of green make for a really attractive cross section when sliced for salads or pickles.",
+            "category": "2",
+            "image": "[\"images\/greenradish.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "36",
+            "name": "CHINA SHINE MUSCAT GRAPE 500G",
+            "price": "28.70",
+            "description": "China Shine Muscat Grape are bright yellow-green grapes that are sweet with a hint of mango flavour and crunchy on the outside.",
+            "category": "2",
+            "image": "[\"images\/muscatgrape.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "37",
+            "name": "SA VALENCIA ORANGE 72'S-88'S (PCS)",
+            "price": "1.70",
+            "description": "Valencia oranges are large, round oranges with a bright orange skin. They have a thin to medium skin that peels easily. Valencia are known for their juice and have a sweet flavor.",
+            "category": "2",
+            "image": "[\"images\/valenciaorange.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "38",
+            "name": "GENTING HONEY CHERRY TOMATO 275G",
+            "price": "12.90",
+            "description": "Take a bite into this miniature bright red beauties, to taste the tiny pearl tomato as if you had drizzled honey onto it. Genting Garden Cherry Honey Tomato is the perfect, all-natural snack food.",
+            "category": "2",
+            "image": "[\"images\/gentinghoneytomato.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "39",
+            "name": "HP CRANBERRIES ALMONDS NOUGAT 100G",
+            "price": "18.90",
+            "description": "HP Cranberries Almonds Nougat, is a type of confectionery made with sugar, almonds, whipped egg whites, and added with cranberries for extra hint of fruity flavour. The consistency of nougat is chewy with almonds for the extra crunch.",
+            "category": "3",
+            "image": "[\"images\/cranberriesalmonds.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "40",
+            "name": "FAIRCHILD'S ORGANIC APPLE CIDER VINEGAR 946ML",
+            "price": "38.50",
+            "description": "This Fairchild's Organic Apple Cider Vinegar is organic, unpasteurized, unfiltered, and contains the mother, which is loaded with enzymes and friendly bacteria that give the product its cloudy appearance. It's made with the best quality organic apples. They can be used in salads, vegetables, or even popcorn. Fairchild's Apple Cider Vinegar can helps maintain normal glucose levels & also can support your immune system. It is loaded with probiotics that help maintain a healthy gut.",
+            "category": "3",
+            "image": "[\"images\/fairchild.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "41",
+            "name": "HEALTH PARADISE ORGANIC CHIA SEED TWIN PACK",
+            "price": "37.80",
+            "description": "Richest plant-based source of Omega 3, dietary fibre, protein, antioxidants and gluten free. Chia historically an Aztec superfood comes from the Mayan word for strength; these seeds have been consumed as a healthy energy-sustaining food for centuries.\r\nSuggested Use: 2 tbsps. daily. Mixes easily in water or juice. Excellent when used as a topping for yogurt salad.",
+            "category": "3",
+            "image": "[\"images\/chiaseed.jpg\"]",
+            "itemHot": "1"
+        },
+        {
+            "productID": "42",
+            "name": "LOVE EARTH ORGANIC EXTRA VIRGIN COCONUT OIL 480ML",
+            "price": "53.90",
+            "description": "100% organic extra virgin, Made by extracting form coconut meat, Strengthens immune system and ✅Weight : 480ML",
+            "category": "3",
+            "image": "[\"images\/virgincoconutoil.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "43",
+            "name": "LOVE EARTH FRENCH SEA SALT FINE 350G",
+            "price": "16.00",
+            "description": "This French sea salt also known as Sel De Guerande in France, is a unique type of salt with a rich history. It has a fine texture and a delicate flavour with greyish while coloured granules. It is made by collecting evaporated salt from the surface of seawater where it is dried and grounded.",
+            "category": "3",
+            "image": "[\"images\/seasalt.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "44",
+            "name": "LOVE EARTH ORGANIC BROWN SUGAR 800G",
+            "price": "16.00",
+            "description": "This golden brown sugar features large, homogeneous sparkling crystals with a crunchy, sticky texture and a rich aroma from the natural cane molasses. Ideal for sweetening coffee or as a crunchy topping for cakes, it is less processed, retaining more molasses and containing more vitamins and minerals than regular white sugar. Non-GMO and KKM MESTI certified, it’s a healthier and flavorful choice for your baking and beverages.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "3",
+            "image": "[\"images\/brownsugar.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "45",
+            "name": "LOVE EARTH HIMALAYA ROCK SALT (COARSE) 400G",
+            "price": "5.60",
+            "description": "Extracted from the Khewra Salt Mine near the Himalayan Mountains in Pakistan, one of the oldest and largest salt mines in the world, this 100% natural pink salt retains its minerals through natural harvesting. Rich in B4 minerals and trace elements, it offers an earthy flavor and helps regulate fluid balance, blood pressure, and improve the digestive system. Additionally, it can be used as an exfoliator or in salt baths. Jakim HALAL and KKM MESTI certified for quality and safety. ",
+            "category": "3",
+            "image": "[\"images\/rocksalt.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "46",
+            "name": "LOVE EARTH HIMALAYA MINERAL ROCK SALT 400G",
+            "price": "5.60",
+            "description": "This 100% natural iodine-rich salt, sourced from 100 million-year-old deposits, absorbs and neutralizes toxins, allergens, and irritants in your environment. It enhances the flavor of meals like porridge, vegetables, and soups, making it a must-have tool for purifying, detoxifying, and cleansing. Jakim HALAL and KKM MESTI certified for quality and safety.",
+            "category": "3",
+            "image": "[\"images\/mineralsalt.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "47",
+            "name": "CED PURE HONEY 380G",
+            "price": "13.20",
+            "description": "CED Pure Honey is a natural sweetener that also acts as an energy booster, powerful immune system booster and works great for natural home remedies. Use it any way you like and appreciate the excellence.",
+            "category": "3",
+            "image": "[\"images\/honey.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "48",
+            "name": "CED NATURAL HIMALAYAN PINK ROCK SALT 500G",
+            "price": "4.00",
+            "description": "The CED Pink Himalayan Salt creates an electrolyte balance to increase hydration. The product is able to regulate water content both inside and outside of cells. It is also capable of balancing pH (alkaline\/acidity) and help to reduce acid reflux and lower blood pressure.",
+            "category": "3",
+            "image": "[\"images\/pinkrocksalt.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "49",
+            "name": "LADY'S CHOICE REAL MAYONNAISE JAR 220ML",
+            "price": "10.20",
+            "description": "Lady's Choice Real Mayonnaise made with real eggs, healthy oils, and a rich spice blend. Turn your ordinary meals into extraordinary moments by adding a creamy and delicious twist to your favorite dishes!",
+            "category": "4",
+            "image": "[\"images\/MAYONNAISE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "50",
+            "name": "PLANTA MULTIPURPOSE MARGARINE 1KG",
+            "price": "24.20",
+            "description": "Planta MultiPurpose Margarine is ideal for spreading, cooking and baking. It has an iconic aroma and taste that no other can mimic. It's not only delicious but also nutritious with Vitamins A, B1, B2, B6, B12, D, E, Niacin and Folic Acid.",
+            "category": "4",
+            "image": "[\"images\/PLANTA.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "51",
+            "name": "OKI BUTTERLIVE OLIVE OIL BLENDED SPREAD 250G",
+            "price": "8.90",
+            "description": "Oki Butterlive Olive Oil Blended Spread provides a smooth and creamy texture, making it easy to spread on bread, toast, or use in cooking and baking. It can be used as a substitute for traditional butter in various recipes, adding a delightful hint of salt and the distinct taste of olive oil.",
+            "category": "4",
+            "image": "[\"images\/BUTTERLIVE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "52",
+            "name": "CHESDALE CHEESE SLICE 125G",
+            "price": "11.40",
+            "description": "CHESDALE Processed Cheese Slices is a processedindividually wrapped cheese slice. It has a medium cheese flavour and slightlyelastic body. Perfect for gourmet burger and sandwich application.",
+            "category": "4",
+            "image": "[\"images\/CHESDALECHEESE.jpg \"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "53",
+            "name": "ARLA WHIPPING CREAM 200ML",
+            "price": "10.70",
+            "description": "Arla Whipping Cream has the right flavor to complement a variety of dishes such as cakes, ice cream and various types of desserts. With the right thickness, soft and creamy texture, it can be used as a mixture of ingredients to add flavor to your dishes.",
+            "category": "4",
+            "image": "[\"images\/ARLA WHIPPING CREAM.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "54",
+            "name": "OKI GOLD CREAM CHEESE 250G",
+            "price": "14.80",
+            "description": "OKI Gold Cream Cheese is a creamy and indulgent cheese product that is often used as a spread or ingredient in various dishes and desserts. It is made from high-quality milk and cream, resulting in a rich and smooth texture. It's offers a versatile flavor profile that can range from mildly tangy to slightly sweet, depending on the specific brand and recipe. It can be enjoyed on its own, spread on bread or crackers, or incorporated into recipes such as cheesecakes, pastries, and savory dishes.",
+            "category": "4",
+            "image": "[\"images\/OKI GOLD CREAM CHEESE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "55",
+            "name": "NUTELLA 200G\r\n",
+            "price": "13.30",
+            "description": "Nutella contains authentic hazelnuts and cocoa, its unique creaminess adds flavor to bland tasting bread. Nutellas original taste of hazelnut and cocoa makes it everyone's favorite breakfast companion",
+            "category": "4",
+            "image": "[\"images\/NUTELLA.jpg\"]",
+            "itemHot": "1"
+        },
+        {
+            "productID": "56",
+            "name": "EMBORG WHIPPED CREAM SPRAY 250G",
+            "price": "23.30",
+            "description": "Emborg Whipped Cream is made from natural whipping cream. With a slightly sweetened flavor, it is convenient and perfect on desserts, milkshakes and hot chocolates.",
+            "category": "4",
+            "image": "[\"images\/EMBORG WHIPPED CREAM SPRAY.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "57",
+            "name": "DAISY MARGARINE 240G",
+            "price": "6.70",
+            "description": "Daisy Margarine is versatile for other different applications such as cooking, pan-frying, barbeque and roasting. Daisy Margarine is cholesterol free and enriched with 9 vitamins; hence, it is ideal to use as bread spread for healthy growing children and families.",
+            "category": "4",
+            "image": "[\"images\/DAISY MARGARINE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "58",
+            "name": "FRIZZ BUTTERLITE DAIRY SPREAD 250G",
+            "price": "7.90",
+            "description": "Frizz Butterlite Dairy Spread considered as churned margarine which is made by blending margarine and butter to give a similar taste to pure butter for baking or can even be used in your cooking. Just like other butter blend, it's bring a full goodness of taste, aroma and texture to your table.",
+            "category": "4",
+            "image": "[\"images\/FRIZZ BUTTERLITE DAIRY.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "59",
+            "name": "EMBORG UHT WHIPPING CREAM 1L",
+            "price": "50.00",
+            "description": "Emborg Whipping cream and Whip Topping are full bodied creams with a fresh, natural creamy flavour.\r\nOur whipping cream has a great versatility across multiple applications such as desserts, pastry and sauces.\r\nWhen the cream is whipped, it has an excellent volume and stability, which makes it perfect for cake filling and topping.",
+            "category": "4",
+            "image": "[\"images\/EMBORG UHT WHIPPING CREAM.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "60",
+            "name": "MARIGOLD SWEETENED CONDENSED FILLED MILK 505G",
+            "price": "5.40",
+            "description": "Enriched with Vitamin A & D.\r\nNo Cholesterol MG EC: light and creamy taste that's full or richness.\r\nThe perfect complement for desserts, fruit juice and ice kacang",
+            "category": "4",
+            "image": "[\"images\/MARIGOLD SWEETENED CONDENSED FILLED MILK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "61",
+            "name": "MARIGOLD KOPI & TEH TARIK SWEETENED CREAMER 500G",
+            "price": "4.30",
+            "description": "Marigold Sweetened Creamer is great to be used for coffee and tea brewing. It making your drinks taste even better and smoothly frothy. Contain no cholesterol and rich in vitamin A, D & B1.",
+            "category": "4",
+            "image": "[\"images\/MARIGOLD KOPI & TEH TARIK SWEETENED CREAMER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "62",
+            "name": "F&N EVAPORATED FILLED MILK 390G",
+            "price": "6.00",
+            "description": "F&N Evaporated Milk is made from quality ingredients for a tasty guarantee. This range of products complements all types of culinary cooking.",
+            "category": "4",
+            "image": "[\"images\/F&N EVAPORATED FILLED MILK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "63",
+            "name": "F&N EVAPORATED CREAMER 390G",
+            "price": "5.10",
+            "description": "F&N Evaporated Creamer is made from quality ingredients for a tastier choice. This product is an excellent ingredient for all types of cooking with its natural goodness.\r\nCholesterol and trans fatty acid free,\r\nHigh in vitamins A and D3,\r\nGood source of calcium and protein.",
+            "category": "4",
+            "image": "[\"images\/F&N EVAPORATED CREAMER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "64",
+            "name": "SALTED TOFU 200G",
+            "price": "1.80",
+            "description": "Tofu is an ideal choice for replacing animal cheese, due to its valuable nutritional composition and pleasant taste thanks to the iodized salt added to this assortment. Obtained from fresh soy beverage and processed similar to milk, tofu is noted for its high content of vegetable protein, calcium and vitamin K.",
+            "category": "5",
+            "image": "[\"images\/SALTED TOFU.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "65",
+            "name": "JAPANESE EGG TOFU 220G",
+            "price": "1.70",
+            "description": "Egg tofu is a special kind of tofu made with soy milk and eggs and it have similar taster with soft tofu.",
+            "category": "5",
+            "image": "[\"images\/JAPANESE EGG TOFU.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "66",
+            "name": "NUTRIPLUS KLASIK EGG (M) 10'S",
+            "price": "6.90",
+            "description": "Packed Fresh From The Farm After Careful Selection\r\nNutriPlus Classic Eggs Enriched With Added Vitamins E And B-Complex.\r\nCan Be Consumed In So Many Ways – Hard-Boiled, Scrambled Or Poached, As Omelettes Or On Toasts, Baked Into Cakes, Biscuits And Pastries",
+            "category": "5",
+            "image": "[\"images\/NUTRIPLUS KLASIK EGG.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "67",
+            "name": "WHITE TOFU 2'S",
+            "price": "3.20",
+            "description": "White tofu is a food made by coagulating cooked soymilk and then pressing it into soft curds. Retaining most of the nutrients in soymilk, tofu has a bland flavor and white color and provides a texture that is smooth, firm, and coherent, but not hard or rubbery. It's low in calories but high in protein and fat. It also contains many important vitamins and minerals, including calcium and manganese.",
+            "category": "5",
+            "image": "[\"images\/WHITE TOFU.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "68",
+            "name": "SMOOTH BEANCURD 300G",
+            "price": "1.70",
+            "description": "Tofu, also known as bean curd, is a type of food made by coagulating soy milk and then pressing the curds into soft white blocks\r\n\r\nlow in fat, but high in protein\r\nNo preservative added",
+            "category": "5",
+            "image": "[\"images\/SMOOTH BEANCURD.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "69",
+            "name": "JAPANESE EGG TOFU 130G",
+            "price": "1.40",
+            "description": "Egg tofu is a high-protein, low-calorie food made from a blend of soy milk and eggs, offering a unique twist on traditional tofu.",
+            "category": "5",
+            "image": "[\"images\/JAPANESE EGG TOFU.jpg\"]",
+            "itemHot": "1"
+        },
+        {
+            "productID": "70",
+            "name": "SLY MEE KUNING 500G",
+            "price": "2.00",
+            "description": "There are various types of dishes that can be made with this mee kuning.\r\nSome are fried, some have gravy, especially those curry noodles, boiled noodles, soup noodles, hailam noodles, bandung noodles and many more that can be found in Malaysia.\r\nMamak fried noodles are also among the popular favourites these days. Mamak stalls mostly can be found in peninsular Malaysia.\r\n",
+            "category": "5",
+            "image": "[\"images\/SLY MEE KUNING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "71",
+            "name": "SLY KUEH TIAW 500G",
+            "price": "2.10",
+            "description": "Often used by stallholders and vendors in the making of Char Kueh Tiaw, a stir-fried Chinese-inspired rice noodle dish from Maritime Southeast Asia, this popular dish has gained widespread fame in Malaysia and Singapore since the late 20th century.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "5",
+            "image": "[\"images\/SLY KUEH TIAW.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "72",
+            "name": "WHOLE CHICKEN 1.7KG",
+            "price": "18.00",
+            "description": "Chicken is a great source of many key nutrients, including protein, niacin, selenium, and phosphorus.\r\nHighly nutritious and a good source of protein. Adding chicken to your diet may help support weight loss, muscle growth, and bone health.\r\nGrilling, baking, and stir-frying chicken are a few of the healthiest ways to enjoy chicken",
+            "category": "6",
+            "image": "[\"images\/WHOLE CHICKEN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "73",
+            "name": "CHICKEN SKIN 300G",
+            "price": "2.80",
+            "description": "Tasted better when deep fried and serve as snacks.",
+            "category": "6",
+            "image": "[\"images\/CHICKEN SKIN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "74",
+            "name": "CHICKEN LEG MEAT 1KG",
+            "price": "21.90",
+            "description": "An excellent source of many essential nutrients. Iron and zinc, which are important for a healthy immune system, are present in much higher quantities in dark meat than in white meat.",
+            "category": "6",
+            "image": "[\"images\/CHICKEN LEG MEAT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "75",
+            "name": "CHICKEN LEG BONE 1KG",
+            "price": "6.90",
+            "description": "",
+            "category": "6",
+            "image": "[\"images\/CHICKEN LEG BONE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "76",
+            "name": "CHICKEN BREAST BLSL 1KG",
+            "price": "19.00",
+            "description": "Boneless, skinless chicken breasts are cut from the chest of the bird, with the tenderloin removed. They're quick-cooking, tender and juicy if prepared correctly. They are also a leaner choice than other cuts of chicken.",
+            "category": "6",
+            "image": "[\"images\/CHICKEN BREAST.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "77",
+            "name": "SPLIT BREAST CHICKEN 1KG\r\n",
+            "price": "10.90",
+            "description": "Chicken breast is a low fat source of protein that contains zero carbs. A healthy choice for your diet.",
+            "category": "6",
+            "image": "[\"images\/SPLIT BREAST CHICKEN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "78",
+            "name": "CHICKEN DRUMMET 1KG",
+            "price": "17.90",
+            "description": "Chicken drums, also known as drummies or drumettes, resemble smaller versions of the drumsticks from the chicken legs. Chicken drums are the uppermost parts of the chicken wing, and while they can contain more meat overall, they also feature large amounts of cartilage around the joint ends.\r\n\r\nDrums are ideal for dipping, thanks to the easy-to-grip large center bone.",
+            "category": "6",
+            "image": "[\"images\/CHICKEN DRUMMET.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "79",
+            "name": "CHICKEN LEG QUARTER 1KG\r\n",
+            "price": "15.90",
+            "description": "This package contains both drumstick and thigh pieces, perfect for roasting in the oven or air fryer at 180°C for 20-25 minutes. Ideal for making delicious Western stew.",
+            "category": "6",
+            "image": "[\"images\/CHICKEN LEG QUARTER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "80",
+            "name": "CHICKEN WING 1KG",
+            "price": "17.80",
+            "description": "Taste best when roasted in oven \/ deep fried \/ barbequed.",
+            "category": "6",
+            "image": "[\"images\/CHICKEN WING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "81",
+            "name": "CHICKEN GIZZARD 300G",
+            "price": "3.50",
+            "description": "Perfect for stir-frying, this ingredient is rich in zinc and iron, essential for forming red blood cells, supporting DNA production, and aiding in wound healing. However, it should be consumed in moderation due to its high cholesterol content.",
+            "category": "6",
+            "image": "[\"images\/CHICKEN GIZZARD.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "82",
+            "name": "CHICKEN BREAST WBB 1KG",
+            "price": "11.40",
+            "description": "Excellent source of white lean. Great for healthy salad or a clean carb-less meal",
+            "category": "6",
+            "image": "[\"images\/CHICKEN BREAST WBB.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "83",
+            "name": "HARVEST GOURMET PUFF 300G",
+            "price": "26.50",
+            "description": "Experience a burst of flavors with our pastries: Korean Gochujang delivers a spicy and savory kick with authentic Korean sauce, Creamy Curry wraps tender mince in aromatic spices for a satisfying bite, and Oriental BBQ offers flaky pastry filled with tender, smoky BBQ goodness.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "7",
+            "image": "[\"images\/HARVEST GOURMET PUFF.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "84",
+            "name": "FIRST PRIDE TEMPURA CHICKEN NUGGETS 700G",
+            "price": "26.30",
+            "description": "Salted egg - are made with tender, juicy chicken and coated in a crispy tempura batter infused with the savoury flavours of salted egg. Every bite is a taste sensation, balancing the sweet notes with the saltiness of the egg!\r\nSour cream and onion - irresistible flavours of tangy sour cream and savoury onion",
+            "category": "7",
+            "image": "[\"images\/FIRST PRIDE TEMPURA CHICKEN NUGGETS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "85",
+            "name": "CB WAFFLE FRIES 1KG",
+            "price": "25.90",
+            "description": "CB Waffle Fries 1kg made from the finest potatoes. Full of nutrient and energy that tastes delicious. Good on its own or serve with food.",
+            "category": "7",
+            "image": "[\"images\/CB WAFFLE FRIES.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "86",
+            "name": "QL CRAB FLAVOURED NUGGET 500G",
+            "price": "10.50",
+            "description": "",
+            "category": "7",
+            "image": "[\"images\/QL CRAB FLAVOURED NUGGET.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "87",
+            "name": "ML SOTONG PASTE 1KG",
+            "price": "19.10",
+            "description": "ML Sotong Paste is easy to use with great stickiness that hold other meat pastes together, so that they won't fall apart while you're cooking them.",
+            "category": "7",
+            "image": "[\"images\/ML SOTONG PASTE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "88",
+            "name": "EB HOTPOT COMBO SOUP 600G",
+            "price": "21.90",
+            "description": "",
+            "category": "7",
+            "image": "[\"images\/EB HOTPOT COMBO SOUP.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "89",
+            "name": "NESTLE HARVEST GOURMET GOLDEN CRUNCHY POPPERS 300G",
+            "price": "23.00",
+            "description": "Satisfy your cravings with our plant-powered poppers! Guilt-free, high-protein, and overflowing with fibre - these crave-worthy golden crunchy snacks are halal-certified and made with love in Malaysia. Indulge without the guilt!",
+            "category": "7",
+            "image": "[\"images\/NESTLE HARVEST.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "90",
+            "name": "KAWAN SWEET POTATO BALL 300G",
+            "price": "12.00",
+            "description": "Kawan Sweet Potato Balls a heavenly treat that perfectly balances sweetness and satisfaction. Each bite reveals a heavenly blend of soft, melt-in-your-mouth sweet potato encased in a delicate, golden-brown crust.",
+            "category": "7",
+            "image": "[\"images\/KAWAN SWEET POTATO BALL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "91",
+            "name": "FUSIPIM KING CRAB CLAW 500G",
+            "price": "12.00",
+            "description": "Fusipim King Crab Claw can be add into your favourite dishes like spaghetti, curry noddle, fried rice or congee. You can also turn them into delightful meals for your family by deep-frying, stir-frying, grilling or by boiling.",
+            "category": "7",
+            "image": "[\"images\/FUSIPIM KING CRAB CLAW.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "92",
+            "name": "BAY SCALLOP 60\/80 500G",
+            "price": "38.40",
+            "description": "Bay scallop are bite-sized like popcorn, while sea scallops are larger and resemble large marshmallows. It is  rich in omega-3 fatty acids, healthy fats, and magnesium. It is recommended to cook bay scallops by stir-frying, roasting or poaching.",
+            "category": "7",
+            "image": "[\"images\/BAY SCALLOP.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "93",
+            "name": "QL FISH TOFU WITH SQUID 500G",
+            "price": "13.70",
+            "description": "QL Fish Tofu With Squid is a great dish for a variety of diets, including pescatarian, vegetarian, and vegan. Not only is it tasty, but it's also high in protein and a good source of some essential nutrients.",
+            "category": "7",
+            "image": "[\"images\/QL FISH TOFU WITH SQUID.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "94",
+            "name": "SUPREME MIXED VEGETABLE 400G",
+            "price": "4.30",
+            "description": "Supreme Mixed Vegetable is the combination of different vegetables such as carrots, sweet corn and green peas that had been chopped, sliced and cubed. It can be prepared in a variety of ways from boiling to frying. ",
+            "category": "7",
+            "image": "[\"images\/SUPREME MIXED VEGETABLE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "95",
+            "name": "SAMYANG BULDAK DUMPLING 700G\r\n",
+            "price": "47.70",
+            "description": "Samyang Buldak Dumpling is an exquisite combination of Samyang Buldak Stir-fried noodles sauce and chewy gyoza dumplings. When steamed, you can enjoy Samyang Buldak Steamed Dumplings with a chewy texture and spicy taste. If you eat it grilled, you can eat it as a savory and spicy fried chicken dumpling with a crispy texture.",
+            "category": "7",
+            "image": "[\"images\/SAMYANG BULDAK DUMPLING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "96",
+            "name": "EB FISH ROE LUCKY BAG 160G",
+            "price": "12.10",
+            "description": "Oriental lucky bag outer made with Non-GMO soy bean, inner comes with premium surimi and full of fish roe make this successful combination creates an unprecedented delicacy experience.",
+            "category": "7",
+            "image": "[\"images\/EB FISH ROE LUCKY BAG.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "97",
+            "name": "KG ROUND DUMPLING SKIN 200G",
+            "price": "3.70",
+            "description": "This dumpling skin is light, strong, yet thin and elastic enough to wrap up any ingredients you can imagine for your dumplings. ",
+            "category": "7",
+            "image": "[\"images\/KG ROUND DUMPLING SKIN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "98",
+            "name": "KG SQUARE WANTAN SKIN 200G",
+            "price": "3.70",
+            "description": "Your homemade wan tans will be crispier than ever with KG Pastry Wan Tan Pastry! This Wan Tan skin is light, strong, yet thin and elastic enough to wrap up any ingredients you can imagine for your wantans. ",
+            "category": "7",
+            "image": "[\"images\/KG SQUARE WANTAN SKIN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "99",
+            "name": "EB FLOWER CHEESE TOFU 380G",
+            "price": "11.30",
+            "description": "A versatile fish tofu with full of cheese cube inside! Easy to cook and trans-fat free.",
+            "category": "7",
+            "image": "[\"images\/EB FLOWER CHEESE TOFU.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "100",
+            "name": "EB FISH & YUBA 300G",
+            "price": "9.20",
+            "description": "Perfect blend between nutrition fish paste and delicious yuba skin that is definitely mouth-watering! ",
+            "category": "7",
+            "image": "[\"images\/EB FISH & YUBA.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "101",
+            "name": "LIKES TEMPURA CHICKEN NUGGET 500G",
+            "price": "13.20",
+            "description": "Likes Tempura Chicken Nugget are made from lean chicken breast meat, coated with tempura flour to capture the succulent flavors of quality chicken",
+            "category": "7",
+            "image": "[\"images\/LIKES TEMPURA CHICKEN NUGGET.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "102",
+            "name": "AYAMAS CHEESE CHICKEN FRANKFURTER 235G",
+            "price": "9.80",
+            "description": "Ayamas Premium Cheese Chicken Frankfurter is made with real chickens and stuffed with premium cheese.",
+            "category": "7",
+            "image": "[\"images\/AYAMAS CHEESE CHICKEN FRANKFURTER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "103",
+            "name": "NESTLE GOLD CORN FLAKES ECONO PACK 500G",
+            "price": "17.20",
+            "description": "Nestle Corn Flakes cereal is made with goodness of whole grain.",
+            "category": "8",
+            "image": "[\"images\/NESTLE GOLD CORN FLAKES.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "104",
+            "name": "NESTLE MILO CEREAL BUDGET PACK 80G",
+            "price": "3.90",
+            "description": "Nestle Milo Cereal comes from Milo choco malt powder and has humble Aussie roots. It contains with wholegrains, vitamins & minerals to help give children the energy.",
+            "category": "8",
+            "image": "[\"images\/NESTLE MILO CEREAL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "105",
+            "name": "UNCLE JAMES SCALLOP PORRIDGE 220G",
+            "price": "16.00",
+            "description": "",
+            "category": "8",
+            "image": "[\"images\/UNCLE JAMES SCALLOP PORRIDGE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "106",
+            "name": "KELLOGG'S CORN FLAKES 275G\r\n",
+            "price": "11.30",
+            "description": "Kellogg's Corn Flake is made from real golden corn toasted into crunchy flakes. It contains 9 different vitamins and minerals, and is packed with carbohydrates to give you the energy you need. Enjoy the classic taste of Cornflakes - breakfast is sorted.",
+            "category": "8",
+            "image": "[\"images\/KELLOGG'S CORN FLAKES.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "107",
+            "name": "QUAKER 3IN1 OAT CEREAL DRINK 28Gx15'S",
+            "price": "12.90",
+            "description": "A nutritious, tasty and practical Oat brands number 1 in the morning which helping to warm and fill the stomach to start activities.",
+            "category": "8",
+            "image": "[\"images\/QUAKER 3IN1 OAT CEREAL DRINK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "108",
+            "name": "CAPTAIN OATMEAL 1KG",
+            "price": "16.00",
+            "description": "Start your day with Captain Oatmeal! Captain Instant Oatmeal is ready in just 2 minutes for a quick and wholesome breakfast, while Captain Quick Cook Oatmeal takes 3-5 minutes and lets you customize with fruits, nuts, and your favorite toppings for added flavor.",
+            "category": "8",
+            "image": "[\"images\/CAPTAIN OATMEAL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "109",
+            "name": "KELLOGG'S GRANOLA CEREAL 220G",
+            "price": "26.50",
+            "description": "Kellogg's Super Berry Granola - It has crunchy crisp 5-Grain cluster combined with carefully selected berries, nuts and seeds. And thing get better since it is filled with 7 essential nutrients like Vitamin E also known as an antioxidant nutrient \r\n\r\nKellogg's Dark Chocolate Granola - Blends 5-grain granola with real chocolate chips made with Belgian chocolate for that crunchy chocolate experience",
+            "category": "8",
+            "image": "[\"images\/KELLOGG'S GRANOLA CEREAL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "110",
+            "name": "ERAWAN RICE FLOUR 500G",
+            "price": "3.30",
+            "description": "Erawan Blended Rice Flour is suitable to make rice noodlesand as a thickening agent in recipes. They are made from finely milled plain white rice. It is best used as a sauce thickener or as a binding agentin baked goods, and is a good alternative for wheat flour. It is gluten-free and also does not contain any bleachingagents.",
+            "category": "9",
+            "image": "[\"images\/ERAWAN RICE FLOUR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "111",
+            "name": "CSR BETTER WHITE CLEAR WHITE SUGAR 800G\r\n",
+            "price": "4.80",
+            "description": "Experience the purest sweetness with CSR Better White Clear White Sugar 800g. This premium sugar is meticulously refined to deliver a flawless, crystal-clear sweetness that elevates your culinary creations.",
+            "category": "9",
+            "image": "[\"images\/CSR BETTER WHITE CLEAR WHITE SUGAR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "112",
+            "name": "ADABI FRITTER FLOUR 200G",
+            "price": "5.20",
+            "description": "Adabi Fritter Flour is the gold standard of afternoon tea snack loved by all Malaysians, young and old. The special blend contains all the necessary ingredients to make a complete fritter, no modification required. Just add water!",
+            "category": "9",
+            "image": "[\"images\/ADABI FRITTER FLOUR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "113",
+            "name": "OREO CRUMBS SMALL CRUSHED COOKIES PIECES 454G",
+            "price": "13.80",
+            "description": "Oreo crumbs small crushed cookies pieces 454G are crushed into bits, perfect as condiment and baking ingredient. It crushed into small pieces, making it the best ingredient for desserts, milkshakes and cakes.",
+            "category": "9",
+            "image": "[\"images\/OREO CRUMBS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "114",
+            "name": "CSR ICING SUGAR 500G",
+            "price": "4.00",
+            "description": "CSR Icing Sugar is a powdered sugar with a smooth texture. It contains corn starch as an anti-caking agent, and is easily combined with fast dissolve rate. CSR Icing Sugar can be used to make goodies such as shortbread, cream fillings, marshmallow, and fondant. This product is halal certified.",
+            "category": "9",
+            "image": "[\"images\/CSR ICING SUGAR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "115",
+            "name": "BR MIXED FRUITS 100G",
+            "price": "6.90",
+            "description": "",
+            "category": "9",
+            "image": "[\"images\/BR MIXED FRUITS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "116",
+            "name": "BR AGAR-AGAR STRIP 20G",
+            "price": "5.30",
+            "description": "Agar-Agar strips are made from premium-grade seaweeds. They are boiled with water and made into refreshing jellies together with added fruit pieces and\/or coconut milk.",
+            "category": "9",
+            "image": "[\"images\/BR AGAR-AGAR STRIP.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "117",
+            "name": "GREEN HORSE WHEAT FLOUR 1KG",
+            "price": "3.20",
+            "description": "Green Horse White Flour is suitable for making cakes, pancakes, biscuits, cookies and as batter for frying chicken, fish and others.",
+            "category": "9",
+            "image": "[\"images\/GREEN HORSE WHEAT FLOUR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "118",
+            "name": "KG SPRING ROLL PASTRY 5\" 200G",
+            "price": "4.30",
+            "description": "KG Pastry spring roll pastry turns delightfully crispy and golden brown when deep fried just right, enhancing the flavour of your spring rolls.",
+            "category": "9",
+            "image": "[\"images\/KG SPRING ROLL PASTRY.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "119",
+            "name": "BESTARI WHEAT STARCH 350G",
+            "price": "3.70",
+            "description": "Contains unique properties and is also a food thickener for numerous cooking recipes. It is ideal in the preparation of shrimp dumplings (har gau), rice sheet rolls (Cheong fun), flat noodles (kueh teow), pudding, cookies, gravies, and sauces.",
+            "category": "9",
+            "image": "[\"images\/BESTARI WHEAT STARCH.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "120",
+            "name": "BESTARI TEMPURA BATTER 500G",
+            "price": "7.50",
+            "description": "Use Bestari Tempura Flour to deep fry any meat, chicken, vegetables, seafood, fruits, or any other things that you can think of. Gives a lighter and crispier coating,\r\nLess oil for frying giving a healthier meal, and Enhance the flavor of meats, fish and poultry",
+            "category": "9",
+            "image": "[\"images\/BESTARI TEMPURA BATTER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "121",
+            "name": "BESTARI TAPIOCA STARCH 350G",
+            "price": "2.90",
+            "description": "Used as a thickening agent for gravies, sauces, soups and etc.\r\nCan mixed with other flours to make kuih, cakes, cookies",
+            "category": "9",
+            "image": "[\"images\/BESTARI TAPIOCA STARCH.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "122",
+            "name": "MATAHARI AGAR-AGAR 30G",
+            "price": "5.10",
+            "description": "",
+            "category": "9",
+            "image": "[\"images\/MATAHARI AGAR-AGAR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "123",
+            "name": "SHM GULA HITAM 100G",
+            "price": "3.60",
+            "description": "",
+            "category": "9",
+            "image": "[\"images\/SHM GULA HITAM.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "124",
+            "name": "MUHIBAH FLOUR 1KG\r\n",
+            "price": "4.50",
+            "description": "",
+            "category": "9",
+            "image": "[\"images\/MUHIBAH FLOUR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "125",
+            "name": "HAMADAYA JAPANESE ODEN SOUP BASE 300ML",
+            "price": "16.10",
+            "description": "Oden is a traditional Japanese one-pot dish enjoyed in Japan especially during the colder months. Made as a soup base, it brings together Hamadaya's 200-year-old secret soy sauce blend with a delicate touch of kelp and mushrooms.",
+            "category": "10",
+            "image": "[\"images\/HAMADAYA JAPANESE ODEN SOUP BASE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "126",
+            "name": "MAGGI AYAM PERCIK 100G",
+            "price": "5.50",
+            "description": "Maggi Ayam Percik 100g made from fresh ingredients – onions and the perfect combination of spices to produce balance and delicious taste. Complete paste, just marinate & fry!",
+            "category": "10",
+            "image": "[\"images\/MAGGI AYAM PERCIK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "127",
+            "name": "NISSIN IRVINS INSTANT NOODLES 113G X 5'S",
+            "price": "34.70",
+            "description": "Savor the perfect blend of classic mee pok noodles and savory salted egg seasoning with the **Salted Egg** flavor, topped with spring onions and egg crumbs. For a fiery twist, try the **Spicy Salted Egg** version, delivering the ultimate spicy kick to satisfy your instant noodle cravings.",
+            "category": "10",
+            "image": "[\"images\/NISSIN IRVINS INSTANT NOODLES.jpg\"\r\n]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "128",
+            "name": "HONEY B SPARKLING DRINK 250ML",
+            "price": "4.30",
+            "description": "Experience the purity of Honey, made from 100% premium Australian natural honey with no added sugar, coloring, or flavoring. For a refreshing twist, try Honey Black Tea, a ready-to-drink carbonated beverage combining natural Honey B honey with the bold taste of black tea.",
+            "category": "11",
+            "image": "[\"images\/HONEY B SPARKLING DRINK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "129",
+            "name": "WONDA COFFEE 240ML",
+            "price": "3.10",
+            "description": "Indulge in our creamy and aromatic coffee selections: **Original**, crafted with smooth, creamy coffee milk and a classic flavor; **Latte**, infused with the rich taste of French vanilla; **Mocha**, blending coffee milk with a hint of deep chocolate; **Kopi Tarik**, brewed from premium beans to capture Malaysia’s favorite local coffee taste; and **Extra Presso**, delivering a bold coffee punch for an extra kick to your day.",
+            "category": "11",
+            "image": "[\"images\/WONDA COFFEE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "130",
+            "name": "RIBENA CHEERPACK 330ML",
+            "price": "4.00",
+            "description": "Ribena Mobile Cheerpack is without  artificial colors, sweeteners or flavorings, Ribena provides 100 percent of our daily vitamin C requirements. It is even more convenient to enjoy your favorite drink especially on busy mornings.",
+            "category": "11",
+            "image": "[\"images\/RIBENA CHEERPACK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "131",
+            "name": "SAN REMO LARGE INSTANT LASAGNA SHEETS 250G",
+            "price": "6.40",
+            "description": "This instant lasagna is in rectangular shape used as a sheet for your lasagna. Now, you can easily make your lasagna as this sheet is oven ready and required no pre.",
+            "category": "10",
+            "image": "[\"images\/LARGE INSTANT LASAGNA.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "132",
+            "name": "MAGGI HOMEMADE CHICKEN STOCK 250G",
+            "price": "10.90",
+            "description": "Maggi Homemade Chicken Stock 250G is a great, versatile addition to any dish. The stock may be used in various ways, from soups and stews to pasta dishes and gravies, and it always comes out tasting great. Use the stock's concentrated taste as a marinade for your meats.",
+            "category": "10",
+            "image": "[\"images\/MAGGI HOMEMADE CHICKEN STOCK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "133",
+            "name": "MAHSURI KOREAN STYLE GARLIC FLAVOURED SAUCE 410ML",
+            "price": "7.80",
+            "description": "Mahsuri Korean Styled Garlic Flavoured Sauce is perfect to glazing your fried chicken. To be more creative, consider using this sauce as a base for your vegetable dishes or marinade your meat. Style at your own !",
+            "category": "10",
+            "image": "[\"images\/MAHSURI KOREAN STYLE GARLIC FLAVOURED SAUCE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "134",
+            "name": "MAHSURI BLACK PEPPER SAUCE 490G",
+            "price": "8.90",
+            "description": "Mahsuri Black Pepper Sauce is made using Borneo black pepper. This sauce will enhance your favorite recipes with its authentic black pepper taste and is suitable for cooking, dipping and pouring.",
+            "category": "10",
+            "image": "[\"images\/MAHSURI BLACK PEPPER SAUCE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "135",
+            "name": "MAK NYONYA INSTANT ASAM FISH SAUCE 200G",
+            "price": "7.90",
+            "description": "",
+            "category": "10",
+            "image": "[\"images\/MAK NYONYA INSTANT ASAM.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "136",
+            "name": "KARA COCONUT CREAM POWDER 50G",
+            "price": "2.90",
+            "description": "Kara Coconut Cream Powder is a quick and easy way to cook Thai, Vietnamese or Indian dishes and others like curries, desserts, cocktails, confectionery, fillings for waffles, doughnuts, puddings and yogurt is by using this instant coconut cream powder. Just dissolve and mix in hot water and you'll get that rich creamy liquid.\r\n",
+            "category": "10",
+            "image": "[\"images\/KARA COCONUT CREAM POWDER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "137",
+            "name": "KIMBALL CHILLI SAUCE 725G",
+            "price": "8.90",
+            "description": "Kimball's own unique recipe – spiciness that s just 'ngam. This favourite Malaysian condiment spices up any Asian or western dish. It also makes a great dip for all kinds of finger foods.",
+            "category": "10",
+            "image": "[\"images\/KIMBALL CHILLI SAUCE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "138",
+            "name": "BABA'S SOUP MIX POWDER 125G",
+            "price": "5.50",
+            "description": "Baba's Soup Mix Powder is made from clean, pure and finest quality spices, processed by using modern techniques and packed according to strict hygienic standards. This powder is used to enhance the taste of soup.",
+            "category": "10",
+            "image": "[\"images\/BABA'S SOUP MIX POWDER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "139",
+            "name": "AYAM BRAND ASAM PEDAS PASTE 180G",
+            "price": "6.00",
+            "description": "Now you can make your own asam pedas dish at home in just a few simple step! ",
+            "category": "10",
+            "image": "[\"images\/AYAM BRAND ASAM PEDAS PASTE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "140",
+            "name": "SAMYANG BULDAK EXTREME HOT CHICKEN FLAVOUR SAUCE 200G",
+            "price": "33.40",
+            "description": "Samyang Buldak Extreme Hot Chicken Flavor Sauce can be used in anything, from a dipping sauce for your fried foods to packing a punch in your soups and stir fries. ",
+            "category": "10",
+            "image": "[\"images\/SAMYANG BULDAK EXTREME HOT CHICKEN FLAVOUR SAUCE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "141",
+            "name": "MI RAKYAT KOSONG 1100G",
+            "price": "8.60",
+            "description": "",
+            "category": "10",
+            "image": "[\"images\/MI RAKYAT KOSONG.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "142",
+            "name": "STK KENTUCKY ALL PURPOSE SEASONED FLOUR 200G",
+            "price": "2.10",
+            "description": "STK Kentucky Seasoned Flour boasts the perfect blend of spices. It's suitable for frying chicken, steaks, gizzards, livers, catfish, tilapia and much more. Expect the crunchy and delicious fried dishes with this flour.",
+            "category": "10",
+            "image": "[\"images\/STK KENTUCKY ALL PURPOSE SEASONED FLOUR.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "143",
+            "name": "DAVIDDOFF INSTANT COFFEE",
+            "price": "37.00",
+            "description": "Experience the **Rich Aroma**, a luxurious blend of South American and East African beans, savor the **Fine Aroma** with its mild yet elegant taste, or indulge in the bold and premium flavor of **Expresso 57**, crafted from 100% Arabica beans for the ultimate coffee experience.",
+            "category": "11",
+            "image": "[\"images\/DAVIDDOFF INSTANT COFFEE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "144",
+            "name": "CHEK HUP PREMIX COFFEE LATTE CUP 28G",
+            "price": "5.50",
+            "description": "Chek Hup Premix Cofffee Latte Cup 28G is a milky, creamy and mild brew made with microground® Colombian coffee beans and no artificial flavoring. Sweetened to taste with healthier, Chek Hup Crystal rock sugar.",
+            "category": "11",
+            "image": "[\"images\/CHEK HUP PREMIX COFFEE LATTE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "145",
+            "name": "DILMAH SINGLE ORIGIN HANDPICKED CEYLON TEA 300ML",
+            "price": "11.50",
+            "description": "Start your day with the smooth, full-bodied elegance of **Royal English Black Tea**, savor the floral and creamy harmony of **Rose and French Vanilla Green Tea**, or indulge in the gentle sweetness and bright freshness of **Arabian Jasmine Green Tea**, each crafted for a uniquely delightful tea experience.",
+            "category": "11",
+            "image": "[\"images\/DILMAH SINGLE ORIGIN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "146",
+            "name": "100PLUS 1.5L\r\n",
+            "price": "4.50",
+            "description": "Enhancing Endurance Through Hydration\r\n\r\nPeak performance is driven by two things – passion and a healthy body. Loaded with glucose and minerals, 100PLUS keeps your body properly hydrated for optimum bodily function and speedy recovery. With that extra advantage, your body is even better equipped to keep up with your thirst for success.",
+            "category": "11",
+            "image": "[\"images\/100PLUS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "147",
+            "name": "COCA-COLA 1.5L",
+            "price": "4.50",
+            "description": "Refresh yourself with the classic taste of **Coca-Cola Rasa Asli**, savor the lighter option of **Coca-Cola Light** with no sugar and fewer kilojoules, indulge in the smooth vanilla twist of **Coca-Cola Vanilla**, or enjoy the bold flavor of **Coca-Cola Zero Sugar**, all offering a perfect way to elevate any moment.",
+            "category": "11",
+            "image": "[\"images\/COCA-COLA.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "148",
+            "name": "VITAMILK SOYA BEAN MILK 300ML",
+            "price": "2.90",
+            "description": "Enjoy the creamy richness of **Vitamilk Original Soya Bean Milk**, made from fresh whole soybeans, a perfect protein-packed choice for vegans and the lactose intolerant, or treat yourself to the indulgent sweetness of **Vitamilk Double Choco Shake Soya Bean Milk**, featuring a double chocolate boost for a deliciously healthy and energizing drink.",
+            "category": "11",
+            "image": "[\"images\/VITAMILK SOYA BEAN MILK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "149",
+            "name": "BOH TEA 3 IN 1 600G",
+            "price": "19.40",
+            "description": "Formulated to pack in all the full-bodied flavour of BOH, this is the taste of BOH in a stick pack. Just empty one stick pack of BOH tea mix into a cup or mug. Pour in boiling water, stir, and it’s ready to serve. So easy!",
+            "category": "11",
+            "image": "[\"images\/BOH TEA 3 IN 1.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "150",
+            "name": "CHEK HUP LOCAL BREW INSTANT COFFEE 300G\/336G",
+            "price": "14.40",
+            "description": "Savor the authentic richness of **Chek Hup Kopi Tarik**, crafted with medium-dark roasted Brazilian coffee beans and creamy goodness, or enjoy the unique blend of **Chek Hup Cham Tarik**, combining Brazilian coffee, Kenyan black tea, and rich condensed milk for a perfectly balanced, aromatic indulgence.",
+            "category": "11",
+            "image": "[\"images\/CHEK HUP LOCAL BREW INSTANT COFFEE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "151",
+            "name": "KOPIKO L.A COFFEE 24'SX20G",
+            "price": "16.70",
+            "description": "Kopiko, your coffee specialist as one of the largest coffee producer in south east asia, relentlessly strive to make you the best cup of coffee to suit your needs & occasions in various flavor & format. Enjoy!",
+            "category": "11",
+            "image": "[\"images\/KOPIKO L.A COFFEE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "152",
+            "name": "MILO CAN 240ML",
+            "price": "3.30",
+            "description": "Milo is the perfect companion for you to enjoy your favorite chocolate malt drink anywhere, anytime. From studying to working out to chilling with friends, MILO Original Can is available as a quick and convenient chocolate malt drink to keep refreshed and re-energized while providing the nutrients you need to keep going.",
+            "category": "11",
+            "image": "[\"images\/MILO CAN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "153",
+            "name": "RIBENA SPARKLING DRINK 325ML",
+            "price": "3.10",
+            "description": "Sparkling Ribena Cans is a lightly sparkling variant of the classic blackcurrant drink, offering the same goodness in a can, with a fizzy twist to excite the palate! It's is free from artificial flavour, colour and sweetener, plus its also caffeine-free.",
+            "category": "11",
+            "image": "[\"images\/RIBENA SPARKLING DRINK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "154",
+            "name": "VIDA ZERO SPARKLING WATER 325ML",
+            "price": "3.10",
+            "description": "Experience guilt-free indulgence with **zero calories**, **zero sugar**, **zero coloring**, **zero fat**, and **zero cholesterol**!",
+            "category": "11",
+            "image": "[\"images\/VIDA ZERO.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "155",
+            "name": "MILO ACTIV-GO 2KG",
+            "price": "50.50",
+            "description": "Natural goodness of cocoa, milk and malt to fuel you to take on your day. a unique combination of PROTOMALT, vitamins and minerals that provides an efficient release of energy to help them take on the day. It also contains a source of nutrient that play a role in efficient energy release, muscle function and bone maintenance essential functions for physical activity in children. It provides protein, calcium, iron and vitamin B12 to help repair body tissues, contribute to maintenance of bones, and promote red blood cell formation.",
+            "category": "11",
+            "image": "[\"images\/MILO ACTIV-GO.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "156",
+            "name": "NESCAFE ORIGINAL CAN 240ML",
+            "price": "3.40",
+            "description": "﻿Nescafe original has the finest blend of arabica and robusta beans, perfectly roasted and blended with milk. Taste the right balance of coffee and creaminess in a can, anytime, anywhere. Its comforting aroma and distinctive full-flavour taste, conveniently turns our medium-dark roast signature blend into a sweet coffee when you savour it in a can.",
+            "category": "11",
+            "image": "[\"images\/NESCAFE ORIGINAL CAN.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "157",
+            "name": "AIK CHEONG 2in1 KOPI O 20'Sx15G",
+            "price": "15.00",
+            "description": "Aik Cheong Kopi-O (Sugar Added) is made for coffee lovers who enjoy a little sweetness in a cup of black coffee. Press the coffee bag with spoon for better aroma. Take a sip and you’ll be amazed by the rich aroma and taste. Contains 70% coffee beans with added sugar.",
+            "category": "11",
+            "image": "[\"images\/AIK CHEONG 2in1 KOPI O.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "158",
+            "name": "JULIE'S CHARM CREAM SANDWICH 172G",
+            "price": "8.10",
+            "description": "Indulge in the ultimate treat with **Double Chocolate** cookies, featuring crunchy, decadent chocolate and smooth cream for a complete chocolate experience, or savor the perfect balance of sweetness and bitterness with **Tiramisu** cookies, filled with rich tiramisu-flavored cream.",
+            "category": "12",
+            "image": "[\"images\/JULIE'S CHARM CREAM SANDWICH.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "159",
+            "name": "JACK N JILL POTATO CHIPS 60G",
+            "price": "3.80",
+            "description": "Jack N Jill Potato Chips 60g is a crunchy flat sliced potato chips are made from 100% real potatoes. The perfect crunchy snack to accompany you when you're feeling the munchies. A V-Cut chips option adds more crunch to your munch.",
+            "category": "12",
+            "image": "[\"images\/JACK N JILL POTATO CHIPS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "160",
+            "name": "SAMYANG HOT CHICKEN FLAVOUR ZALDDUK SNACKS 120G",
+            "price": "6.40",
+            "description": "Snack version of the famous Samyang Zzaldduk ramen! Try this chicken flavored Korean snack that is crunchy, salty and sweet with a mild spicy aftertaste.",
+            "category": "12",
+            "image": "[\"images\/SAMYANG HOT CHICKEN FLAVOUR ZALDDUK SNACKS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "161",
+            "name": "TOBLERONE DARK CHOCOLATE WITH HONEY & ALMOND NOUGAT 100G",
+            "price": "9.80",
+            "description": "",
+            "category": "12",
+            "image": "[\"images\/TOBLERONE DARK CHOCOLATE WITH HONEY & ALMOND NOUGAT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "162",
+            "name": "OKE POTATO CHIPS THIN CUT 60G",
+            "price": "2.80",
+            "description": "",
+            "category": "12",
+            "image": "[\"images\/OKE POTATO CHIPS THIN CUT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "163",
+            "name": "NUTELLA BISCUITS T3 FLOWPACK 41G",
+            "price": "4.80",
+            "description": "Nutella Biscuit T3 Flowpack is known for the authentic taste of hazelnuts and cocoa, made even more irresistible by its unique creaminess\r\n\r\n",
+            "category": "12",
+            "image": "[\"images\/NUTELLA BISCUITS T3 FLOWPACK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "164",
+            "name": "JULIE'S OSBORNE CRACKERS 250G",
+            "price": "3.70",
+            "description": "Julie's Osborne Crackers is born in the 1860s and named after Queen Victoria's favourite home, the Osborne House on the Isle of Wight, these round shape crackers bear many similarities to table crackers and deliver a light earthy taste, texture, and aroma.",
+            "category": "12",
+            "image": "[\"images\/JULIE'S OSBORNE CRACKERS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "165",
+            "name": "JULIE'S LE-MOND LEMON SANDWICH BISCUIT 170G",
+            "price": "7.00",
+            "description": "Julie's Le-mond lemon puff sandwich is lightly textured and salted, crunchy, and golden brown square puff biscuits relished with a natural lemon flavoured cream. It is a perfectly refreshing snack for any time of the day.",
+            "category": "12",
+            "image": "[\"images\/JULIE'S LE-MOND LEMON SANDWICH BISCUIT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "166",
+            "name": "DAIM CHOCOLATE BAG 200G",
+            "price": "22.90",
+            "description": "Daim chocolate is a salty almond caramel, wrapped in a layer of soft smooth milk chocolate that literally melts in your mouth. The best thing about this sweet is the combination of soft and hard.",
+            "category": "12",
+            "image": "[\"images\/DAIM CHOCOLATE BAG.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "167",
+            "name": "ARNOTT'S MINI DOUBLE CHOCOLATE BISCUITS 22G",
+            "price": "1.60",
+            "description": "Arnott's Good Time Cookies are crunchy chocolate-flavored biscuits sprinkled with delicious chocolate chips that are made from quality ingredients. It's suitable for sharing with everyone and pack in small pouch which make it convenience and easy to bring.",
+            "category": "12",
+            "image": "[\"images\/ARNOTT'S MINI DOUBLE CHOCOLATE BISCUITS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "168",
+            "name": "CADBURY DAIRY MILK MINI CHOCOLATE DOYBAG 35PCS",
+            "price": "12.40",
+            "description": "The classic creamy taste, 100% sustainably sourced cocoa, Snack Mindfully, Cocoa Life, Milk Chocolate & Contain 35 pcs.",
+            "category": "12",
+            "image": "[\"images\/CADBURY DAIRY MILK MINI CHOCOLATE DOYBAG.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "169",
+            "name": "NABATI AHH WAFER 13.5G EXTRA 20%",
+            "price": "7.50",
+            "description": "Richeese Ahh is a corn-based extruded snack covered in abundant cream, stick-shaped and bite-size combined with two delicious choices of cream cheese & thick chocolate to produce a delightful product.",
+            "category": "12",
+            "image": "[\"images\/NABATI AHH WAFER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "170",
+            "name": "CHACHO'S 185G",
+            "price": "7.80",
+            "description": "Twisties Chacho's 185G ( Cheesy Cheese, BBQ Bonanza and Spicy Curry)  are irresistibly light & crispy. They are made with 100% corn flour imported from America.",
+            "category": "12",
+            "image": "[\"images\/CHACHO'S.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "171",
+            "name": "BIKA BBQ CHICKEN CHIPS 60G",
+            "price": "2.50",
+            "description": "The taste of Bika Chicken BBQ flavor will certainly excite your palate and satisfy your snack cravings.",
+            "category": "12",
+            "image": "[\"images\/BIKA BBQ CHICKEN CHIPS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "172",
+            "name": "CORNTOZ 100G",
+            "price": "2.80",
+            "description": "Corntoz is a delicious and crunchy snack made from real corns, which are baked and roasted to perfection. Using its very own Flavaboom technology, each bite comes with an explosion of intense flavour.",
+            "category": "12",
+            "image": "[\"images\/CORNTOZ.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "173",
+            "name": "CHIPSMORE MULTIPACK 8'S",
+            "price": "11.50",
+            "description": "This sharing pack is the perfect pack for quick enjoyment with friends! This convenient portion bundle pack is perfect for a quick sweet treat on-the-go.",
+            "category": "12",
+            "image": "[\"images\/CHIPSMORE MULTIPACK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "174",
+            "name": "SNEK KU MI MI 8'S",
+            "price": "6.00",
+            "description": "Snek Ku Mi Mi is a prawn flavor snack that has are best selling for past 40 years and has established itself as a nostalgic childhood snack.",
+            "category": "12",
+            "image": "[\"images\/SNEK KU MI MI.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "175",
+            "name": "KIT KAT BITES 100G",
+            "price": "8.60",
+            "description": "KIT KAT BITES Milk Chocolate are bags of delicious bite-sized pieces of crispy wafer biscuits covered in smooth milk chocolate.",
+            "category": "12",
+            "image": "[\"images\/KIT KAT BITES.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "176",
+            "name": "LAY'S BBQ POTATO CHIPS 180G",
+            "price": "19.00",
+            "description": "It all start with farm-green potatoes, cooked and seasoned to perfection. Then, Lay's barbecue flavoured Potato Chip is added with the spicy flavour of BBQ Sauce. So every Lay's potato chip is perfectly crispy and delicious and bring happiness in every bite! BBQ flavour, No artificial flavours, & No preservatives.",
+            "category": "12",
+            "image": "[\"images\/LAY'S BBQ POTATO CHIPS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "177",
+            "name": "CLOROX MANUAL TOILET BOWL CLEANER BLEACH 500ML",
+            "price": "11.00",
+            "description": "Get rid of rust and hard water stains with Clorox Toilet Bowl Cleaner Bleach 500ml.\r\n",
+            "category": "13",
+            "image": "[\"images\/CLOROX MANUAL TOILET BOWL CLEANER BLEACH.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "178",
+            "name": "VINDA PRESTIGE 4D DECO EMBOSSED FACIAL TISSUE 3X100'S\r\n",
+            "price": "14.80",
+            "description": "Vinda Prestige 4D Deco Embossed Facial Tissue is specially designed for facial care with Vinda's 4D-Deco Embossing Innovation that laminates 3ply of tissue making it even softer. It stays strong yet soft even when wet and does not leave tissue bits\r\n",
+            "category": "13",
+            "image": "[\"images\/VINDA PRESTIGE 4D DECO EMBOSSED FACIAL TISSUE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "179",
+            "name": "PREMIER KITCHEN TOWELS SOFT PACK 80'S X3\r\n",
+            "price": "12.90",
+            "description": "Premier Soft Pack Kitchen Towel is stronger, thicker paper towel that gives better absorbent power from your oily fried food. Made from 100% pulp.\r\n",
+            "category": "13",
+            "image": "[\"images\/PREMIER KITCHEN TOWELS SOFT PACK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "180",
+            "name": "LABOUR DISHPASTE 800G\r\n",
+            "price": "6.10",
+            "description": "Labour Dishpaste 800g has more power to eliminate grease. It removes tough grease and cleans even the difficult dishes, pots, and pans, delivering residue free squeaky clean results.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/LABOUR DISHPASTE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "181",
+            "name": "CLOROX BLEACH LIQUID TWINPACK 2x1L\r\n",
+            "price": "13.10",
+            "description": "Nothing disinfects and cleans better than Clorox Bleach! 100% effective in cleaning stubborn stains, leaving your white cloth like brand-new again. Efficiently kills 99.9% germs, it is suitable for laundry use and household use.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/CLOROX BLEACH LIQUID TWINPACK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "182",
+            "name": "FEBREZE FABRIC REFRESHER REFILL 320ML\r\n",
+            "price": "9.10",
+            "description": "With pleasant floral Ambi Pur scent, Penetrates deep into fabric and eliminates odours as it dries, Removes 99.9% of odour-causing bacteria, Safe for use around children and pets, and Suitable for most fabrics and furniture.",
+            "category": "13",
+            "image": "[\"images\/FEBREZE FABRIC REFRESHER REFILL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "183",
+            "name": "BIO ZIP DETERGENT POWDER 3.8KG",
+            "price": "24.40",
+            "description": "Bio Zip Detergent Powder has a latest innovation of Co-Enzymes Plus technology that works great in fighting stubborn sweat stains around the collar and sleeves as well as stubborn food stains, leaving your more impactful orange fragrance and gentle on your hands.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/BIO ZIP DETERGENT POWDER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "184",
+            "name": "TOP LIQUID DETERGENT 3.6KG\r\n",
+            "price": "26.30",
+            "description": "Protects fabric colours while cleaning visible and unseen stains that dull them, revealing your clothes vibrancy so they look as good as new.\r\nTOP Micro-Clean Tech is: Anti Sebum - pulls out trapped sweat and body oil.\r\n99.9% Anti Mite-Dust - removes 99.9%* of mite-dust.\r\nAnti Malodour - prevents malodour.\r\n99.9% Anti Bacteria - eliminates 99.9%* of bacteria.",
+            "category": "13",
+            "image": "[\"images\/TOP LIQUID DETERGENT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "185",
+            "name": "ZIP MULTIPURPOSE SCOURING POWDER 750G\r\n",
+            "price": "4.50",
+            "description": "ZIP Multi-Purpose Scouring Powder actively removes tough stains on various surfaces such as utensils, kitchen tiles, bathrooms andeven drains. The key ingredient 'Sodium Bicarbonate' has been known to be a useful and effective cleaning and odour eliminating agent. By capitalizing these benefits, ZIP Multi-Purpose Scouring Powder is absolutely the perfect partner for brighter, shinier finish.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/ZIP MULTIPURPOSE SCOURING POWDER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "186",
+            "name": "VINDA DELUXE SMOOTH FEEL TOILET ROLLS 16'R\r\n",
+            "price": "43.90",
+            "description": "Every sheet of Vinda Deluxe Tissue is made with our signature Knitted Fiber Technology, making it Extra Strong, Extra Soft, Extra Absorbent. Strong even when wet, does not tear and leave bits. Vinda toilet paper sheets are at least 21% larger than other brands. 3-ply premium thickness and quality toilet tissues. Made with 100% virgin wood pulp. Individually wrapped for your hygiene.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/VINDA DELUXE SMOOTH FEEL TOILET ROLLS.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "187",
+            "name": "SCOTT TOILET TISSUE 180'Sx20 ROLL\r\n",
+            "price": "29.00",
+            "description": "To ensure the quality of the tissue, Scott Extra is made with a unique micro-embossed pattern, making sure it's soft yet strong, even when it's wet.",
+            "category": "13",
+            "image": "[\"images\/SCOTT TOILET TISSUE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "188",
+            "name": "MAGICLEAN STAIN & MOLD REMOVER 400G\r\n",
+            "price": "14.00",
+            "description": "High density foam penetrates and destroys mold in 5 minutes. The strong penetrative formula removes and wipes out stubborn stains and mold roots. It is suitable for bathroom walls, floor, tile gaps, washing basin, silicone part at shower door, drainage hole, shower curtain and toilet bowl.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/MAGICLEAN STAIN & MOLD REMOVER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "189",
+            "name": "MAGICLEAN GREEN APPLE FLOOR CLEANER 2L\r\n",
+            "price": "14.60",
+            "description": "Has a stronger absorption and is able to remove sticky stains 4X better! It also dries 2X faster and leaves your feet feeling 2X more comfortable with no watermark stains, whilst being able to kill off 99.9% bacteria.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/MAGICLEAN GREEN APPLE FLOOR CLEANER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "190",
+            "name": "BOOM POWDER DETERGENT 4KG\r\n",
+            "price": "16.60",
+            "description": "BOOM Powder Detergent is incorporated with ATOM POWER™ , which serves you with powerful cleaning efficacy that removes stubborn stains effectively. It freshens clothes with pleasant and lasting fragrance.\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/BOOM POWDER DETERGENT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "191",
+            "name": "AIR WICK SCENTED GEL CONE 180G\r\n",
+            "price": "12.70",
+            "description": "Air Wick Scented gel contains Natural Essential Oils to deliver an authentic and fresh experience to your home with nature-inspired fragrances. It neutralizes odors and provides up to 30 days of continuous freshness and suitable using in car, bedroom, toilet & living room\r\n\r\n",
+            "category": "13",
+            "image": "[\"images\/AIR WICK SCENTED GEL CONE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "192",
+            "name": "CUTIE COMPACT TOILET ROLL 10'S\r\n\r\n",
+            "price": "23.30",
+            "description": "",
+            "category": "13",
+            "image": "[\"images\/CUTIE COMPACT TOILET ROLL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "193",
+            "name": "PEDIGREE HOME STYLE 1.15KG",
+            "price": "14.30",
+            "description": "Pedigree Home Style Chicken - produced from quality meat and selected vegetables. It is enriched with Vitamin E and Omega 6 for a healthy skin and a beautiful coat\r\n\r\nPedigree Home Style Beef - made from real meat. Produced from quality meat and selected vegetables which is carefully cooked to preserve the essential nutrient \r\n\r\nPedigree Home Style Beef & Vegetable - designed to protect your dog in four ways; support their natural defences, a healthy skin and coat, good digestion and healthy teeth. ",
+            "category": "19",
+            "image": "[\"images\/PEDIGREE HOME STYLE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "194",
+            "name": "MULTIPLY KITCHEN TOWEL 120´S\r\n",
+            "price": "9.10",
+            "description": "The Benefits of MultiPly Kitchen Towel:\r\nPrevent spreading of unwanted bacterial.\r\nNo longer worrying about washing dirty table clothes. Thicker and more absorbent.\r\nMulti-Purpose usage for both household and restaurants and finally Disposable convenience.",
+            "category": "14",
+            "image": "[\"images\/MULTIPLY KITCHEN TOWEL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "195",
+            "name": "SCOTT CALORIE ABSORB PREMIUM TOWEL 6 ROLLS",
+            "price": "20.60",
+            "description": "A kitchen towel that is convenient to use for food preparation and disposable. It is also effective in absorbing excess oil from fried food and cleaning up grease in the kitchen.\r\n\r\n",
+            "category": "14",
+            "image": "[\"images\/SCOTT CALORIE ABSORB PREMIUM TOWEL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "196",
+            "name": "ENERGIZER MAX PLUS AA 2'S",
+            "price": "13.10",
+            "description": "HIGH PERFORMANCE ENERGY FOR YOUR HIGH-TECH DEVICES\r\nIntroducing, our new line of performance alkaline batteries! Max Plus™ is our Longest Lasting Alkaline AA & AAA Batteries that provide powerful performance for your devices!",
+            "category": "14",
+            "image": "[\"images\/ENERGIZER MAX PLUS AA 2'S.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "197",
+            "name": "ENERGIZER MINI AL A27 BP1",
+            "price": "6.50",
+            "description": "Our A27 battery provides dependable power for keyless entry and garage door openers.\r\nCell size is A27 with type Miniature Alkaline. As for the replacement: 27A, A27BP, G27A, GP27A, L828, MN27.",
+            "category": "14",
+            "image": "[\"images\/ENERGIZER MINI AL A27 BP1.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "198",
+            "name": "NESTLE CERELAC RICE NO ADDED SUGAR 200G\r\n",
+            "price": "11.40",
+            "description": "When your child turns 6 months old, it's time to introduce solid food for the very first time. Start with single grains that are easily digestible. CERELAC? Infant Cereal Rice variant is one of the best start to a world of complementary food feeding.",
+            "category": "15",
+            "image": "[\"images\/NESTLE CERELAC RICE NO ADDED SUGAR 200G.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "199",
+            "name": "JOHNSON BABY BEDTIME LOTION 200ML",
+            "price": "16.80",
+            "description": "Johnson's Bedtime™ baby lotion moisturizes skin for 24 hours and is made with NATURALCALMTM aromas that help soothe and relax baby before bed. It also can be used n the evening as part of our clinically proven Bedtime® routine of warm bath, gentle massage, and quiet time to help your child get a peaceful night's sleep*. When baby sleeps, parents sleep.\r\n\r\n",
+            "category": "15",
+            "image": "[\"images\/JOHNSON BABY BEDTIME LOTION 200ML.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "200",
+            "name": "NESTLE CERELAC CEREAL 350G",
+            "price": "18.30",
+            "description": "Nestle Cerelac Cereal is suitable for baby at age of 6 months. It contains Vitamins A, C, B1, Iodine and DHA, which are the key nutrients for baby's growth and development.\r\n\r\n",
+            "category": "15",
+            "image": "[\"images\/NESTLE CERELAC CEREAL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "201",
+            "name": "JOHNSONS PH5.5 NOURISHING BODY WASH 500ML",
+            "price": "12.70",
+            "description": "Nourishing Body Wash is formulated with honey. It conditions your skin as you cleanses, leaving it feeling soft, smooth and moisturized. Carefully formulated to respect your skin's natural pH level to optimize your skin's natural moisture balance.\r\n\r\n",
+            "category": "15",
+            "image": "[\"images\/JOHNSONS PH5.5 NOURISHING BODY WASH.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "202",
+            "name": "BUDWEISER BEER BOTTLE 330ML\r\n",
+            "price": "14.00",
+            "description": "Budweiser Beer 330ml known as 'The King of Beers' is a medium -bodied , flavorful, crisp American- style lager. It is brewed with the best barley malt and a blend of premium hop varieties\r\n",
+            "category": "18",
+            "image": "[\"images\/BUDWEISER BEER BOTTLE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "203",
+            "name": "ANCHOR SMOOTH PILSENER BEER 640ML\r\n",
+            "price": "17.50",
+            "description": "A popular brew with a smooth, refreshing taste. Anchor Smooth was awarded Gold at the Monde Selection for 3 consecutive years from 2010 to 2012. Anchor Smooth Draught is a refreshing lager with a smooth blend of aromatic hops, brewed perfectly into each bottle.",
+            "category": "18",
+            "image": "[\"images\/ANCHOR SMOOTH PILSENER BEER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "204",
+            "name": "TIGER PLATINUM BEER 320ML\r\n",
+            "price": "8.30",
+            "description": "A bold lager, born and brewed in the heart of Asia through our tropical lagering process. Tiger's uniquely refreshing and full-bodied flavour is enjoyed in more than 70 countries, with over 40 brewing quality awards under its belt.\r\n\r\n",
+            "category": "18",
+            "image": "[\"images\/TIGER PLATINUM BEER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "205",
+            "name": "MORNING KISS DORAEMON KIDS TOOTHPASTE 40G\r\n",
+            "price": "4.50",
+            "description": "Morning Kiss Doraemon Kids Toothpaste is specially designed handles for small hands. It is super soft, rounded and gentle filaments to help protect young enamel and gums. ",
+            "category": "16",
+            "image": "[\"images\/MORNING KISS DORAEMON KIDS TOOTHPASTE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "206",
+            "name": "MAY SOAP 255G",
+            "price": "5.50",
+            "description": "Discover the luxurious May Soap collection: Diamond Dazzle gently purifies with sea salt for soft, luminous skin; Rose Pleasure nourishes and revitalizes; Lavender Calm soothes and balances with French lavender oil; White Radiance protects with white tea essence and silk protein for fair, nourished skin; and Milk Luxury combines pure pearl essence and rice milk to revive and deeply nourish your skin all day long.",
+            "category": "16",
+            "image": "[\"images\/MAY SOAP.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "207",
+            "name": "PURE DEEP CLEANSE WIPES 25'S\r\n",
+            "price": "4.60",
+            "description": "Pure Deep Cleanse Wipes help to unblock pores and get rid of cosmetics and undesirable oils while protecting skin against blackheads and other impurities. These deep cleaning Paraben Free cleans contain Zinc, Vitamin B3 and Witch Hazel.",
+            "category": "16",
+            "image": "[\"images\/PURE DEEP CLEANSE WIPES.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "208",
+            "name": "LIBRESSE LONG & WIDE SLIM PANTY LINER 3x30'S",
+            "price": "22.80",
+            "description": "Libresse Longer & Wider Slim liners are longer in length, offering wider coverage and protection and is ideal for pre and post period or heavy discharge. Comes with a breathable soft cottony surface keeping you dry, everyday. CurveFit, Extra Long, Cottony Softness, and Breathable.\r\n\r\n\r\n",
+            "category": "16",
+            "image": "[\"images\/LIBRESSE LONG & WIDE SLIM PANTY LINER.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "209",
+            "name": "WHISPER COTTON THICKS OVERNIGHT WING 16'S",
+            "price": "9.50",
+            "description": "Whisper Cottony Soft Protection Regular provides up to 12 hours of leakage protection with Dermacare™ lotion for skin comfort, featuring individually wrapped, hygienic pads with a warm Magic Cushion to prevent leaks, a secure sticky design to keep the pad in place, and anti-leak barriers for all-angle protection.\r\n",
+            "category": "16",
+            "image": "[\"images\/WHISPER COTTON THICKS OVERNIGHT WING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "210",
+            "name": "INTIMATE DAY SLIM WING 8'S",
+            "price": "3.90",
+            "description": "Total Cottony Comfort-Dry Absorbs the secretion perfectly & retains it securely inside Soft Contour Soft, gently raised center to fit your body naturally. \r\n\r\nUltra ADL Traps and channels fluid downward to prevent fluid from resurfacing Cottony surface Total cottony comfort-dry With mini holes Super soft edge",
+            "category": "16",
+            "image": "[\"images\/INTIMATE DAY SLIM WING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "211",
+            "name": "ORAL-B COMPLETE EASY CLEAN MEDIUM TOOTHBRUSH 5'S",
+            "price": "16.20",
+            "description": "Oral-B Complete Clean & Sensitive Manual toothbrush has a combination of normal and super thin bristles that help deliver a thorough yet gentle clean. Super thin bristles reach 3x deeper than ordinary bristles and are designed to be tough on plaque but soft on gums. Try with Oral B Pro Expert Toothpaste for healthier and stronger teeth. \r\n\r\nOral-B Complete Clean & Senstive Manual toothbrush gently cleans between teeth and below the gum line, Combination of normal and super thin bristles designed to be tough on plaque but soft on gums, Super thin bristles reach 3x deeper than ordinary bristles, Tongue cleaner helps freshen breath The Oral-B Complete toothbrush features a brush head specially designed to give you an all-around clean and improve gum health by reducing gingivitis whilst remaining gentle on sensitive teeth and gums. Reaches between teeth to remove plaque. Helps freshen breath. Massages the gums.",
+            "category": "16",
+            "image": "[\"images\/ORAL-B COMPLETE EASY CLEAN MEDIUM TOOTHBRUSH.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "212",
+            "name": "COLGATE TRIPLE ACTION 200G\r\n",
+            "price": "13.70",
+            "description": "Colgate Triple Action Original Mint Toothpaste protects against cavities, whitens teeth, and freshens breath. Use this refreshing toothpaste for proven cavity protection for your whole family. ",
+            "category": "16",
+            "image": "[\"images\/COLGATE TRIPLE ACTION.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "213",
+            "name": "COLGATE TRIPLE ACTION TWINPACK 2x175G",
+            "price": "22.90",
+            "description": "Experience three-way protection with cavity protection, whiter teeth, and fresh breath, thanks to fluoride that strengthens teeth against decay, gentle cleaning crystals that remove surface stains, and a formula that freshens your whole mouth.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "16",
+            "image": "[\"images\/COLGATE TRIPLE ACTION TWINPACK.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "214",
+            "name": "KODOMO CHILDREN APPLE TOOTHPASTE 80G",
+            "price": "6.30",
+            "description": "Designed by children's oral care specialists, this toothpaste combines 5% Xylitol and Active Fluoride to restore minerals and repair early caries in just 14 days. Safe for daily use, sugar-free, and with less foam to encourage longer brushing, it’s the perfect choice for your child’s healthy smile.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "16",
+            "image": "[\"images\/KODOMO CHILDREN APPLE TOOTHPASTE.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "215",
+            "name": "DARLIE TOOTHBRUSH CHARCOAL GOLD BUY 2 FREE 1",
+            "price": "21.40",
+            "description": "The Charcoal Gold Toothbrush is your go-to solution for thorough inner molar cleaning, featuring a dual-ring compact head for deep cleansing and plaque prevention, 0.01mm soft tapered bristles that reduce bacterial growth on bristles by 99%, and a uniquely designed anti-slip handle for a comfortable, secure grip.",
+            "category": "16",
+            "image": "[\"images\/DARLIE TOOTHBRUSH CHARCOAL GOLD.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "216",
+            "name": "COLGATE TWISTER SOFT TOOTHBRUSH BUY 2 FREE 1",
+            "price": "12.30",
+            "description": "The toothbrush features a unique Twister Bristle Pattern for effective cleaning between teeth and along the gum line, multi-height bristles to fit the contours of your teeth for thorough surface cleaning, and a Twister Tongue Cleaner for complete oral care.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "16",
+            "image": "[\"images\/COLGATE TWISTER SOFT TOOTHBRUSH.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "217",
+            "name": "BIOSILK MAXI DAY NO WING 30'S",
+            "price": "14.80",
+            "description": "Experience the benefits of Pure Natural Herbs Lining for hygiene care, offering natural anti-bacterial protection to reduce itchiness, redness, infections, and abnormal discharges. It minimizes menstrual pain, reduces the risk of urinary infections and genital itchiness, regulates the menstrual cycle, improves blood circulation, and provides a cooling, refreshing feel without any peculiar blood smell.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "category": "16",
+            "image": "[\"images\/BIOSILK MAXI DAY NO WING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "218",
+            "name": "LIBRESSE G4 NIGHT WING 3x12'S",
+            "price": "22.80",
+            "description": "Suitable for Maxi Fit during heavy flow days. Libresse® pads with SecureFit™ and DFC works together to deliver all round fit and better absorption as it is uniquely designed based on womens' curves to keep your pad securely in place. Plus, it's made with 100% virgin pulp!\r\n\r\n",
+            "category": "16",
+            "image": "[\"images\/LIBRESSE G4 NIGHT WING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "219",
+            "name": "LIBRESSE G4 SLIM WING 3x12'S",
+            "price": "22.80",
+            "description": "Libresse® pads, designed with patented SecureFit™ technology, perfectly adapt to women’s curves with a wider front for a secure fit, a narrower middle for comfort between the thighs, and split rear ends for a close fit to the buttocks. Featuring Deep Flow Channels, these pads quickly absorb and channel fluids for superior dryness, keeping wetness away from the skin.",
+            "category": "16",
+            "image": "[\"images\/LIBRESSE G4 SLIM WING.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "220",
+            "name": "LIBRESSE G4 WIDER BACK NIGHT 3x10'S",
+            "price": "22.80",
+            "description": "Libresse® pads are perfect for light flow days, offering a Long & Wide Fit with SecureFit™ technology and Deep Flow Channels (DFC) to ensure a secure, curve-adapted fit, superior absorption, and all-around protection. Designed with a wider back and wings, these pads stay comfortably in place for better coverage and confidence.",
+            "category": "16",
+            "image": "[\"images\/LIBRESSE G4 WIDER BACK NIGHT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "221",
+            "name": "Q-THREE CHAOSANSI 198G\r\n",
+            "price": "7.90",
+            "description": "Q-Three Chaosansi is contains a crunchy and spicy mix of shredded pork shredded shitake mushrooms and shredded bamboo shoots.\r\n\r\n",
+            "category": "17",
+            "image": "[\"images\/Q-THREE CHAOSANSI.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "222",
+            "name": "PREMIUM GOLD COIN DRIED MEAT 200G",
+            "price": "15.40",
+            "description": "Premium Gold Coin Pork Jerky is one of the most selling type of Chinese savory sweet jerky that traditionally takes the form of thin round slices. \r\n\r\n",
+            "category": "17",
+            "image": "[\"images\/PREMIUM GOLD COIN DRIED MEAT.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "223",
+            "name": "HAI DI LAO BEAN CURD ROLL 120G\r\n",
+            "price": "11.50",
+            "description": "Ring Roll is best eaten with soup based dishes — simply dip in soup for 3 seconds and it's done! Enjoy the soup base with the crispiness of Ring Roll; it can also be eaten with hot pot or ramen.",
+            "category": "17",
+            "image": "[\"images\/HAI DI LAO BEAN CURD ROLL.jpg\"]",
+            "itemHot": "0"
+        },
+        {
+            "productID": "231",
+            "name": "Whiskey",
+            "price": "100.00",
+            "description": "Refreshing Drink",
+            "category": "3",
+            "image": "images\/whiskey.jpeg",
+            "itemHot": "1"
+        }
+    ]
+}
