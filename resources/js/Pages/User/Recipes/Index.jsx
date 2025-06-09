@@ -60,7 +60,7 @@ export default function RecipeIndex({ recipe }) {
                 className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
               >
                 <Link href={`/recipes/${recipe.recipeID}`}>
-                <MultipleImages images={recipe.image} name={recipe.title} />
+                <MultipleImages images={recipe.image} name={recipe.title} showNavigation={false}/>
                 <div className="p-6">
                   <h2 className="text-2xl font-semibold text-gray-800">{recipe.title}</h2>
                   <p className="text-sm text-gray-500 italic mb-2">{recipe.category}</p>
