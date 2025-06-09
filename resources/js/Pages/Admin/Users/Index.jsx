@@ -205,7 +205,7 @@ export default function Users ({ admins, members, flash, users }) {
                 
             </div>
 
-            <h2 className="text-xl font-semibold mb-4">Existing Members Pool</h2>
+            <h2 className="text-xl font-semibold mb-4 mt-10">Existing Members Pool</h2>
             <div className="flex justify-between mb-4">
             <Link href="/admin/members/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add User </Link>  
             </div>

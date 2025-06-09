@@ -156,7 +156,7 @@ export default function Branches ({ branches, branched_products, flash }) {
                 </tbody>
                 </DataTable>
 
-                <h2 className="text-xl font-semibold mb-4">Branch Products</h2>
+                <h2 className="text-xl font-semibold mb-4 mt-10">Branch Products</h2>
                 <div className="flex justify-between mb-4">
                   <Link href="/admin/branchproduct/add" className="bg-blue-500 text-white px-3 py-1 rounded">Add Branch Product</Link>
                 </div>
