@@ -130,7 +130,7 @@ export default function QRCodes({user_missions, flash}) {
                                     <td className="px-4 py-2">{m.mission_id || "N/A"}</td>
                                     <td className="px-4 py-2">{m.progress}</td>
                                     <td className="px-4 py-2">{m.reward_claimed}</td>
-                                    <td className="px-4 py-2">{m.completion_at}</td>
+                                    <td className="px-4 py-2">{m.completed_at}</td>
                                     <td className="px-4 py-2 space-x-2">
                                         <button
                                             onClick={(e) => updsubmit(e, m.id)}

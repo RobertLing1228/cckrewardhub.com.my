@@ -166,7 +166,6 @@ const MissionList = () => {
             {missions.map(mission => {
               const isCompleted = mission.progress >= mission.mission_goal;
 
-              console.log('Image path:', mission.mission_image);
               return (
                 <div
                   key={mission.id}

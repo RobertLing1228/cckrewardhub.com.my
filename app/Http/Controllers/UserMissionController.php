@@ -8,6 +8,7 @@ use App\Models\Mission;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Carbon\Carbon;
 
 class UserMissionController extends Controller
 {
@@ -73,7 +74,7 @@ class UserMissionController extends Controller
 
             // Get all missions by same user + same created_at timestamp
             $relatedMissions = UserMission::where('user_id', $fields['user_id'])
-                ->whereDate('created_at', $usermission->created_at->toDateString())
+                ->whereDate('created_at', Carbon::parse($usermission->created_at)->toDateString())
                 ->get();
 
             // Check if group was fully completed before
