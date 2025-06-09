@@ -15,8 +15,8 @@ export default function ErrorPage({ status }) {
   
     return (
       <div>
-        <H1>{title}</H1>
-        <div>{description}</div>
+        <div className="text-6xl">{title}</div>
+        <div className="text-2xl mt-4">{description}</div>
       </div>
     )
   }
