@@ -38,6 +38,8 @@ In the terminal in visual code
   - Run this to set up tables into your local database through the migration files made in the database folder
 
 
+
+**Development**
   (These two commands are run on two separate terminals)
   
   8. npm run dev
@@ -45,6 +47,14 @@ In the terminal in visual code
   
   9. php artisan serve
   - Run the Laravel development server in another terminal
+
+**Production**
+The .env file should specify the production state as well as the new database used.
+
+*npm run build*
+this command is used to build the frontend react assets
+
+Note that the vite.config.js file will need to be edited to match the file structure of the web hosting used.
 
 
 
