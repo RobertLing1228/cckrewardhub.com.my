@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 
-export default function MultipleImages({ images, name }) {
+export default function MultipleImages({ images, name, showNavigation = true }) {
     let imageList = [];
 
     if (Array.isArray(images)) {
@@ -20,14 +20,13 @@ export default function MultipleImages({ images, name }) {
 
     return (
         <div className="relative w-full max-w-xs sm:max-w-sm mx-auto select-none overflow-hidden">  
-            {/* Wrapper ensures Swiper stays in place */}
             <Swiper
                 modules={[Navigation, Pagination]}
-                navigation
+                navigation={showNavigation}  // ✅ use prop here
                 pagination={{ clickable: true }}
                 loop={true}
                 className="w-full h-auto"
-                style={{ maxWidth: "100%", height: "auto", zIndex: 0 }} // Ensures it doesn’t overlap navbar
+                style={{ maxWidth: "100%", height: "auto", zIndex: 0 }}
             >
                 {imageList.map((img, index) => (
                     <SwiperSlide key={index} className="flex justify-center">
@@ -35,7 +34,7 @@ export default function MultipleImages({ images, name }) {
                             src={`/storage/${img}`} 
                             loading='lazy'
                             alt={`Product image ${name}`} 
-                            className="w-full h-40 object-cover rounded-md"
+                            className="w-full max-h-[400px] object-contain rounded-md"
                         />
                     </SwiperSlide>
                 ))}
