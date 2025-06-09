@@ -66,7 +66,9 @@ export default function Vouchers({vouchers, flash}) {
                 </div>
             )}
             <div className="p-4 bg-white shadow-md rounded-lg">
+                <div className="flex justify-end mb-4">
                 <Link href="/admin/vouchers/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add Vouchers</Link>
+                </div>
 
                 <DataTable id="vouchersTable" className="min-w-full border border-gray-300"
                 options={{

@@ -70,7 +70,9 @@ export default function QRCodes({user_missions, flash}) {
                 </div>
             )}
             <div className="p-4 bg-white shadow-md rounded-lg">
+                <div className="flex justify-end mb-4">
                 <Link href="/admin/usermissions/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create User Mission </Link>
+                </div>
                 <div className="overflow-x-auto">
                 {user_missions && user_missions.length > 0 && (
                     <DataTable id="quserMissionsTable" className="min-w-full border border-gray-300"
@@ -115,6 +117,7 @@ export default function QRCodes({user_missions, flash}) {
                                 <th className="px-4 py-2">Mission ID</th>
                                 <th className="px-4 py-2">Progress</th>
                                 <th className="px-4 py-2">Reward Claimed</th>
+                                <th className="px-4 py-2">Completion Date</th>
                                 <th className="px-4 py-2 no-export">Action</th>
                             </tr>
                         </thead>
@@ -127,6 +130,7 @@ export default function QRCodes({user_missions, flash}) {
                                     <td className="px-4 py-2">{m.mission_id || "N/A"}</td>
                                     <td className="px-4 py-2">{m.progress}</td>
                                     <td className="px-4 py-2">{m.reward_claimed}</td>
+                                    <td className="px-4 py-2">{m.completion_at}</td>
                                     <td className="px-4 py-2 space-x-2">
                                         <button
                                             onClick={(e) => updsubmit(e, m.id)}

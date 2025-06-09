@@ -17,7 +17,6 @@ class UserMission extends Model
         'reward_claimed',
         'completed_at',
         'created_at',
-        'type',
     ];
 
     public function mission()
@@ -32,7 +31,6 @@ class UserMission extends Model
         $missions = \App\Models\Mission::all();
 
         foreach ($missions as $mission) {
-            $type = $mission->id === 3 ? 'wheel' : 'mission';
 
             self::create([
                 'user_id' => $userId,
@@ -42,7 +40,6 @@ class UserMission extends Model
                 'completed_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(), // optional: ensure timestamps
-                'type' => $type,
             ]);
         }
     }

@@ -70,7 +70,9 @@ export default function QRCodes({qr_codes, flash}) {
                 </div>
             )}
             <div className="p-4 bg-white shadow-md rounded-lg">
+                <div className="flex justify-end mb-4">
                 <Link href="/admin/qrcodes/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Create QRCode </Link>
+                </div>
                 <div className="overflow-x-auto">
                 {qr_codes && qr_codes.length > 0 && (
                     <DataTable id="qrcodesTable" className="min-w-full border border-gray-300"

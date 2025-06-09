@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
 use Illuminate\Auth\Events\Login;
 
 class LoginRequest extends FormRequest
@@ -43,7 +44,7 @@ class LoginRequest extends FormRequest
     {
 
         $this->ensureIsNotRateLimited();
-            
+
         $member = DB::table('exist_member')
             ->where('memberID', $this->memberID)
             ->where('phoneNumber', $this->phoneNumber)
@@ -56,11 +57,11 @@ class LoginRequest extends FormRequest
         }
 
         // Check if user already exists in `users` table
-        $user = \App\Models\User::where('memberID', $member->memberID)->first();
+        $user = User::where('memberID', $member->memberID)->first();
 
         if (!$user) {
             // Add member to `users` table
-            $user = \App\Models\User::create([
+            $user = User::create([
                 'memberID' => $member->memberID,
                 'phoneNumber' => $member->phoneNumber,
             ]);

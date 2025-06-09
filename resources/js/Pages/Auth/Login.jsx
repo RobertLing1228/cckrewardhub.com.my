@@ -24,7 +24,6 @@ export default function Login({ status }) {
                 alert('Member not found');
                 return;
             }
-            console.log("Member ID:", fetchedMemberID);// debug log
             setData("memberID", fetchedMemberID);
 
             router.post(route('login'), {

@@ -67,8 +67,11 @@ export default function ResetTimes({resetTimes, flash}) {
                 </div>
             )}
             
-
-            <Link href="/admin/resettimes/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add Reset Timer </Link>
+            <div className="p-4 bg-white shadow-md rounded-lg">
+                <div className="flex justify-end mb-4">
+                    <Link href="/admin/resettimes/add" className="bg-blue-500 text-white px-3 py-1 rounded mb-4">Add Reset Timer </Link>
+                </div>
+            
             <div className="overflow-x-auto">
                 {resetTimes && resetTimes.length > 0 && (
                     <DataTable id="qrcodesTable" className="min-w-full border border-gray-300"
@@ -146,6 +149,7 @@ export default function ResetTimes({resetTimes, flash}) {
                         </tbody>
                     </DataTable>
                 )}
+            </div>
             </div>
             
         </AdminLayout>

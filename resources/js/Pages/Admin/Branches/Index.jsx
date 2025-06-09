@@ -87,10 +87,13 @@ export default function Branches ({ branches, branched_products, flash }) {
                     ❌ {flash.error}
                 </div>
             )}
-            <Link href="/admin/branches/add" className="bg-green-500 text-white px-3 py-1 rounded">
-                Add Branch
-            </Link>
+            
             <div className="p-4 bg-white shadow-md rounded-lg">
+            <div className="flex justify-between mb-4">
+              <Link href="/admin/branches/add" className="bg-green-500 text-white px-3 py-1 rounded">
+                  Add Branch
+              </Link>
+            </div>
             <div className="overflow-x-auto">
                 <DataTable id="branchessTable" className="min-w-full border border-gray-300"
                 options={{
@@ -154,7 +157,10 @@ export default function Branches ({ branches, branched_products, flash }) {
                 </DataTable>
 
                 <h2 className="text-xl font-semibold mb-4">Branch Products</h2>
-                <Link href="/admin/branchproduct/add" className="bg-green-500 text-white px-3 py-1 rounded">Add Branch Product</Link>
+                <div className="flex justify-between mb-4">
+                  <Link href="/admin/branchproduct/add" className="bg-green-500 text-white px-3 py-1 rounded">Add Branch Product</Link>
+                </div>
+                
                 <div className="overflow-x-auto">
                 <DataTable id="branchProductsTable" className="min-w-full border border-gray-300"
                 options={{

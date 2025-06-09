@@ -56,12 +56,37 @@ class UserMissionController extends Controller
             
         ]);
 
+        $wasCompleted = $usermission->progress == 1 && $fields['progress'] == 0;
+
+        // Update the mission first
         $usermission->update([
             'user_id' => $fields['user_id'],
             'mission_id' => $fields['mission_id'],
             'progress' => $fields['progress'],
-            'reward_claimed' => $fields['reward_claimed'],
+            'reward_claimed' => $wasCompleted ? false : $fields['reward_claimed'],
         ]);
+
+        if ($wasCompleted) {
+            // Null the completed_at field for this mission
+            $usermission->completed_at = null;
+            $usermission->save();
+
+            // Get all missions by same user + same created_at timestamp
+            $relatedMissions = UserMission::where('user_id', $fields['user_id'])
+                ->whereDate('created_at', $usermission->created_at->toDateString())
+                ->get();
+
+            // Check if group was fully completed before
+            $allWereCompleted = $relatedMissions->every(fn($mission) => $mission->progress == 1);
+
+            // If it *was* completed and now one is back to 0, remove completed_at from all
+            if ($allWereCompleted === false) {
+                foreach ($relatedMissions as $mission) {
+                    $mission->completed_at = null;
+                    $mission->save();
+                }
+            }
+        }
 
         return redirect('/admin/usermissions')->with('success', 'User Mission updated successfully!');
     }
