@@ -8,7 +8,6 @@ use App\Models\Mission;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use Carbon\Carbon;
 
 class UserMissionController extends Controller
 {
@@ -71,23 +70,14 @@ class UserMissionController extends Controller
             // Null the completed_at field for this mission
             $usermission->completed_at = null;
             $usermission->save();
-
-            // Get all missions by same user + same created_at timestamp
-            $relatedMissions = UserMission::where('user_id', $fields['user_id'])
-                ->whereDate('created_at', Carbon::parse($usermission->created_at)->toDateString())
-                ->get();
-
-            // Check if group was fully completed before
-            $allWereCompleted = $relatedMissions->every(fn($mission) => $mission->progress == 1);
-
-            // If it *was* completed and now one is back to 0, remove completed_at from all
-            if ($allWereCompleted === false) {
-                foreach ($relatedMissions as $mission) {
-                    $mission->completed_at = null;
-                    $mission->save();
-                }
-            }
         }
+
+        $usermission->update([
+            'user_id' => $fields['user_id'],
+            'mission_id' => $fields['mission_id'],
+            'progress' => $fields['progress'],
+            'reward_claimed' => $fields['reward_claimed'],
+        ]);
 
         return redirect('/admin/usermissions')->with('success', 'User Mission updated successfully!');
     }
