@@ -24,13 +24,11 @@ class ProductController extends Controller
 
     $product = Product::where('itemHot', true)->orderBy('name')->take(6)->get();
     $recipe = Recipe::orderBy('title')->take(6)->get();
-    $promotion = Promotion::orderBy('title')->take(6)->get();
     $banners = Banner::all();
 
     return Inertia::render('Home', [
         'product' => $product,
         'recipe' => $recipe,
-        'promotion' => $promotion,
         'banners' => $banners,
         'user' => auth()->check() ? auth()->user() : null
     ]);

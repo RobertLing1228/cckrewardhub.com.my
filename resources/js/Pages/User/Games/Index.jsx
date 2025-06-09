@@ -29,9 +29,31 @@ export default function GameIndex({ games }) {
                 <p className="text-center text-lg">Complete missions, spin the wheel, and enjoy fun games to earn real rewards.</p>
             </section>
 
+             {/* Mission section title with history link*/}
+            <div className="px-4 mt-12 mb-4 flex items-center justify-center">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Your Missions</h2>
+                <span className="mx-2 text-gray-300">|</span>
+                <Link
+                    href="/mission-history"
+                    className="text-xs text-gray-400 hover:text-gray-600 transition"
+                >
+                    View History
+                </Link>
+            </div>
+
+
+
+            <MissionList/>
+
             {/* Game Cards */}
-            <section className="py-10 px-4 bg-[#f2f2f2]">
-                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Available Games</h2>
+            <section className="py-10 px-4">
+                <h2 className="text-3xl font-bold text-center mb-8 bg-purple-700 text-white py-3 px-4 rounded-md shadow-md">
+                Available Games
+                </h2>
+
+                {games.length === 0 ? (
+                    <div className="text-center text-gray-500 text-sm">No games available right now. Check back later!</div>
+                ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {games.map((game) => (
                         <div
@@ -56,34 +78,10 @@ export default function GameIndex({ games }) {
                         </div>
                     ))}
                 </div>
+                )}
             </section>
-
-            {/* Mission section title with history link*/}
-            <div className="px-4 mt-12 mb-4 flex items-center justify-center">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Your Missions</h2>
-                <span className="mx-2 text-gray-300">|</span>
-                <Link
-                    href="/mission-history"
-                    className="text-xs text-gray-400 hover:text-gray-600 transition"
-                >
-                    View History
-                </Link>
-            </div>
-
-
-
-            <MissionList/>
             
             <MySpinWheel/>
-
-            {/* Prize Modal */}
-            {showPrizeModal && (
-                <PrizeView
-                    game = "Mission"
-                    prize={prize}
-                    onClose={() => setShowPrizeModal(false)}
-                />
-            )}
         </MainLayout>
     );
 }
