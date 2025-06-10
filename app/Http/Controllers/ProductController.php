@@ -120,7 +120,7 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'description' => $validated['description'],
             'category' => $validated['category'],
-            'image' => $imagePath,
+            'image' => [$imagePath],
             'itemHot' => $validated['itemHot']
         ]);
 
@@ -179,11 +179,23 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($product->image && file_exists(public_path("storage/{$product->image}"))) {
-                unlink(public_path("storage/{$product->image}"));
+            // Delete old images if they exist (loop through array)
+            if ($product->image) {
+                $existingImages = is_array($product->image) ? $product->image : json_decode($product->image, true);
+                if ($existingImages) {
+                    foreach ($existingImages as $oldImg) {
+                        $path = public_path("storage/{$oldImg}");
+                        if (file_exists($path)) {
+                            unlink($path);
+                        }
+                    }
+                }
             }
 
-            $fields['image'] = $request->file('image')->store('images', 'public');
+            // Store new image(s) as array
+            $storedPath = $request->file('image')->store('images', 'public');
+
+            $fields['image'] = json_encode([$storedPath]); // Store as JSON
         } else {
             $fields['image'] = $product->image;
         }

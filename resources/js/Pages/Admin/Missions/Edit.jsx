@@ -96,7 +96,6 @@ export default function Edit ({mission, flash}) {
                                 <td>{mission.mission_name}</td>
                                 <td>{mission.mission_description}</td>
                                 <td>{mission.mission_goal}</td>
-                                <td>{mission.mission_image}</td>
                             </tr>
                         </tbody>
                         
@@ -105,7 +104,6 @@ export default function Edit ({mission, flash}) {
                                 <td>{data.mission_name}</td>
                                 <td>{data.mission_description}</td>
                                 <td>{data.mission_goal}</td>
-                                <td>{data.mission_image}</td>
                             </tr>
                         </tbody>
                         

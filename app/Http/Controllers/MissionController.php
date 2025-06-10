@@ -29,11 +29,13 @@ class MissionController extends Controller
             'mission_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $imagePath = $request->file('mission_image')->store('images', 'public');
+
         Mission::create([
             'mission_name' => $fields['mission_name'],
             'mission_description' => $fields['mission_description'],
             'mission_goal' => $fields['mission_goal'],
-            'mission_image' => $fields['mission_image'],
+            'mission_image' => [$imagePath],
         ]);
 
         return redirect('/admin/missions')->with('success', 'Mission created successfully!');
@@ -50,6 +52,28 @@ class MissionController extends Controller
             'mission_goal' => 'required|integer',
             'mission_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('mission_image')) {
+            // Delete old images if they exist (loop through array)
+            if ($mission->mission_image) {
+                $existingImages = is_array($mission->mission_image) ? $mission->mission_image : json_decode($mission->mission_image, true);
+                if ($existingImages) {
+                    foreach ($existingImages as $oldImg) {
+                        $path = public_path("storage/{$oldImg}");
+                        if (file_exists($path)) {
+                            unlink($path);
+                        }
+                    }
+                }
+            }
+
+            // Store new image(s) as array
+            $storedPath = $request->file('mission_image')->store('images', 'public');
+
+            $fields['mission_image'] = json_encode([$storedPath]); // Store as JSON
+        } else {
+            $fields['mission_image'] = $mission->image;
+        }
 
         $mission->update([
             'mission_name' => $fields['mission_name'],

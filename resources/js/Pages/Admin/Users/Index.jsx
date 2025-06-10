@@ -61,7 +61,7 @@ export default function Users ({ admins, members, flash, users }) {
         e.preventDefault();
         Swal.fire({
             title: `Delete "${name}" ?`,
-            text: "This will remove the use from the table!",
+            text: "This will remove the user from the table!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -71,7 +71,7 @@ export default function Users ({ admins, members, flash, users }) {
             if (result.isConfirmed) {
                 destroy(route("users.delete", u),{
                     onSuccess: () => {
-                        Swal.fire("Deleted!", "The use has been removed.", "success");
+                        Swal.fire("Deleted!", "The user has been removed.", "success");
                     },
                     onError: () => {
                         Swal.fire("Failed!", "Something went wrong. User not deleted.", "error");
@@ -90,7 +90,7 @@ export default function Users ({ admins, members, flash, users }) {
         e.preventDefault();
         Swal.fire({
             title: `Delete "${n}" ?`,
-            text: "This will remove the use from the table!",
+            text: "This will remove the user from the table!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
