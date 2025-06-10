@@ -18,7 +18,13 @@ export default function Login({ status }) {
         try {
             //Check if phone number exists in database
 
-            const response = await axios.post('/check-member', { phoneNumber: data.phoneNumber });
+            let phone = data.phoneNumber.trim();
+            if (!phone.startsWith('+6')) {
+                phone = '+6' + phone;
+                setData('phoneNumber', phone);
+            }
+
+            const response = await axios.post('/check-member', { phoneNumber: phone });
             const fetchedMemberID = response.data.memberID;
             if (!fetchedMemberID) {
                 alert('Member not found');
@@ -29,7 +35,7 @@ export default function Login({ status }) {
 
             router.post(route('login'), {
                 memberID: fetchedMemberID,
-                phoneNumber: data.phoneNumber,},
+                phoneNumber: phone,},
                 {
                 onFinish: () => reset('phoneNumber'),
             });

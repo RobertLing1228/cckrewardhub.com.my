@@ -261,6 +261,12 @@ const MissionList = () => {
             <>
               <h3 className="text-xl font-bold text-gray-700 mb-2">🎉 Reward Claimed</h3>
               <p className="text-gray-600">You have already claimed your RM3 Voucher.</p>
+              <button 
+                onClick={() => window.location.href = '/vouchers'}
+                className="px-6 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+              >
+                View Your Vouchers
+              </button>
             </>
           ) : (
             <>

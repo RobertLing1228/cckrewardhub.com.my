@@ -13,7 +13,7 @@ export default function VoucherIndex ({ vouchers }) {
 
     return (
         <MainLayout>
-            <Head title="Promotions" />
+            <Head title="Vouchers" />
 
             <div className='container mx-auto p-4'>
                 <div className="flex border-b border-gray-200">
