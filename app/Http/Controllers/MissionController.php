@@ -29,13 +29,20 @@ class MissionController extends Controller
             'mission_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $imagePath = $request->file('mission_image')->store('images', 'public');
+        $file = $request->file('mission_image');
+        $filename = $file->getClientOriginalName();
+        $destination = public_path('storage/images/' . $filename);
+
+        file_put_contents($destination, file_get_contents($file));
+
+        $relativePath = 'images/' . $filename;
+
 
         Mission::create([
             'mission_name' => $fields['mission_name'],
             'mission_description' => $fields['mission_description'],
             'mission_goal' => $fields['mission_goal'],
-            'mission_image' => [$imagePath],
+            'mission_image' => [$relativePath],
         ]);
 
         return redirect('/admin/missions')->with('success', 'Mission created successfully!');
@@ -68,9 +75,14 @@ class MissionController extends Controller
             }
 
             // Store new image(s) as array
-            $storedPath = $request->file('mission_image')->store('images', 'public');
+            // Read & write the new image manually
+            $file = $request->file('mission_image');
+            $filename = $file->getClientOriginalName(); // Optional: use a UUID to avoid name collision
+            $destination = public_path('storage/images/' . $filename);
 
-            $fields['mission_image'] = json_encode([$storedPath]); // Store as JSON
+            file_put_contents($destination, file_get_contents($file));
+
+            $fields['mission_image'] = 'images/' . $filename;
         } else {
             $fields['mission_image'] = $mission->image;
         }
@@ -79,7 +91,7 @@ class MissionController extends Controller
             'mission_name' => $fields['mission_name'],
             'mission_description' => $fields['mission_description'],
             'mission_goal' => $fields['mission_goal'],
-            'mission_image' => $fields['mission_image'],
+            'mission_image' => [$fields['mission_image']],
         ]);
 
         return redirect('/admin/missions')->with('success', 'Mission updated successfully!');

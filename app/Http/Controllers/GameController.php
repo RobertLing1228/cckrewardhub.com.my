@@ -36,12 +36,18 @@ class GameController extends Controller
             'gameLink' => 'required|string',
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $destination = public_path('storage/images/' . $filename);
+
+        file_put_contents($destination, file_get_contents($file));
+
+        $relativePath = 'images/' . $filename;
 
         Games::create([
             'title' => $fields['title'],
             'description' => $fields['description'],
-            'image' => $imagePath,
+            'image' => $relativePath,
             'gameLink' => $fields['gameLink'],
         ]);
 
@@ -62,18 +68,22 @@ class GameController extends Controller
         ]);
 
         // Check if a new image is uploaded
-    if ($request->hasFile('image')) {
-        // Delete old image
-        if ($game->image && file_exists(public_path("storage/{$game->image}"))) {
-            unlink(public_path("storage/{$game->image}"));
-        }
+        if ($request->hasFile('image')) {
+                if ($game->image && file_exists(public_path($game->image))) {
+                    unlink(public_path($game->image));
+                }
+        
+                // Read & write the new image manually
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName(); // Optional: use a UUID to avoid name collision
+                $destination = public_path('storage/images/' . $filename);
 
-        // Store new image
-        $fields['image'] = $request->file('image')->store('images', 'public');
-    } else {
-        // Keep old image if no new file uploaded
-        $fields['image'] = $game->image;
-    }
+                file_put_contents($destination, file_get_contents($file));
+
+                $fields['image'] = 'images/' . $filename;
+            } else {
+                $fields['image'] = $game->image;
+            }
 
         $game->update($fields);
 

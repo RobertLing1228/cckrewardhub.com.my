@@ -26,10 +26,16 @@ class BannerController extends Controller
             'link' => 'required|string|max:255',
         ]);
 
-        $imagePath = $request->file('image_path')->store('images', 'public');
+        $file = $request->file('image_path');
+        $filename = $file->getClientOriginalName();
+        $destination = public_path('storage/images/' . $filename);
+
+        file_put_contents($destination, file_get_contents($file));
+
+        $relativePath = 'images/' . $filename;
 
         Banner::create([
-            'image_path' => $imagePath,
+            'image_path' => $relativePath,
             'link' => $fields['link'],
         ]);
 
@@ -54,16 +60,21 @@ class BannerController extends Controller
 
 
         if ($request->hasFile('image_path')) {
-            if ($banner->image_path && file_exists(public_path("storage/{$banner->image_path}"))) {
-                unlink(public_path("storage/{$banner->image_path}"));
+            if ($banner->image_path && file_exists(public_path($banner->image_path))) {
+                unlink(public_path($banner->image_path));
             }
     
-            $fields['image_path'] = $request->file('image_path')->store('images', 'public');
+            // Read & write the new image manually
+            $file = $request->file('image_path');
+            $filename = $file->getClientOriginalName(); // Optional: use a UUID to avoid name collision
+            $destination = public_path('storage/images/' . $filename);
+
+            file_put_contents($destination, file_get_contents($file));
+
+            $fields['image_path'] = 'images/' . $filename;
         } else {
             $fields['image_path'] = $banner->image_path;
         }
-
-        
 
         $banner->update([
             'image_path' => $fields['image_path'],

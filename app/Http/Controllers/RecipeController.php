@@ -55,12 +55,16 @@ class RecipeController extends Controller
             'image.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
     
-        $imagePaths = [];
-    
-        foreach ($request->file('image') as $image) {
-            $path = $image->store('images', 'public');
-            $imagePaths[] = $path;
+         $imagePaths = [];
+
+        foreach ($request->file('image') as $file) {
+            $filename = $file->getClientOriginalName();
+            $destination = public_path('storage/images/' . $filename);
+            file_put_contents($destination, file_get_contents($file));
+            $relativePath = 'images/' . $filename;
+            $imagePaths[] = $relativePath;
         }
+
     
         Recipe::create([
             'productID' => $validated['productID'],
@@ -98,7 +102,7 @@ class RecipeController extends Controller
             'image.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
     
-        $fields = [];
+        $imagePaths = [];
     
         if ($request->hasFile('image')) {
             // Delete old images
@@ -110,13 +114,19 @@ class RecipeController extends Controller
                     }
                 }
             }
+
+            foreach ($request->file('image') as $file) {
+                $filename = $file->getClientOriginalName();
+                $destination = public_path('storage/images/' . $filename);
     
-            // Store new images
-            $newImagePaths = [];
-            foreach ($request->file('image') as $image) {
-                $newImagePaths[] = $image->store('images', 'public');
+                file_put_contents($destination, file_get_contents($file));
+    
+                $relativePath = 'images/' . $filename;
+                $imagePaths[] = $relativePath;
+                
             }
-            $fields['image'] = json_encode($newImagePaths);
+
+            $fields['image'] = json_encode(['images/' . $filename]);
         } else {
             // Keep existing images
             $fields['image'] = $recipe->image;
@@ -127,7 +137,7 @@ class RecipeController extends Controller
             'category' => $validated['category'],
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'image' => $fields['image'],
+            'image' => json_encode($imagePaths),
         ]);
     
 

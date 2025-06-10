@@ -112,15 +112,20 @@ class ProductController extends Controller
             'itemHot' => 'nullable|boolean'
         ]);
 
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $destination = public_path('storage/images/' . $filename);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        file_put_contents($destination, file_get_contents($file));
+
+        $relativePath = 'images/' . $filename;
 
         Product::create([
             'name' => $validated['name'],
             'price' => $validated['price'],
             'description' => $validated['description'],
             'category' => $validated['category'],
-            'image' => [$imagePath],
+            'image' => [$relativePath],
             'itemHot' => $validated['itemHot']
         ]);
 
@@ -192,10 +197,13 @@ class ProductController extends Controller
                 }
             }
 
-            // Store new image(s) as array
-            $storedPath = $request->file('image')->store('images', 'public');
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $destination = public_path('storage/images/' . $filename);
 
-            $fields['image'] = json_encode([$storedPath]); // Store as JSON
+            file_put_contents($destination, file_get_contents($file));
+
+            $fields['image'] = 'images/' . $filename; // Store as JSON
         } else {
             $fields['image'] = $product->image;
         }
@@ -205,7 +213,7 @@ class ProductController extends Controller
             'price' => $fields['price'],
             'description' => $fields['description'],
             'category' => $fields['category'],
-            'image' => $fields['image'],
+            'image' => [$fields['image']], // Still stored as JSON string
             'itemHot' => $fields['itemHot']
         ]);
 
