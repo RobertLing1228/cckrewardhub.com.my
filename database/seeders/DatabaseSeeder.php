@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             QrCodesSeeder::class,
             ReceipesSeeder::class,
             VouchersSeeder::class,
+            ExistingMembersSeeder::class,
+            GamesSeeder::class,
+            MissionsSeeder::class
         ]);
     }
 }

@@ -15,9 +15,7 @@ class GamesSeeder extends Seeder
                 'title' => 'Match 3',
                 'description' => 'A game where you swap tiles to match and score! Earn at least 300 points to get a reward!',
                 'image' => 'images/match3-banner.png',
-                'gameLink' => 'games/match3-gamever4/index.html',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'gameLink' => 'games/match3-gamever4/index.html'
             ],
         ]);
     }
