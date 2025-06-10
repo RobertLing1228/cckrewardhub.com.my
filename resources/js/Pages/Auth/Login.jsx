@@ -39,7 +39,7 @@ export default function Login({ status }) {
                 {
                 onFinish: () => reset('phoneNumber'),
             });
-            
+
         } catch (error) {
             console.error('Error:', error);
             alert('Phone number not found.');

@@ -37,7 +37,7 @@ class UserController extends Controller
         ]);
 
         return redirect('/admin/users')->with('success', 'Member created successfully!');
-        
+
     }
 
     public function edit($id){
@@ -80,7 +80,7 @@ class UserController extends Controller
         $fields = $request->validate([
             'name' => 'required|string|max:255',
         ]);
-        
+
         $admin->update($fields);
 
         return redirect('/admin/profile')->with('success', 'Profile updated successfully!');
@@ -113,7 +113,7 @@ class UserController extends Controller
         if(!$request->input('phoneNumber')){
             return response()->json(['message' => 'Phone number is required'], 400);
         }
-        
+
         $phoneNumber = $request->input('phoneNumber');
         $member = ExistingMember::where('phoneNumber', $phoneNumber)->first();
 
