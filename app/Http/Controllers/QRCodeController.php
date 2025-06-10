@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Product;
 
-class QRCodeController extends Controller
+class QrCodeController extends Controller
 {
     public function admin() {
         $qr_codes = QrCode::all();
@@ -78,7 +78,7 @@ class QRCodeController extends Controller
     } else {
         return response()->json(['message' => 'Invalid or inactive QR code.'], 400);
     }
-    
+
 }
 
     public function validate(Request $request) {

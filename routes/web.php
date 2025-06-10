@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\WheelRewardController;
-use App\Http\Controllers\QRCodeController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\UserMissionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\PromotionController;
+// use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\Auth\AdminAuthController;
@@ -40,7 +40,7 @@ use App\Http\Controllers\ExistMemController;
 /*
 Base Pages
 */
-Route::get('/', [ProductController::class, 'home'])->name('home'); 
+Route::get('/', [ProductController::class, 'home'])->name('home');
 Route::post('/check-member', [UserController::class, 'checkMember']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
@@ -49,10 +49,10 @@ Route::get('/products/{product}', [ProductController::class, 'show'])->name('pro
 Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
 
-Route::get('/promotions', [PromotionController::class, 'index']);
-Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->name('promotions.show');
+// Route::get('/promotions', [PromotionController::class, 'index']);
+// Route::get('/promotions/{promotion}', [PromotionController::class, 'show'])->name('promotions.show');
 
-Route::post('/qrcode/validate', [QRCodeController::class, 'validate']);
+Route::post('/qrcode/validate', [QrCodeController::class, 'validate']);
 
 
 
@@ -92,11 +92,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/wheel-rewards', [WheelRewardController::class, 'index']);
 
     // QR Code Routes
-    Route::post('/scan', [QRCodeController::class, 'scan']);
+    Route::post('/scan', [QrCodeController::class, 'scan']);
 });
 
 Route::middleware([AdminAuthMiddleWare::class])->group(function () {
-    Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admindashboard'); 
+    Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admindashboard');
 
     Route::get('/admin/products', [ProductController::class, 'admin']);
     Route::get('/admin/products/add', [ProductController::class, 'create']);
@@ -132,12 +132,12 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::get('/admin/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
     Route::post('/admin/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipes.update');
 
-    Route::get('/admin/promotions', [PromotionController::class, 'admin']);
-    Route::get('/admin/promotions/add', [PromotionController::class, 'create']);
-    Route::post('/admin/promotions/add', [PromotionController::class, 'store'])->name('promotions.store');
-    Route::delete('/admin/promotions/{promotion}', [PromotionController::class, 'delete'])->name('promotions.delete');
-    Route::get('/admin/promotions/{promotion}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
-    Route::post('/admin/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
+    // Route::get('/admin/promotions', [PromotionController::class, 'admin']);
+    // Route::get('/admin/promotions/add', [PromotionController::class, 'create']);
+    // Route::post('/admin/promotions/add', [PromotionController::class, 'store'])->name('promotions.store');
+    // Route::delete('/admin/promotions/{promotion}', [PromotionController::class, 'delete'])->name('promotions.delete');
+    // Route::get('/admin/promotions/{promotion}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
+    // Route::post('/admin/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
 
     Route::get('/admin/users', [UserController::class, 'admin']);
     Route::get('/admin/users/add', [UserController::class, 'create']);
@@ -165,7 +165,7 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::delete('/admin/games/{game}', [GameController::class, 'delete'])->name('games.delete');
     Route::get('/admin/games/add', [GameController::class, 'create']);
     Route::post('/admin/games/add', [GameController::class, 'store'])->name('games.store');
-    Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit'); 
+    Route::get('/admin/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit');
     Route::post('/admin/games/{game}', [GameController::class, 'update'])->name('games.update');
 
     Route::get('/admin/vouchers', [VoucherController::class, 'admin']);
@@ -174,7 +174,7 @@ Route::middleware([AdminAuthMiddleWare::class])->group(function () {
     Route::post('/admin/vouchers/add', [VoucherController::class, 'store'])->name('vouchers.store');
     Route::get('/admin/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
     Route::post('/admin/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
-    
+
 
     Route::get('/admin/uservouchers', [UserVoucherController::class, 'admin']);
 
