@@ -15,5 +15,5 @@ export default defineConfig({
         'resources/css/app.css',
         'resources/js/Pages/ErrorPage.jsx',
     ],
-    base: process.env.VITE_BASE_PATH || "/Customer-Interaction-System",
+    base: process.env.VITE_BASE_PATH,
 });
